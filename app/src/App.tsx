@@ -680,11 +680,15 @@ function BanksMap({
   goBack,
   openRetailBanking,
   openCommercialBanking,
+  openCorporateBanking,
+  openInvestmentBanking,
   openGlobalMarkets,
 }: {
   goBack: () => void;
   openRetailBanking: () => void;
   openCommercialBanking: () => void;
+  openCorporateBanking: () => void;
+  openInvestmentBanking: () => void;
   openGlobalMarkets: () => void;
 }) {
   return (
@@ -722,21 +726,22 @@ function BanksMap({
               className="finance-card"
               key={item.id}
               onClick={() => {
-                if (item.id === "retail-banking") {
-                  openRetailBanking();
-                }
-                if (item.id === "commercial-banking") {
-
-                  openCommercialBanking();
-
-                }
-
-                if (item.id === "global-markets") {
-
-                  openGlobalMarkets();
-
-                }
-              }}
+              if (item.id === "retail-banking") {
+                openRetailBanking();
+              }
+              if (item.id === "commercial-banking") {
+                openCommercialBanking();
+              }
+              if (item.id === "corporate-banking") {
+                openCorporateBanking();
+              }
+              if (item.id === "investment-banking") {
+                openInvestmentBanking();
+              }
+              if (item.id === "global-markets") {
+                openGlobalMarkets();
+              }
+            }}
             >
               <span>{item.emoji}</span>
               <strong>{item.label}</strong>
@@ -796,6 +801,21 @@ const commercialBankingFunctions: Item[] = [
   { id: "commercial-lending", emoji: "💵", label: "Commercial Lending" },
   { id: "commercial-credit", emoji: "🔎", label: "Credit Underwriting" },
   { id: "commercial-product-solutions", emoji: "🧩", label: "Commercial Banking Product / Solutions" },
+];
+
+const investmentBankingFunctions: Item[] = [
+  { id: "ib-coverage", emoji: "🧭", label: "Industry / Client Coverage" },
+  { id: "ib-ma", emoji: "🏢", label: "Mergers & Acquisitions (M&A)" },
+  { id: "ib-ecm", emoji: "💰", label: "Equity Capital Markets (ECM)" },
+  { id: "ib-dcm", emoji: "🧾", label: "Debt Capital Markets (DCM)" },
+  { id: "ib-levfin", emoji: "🏗️", label: "Leveraged Finance" },
+];
+
+const corporateBankingFunctions: Item[] = [
+  { id: "corporate-coverage", emoji: "🤝", label: "Corporate Coverage / Relationship Management" },
+  { id: "corporate-lending", emoji: "💵", label: "Corporate Lending" },
+  { id: "corporate-credit", emoji: "🔎", label: "Corporate Credit Analysis / Underwriting" },
+  { id: "corporate-solutions", emoji: "🧩", label: "Corporate Banking Solutions" },
 ];
 
 const retailBankingFunctions: Item[] = [
@@ -889,367 +909,566 @@ const digitalConsumerBankingRoles: Item[] = [
 
 
 
+const commercialProductSolutionsManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "Where Am I?",
+    description: "See where this role sits within the financial system.",
+    cards: [
+      ["🏦", "Financial Institutions", "Banks"],
+      ["🏢", "Commercial Banking", "Commercial Banking Product / Solutions"],
+      ["🧩", "Commercial Banking Product / Solutions", "Commercial Banking Product / Solutions Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "What Market?",
+    description: "The client environment this role primarily serves.",
+    cards: [
+      [
+        "🏢",
+        "Commercial & Business Banking Market",
+        "Supports banking solutions for business clients across financing, deposits, payments and related banking needs.",
+      ],
+    ],
+  },
+  {
+    emoji: "🧩",
+    title: "What Products?",
+    description: "Banking capabilities commonly coordinated for business clients.",
+    cards: [
+      [
+        "🏦",
+        "Commercial Deposits & Operating Accounts",
+        "Deposit and transaction accounts supporting business cash and everyday banking activity.",
+      ],
+      [
+        "💵",
+        "Commercial Loans & Credit Facilities",
+        "Term loans, revolving facilities and other financing used by business clients.",
+      ],
+      [
+        "💸",
+        "Payments & Cash Management",
+        "Payment, collection and liquidity capabilities commonly delivered with Transaction Banking teams.",
+      ],
+      [
+        "🔄",
+        "Working Capital Solutions",
+        "Financing and liquidity capabilities supporting day-to-day business operations.",
+      ],
+      [
+        "🌐",
+        "Trade Finance",
+        "Trade-related banking capabilities supporting domestic and cross-border commercial activity.",
+      ],
+      [
+        "📱",
+        "Digital Business Banking Services",
+        "Digital channels and services supporting business banking activity and client access.",
+      ],
+    ],
+  },
+  {
+    emoji: "💼",
+    title: "What Do I Actually Do?",
+    description: "Typical responsibilities in Commercial Banking Product / Solutions.",
+    cards: [
+      [
+        "🔍",
+        "Identify Business Client Product Needs",
+        "Translate business-client requirements into relevant commercial banking product and service needs.",
+      ],
+      [
+        "🧩",
+        "Develop & Coordinate Banking Solutions",
+        "Coordinate combinations of banking capabilities appropriate to client requirements.",
+      ],
+      [
+        "🤝",
+        "Connect Relationship Teams with Specialists",
+        "Link commercial relationship teams with lending, payments, trade and other product specialists.",
+      ],
+      [
+        "📦",
+        "Support Product Proposition & Delivery",
+        "Help shape how commercial banking capabilities are positioned and delivered to business clients.",
+      ],
+      [
+        "📊",
+        "Monitor Product Usage & Performance",
+        "Review adoption, usage and other indicators relevant to commercial banking products and services.",
+      ],
+      [
+        "🔗",
+        "Coordinate Cross-Functional Initiatives",
+        "Work across product, technology, operations and control teams on commercial banking initiatives.",
+      ],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "Who Do I Work With?",
+    description: "Key functions connected to Commercial Banking Product / Solutions.",
+    cards: [
+      [
+        "🤝",
+        "Relationship Management",
+        "Provides client context and identifies broader business banking needs.",
+      ],
+      [
+        "💵",
+        "Commercial Lending",
+        "Provides lending products and financing structures for business clients.",
+      ],
+      [
+        "🔎",
+        "Credit Underwriting",
+        "Analyzes borrower creditworthiness and proposed lending structures.",
+      ],
+      [
+        "💸",
+        "Transaction Banking",
+        "Provides specialized payments, cash-management, liquidity and trade capabilities.",
+      ],
+      [
+        "💰",
+        "Treasury / ALM",
+        "Connects relevant products with bank funding, liquidity and balance-sheet considerations.",
+      ],
+      [
+        "🛡️",
+        "Risk Management",
+        "Provides independent risk oversight and relevant risk frameworks.",
+      ],
+      [
+        "⚖️",
+        "Compliance / Financial Crime",
+        "Supports regulatory, KYC and financial-crime control requirements.",
+      ],
+      [
+        "⚙️",
+        "Operations & Technology",
+        "Supports product delivery, transaction processing and underlying banking systems.",
+      ],
+    ],
+  },
+  {
+    emoji: "⚙️",
+    title: "What Infrastructure Supports the Work?",
+    description: "Systems supporting commercial banking products and client solutions.",
+    cards: [
+      [
+        "🏦",
+        "Core Banking Systems",
+        "Support accounts, deposits and core commercial banking records.",
+      ],
+      [
+        "👥",
+        "Customer Relationship Management (CRM)",
+        "Supports client information, relationship activity and product coordination.",
+      ],
+      [
+        "💵",
+        "Loan & Credit Platforms",
+        "Support commercial lending, underwriting and credit workflows.",
+      ],
+      [
+        "💸",
+        "Payments & Cash Management Platforms",
+        "Support payment, collection and liquidity capabilities used by business clients.",
+      ],
+      [
+        "📱",
+        "Digital Business Banking Platforms",
+        "Provide digital access to commercial banking services and account functionality.",
+      ],
+      [
+        "📊",
+        "Product & Customer Analytics",
+        "Support analysis of product usage, client activity and service performance.",
+      ],
+    ],
+  },
+];
+
 function CommercialProductSolutionsManagerRole({
   goBack,
 }: {
   goBack: () => void;
 }) {
-  const sections: RoleDetailSection[] = [
-    {
-      emoji: "📍",
-      title: "Where Am I?",
-      description: "Your position in the financial system.",
-      cards: [
-        ["Financial Institutions"],
-        ["Banks"],
-        ["Commercial Banking"],
-        ["Commercial Banking Product / Solutions"],
-        ["Commercial Banking Product / Solutions Manager"],
-      ],
-    },
-    {
-      emoji: "📈",
-      title: "What Market?",
-      description: "The client environment this role serves.",
-      cards: [
-        ["Commercial & Business Banking Market"],
-      ],
-    },
-    {
-      emoji: "🧩",
-      title: "What Products?",
-      description: "Banking capabilities commonly coordinated for business clients.",
-      cards: [
-        ["Commercial Deposits & Operating Accounts"],
-        ["Commercial Loans & Credit Facilities"],
-        ["Payments & Cash Management"],
-        ["Working Capital Solutions"],
-        ["Trade Finance"],
-        ["Digital Business Banking Services"],
-      ],
-    },
-    {
-      emoji: "💼",
-      title: "What Do I Actually Do?",
-      description: "Core responsibilities commonly associated with commercial banking solutions.",
-      cards: [
-        ["Identify Business Client Product Needs"],
-        ["Develop & Coordinate Commercial Banking Solutions"],
-        ["Connect Relationship Teams with Product Specialists"],
-        ["Support Product Proposition & Delivery"],
-        ["Monitor Product Usage & Performance"],
-        ["Coordinate Cross-Functional Product Initiatives"],
-      ],
-    },
-    {
-      emoji: "🔗",
-      title: "Who Do I Work With?",
-      description: "Teams involved in building and delivering commercial banking solutions.",
-      cards: [
-        ["Relationship Management"],
-        ["Commercial Lending"],
-        ["Credit Underwriting"],
-        ["Transaction Banking"],
-        ["Treasury / ALM"],
-        ["Risk Management"],
-        ["Compliance / Financial Crime"],
-        ["Operations & Technology"],
-      ],
-    },
-    {
-      emoji: "⚙️",
-      title: "What Infrastructure Supports the Work?",
-      description: "Platforms supporting commercial banking products and client delivery.",
-      cards: [
-        ["Core Banking Systems"],
-        ["Customer Relationship Management (CRM)"],
-        ["Loan & Credit Platforms"],
-        ["Payments & Cash Management Platforms"],
-        ["Digital Business Banking Platforms"],
-        ["Product & Customer Analytics"],
-      ],
-    },
-  ];
-
   return (
     <RoleDetailPage
       goBack={goBack}
       backLabel="Commercial Banking Product / Solutions"
-      eyebrow="COMMERCIAL BANKING ROLE"
       title="Commercial Banking Product / Solutions Manager"
       intro="Develops and coordinates banking solutions for business clients, connecting relationship needs with lending, deposits, payments and other product capabilities across the bank."
-      sections={sections}
+      sections={commercialProductSolutionsManagerSections}
+      eyebrow="COMMERCIAL BANKING ROLE"
     />
   );
 }
+const commercialCreditUnderwriterSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "Where Am I?",
+    description: "See where this role sits within the financial system.",
+    cards: [
+      ["🏦", "Financial Institutions", "Banks"],
+      ["🏢", "Commercial Banking", "Credit Underwriting"],
+      ["🔎", "Credit Underwriting", "Commercial Credit Analyst / Underwriter"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "What Market?",
+    description: "The credit environment this role primarily analyzes.",
+    cards: [
+      [
+        "💵",
+        "Commercial Lending & Business Credit Market",
+        "Analyzes business borrowers and lending structures within commercial credit markets.",
+      ],
+    ],
+  },
+  {
+    emoji: "🧩",
+    title: "What Products?",
+    description: "Core commercial credit products and facilities commonly analyzed.",
+    cards: [
+      ["📄", "Term Loans", "Business loans with defined maturities and repayment structures."],
+      ["🔄", "Revolving Credit Facilities", "Flexible facilities allowing business borrowers to draw and repay funding within agreed limits."],
+      ["💼", "Working Capital Loans", "Financing supporting inventory, receivables and other operating requirements."],
+      ["🔐", "Secured Business Loans", "Business lending supported by collateral or other forms of security."],
+      ["🏗️", "Equipment / Asset Finance", "Financing supported by or used to acquire business equipment and other productive assets."],
+    ],
+  },
+  {
+    emoji: "💼",
+    title: "What Do I Actually Do?",
+    description: "Typical responsibilities in Commercial Credit Underwriting.",
+    cards: [
+      ["📊", "Analyze Financial Statements & Cash Flow", "Evaluate financial performance, cash generation, leverage and other indicators of borrower credit quality."],
+      ["🏢", "Assess Borrower & Industry Risk", "Evaluate the borrower's business model, industry conditions and other factors affecting creditworthiness."],
+      ["💵", "Evaluate Repayment Capacity", "Assess whether expected cash flows and financial resources support proposed debt obligations."],
+      ["🔐", "Review Structure & Collateral", "Evaluate facility terms, collateral, covenants and other protections within the proposed lending structure."],
+      ["📝", "Prepare Credit Analysis", "Document credit analysis, key risks and recommendations for relevant approval processes."],
+      ["🔄", "Support Ongoing Credit Review", "Monitor borrower developments and support periodic reviews of existing credit exposures."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "Who Do I Work With?",
+    description: "Key functions connected to Commercial Credit Underwriting.",
+    cards: [
+      ["🤝", "Relationship Management", "Provides client context and coordinates the broader commercial banking relationship."],
+      ["💵", "Commercial Lending", "Develops lending opportunities and proposed facility structures for business clients."],
+      ["🛡️", "Risk Management", "Provides independent credit-risk oversight, policies, limits and approval frameworks."],
+      ["⚖️", "Legal", "Supports documentation, collateral, covenants and other legal aspects of lending structures."],
+      ["⚙️", "Loan Operations", "Supports facility setup, servicing and ongoing loan administration."],
+      ["🛡️", "Compliance / Financial Crime", "Supports regulatory, KYC and financial-crime control requirements."],
+    ],
+  },
+  {
+    emoji: "⚙️",
+    title: "What Infrastructure Supports the Work?",
+    description: "Systems and data supporting commercial credit analysis.",
+    cards: [
+      ["💻", "Credit Underwriting & Workflow Systems", "Support credit analysis, documentation, approval workflows and credit decisions."],
+      ["📑", "Financial Statement Analysis Tools", "Support analysis of borrower financial statements, cash flows and credit metrics."],
+      ["📡", "Credit Bureau / Rating Data", "Provide external credit information, ratings and other borrower-risk indicators where available."],
+      ["🔐", "Collateral & Covenant Data", "Support assessment and monitoring of collateral, covenants and structural protections."],
+      ["📊", "Risk Monitoring Systems", "Support ongoing monitoring of borrower performance and credit exposures."],
+    ],
+  },
+];
 
 function CommercialCreditUnderwriterRole({
   goBack,
 }: {
   goBack: () => void;
 }) {
-  const sections: RoleDetailSection[] = [
-    {
-      emoji: "📍",
-      title: "Where Am I?",
-      description: "Your position in the financial system.",
-      cards: [
-        ["Financial Institutions"],
-        ["Banks"],
-        ["Commercial Banking"],
-        ["Credit Underwriting"],
-        ["Commercial Credit Analyst / Underwriter"],
-      ],
-    },
-    {
-      emoji: "📈",
-      title: "What Market?",
-      description: "The credit environment this role analyzes.",
-      cards: [
-        ["Commercial Lending & Business Credit Market"],
-      ],
-    },
-    {
-      emoji: "🧩",
-      title: "What Products?",
-      description: "Typical credit products reviewed in underwriting.",
-      cards: [
-        ["Term Loans"],
-        ["Revolving Credit Facilities"],
-        ["Working Capital Loans"],
-        ["Secured Business Loans"],
-        ["Equipment / Asset Finance"],
-      ],
-    },
-    {
-      emoji: "💼",
-      title: "What Do I Actually Do?",
-      description: "Core responsibilities commonly associated with commercial underwriting.",
-      cards: [
-        ["Analyze Financial Statements & Cash Flow"],
-        ["Assess Borrower & Industry Risk"],
-        ["Evaluate Debt Capacity & Repayment Ability"],
-        ["Review Loan Structure & Collateral"],
-        ["Prepare Credit Analysis & Recommendations"],
-        ["Support Credit Approval & Ongoing Review"],
-      ],
-    },
-    {
-      emoji: "🔗",
-      title: "Who Do I Work With?",
-      description: "Key teams involved in the commercial credit process.",
-      cards: [
-        ["Relationship Management"],
-        ["Commercial Lending"],
-        ["Risk Management"],
-        ["Legal"],
-        ["Loan Operations"],
-        ["Compliance / Financial Crime"],
-      ],
-    },
-    {
-      emoji: "⚙️",
-      title: "What Infrastructure Supports the Work?",
-      description: "Systems and information used in commercial credit analysis.",
-      cards: [
-        ["Credit Underwriting & Workflow Systems"],
-        ["Financial Statement Analysis Tools"],
-        ["Credit Bureau / Rating Data"],
-        ["Collateral & Covenant Data"],
-        ["Risk Monitoring Systems"],
-      ],
-    },
-  ];
-
   return (
     <RoleDetailPage
       goBack={goBack}
       backLabel="Credit Underwriting"
-      eyebrow="COMMERCIAL BANKING ROLE"
       title="Commercial Credit Analyst / Underwriter"
-      intro="Analyzes business borrowers, financial performance, cash flows and lending structures to assess creditworthiness and support commercial credit decisions within established credit policies."
-      sections={sections}
+      intro="Analyzes business borrowers, financial performance, cash flows and proposed lending structures to support commercial credit decisions within established credit policies."
+      sections={commercialCreditUnderwriterSections}
+      eyebrow="COMMERCIAL BANKING ROLE"
     />
   );
 }
+
+const commercialLendingOfficerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "Where Am I?",
+    description: "See where this role sits within the financial system.",
+    cards: [
+      ["🏦", "Financial Institutions", "Banks"],
+      ["🏢", "Commercial Banking", "Commercial Lending"],
+      ["💵", "Commercial Lending", "Commercial Lending Officer / Banker"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "What Market?",
+    description: "The financing market this role primarily serves.",
+    cards: [
+      [
+        "💵",
+        "Commercial Lending & Business Credit Market",
+        "Provides financing to business clients for investment, working capital and other business purposes.",
+      ],
+    ],
+  },
+  {
+    emoji: "🧩",
+    title: "What Products?",
+    description: "Core commercial lending products commonly originated and structured.",
+    cards: [
+      ["📄", "Term Loans", "Loans with defined maturities used to finance investment, expansion and other business needs."],
+      ["🔄", "Revolving Credit Facilities", "Credit facilities providing flexible access to business funding within agreed limits."],
+      ["💼", "Working Capital Loans", "Financing supporting inventory, receivables and other day-to-day operating requirements."],
+      ["🔐", "Secured Business Loans", "Business loans supported by collateral or other forms of security."],
+      ["🏗️", "Equipment / Asset Finance", "Financing used to acquire equipment, machinery or other productive business assets."],
+    ],
+  },
+  {
+    emoji: "💼",
+    title: "What Do I Actually Do?",
+    description: "Typical responsibilities in Commercial Lending.",
+    cards: [
+      ["🔍", "Assess Financing Needs", "Understand client funding requirements, purpose, timing and repayment profile."],
+      ["🧩", "Structure Loan Terms & Facilities", "Develop lending structures, maturities, pricing and other facility terms."],
+      ["💵", "Originate Lending Opportunities", "Develop potential lending transactions with relationship teams and business clients."],
+      ["🔎", "Coordinate Credit Approval", "Work with underwriting and risk teams to progress lending proposals through approval."],
+      ["📑", "Support Documentation & Execution", "Coordinate documentation, conditions and operational steps required to establish facilities."],
+      ["📊", "Monitor Lending Relationships", "Follow developments affecting outstanding facilities, borrower needs and lending relationships."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "Who Do I Work With?",
+    description: "Key functions connected to Commercial Lending.",
+    cards: [
+      ["🤝", "Relationship Management", "Identifies client financing needs and coordinates the broader banking relationship."],
+      ["🔎", "Credit Underwriting", "Analyzes borrower financials, repayment capacity and proposed lending structures."],
+      ["🛡️", "Risk Management", "Provides independent risk oversight and relevant credit frameworks and limits."],
+      ["⚖️", "Legal", "Supports loan documentation, contractual terms, security and other legal requirements."],
+      ["💰", "Treasury / ALM", "Connects lending activity with bank funding, liquidity and balance-sheet considerations."],
+      ["⚙️", "Loan Operations", "Supports facility setup, servicing, payments and other lending processes."],
+      ["🛡️", "Compliance / Financial Crime", "Supports regulatory, KYC and financial-crime control requirements."],
+    ],
+  },
+  {
+    emoji: "⚙️",
+    title: "What Infrastructure Supports the Work?",
+    description: "Systems and data supporting commercial lending activity.",
+    cards: [
+      ["💻", "Loan Origination Systems", "Support lending opportunities from initial request through structuring and approval."],
+      ["✅", "Credit Workflow & Approval Systems", "Support credit analysis, approval authorities and decision workflows."],
+      ["📊", "Financial Statement & Credit Data", "Provide borrower financials and credit information used in lending analysis."],
+      ["🔐", "Collateral Management Systems", "Support information about collateral, security and related lending requirements."],
+      ["📑", "Document & Loan Administration Platforms", "Support lending documentation, facility setup and ongoing administration."],
+    ],
+  },
+];
 
 function CommercialLendingOfficerRole({
   goBack,
 }: {
   goBack: () => void;
 }) {
-  const sections: RoleDetailSection[] = [
-    {
-      emoji: "📍",
-      title: "Where Am I?",
-      description: "Your position in the financial system.",
-      cards: [
-        ["Financial Institutions"],
-        ["Banks"],
-        ["Commercial Banking"],
-        ["Commercial Lending"],
-        ["Commercial Lending Officer / Banker"],
-      ],
-    },
-    {
-      emoji: "📈",
-      title: "What Market?",
-      description: "The financing environment this role serves.",
-      cards: [
-        ["Commercial Lending & Business Credit Market"],
-      ],
-    },
-    {
-      emoji: "🧩",
-      title: "What Products?",
-      description: "Typical lending products used by business clients.",
-      cards: [
-        ["Term Loans"],
-        ["Revolving Credit Facilities"],
-        ["Working Capital Loans"],
-        ["Secured Business Loans"],
-        ["Equipment / Asset Finance"],
-      ],
-    },
-    {
-      emoji: "💼",
-      title: "What Do I Actually Do?",
-      description: "Core responsibilities commonly associated with the role.",
-      cards: [
-        ["Assess Client Financing Needs"],
-        ["Structure Loan Terms & Facilities"],
-        ["Originate Lending Opportunities"],
-        ["Coordinate Credit Proposals & Approval"],
-        ["Support Documentation & Execution"],
-        ["Monitor Lending Relationships"],
-      ],
-    },
-    {
-      emoji: "🔗",
-      title: "Who Do I Work With?",
-      description: "Key teams involved in commercial lending.",
-      cards: [
-        ["Relationship Management"],
-        ["Credit Underwriting"],
-        ["Risk Management"],
-        ["Legal"],
-        ["Treasury / ALM"],
-        ["Loan Operations"],
-        ["Compliance / Financial Crime"],
-      ],
-    },
-    {
-      emoji: "⚙️",
-      title: "What Infrastructure Supports the Work?",
-      description: "Systems and data supporting commercial lending workflows.",
-      cards: [
-        ["Loan Origination Systems"],
-        ["Credit Workflow & Approval Systems"],
-        ["Financial Statement & Credit Data"],
-        ["Collateral Management Systems"],
-        ["Document & Loan Administration Platforms"],
-      ],
-    },
-  ];
-
   return (
     <RoleDetailPage
       goBack={goBack}
       backLabel="Commercial Lending"
-      eyebrow="COMMERCIAL BANKING ROLE"
       title="Commercial Lending Officer / Banker"
       intro="Originates and structures lending solutions for business clients, assessing financing needs and coordinating credit underwriting, approval and execution."
-      sections={sections}
+      sections={commercialLendingOfficerSections}
+      eyebrow="COMMERCIAL BANKING ROLE"
     />
   );
 }
+
+const commercialRelationshipManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "Where Am I?",
+    description: "See where this role sits within the financial system.",
+    cards: [
+      ["🏦", "Financial Institutions", "Banks"],
+      ["🏢", "Commercial Banking", "Relationship Management"],
+      ["🤝", "Relationship Management", "Commercial Relationship Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "What Market?",
+    description: "The client and financing environment this role serves.",
+    cards: [
+      [
+        "🏢",
+        "Commercial & Business Banking Market",
+        "Serves business clients across financing, deposits, payments and other banking needs.",
+      ],
+    ],
+  },
+  {
+    emoji: "🧩",
+    title: "What Products?",
+    description: "Core banking solutions commonly coordinated for business clients.",
+    cards: [
+      [
+        "💵",
+        "Commercial Loans & Credit Facilities",
+        "Term loans, revolving facilities and other financing used by business clients.",
+      ],
+      [
+        "🏦",
+        "Deposit & Operating Accounts",
+        "Accounts supporting operating cash, deposits and everyday business banking activity.",
+      ],
+      [
+        "🔄",
+        "Working Capital Solutions",
+        "Financing and liquidity solutions supporting day-to-day business operations.",
+      ],
+      [
+        "💸",
+        "Cash Management & Payments",
+        "Payment, collection and liquidity services commonly delivered with Transaction Banking teams.",
+      ],
+      [
+        "🌐",
+        "Trade Finance",
+        "Trade-related banking solutions that may support domestic and cross-border commercial activity.",
+      ],
+    ],
+  },
+  {
+    emoji: "💼",
+    title: "What Do I Actually Do?",
+    description: "Typical responsibilities in Commercial Relationship Management.",
+    cards: [
+      [
+        "🤝",
+        "Manage Client Relationships",
+        "Build and maintain banking relationships with business clients over time.",
+      ],
+      [
+        "🔍",
+        "Understand Banking Needs",
+        "Identify client financing, liquidity, payment and operating-banking requirements.",
+      ],
+      [
+        "💵",
+        "Originate Credit Opportunities",
+        "Identify lending needs and coordinate potential financing opportunities with lending and credit teams.",
+      ],
+      [
+        "🧩",
+        "Coordinate Product Specialists",
+        "Connect clients with relevant lending, payments, trade and other banking specialists.",
+      ],
+      [
+        "📊",
+        "Monitor Relationship Developments",
+        "Track client developments, banking activity and relevant credit or business changes.",
+      ],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "Who Do I Work With?",
+    description: "Key functions connected to Commercial Relationship Management.",
+    cards: [
+      [
+        "💵",
+        "Commercial Lending",
+        "Works on financing opportunities, facility structures and lending execution.",
+      ],
+      [
+        "🔎",
+        "Credit Underwriting",
+        "Analyzes borrower creditworthiness, financial performance and proposed lending structures.",
+      ],
+      [
+        "🧩",
+        "Commercial Banking Product / Solutions",
+        "Coordinates broader commercial banking capabilities around client needs.",
+      ],
+      [
+        "💸",
+        "Transaction Banking",
+        "Provides payments, cash-management, liquidity and trade capabilities.",
+      ],
+      [
+        "🛡️",
+        "Risk Management",
+        "Provides independent risk oversight and establishes relevant risk frameworks and limits.",
+      ],
+      [
+        "⚖️",
+        "Compliance / Financial Crime",
+        "Supports regulatory, KYC and financial-crime control requirements.",
+      ],
+      [
+        "⚙️",
+        "Operations & Technology",
+        "Supports account, transaction, lending and client-service processes and systems.",
+      ],
+    ],
+  },
+  {
+    emoji: "⚙️",
+    title: "What Infrastructure Supports the Work?",
+    description: "Systems supporting commercial client coverage and banking workflows.",
+    cards: [
+      [
+        "👥",
+        "Customer Relationship Management (CRM)",
+        "Supports client information, relationship activity and coverage coordination.",
+      ],
+      [
+        "📑",
+        "Loan Origination & Credit Workflow",
+        "Supports financing proposals, underwriting, approvals and lending workflows.",
+      ],
+      [
+        "🏦",
+        "Core Banking Systems",
+        "Support client accounts, deposits and core banking records.",
+      ],
+      [
+        "📊",
+        "Credit & Financial Data",
+        "Provides financial, borrower and credit information used in relationship and lending activity.",
+      ],
+      [
+        "💸",
+        "Payments & Cash Management Platforms",
+        "Support payment, collection and liquidity services used by commercial clients.",
+      ],
+    ],
+  },
+];
 
 function CommercialRelationshipManagerRole({
   goBack,
 }: {
   goBack: () => void;
 }) {
-  const sections: RoleDetailSection[] = [
-    {
-      emoji: "📍",
-      title: "Where Am I?",
-      description: "Your position in the financial system.",
-      cards: [
-        ["Financial Institutions"],
-        ["Banks"],
-        ["Commercial Banking"],
-        ["Relationship Management"],
-        ["Commercial Relationship Manager"],
-      ],
-    },
-    {
-      emoji: "📈",
-      title: "What Market?",
-      description: "The client and financing environment this role serves.",
-      cards: [
-        ["Commercial & Business Banking Market"],
-      ],
-    },
-    {
-      emoji: "🧩",
-      title: "What Products?",
-      description: "Typical banking solutions coordinated for business clients.",
-      cards: [
-        ["Commercial Loans & Credit Facilities"],
-        ["Deposit & Operating Accounts"],
-        ["Working Capital Solutions"],
-        ["Cash Management & Payments"],
-        ["Trade Finance"],
-      ],
-    },
-    {
-      emoji: "💼",
-      title: "What Do I Actually Do?",
-      description: "Core responsibilities commonly associated with the role.",
-      cards: [
-        ["Manage Business Client Relationships"],
-        ["Understand Financing & Banking Needs"],
-        ["Originate & Coordinate Credit Opportunities"],
-        ["Coordinate Product Specialists"],
-        ["Monitor Relationship & Credit Developments"],
-      ],
-    },
-    {
-      emoji: "🔗",
-      title: "Who Do I Work With?",
-      description: "Key teams involved in serving the client relationship.",
-      cards: [
-        ["Commercial Lending"],
-        ["Credit Underwriting"],
-        ["Commercial Banking Product / Solutions"],
-        ["Transaction Banking"],
-        ["Risk Management"],
-        ["Compliance / Financial Crime"],
-        ["Operations & Technology"],
-      ],
-    },
-    {
-      emoji: "⚙️",
-      title: "What Infrastructure Supports the Work?",
-      description: "Systems commonly supporting relationship and credit workflows.",
-      cards: [
-        ["Customer Relationship Management (CRM)"],
-        ["Loan Origination & Credit Workflow Systems"],
-        ["Core Banking Systems"],
-        ["Credit & Financial Data"],
-        ["Payments & Cash Management Platforms"],
-      ],
-    },
-  ];
-
   return (
     <RoleDetailPage
       goBack={goBack}
       backLabel="Relationship Management"
-      eyebrow="COMMERCIAL BANKING ROLE"
       title="Commercial Relationship Manager"
       intro="Manages banking relationships with business clients, understanding their financing and banking needs and coordinating lending and other banking solutions across product and control teams."
-      sections={sections}
+      sections={commercialRelationshipManagerSections}
+      eyebrow="COMMERCIAL BANKING ROLE"
     />
   );
 }
@@ -1303,6 +1522,698 @@ function CommercialRoleMap({
               <span>{role.emoji}</span>
               <strong>{role.title}</strong>
               <p>{role.description}</p>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+const corporateSolutionsRoles: Role[] = [
+  {
+    emoji: "🧩",
+    title: "Corporate Banking Solutions Banker",
+    description:
+      "Coordinates banking solutions for large corporate clients by connecting financing needs with lending and specialist product teams across the bank.",
+  },
+];
+
+const corporateCreditRoles: Role[] = [
+  {
+    emoji: "🔎",
+    title: "Corporate Credit Analyst / Underwriter",
+    description:
+      "Analyzes the creditworthiness of large corporate borrowers and evaluates lending structures, exposures and risks to support credit decisions.",
+  },
+];
+
+const corporateLendingRoles: Role[] = [
+  {
+    emoji: "💵",
+    title: "Corporate Lending Banker",
+    description:
+      "Structures and executes lending solutions for large corporate clients, coordinating financing requirements with credit, risk and relationship teams.",
+  },
+];
+
+const corporateCoverageRoles: Role[] = [
+  {
+    emoji: "🤝",
+    title: "Corporate Relationship Manager / Banker",
+    description:
+      "Manages relationships with large and complex corporate clients, coordinating lending and specialist banking solutions across the bank.",
+  },
+];
+
+function CorporateSolutionsBankerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🌐", "Corporate Banking", "Corporate Banking Solutions"],
+        ["🧩", "Corporate Banking Solutions", "Corporate Banking Solutions Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client and financing environment this role primarily serves.",
+      cards: [
+        [
+          "🏢",
+          "Large Corporate Banking Market",
+          "Works across the banking needs of large and complex corporate clients, coordinating solutions across financing, liquidity and financial-risk requirements.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The banking capabilities commonly coordinated by this role.",
+      cards: [
+        ["💵", "Corporate Lending", "Coordinates term loans, revolving facilities and other lending solutions with corporate lending teams."],
+        ["💸", "Cash Management & Payments", "Connects clients with transaction-banking capabilities for liquidity, payments and account structures."],
+        ["🌍", "Trade Finance", "Coordinates specialist solutions supporting trade flows, guarantees and working-capital requirements."],
+        ["📈", "FX & Rates Solutions", "Connects corporate clients with Global Markets teams for relevant currency and interest-rate risk-management needs."],
+        ["🏦", "Capital Markets & Advisory", "Coordinates with Investment Banking or capital-markets teams when client needs extend beyond traditional bank lending."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Identify Banking Needs", "Assesses corporate financing, liquidity, transaction and financial-risk requirements."],
+        ["🧩", "Design Integrated Solutions", "Combines relevant banking capabilities into coordinated client solutions."],
+        ["🤝", "Coordinate Specialist Teams", "Brings together lending, transaction banking, markets and other specialists around client needs."],
+        ["📊", "Evaluate Solution Fit", "Assesses how proposed products fit the client's financial profile, objectives and existing banking relationships."],
+        ["⚙️", "Coordinate Delivery", "Supports internal execution across product, credit, risk, onboarding and operations teams."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders this role interacts with most.",
+      cards: [
+        ["🤝", "Corporate Coverage", "Works with relationship bankers to identify priorities and coordinate the overall client relationship."],
+        ["💵", "Corporate Lending", "Coordinates lending structures and financing facilities."],
+        ["💸", "Transaction Banking", "Connects clients with cash management, payments and trade-finance specialists."],
+        ["📈", "Global Markets", "Coordinates FX, rates and other markets capabilities where relevant."],
+        ["🏦", "Investment Banking", "Works with advisory and capital-markets teams when broader financing needs arise."],
+        ["🛡️", "Credit / Risk", "Coordinates risk assessment, limits and approvals associated with proposed solutions."],
+        ["🏢", "Corporate Clients", "Engages treasury, finance and other corporate stakeholders to understand requirements."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and infrastructure supporting the role.",
+      cards: [
+        ["🗃️", "CRM Platforms", "Tracks client relationships, opportunities and coordinated product activity."],
+        ["📊", "Credit & Exposure Systems", "Provides visibility into borrower exposure, limits and credit status."],
+        ["💻", "Product & Pricing Platforms", "Supports evaluation and coordination of relevant banking products and commercial terms."],
+        ["🔐", "KYC / Onboarding Systems", "Supports due diligence and onboarding across products and legal entities."],
+        ["📄", "Workflow & Documentation Platforms", "Coordinates approvals, documentation and implementation across internal teams."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Corporate Banking Solutions"
+      eyebrow="CORPORATE BANKING ROLE"
+      title="Corporate Banking Solutions Banker"
+      intro="Coordinates banking solutions for large corporate clients by connecting financing needs with lending and specialist product teams across the bank."
+      sections={sections}
+    />
+  );
+}
+
+function CorporateSolutionsMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <CommercialRoleMap
+      goBack={goBack}
+      title="Corporate Banking Solutions"
+      emoji="🧩"
+      intro="Explore roles that coordinate lending and specialist banking capabilities around the financing and operating needs of large corporate clients."
+      roles={corporateSolutionsRoles}
+      openRole={openRole}
+    />
+  );
+}
+
+function CorporateCreditUnderwriterRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🌐", "Corporate Banking", "Corporate Credit Analysis / Underwriting"],
+        ["🔎", "Corporate Credit", "Corporate Credit Analyst / Underwriter"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The borrower and financing markets this role primarily analyzes.",
+      cards: [
+        [
+          "🏢",
+          "Corporate Credit Market",
+          "Analyzes large and complex corporate borrowers and the credit risk embedded in bank lending and related exposures.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The credit products and exposures commonly evaluated by this role.",
+      cards: [
+        ["💵", "Term Loans", "Evaluates borrower capacity and risk for term lending facilities."],
+        ["🔄", "Revolving Credit Facilities", "Assesses committed revolving facilities and their potential utilization and exposure."],
+        ["🤝", "Syndicated Loans", "Reviews credit risk in larger financings shared across multiple lenders."],
+        ["🌍", "Cross-Border Credit Facilities", "Assesses exposures involving multiple jurisdictions, entities or currencies."],
+        ["📊", "Corporate Credit Exposures", "Evaluates broader counterparty and lending exposure associated with corporate relationships."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📑", "Analyze Financial Statements", "Reviews income statements, balance sheets, cash flows and key financial metrics."],
+        ["🧮", "Assess Debt Capacity", "Evaluates leverage, liquidity, cash-flow generation and ability to service debt."],
+        ["🏭", "Evaluate Business & Industry Risk", "Assesses the borrower's business model, competitive position and industry environment."],
+        ["🔎", "Review Lending Structures", "Evaluates facility terms, collateral, guarantees, covenants and structural protections."],
+        ["✅", "Support Credit Decisions", "Prepares credit analysis and recommendations for approval, renewal or modification of exposures."],
+        ["📊", "Monitor Existing Exposure", "Tracks borrower performance, risk indicators and changes in credit quality over time."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders this role interacts with most.",
+      cards: [
+        ["🤝", "Corporate Coverage", "Works with relationship bankers to understand clients, transactions and financing needs."],
+        ["💵", "Corporate Lending", "Evaluates lending structures developed for corporate borrowers."],
+        ["🛡️", "Credit Risk Management", "Coordinates risk assessment, limits, approvals and portfolio oversight."],
+        ["⚖️", "Legal", "Reviews documentation, guarantees, collateral and structural protections where relevant."],
+        ["📊", "Portfolio Management", "Supports ongoing monitoring of borrower and portfolio credit quality."],
+        ["🏢", "Corporate Clients", "May interact with client finance and treasury teams to understand financial performance and funding needs."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and infrastructure supporting the role.",
+      cards: [
+        ["📊", "Credit Risk Systems", "Stores ratings, limits, exposures and other borrower risk information."],
+        ["📑", "Financial Analysis Tools", "Supports spreading, ratio analysis, cash-flow assessment and credit modeling."],
+        ["🗃️", "Credit Approval Platforms", "Manages credit applications, approvals, conditions and review workflows."],
+        ["💻", "Exposure Monitoring Systems", "Tracks utilized and potential exposure across facilities and counterparties."],
+        ["📄", "Document Repositories", "Provides access to financial statements, facility documents and supporting credit materials."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Corporate Credit Analysis / Underwriting"
+      eyebrow="CORPORATE BANKING ROLE"
+      title="Corporate Credit Analyst / Underwriter"
+      intro="Analyzes the creditworthiness of large corporate borrowers and evaluates lending structures, exposures and risks to support credit decisions."
+      sections={sections}
+    />
+  );
+}
+
+function CorporateCreditMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <CommercialRoleMap
+      goBack={goBack}
+      title="Corporate Credit Analysis / Underwriting"
+      emoji="🔎"
+      intro="Explore roles that assess large corporate borrowers, lending structures and credit risk to support financing decisions."
+      roles={corporateCreditRoles}
+      openRole={openRole}
+    />
+  );
+}
+
+function CorporateLendingBankerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🌐", "Corporate Banking", "Corporate Lending"],
+        ["💵", "Corporate Lending", "Corporate Lending Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financing markets this role primarily works in.",
+      cards: [
+        [
+          "🏢",
+          "Corporate Loan Market",
+          "Works in lending markets serving large and complex corporate borrowers across bilateral and syndicated financing structures.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The lending products and financing structures commonly handled by this role.",
+      cards: [
+        ["💵", "Term Loans", "Structures loans with defined maturities and repayment terms for corporate financing needs."],
+        ["🔄", "Revolving Credit Facilities", "Structures committed facilities that provide flexible liquidity and borrowing capacity."],
+        ["🤝", "Syndicated Loans", "Supports financing provided by groups of lenders for larger corporate borrowing requirements."],
+        ["🌍", "Cross-Border Loans", "Coordinates lending structures involving borrowers, lenders or facilities across jurisdictions."],
+        ["🏗️", "Acquisition & General Corporate Financing", "Supports lending used for acquisitions, investment, refinancing and general corporate purposes."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🧮", "Structure Lending Solutions", "Designs facility size, maturity, repayment and other key lending terms around client financing needs."],
+        ["📊", "Assess Financing Requirements", "Evaluates how borrowing needs fit the client's capital structure, liquidity position and business objectives."],
+        ["🔎", "Coordinate Credit Assessment", "Works with credit and risk teams to evaluate borrower quality, structure and exposure."],
+        ["📝", "Support Terms & Documentation", "Coordinates commercial terms, approvals and documentation through the lending process."],
+        ["⚙️", "Execute & Monitor Facilities", "Supports closing, funding and ongoing management of lending facilities."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders this role interacts with most.",
+      cards: [
+        ["🤝", "Corporate Coverage", "Works with relationship bankers to translate client financing needs into lending solutions."],
+        ["🔎", "Credit / Risk", "Coordinates borrower analysis, limits, approvals and ongoing credit monitoring."],
+        ["⚖️", "Legal", "Works on facility documentation, contractual terms and legal requirements."],
+        ["💸", "Loan Operations / Agency", "Coordinates funding, servicing, payments and administration of loan facilities."],
+        ["📈", "Investment Banking & Capital Markets", "Coordinates when loan financing forms part of a broader corporate financing strategy."],
+        ["🏢", "Corporate Clients", "Works with treasury, finance and other corporate decision-makers on borrowing requirements."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and infrastructure supporting the role.",
+      cards: [
+        ["📊", "Credit & Exposure Systems", "Tracks borrower exposure, limits, ratings and credit information."],
+        ["📄", "Loan Origination Platforms", "Supports lending workflow from opportunity and approval through execution."],
+        ["🗂️", "Loan Documentation Systems", "Stores and manages facility agreements and related lending documentation."],
+        ["💻", "Loan Servicing Platforms", "Supports facility balances, drawdowns, repayments, interest and ongoing administration."],
+        ["🔐", "KYC / Onboarding Systems", "Supports borrower due diligence and regulatory onboarding requirements."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Corporate Lending"
+      eyebrow="CORPORATE BANKING ROLE"
+      title="Corporate Lending Banker"
+      intro="Structures and executes lending solutions for large corporate clients, coordinating financing requirements with credit, risk and relationship teams."
+      sections={sections}
+    />
+  );
+}
+
+function CorporateLendingMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <CommercialRoleMap
+      goBack={goBack}
+      title="Corporate Lending"
+      emoji="💵"
+      intro="Explore roles that structure and execute lending solutions for large and complex corporate clients."
+      roles={corporateLendingRoles}
+      openRole={openRole}
+    />
+  );
+}
+
+function CorporateRelationshipManagerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🌐", "Corporate Banking", "Corporate Coverage / Relationship Management"],
+        ["🤝", "Corporate Coverage", "Corporate Relationship Manager / Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client and financing markets this role primarily serves.",
+      cards: [
+        [
+          "🏢",
+          "Large Corporate Banking Market",
+          "Serves large, complex and often multinational corporate clients with financing and broader banking needs.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The banking products and solutions commonly coordinated by this role.",
+      cards: [
+        ["💵", "Corporate Loans", "Coordinates bilateral and syndicated lending solutions for corporate clients."],
+        ["🔄", "Revolving Credit Facilities", "Supports committed revolving facilities used for liquidity and corporate funding needs."],
+        ["🌍", "Cross-Border Banking Solutions", "Coordinates banking needs across countries, currencies and legal entities."],
+        ["💸", "Transaction Banking Solutions", "Connects clients with cash management, payments and trade-finance specialists."],
+        ["📈", "Markets Solutions", "Connects corporate clients with FX, rates and other relevant Global Markets specialists."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🤝", "Manage Corporate Relationships", "Owns and develops relationships with large corporate clients and key decision-makers."],
+        ["🔎", "Understand Client Needs", "Identifies financing, liquidity, risk-management and broader banking requirements."],
+        ["🧩", "Coordinate Banking Solutions", "Brings together lending and specialist product teams to address client needs."],
+        ["📊", "Review Client & Credit Context", "Maintains awareness of client financial performance, credit profile and industry conditions."],
+        ["🗂️", "Coordinate Internal Execution", "Works across credit, product, risk and operations teams to move client solutions through the bank."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders this role interacts with most.",
+      cards: [
+        ["💵", "Corporate Lending", "Works with lending bankers on financing structures and facilities."],
+        ["🔎", "Credit / Risk", "Coordinates credit analysis, approval and ongoing risk management."],
+        ["💸", "Transaction Banking", "Connects clients with cash management, payments and trade-finance capabilities."],
+        ["📈", "Global Markets", "Coordinates FX, rates and other markets solutions where relevant to client needs."],
+        ["🤝", "Investment Banking", "Works with advisory and capital-markets teams when broader strategic financing needs arise."],
+        ["🏢", "Corporate Clients", "Engages treasury, finance and other senior corporate stakeholders."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and infrastructure supporting the role.",
+      cards: [
+        ["🗃️", "CRM Platforms", "Tracks client relationships, opportunities and interaction history."],
+        ["📊", "Credit & Exposure Systems", "Supports monitoring of borrower exposure, limits and credit information."],
+        ["📄", "Loan & Documentation Platforms", "Supports facility documentation, approvals and lending workflows."],
+        ["💻", "Client & Banking Platforms", "Provides access to account, transaction and product information used in relationship coverage."],
+        ["🔐", "KYC / Onboarding Systems", "Supports client due diligence, onboarding and regulatory requirements."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Corporate Coverage / Relationship Management"
+      eyebrow="CORPORATE BANKING ROLE"
+      title="Corporate Relationship Manager / Banker"
+      intro="Manages relationships with large and complex corporate clients, coordinating financing and specialist banking solutions across the bank."
+      sections={sections}
+    />
+  );
+}
+
+function CorporateCoverageMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <CommercialRoleMap
+      goBack={goBack}
+      title="Corporate Coverage / Relationship Management"
+      emoji="🤝"
+      intro="Explore roles that manage relationships with large and complex corporate clients and coordinate solutions across the bank."
+      roles={corporateCoverageRoles}
+      openRole={openRole}
+    />
+  );
+}
+
+function IBCoverageBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🤝", "Investment Banking", "Industry / Client Coverage"],
+        ["🧭", "Coverage", "Investment Banking Coverage Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client and transaction environment this role covers.",
+      cards: [
+        ["🏢", "Corporate Finance & Capital Markets", "Works with corporate and sponsor clients across strategic transactions and capital raising."],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The solutions commonly coordinated by this role.",
+      cards: [
+        ["🏢", "M&A Advisory", "Coordinates strategic transaction opportunities with M&A specialists."],
+        ["💰", "ECM", "Coordinates equity capital raising with ECM specialists."],
+        ["🧾", "DCM", "Coordinates debt capital raising with DCM specialists."],
+        ["🏗️", "Leveraged Finance", "Coordinates leveraged financing opportunities where relevant."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🤝", "Client Coverage", "Builds and maintains strategic client relationships."],
+        ["🔎", "Origination", "Identifies advisory and financing opportunities."],
+        ["🧩", "Team Coordination", "Connects clients with specialist investment banking teams."],
+        ["📑", "Client Materials", "Develops pitches, market updates and transaction materials."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "M&A", "Works with M&A advisory teams."],
+        ["💰", "ECM", "Works with equity capital markets teams."],
+        ["🧾", "DCM", "Works with debt capital markets teams."],
+        ["🏗️", "Leveraged Finance", "Works with leveraged finance teams."],
+        ["🌐", "Corporate Banking", "Coordinates broader banking relationships where relevant."],
+        ["🏢", "Clients", "Works with senior finance, treasury and corporate-development stakeholders."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems supporting coverage and transaction work.",
+      cards: [
+        ["🗃️", "CRM", "Tracks relationships and opportunities."],
+        ["📊", "Market & Financial Data", "Supports company, industry and market analysis."],
+        ["🧮", "Financial Analysis Tools", "Supports valuation and transaction analysis."],
+        ["🔐", "Deal & Compliance Systems", "Supports mandates, conflicts and approvals."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Industry / Client Coverage"
+      eyebrow="INVESTMENT BANKING ROLE"
+      title="Investment Banking Coverage Banker"
+      intro="Manages strategic client relationships and coordinates investment banking advisory and financing capabilities."
+      sections={sections}
+    />
+  );
+}
+
+function InvestmentBankingMap({
+  goBack,
+  openCoverage,
+}: {
+  goBack: () => void;
+  openCoverage: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🤝</div>
+
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Investment Banking</h1>
+
+          <p className="intro">
+            Explore how investment banking teams advise clients on strategic
+            transactions, capital raising and complex financing.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🤝</span>
+
+          <div>
+            <h2>Investment Banking Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {investmentBankingFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              type="button"
+              onClick={() => {
+                if (item.id === "ib-coverage") openCoverage();
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function CorporateBankingMap({
+  goBack,
+  openCoverage,
+  openLending,
+  openCredit,
+  openSolutions,
+}: {
+  goBack: () => void;
+  openCoverage: () => void;
+  openLending: () => void;
+  openCredit: () => void;
+  openSolutions: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🌐</div>
+
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Corporate Banking</h1>
+
+          <p className="intro">
+            Explore how banks serve large and complex corporate clients through
+            relationship coverage, lending, credit analysis and coordinated
+            banking solutions.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🌐</span>
+
+          <div>
+            <h2>Corporate Banking</h2>
+            <p>Select an area to explore its work and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {corporateBankingFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              type="button"
+              onClick={() => {
+                if (item.id === "corporate-coverage") {
+                  openCoverage();
+                }
+                if (item.id === "corporate-lending") {
+                  openLending();
+                }
+                if (item.id === "corporate-credit") {
+                  openCredit();
+                }
+                if (item.id === "corporate-solutions") {
+                  openSolutions();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
               <span className="card-arrow">→</span>
             </button>
           ))}
@@ -1524,65 +2435,151 @@ function DepositsProductManagerRole({ goBack }: { goBack: () => void }) {
         {
           emoji: "📍",
           title: "Where Am I?",
-          description: "The role’s position within the financial system.",
+          description: "See where this role sits within the financial system.",
           cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Deposits & Everyday Banking"],
-            ["Role", "Deposits Product Manager"],
+            ["🏦", "Financial Institutions", "Banks"],
+            ["💳", "Retail / Consumer Banking", "Deposits & Everyday Banking"],
+            ["🏦", "Deposits & Everyday Banking", "Deposits Product Manager"],
           ],
         },
         {
           emoji: "📈",
           title: "What Market?",
-          description: "The customer and funding market this role supports.",
-          cards: [["Retail Deposit & Consumer Banking Market"]],
+          description: "The customer and funding market this role primarily supports.",
+          cards: [
+            [
+              "🏦",
+              "Retail Deposit & Consumer Banking Market",
+              "Supports consumer deposit relationships and everyday banking activity while contributing to the bank’s deposit funding base.",
+            ],
+          ],
         },
         {
           emoji: "🧩",
           title: "What Products?",
-          description: "Typical products within the role’s coverage.",
+          description: "Core deposit and everyday banking products commonly managed.",
           cards: [
-            ["Current / Checking Accounts"],
-            ["Savings Accounts"],
-            ["Term / Time Deposits"],
-            ["Transaction Accounts"],
-            ["Deposit-linked Banking Services"],
+            [
+              "💳",
+              "Current / Checking Accounts",
+              "Transaction accounts used for everyday payments, withdrawals and other routine banking activity.",
+            ],
+            [
+              "💰",
+              "Savings Accounts",
+              "Deposit accounts designed to hold customer savings while providing liquidity and interest where applicable.",
+            ],
+            [
+              "📅",
+              "Term / Time Deposits",
+              "Deposits held for an agreed period, typically with defined interest and withdrawal conditions.",
+            ],
+            [
+              "🔄",
+              "Transaction Accounts",
+              "Accounts supporting recurring deposits, transfers, payments and other customer transactions.",
+            ],
+            [
+              "🧩",
+              "Deposit-linked Banking Services",
+              "Additional services and features connected to deposit and everyday banking relationships.",
+            ],
           ],
         },
         {
           emoji: "💼",
           title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
+          description: "Typical responsibilities in Deposits & Everyday Banking product management.",
           cards: [
-            ["Develop & Manage Deposit Products"],
-            ["Set Product Features & Pricing"],
-            ["Monitor Customer & Deposit Trends"],
-            ["Manage Product Performance"],
+            [
+              "🧩",
+              "Develop & Manage Deposit Products",
+              "Design, maintain and improve deposit products based on customer needs, bank objectives and regulatory requirements.",
+            ],
+            [
+              "💲",
+              "Set Product Features & Pricing",
+              "Coordinate account features, fees, rates and other product terms within relevant commercial and control frameworks.",
+            ],
+            [
+              "📊",
+              "Monitor Customer & Deposit Trends",
+              "Analyze balances, flows, customer behavior and market developments affecting deposit products.",
+            ],
+            [
+              "📈",
+              "Manage Product Performance",
+              "Track product adoption, balances, economics and other indicators of product performance.",
+            ],
           ],
         },
         {
           emoji: "🔗",
           title: "Who Do I Work With?",
-          description: "Key teams connected to the role.",
+          description: "Key functions connected to Deposits & Everyday Banking.",
           cards: [
-            ["Retail Relationship / Branch Teams"],
-            ["Digital Banking"],
-            ["Treasury / ALM"],
-            ["Risk Management"],
-            ["Compliance"],
-            ["Operations & Technology"],
+            [
+              "🤝",
+              "Retail Relationship / Branch Teams",
+              "Distribute deposit products and provide direct customer feedback from retail banking relationships.",
+            ],
+            [
+              "📱",
+              "Digital Banking",
+              "Supports deposit products and account services delivered through mobile and online channels.",
+            ],
+            [
+              "💰",
+              "Treasury / ALM",
+              "Connects deposit balances and pricing with bank funding, liquidity and balance-sheet management.",
+            ],
+            [
+              "🛡️",
+              "Risk Management",
+              "Provides independent oversight of relevant product, liquidity and operational risks.",
+            ],
+            [
+              "⚖️",
+              "Compliance / Financial Crime",
+              "Supports regulatory, customer due-diligence and financial-crime control requirements.",
+            ],
+            [
+              "⚙️",
+              "Operations & Technology",
+              "Supports account servicing, transaction processing and underlying banking systems.",
+            ],
           ],
         },
         {
           emoji: "⚙️",
           title: "What Infrastructure Supports the Work?",
-          description: "Systems and infrastructure that enable the work.",
+          description: "Systems supporting deposit and everyday banking products.",
           cards: [
-            ["Core Banking Systems"],
-            ["Deposit & Account Platforms"],
-            ["Digital / Mobile Banking Platforms"],
-            ["Payments Infrastructure"],
-            ["Customer & Product Data Systems"],
+            [
+              "🏦",
+              "Core Banking Systems",
+              "Maintain customer accounts, balances and core deposit records.",
+            ],
+            [
+              "💻",
+              "Deposit & Account Platforms",
+              "Support account configuration, product features and deposit servicing processes.",
+            ],
+            [
+              "📱",
+              "Digital / Mobile Banking Platforms",
+              "Provide customer access to balances, transfers and everyday account services.",
+            ],
+            [
+              "💸",
+              "Payments Infrastructure",
+              "Supports transfers, payments and other transaction activity connected to customer accounts.",
+            ],
+            [
+              "📊",
+              "Customer & Product Data Systems",
+              "Support analysis of customer behavior, deposit balances and product performance.",
+            ],
           ],
         },
       ]}
@@ -1599,70 +2596,72 @@ function ConsumerLendingProductManagerRole({ goBack }: { goBack: () => void }) {
       title="Consumer Lending Product Manager"
       intro="Develops and manages consumer lending products, balancing customer demand, pricing, credit economics, regulatory requirements and portfolio performance."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Consumer Lending"],
-            ["Role", "Consumer Lending Product Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The lending market this role supports.",
-          cards: [["Consumer Credit & Retail Lending Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical products within the role’s coverage.",
-          cards: [
-            ["Personal Loans"],
-            ["Auto Loans"],
-            ["Unsecured Consumer Loans"],
-            ["Lines of Credit"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Develop & Manage Lending Products"],
-            ["Set Product Features & Pricing"],
-            ["Monitor Portfolio Performance"],
-            ["Analyze Customer & Credit Trends"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to the role.",
-          cards: [
-            ["Retail Relationship / Distribution Teams"],
-            ["Consumer Credit / Underwriting"],
-            ["Treasury / ALM"],
-            ["Risk Management"],
-            ["Compliance"],
-            ["Operations & Technology"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and infrastructure that enable the work.",
-          cards: [
-            ["Loan Origination Systems"],
-            ["Core Banking Systems"],
-            ["Credit Decisioning Platforms"],
-            ["Customer & Product Data Systems"],
-            ["Digital Banking Platforms"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Consumer Lending"],
+["💵", "Consumer Lending", "Consumer Lending Product Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The lending market this role primarily supports.",
+cards: [
+["💳", "Consumer Credit & Retail Lending Market", "Supports lending to individual consumers across unsecured and secured retail credit products."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core consumer lending products commonly managed.",
+cards: [
+["💵", "Personal Loans", "Consumer loans used for general personal financing needs."],
+["🚗", "Auto Loans", "Loans used to finance vehicle purchases, commonly structured around the financed vehicle."],
+["💳", "Unsecured Consumer Loans", "Consumer credit provided without specific collateral, subject to borrower credit assessment."],
+["🔄", "Lines of Credit", "Reusable consumer credit facilities allowing borrowing up to an approved limit."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Consumer Lending product management.",
+cards: [
+["🧩", "Develop & Manage Lending Products", "Design, maintain and improve consumer lending products based on customer needs, economics and risk requirements."],
+["💲", "Set Product Features & Pricing", "Coordinate rates, fees, limits, terms and other product features within relevant commercial and risk frameworks."],
+["📊", "Monitor Portfolio Performance", "Track balances, originations, repayments, delinquencies and other indicators of lending portfolio performance."],
+["🔎", "Analyze Customer & Credit Trends", "Evaluate customer demand, borrower behavior and credit developments affecting lending products."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Consumer Lending product management.",
+cards: [
+["🤝", "Retail Relationship / Distribution Teams", "Distribute lending products and provide customer and channel feedback."],
+["🔎", "Consumer Credit / Underwriting", "Evaluates borrower creditworthiness and supports individual lending decisions."],
+["💰", "Treasury / ALM", "Connects lending volumes and pricing with funding costs, liquidity and balance-sheet management."],
+["🛡️", "Risk Management", "Provides independent oversight of credit and other risks associated with lending products."],
+["⚖️", "Compliance / Financial Crime", "Supports regulatory, consumer-protection and financial-crime control requirements."],
+["⚙️", "Operations & Technology", "Supports loan processing, servicing and underlying lending systems."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and data supporting consumer lending products.",
+cards: [
+["💻", "Loan Origination Systems", "Support application intake, processing and origination of consumer loans."],
+["🏦", "Core Banking Systems", "Maintain customer, account and lending records within the bank."],
+["🔎", "Credit Decisioning Platforms", "Support automated or rules-based assessment of consumer credit applications."],
+["📊", "Customer & Product Data Systems", "Support analysis of customer behavior and lending product performance."],
+["📱", "Digital Banking Platforms", "Enable customers to discover, apply for and manage lending products digitally."],
+],
+},
+]}
     />
   );
 }
@@ -1676,71 +2675,73 @@ function ConsumerCreditUnderwriterRole({ goBack }: { goBack: () => void }) {
       title="Consumer Credit Analyst / Underwriter"
       intro="Evaluates consumer credit applications and borrower risk to support lending decisions within the bank’s credit policies and risk appetite."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Consumer Lending"],
-            ["Role", "Consumer Credit Analyst / Underwriter"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The lending market this role supports.",
-          cards: [["Consumer Credit & Retail Lending Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical products reviewed by the role.",
-          cards: [
-            ["Personal Loans"],
-            ["Auto Loans"],
-            ["Unsecured Consumer Loans"],
-            ["Lines of Credit"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Assess Borrower Creditworthiness"],
-            ["Review Credit Applications"],
-            ["Apply Lending & Credit Policies"],
-            ["Support Credit Decisions"],
-            ["Monitor Credit Quality"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to the role.",
-          cards: [
-            ["Consumer Lending Teams"],
-            ["Retail Relationship / Distribution Teams"],
-            ["Credit Risk"],
-            ["Fraud / Financial Crime Teams"],
-            ["Compliance"],
-            ["Loan Operations"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and data that enable credit decisions.",
-          cards: [
-            ["Loan Origination Systems"],
-            ["Credit Decisioning Engines"],
-            ["Credit Bureau / Credit Data"],
-            ["Customer Information Systems"],
-            ["Risk & Monitoring Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Consumer Lending"],
+["🔎", "Consumer Lending", "Consumer Credit Analyst / Underwriter"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The lending market this role primarily supports.",
+cards: [
+["💳", "Consumer Credit & Retail Lending Market", "Supports credit assessment and lending decisions for individual borrowers within retail credit markets."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core consumer credit products commonly reviewed.",
+cards: [
+["💵", "Personal Loans", "Consumer loans assessed using borrower income, credit history, affordability and other relevant factors."],
+["🚗", "Auto Loans", "Vehicle financing assessed using borrower credit characteristics and applicable collateral information."],
+["💳", "Unsecured Consumer Loans", "Credit exposures without specific collateral, requiring assessment of borrower repayment capacity."],
+["🔄", "Lines of Credit", "Revolving consumer credit facilities with approved borrowing limits and ongoing credit exposure."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Consumer Credit Underwriting.",
+cards: [
+["🔎", "Assess Borrower Creditworthiness", "Evaluate income, debt obligations, credit history and other indicators of borrower repayment capacity."],
+["📄", "Review Credit Applications", "Review application information and supporting documentation for completeness and credit assessment."],
+["📏", "Apply Lending & Credit Policies", "Evaluate applications against established underwriting criteria, policies and risk appetite."],
+["✅", "Support Credit Decisions", "Approve, decline or recommend credit decisions within delegated authority and applicable processes."],
+["📊", "Monitor Credit Quality", "Support monitoring of borrower and portfolio credit performance to identify emerging risk patterns."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Consumer Credit Underwriting.",
+cards: [
+["💵", "Consumer Lending Teams", "Develop and manage the lending products for which underwriting decisions are made."],
+["🤝", "Retail Relationship / Distribution Teams", "Support customer applications and provide relevant borrower information through retail channels."],
+["🛡️", "Credit Risk", "Sets credit policies, risk appetite and portfolio-level risk frameworks."],
+["🚨", "Fraud / Financial Crime Teams", "Support identification and investigation of suspicious or fraudulent applications and activity."],
+["⚖️", "Compliance", "Supports regulatory and consumer-protection requirements affecting lending decisions."],
+["⚙️", "Loan Operations", "Supports loan setup, documentation, disbursement and servicing after approval."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and data supporting consumer credit decisions.",
+cards: [
+["💻", "Loan Origination Systems", "Support application intake, underwriting workflow and loan origination processes."],
+["⚙️", "Credit Decisioning Engines", "Apply credit rules, models and decision criteria to support underwriting."],
+["📡", "Credit Bureau / Credit Data", "Provide external borrower credit histories and other credit-risk information where available."],
+["👤", "Customer Information Systems", "Provide customer identity, relationship and account information relevant to credit assessment."],
+["📊", "Risk & Monitoring Systems", "Support monitoring of credit exposures, performance and emerging portfolio risks."],
+],
+},
+]}
     />
   );
 }
@@ -1754,71 +2755,73 @@ function MortgageLoanOfficerRole({ goBack }: { goBack: () => void }) {
       title="Mortgage Loan Officer / Advisor"
       intro="Works with customers seeking home financing, helping structure mortgage applications and guiding borrowers through the lending process from initial inquiry to approval and closing."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Mortgage / Home Lending"],
-            ["Role", "Mortgage Loan Officer / Advisor"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The lending market this role supports.",
-          cards: [["Residential Mortgage & Home Lending Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical mortgage products within the role’s coverage.",
-          cards: [
-            ["Residential Mortgages"],
-            ["Fixed / Variable-Rate Mortgages"],
-            ["Home Purchase Loans"],
-            ["Refinancing Products"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Understand Borrower Financing Needs"],
-            ["Explain Mortgage Products & Terms"],
-            ["Originate Mortgage Applications"],
-            ["Coordinate Documentation & Approval"],
-            ["Support the Borrower Through Closing"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams and specialists connected to the role.",
-          cards: [
-            ["Mortgage Underwriters"],
-            ["Retail Relationship / Distribution Teams"],
-            ["Credit Risk"],
-            ["Compliance"],
-            ["Property Valuation / Appraisal"],
-            ["Loan Operations"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and infrastructure that enable mortgage origination.",
-          cards: [
-            ["Mortgage / Loan Origination Systems"],
-            ["Customer Information Systems"],
-            ["Credit Data & Verification Services"],
-            ["Property Valuation Systems"],
-            ["Document & Closing Platforms"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Mortgage / Home Lending"],
+["🏠", "Mortgage / Home Lending", "Mortgage Loan Officer / Advisor"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The lending market this role primarily supports.",
+cards: [
+["🏠", "Residential Mortgage & Home Lending Market", "Supports household borrowing used to purchase, refinance or otherwise finance residential property."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core mortgage products commonly handled by the role.",
+cards: [
+["🏠", "Residential Mortgages", "Loans secured by residential property and used primarily to finance home ownership."],
+["📊", "Fixed / Variable-Rate Mortgages", "Mortgage structures with either fixed borrowing rates or rates that can change according to applicable benchmarks or terms."],
+["🔑", "Home Purchase Loans", "Mortgage financing used by borrowers to acquire residential property."],
+["🔄", "Refinancing Products", "Financing used to replace or restructure an existing residential mortgage."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in mortgage origination and borrower advisory.",
+cards: [
+["🤝", "Understand Borrower Financing Needs", "Discuss the customer's property purchase, financing requirements and relevant financial circumstances."],
+["🧩", "Explain Mortgage Products & Terms", "Explain available mortgage structures, rates, repayment terms, fees and other relevant product features."],
+["📝", "Originate Mortgage Applications", "Collect application information and initiate the mortgage origination process."],
+["🔗", "Coordinate Documentation & Approval", "Coordinate borrower documentation and work with underwriting and control teams through the approval process."],
+["🏁", "Support the Borrower Through Closing", "Help coordinate remaining requirements as an approved mortgage progresses toward completion and closing."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to mortgage origination.",
+cards: [
+["🔎", "Mortgage Underwriters", "Evaluate borrower creditworthiness, property information and compliance with mortgage underwriting standards."],
+["🤝", "Retail Relationship / Distribution Teams", "Connect customers with mortgage products through branches and other retail distribution channels."],
+["🛡️", "Credit Risk", "Sets credit policies, risk appetite and portfolio-level frameworks for mortgage lending."],
+["⚖️", "Compliance", "Supports regulatory and consumer-protection requirements affecting mortgage origination."],
+["🏠", "Property Valuation / Appraisal", "Provides property valuation information used in collateral and lending assessments."],
+["⚙️", "Loan Operations", "Supports documentation, loan setup, disbursement, servicing and closing processes."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and data supporting mortgage origination.",
+cards: [
+["💻", "Mortgage / Loan Origination Systems", "Support mortgage applications, workflow, processing and origination."],
+["👤", "Customer Information Systems", "Provide customer identity, relationship and financial information relevant to the application."],
+["📡", "Credit Data & Verification Services", "Support verification of borrower credit history, income and other application information."],
+["🏠", "Property Valuation Systems", "Provide or manage property valuation information used in mortgage lending decisions."],
+["📄", "Document & Closing Platforms", "Support mortgage documentation, approvals and completion of closing requirements."],
+],
+},
+]}
     />
   );
 }
@@ -1832,71 +2835,73 @@ function MortgageUnderwriterRole({ goBack }: { goBack: () => void }) {
       title="Mortgage Underwriter"
       intro="Evaluates mortgage applications, borrower creditworthiness and property-related information to determine whether lending requests meet the bank’s underwriting standards and credit policies."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Mortgage / Home Lending"],
-            ["Role", "Mortgage Underwriter"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The lending market this role supports.",
-          cards: [["Residential Mortgage & Home Lending Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical products reviewed by the role.",
-          cards: [
-            ["Residential Mortgages"],
-            ["Home Purchase Loans"],
-            ["Refinancing Products"],
-            ["Secured Home Lending"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Assess Borrower Creditworthiness"],
-            ["Review Income, Debt & Financial Information"],
-            ["Evaluate Property & Collateral Information"],
-            ["Apply Mortgage Underwriting Standards"],
-            ["Support Approval / Decline Decisions"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams and specialists connected to the role.",
-          cards: [
-            ["Mortgage Loan Officers / Advisors"],
-            ["Credit Risk"],
-            ["Property Valuation / Appraisal"],
-            ["Compliance"],
-            ["Fraud / Financial Crime Teams"],
-            ["Loan Operations"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and data that support underwriting.",
-          cards: [
-            ["Mortgage Origination Systems"],
-            ["Credit Decisioning Platforms"],
-            ["Credit Bureau / Credit Data"],
-            ["Property Valuation Systems"],
-            ["Risk & Documentation Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Mortgage / Home Lending"],
+["🔎", "Mortgage / Home Lending", "Mortgage Underwriter"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The lending market this role primarily supports.",
+cards: [
+["🏠", "Residential Mortgage & Home Lending Market", "Supports credit assessment and lending decisions for household borrowing secured by residential property."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core mortgage products commonly reviewed by the role.",
+cards: [
+["🏠", "Residential Mortgages", "Loans secured by residential property and assessed against borrower and collateral requirements."],
+["🔑", "Home Purchase Loans", "Mortgage financing used to acquire residential property."],
+["🔄", "Refinancing Products", "New mortgage financing used to replace or restructure an existing home loan."],
+["🔐", "Secured Home Lending", "Consumer lending where residential property provides collateral supporting the credit exposure."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Mortgage Underwriting.",
+cards: [
+["🔎", "Assess Borrower Creditworthiness", "Evaluate borrower credit history, financial position and overall ability to meet mortgage obligations."],
+["📊", "Review Income, Debt & Financial Information", "Assess income, existing debt, affordability and other financial information relevant to repayment capacity."],
+["🏠", "Evaluate Property & Collateral Information", "Review property valuation and collateral information relevant to the proposed mortgage exposure."],
+["📏", "Apply Mortgage Underwriting Standards", "Evaluate applications against established mortgage policies, lending criteria and risk appetite."],
+["✅", "Support Approval / Decline Decisions", "Approve, decline or recommend mortgage decisions within delegated authority and applicable processes."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Mortgage Underwriting.",
+cards: [
+["🤝", "Mortgage Loan Officers / Advisors", "Originate mortgage applications and coordinate borrower information through the lending process."],
+["🛡️", "Credit Risk", "Sets credit policies, risk appetite and portfolio-level frameworks for mortgage lending."],
+["🏠", "Property Valuation / Appraisal", "Provides independent or approved property valuation information used in collateral assessment."],
+["⚖️", "Compliance", "Supports regulatory and consumer-protection requirements affecting mortgage decisions."],
+["🚨", "Fraud / Financial Crime Teams", "Support identification and investigation of suspicious applications, identity issues and potential fraud."],
+["⚙️", "Loan Operations", "Supports documentation, loan setup, disbursement and servicing after approval."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and data supporting mortgage underwriting.",
+cards: [
+["💻", "Mortgage Origination Systems", "Support application processing, underwriting workflow and mortgage origination."],
+["⚙️", "Credit Decisioning Platforms", "Support application of underwriting rules, models and lending criteria."],
+["📡", "Credit Bureau / Credit Data", "Provide borrower credit histories and other external credit-risk information where available."],
+["🏠", "Property Valuation Systems", "Provide property and collateral information used in mortgage assessment."],
+["📊", "Risk & Documentation Systems", "Support credit analysis, decision records, documentation and ongoing risk controls."],
+],
+},
+]}
     />
   );
 }
@@ -1911,72 +2916,74 @@ function CardsProductManagerRole({ goBack }: { goBack: () => void }) {
       title="Cards Product Manager"
       intro="Develops and manages consumer card products, balancing customer needs, product economics, payment functionality, regulatory requirements and portfolio performance."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Cards & Consumer Payments"],
-            ["Role", "Cards Product Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The consumer payments market this role supports.",
-          cards: [["Consumer Cards & Payments Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical card products within the role’s coverage.",
-          cards: [
-            ["Credit Cards"],
-            ["Debit Cards"],
-            ["Prepaid Cards"],
-            ["Card-linked Features & Benefits"],
-            ["Digital / Tokenized Card Payments"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Develop & Manage Card Products"],
-            ["Set Product Features & Pricing"],
-            ["Manage Rewards / Benefits"],
-            ["Monitor Card Portfolio Performance"],
-            ["Analyze Customer Usage & Payment Trends"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to the role.",
-          cards: [
-            ["Retail Relationship / Distribution Teams"],
-            ["Digital Banking"],
-            ["Consumer Credit / Underwriting"],
-            ["Risk Management"],
-            ["Compliance / Financial Crime"],
-            ["Operations & Technology"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and payment infrastructure that enable card products.",
-          cards: [
-            ["Card Processing Platforms"],
-            ["Payment Networks"],
-            ["Authorization & Clearing Systems"],
-            ["Digital Wallet / Tokenization Infrastructure"],
-            ["Customer & Product Data Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Cards & Consumer Payments"],
+["💳", "Cards & Consumer Payments", "Cards Product Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The consumer payments market this role primarily supports.",
+cards: [
+["💳", "Consumer Cards & Payments Market", "Supports card-based consumer spending and payments across bank accounts, merchant acceptance channels and payment networks."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core card products and capabilities commonly managed.",
+cards: [
+["💳", "Credit Cards", "Revolving consumer credit products used for purchases and other card transactions within approved credit limits."],
+["🏦", "Debit Cards", "Payment cards linked directly to customer deposit accounts."],
+["💰", "Prepaid Cards", "Card products funded in advance rather than drawing directly on a deposit account or revolving credit facility."],
+["🎁", "Card-linked Features & Benefits", "Rewards, benefits, offers and other features attached to consumer card propositions."],
+["📱", "Digital / Tokenized Card Payments", "Card credentials and payment capabilities delivered through digital wallets, tokenization and other digital channels."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Cards product management.",
+cards: [
+["🧩", "Develop & Manage Card Products", "Design, maintain and improve card propositions based on customer needs, economics, risk and regulatory requirements."],
+["💲", "Set Product Features & Pricing", "Coordinate fees, rates, limits and other commercial features of card products."],
+["🎁", "Manage Rewards / Benefits", "Develop and manage rewards, benefits and other value propositions associated with card products."],
+["📊", "Monitor Card Portfolio Performance", "Track card balances, spending, activation, usage, credit performance and other portfolio indicators."],
+["🔎", "Analyze Customer Usage & Payment Trends", "Evaluate customer behavior and payment trends to identify product opportunities and performance issues."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Cards product management.",
+cards: [
+["🤝", "Retail Relationship / Distribution Teams", "Distribute card products and provide customer and channel feedback."],
+["📱", "Digital Banking", "Supports card acquisition, servicing and payment functionality through digital channels."],
+["🔎", "Consumer Credit / Underwriting", "Supports credit assessment and credit-limit decisions for applicable card products."],
+["🛡️", "Risk Management", "Provides oversight of credit, fraud, operational and other risks associated with card portfolios."],
+["⚖️", "Compliance / Financial Crime", "Supports regulatory, consumer-protection and financial-crime controls affecting card products."],
+["⚙️", "Operations & Technology", "Supports card issuance, transaction processing, servicing and underlying technology."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and financial infrastructure supporting card products.",
+cards: [
+["💻", "Card Processing Platforms", "Support card issuance, account management and transaction processing."],
+["🌐", "Payment Networks", "Connect issuers, acquirers and merchants to route and process card transactions."],
+["🔄", "Authorization & Clearing Systems", "Support transaction authorization, clearing and related processing workflows."],
+["📱", "Digital Wallet / Tokenization Infrastructure", "Supports secure digital card credentials and wallet-based payments."],
+["📊", "Customer & Product Data Systems", "Support analysis of card usage, customer behavior and portfolio performance."],
+],
+},
+]}
     />
   );
 }
@@ -1990,72 +2997,74 @@ function ConsumerPaymentsProductManagerRole({ goBack }: { goBack: () => void }) 
       title="Consumer Payments Product Manager"
       intro="Develops and manages consumer payment capabilities that allow customers to move money through bank accounts, digital channels and payment networks."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Cards & Consumer Payments"],
-            ["Role", "Consumer Payments Product Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The consumer payments market this role supports.",
-          cards: [["Consumer Payments & Money Movement Market"]],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical payment capabilities within the role’s coverage.",
-          cards: [
-            ["Account-to-Account Transfers"],
-            ["Domestic Payments"],
-            ["Bill Payments"],
-            ["Peer-to-Peer Payment Features"],
-            ["Digital Wallet / Payment Integrations"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Develop Consumer Payment Products"],
-            ["Design Payment Features & Customer Journeys"],
-            ["Monitor Payment Usage & Performance"],
-            ["Coordinate Payment Network / Platform Integration"],
-            ["Improve Payment Experience & Reliability"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to the role.",
-          cards: [
-            ["Digital Banking"],
-            ["Retail Relationship / Distribution Teams"],
-            ["Payments Operations"],
-            ["Risk Management"],
-            ["Compliance / Financial Crime"],
-            ["Technology / Engineering"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and financial infrastructure that enable consumer payments.",
-          cards: [
-            ["Payment Rails / Networks"],
-            ["Core Banking Systems"],
-            ["Payment Processing Platforms"],
-            ["Digital / Mobile Banking Platforms"],
-            ["Fraud & Transaction Monitoring Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Cards & Consumer Payments"],
+["💸", "Cards & Consumer Payments", "Consumer Payments Product Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The consumer payments market this role primarily supports.",
+cards: [
+["💸", "Consumer Payments & Money Movement Market", "Supports the movement of money between consumer accounts, counterparties and payment channels through banking and payment infrastructure."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core consumer payment capabilities commonly managed.",
+cards: [
+["🔄", "Account-to-Account Transfers", "Payment capabilities allowing customers to move funds between bank accounts."],
+["🏦", "Domestic Payments", "Consumer payment services supporting transfers through domestic payment rails and banking networks."],
+["🧾", "Bill Payments", "Services allowing customers to pay recurring or one-time obligations from their bank accounts."],
+["👥", "Peer-to-Peer Payment Features", "Consumer payment capabilities designed for transfers between individuals."],
+["📱", "Digital Wallet / Payment Integrations", "Connections between bank accounts or payment credentials and digital wallets or other payment interfaces."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Consumer Payments product management.",
+cards: [
+["🧩", "Develop Consumer Payment Products", "Design and manage payment capabilities based on customer needs, market developments and bank objectives."],
+["📱", "Design Payment Features & Customer Journeys", "Define how customers initiate, authorize, track and manage payments across banking channels."],
+["📊", "Monitor Payment Usage & Performance", "Track transaction volumes, adoption, reliability and other indicators of payment-product performance."],
+["🔗", "Coordinate Payment Network / Platform Integration", "Work across business and technology teams to connect payment products with relevant rails, networks and platforms."],
+["⚙️", "Improve Payment Experience & Reliability", "Identify friction, operational issues and product improvements affecting payment speed, usability and reliability."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Consumer Payments product management.",
+cards: [
+["📱", "Digital Banking", "Integrates payment capabilities into mobile and online customer experiences."],
+["🤝", "Retail Relationship / Distribution Teams", "Provide customer and channel feedback on payment needs and usage."],
+["⚙️", "Payments Operations", "Supports transaction processing, exceptions, reconciliation and payment servicing."],
+["🛡️", "Risk Management", "Provides oversight of operational, fraud and other risks associated with payment activity."],
+["⚖️", "Compliance / Financial Crime", "Supports sanctions, AML and other regulatory controls affecting money movement."],
+["💻", "Technology / Engineering", "Builds and maintains payment integrations, systems and customer-facing capabilities."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and financial infrastructure supporting consumer payments.",
+cards: [
+["🌐", "Payment Rails / Networks", "Provide the external or domestic infrastructure through which payment instructions and funds move."],
+["🏦", "Core Banking Systems", "Maintain customer accounts and balances used to fund or receive payments."],
+["💻", "Payment Processing Platforms", "Route, validate and process payment instructions across relevant systems and networks."],
+["📱", "Digital / Mobile Banking Platforms", "Provide customer interfaces for initiating and managing payments."],
+["🚨", "Fraud & Transaction Monitoring Systems", "Monitor payment activity for suspicious, fraudulent or otherwise high-risk transactions."],
+],
+},
+]}
     />
   );
 }
@@ -2070,75 +3079,75 @@ function PersonalBankerRole({ goBack }: { goBack: () => void }) {
       title="Personal Banker / Relationship Banker"
       intro="Works directly with individual customers to understand their everyday banking needs, explain suitable banking products and services, and maintain ongoing customer relationships."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Retail Relationship & Advisory"],
-            ["Role", "Personal Banker / Relationship Banker"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The customer market this role serves.",
-          cards: [
-            ["Retail & Consumer Banking Market"],
-          ],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical banking products discussed with customers.",
-          cards: [
-            ["Deposit & Transaction Accounts"],
-            ["Savings Products"],
-            ["Consumer Loans"],
-            ["Mortgage / Home Lending Products"],
-            ["Cards & Payment Services"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Understand Customer Banking Needs"],
-            ["Explain Banking Products & Services"],
-            ["Open & Maintain Customer Relationships"],
-            ["Support Product Applications"],
-            ["Coordinate Customer Service & Issue Resolution"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to the customer relationship.",
-          cards: [
-            ["Branch Management"],
-            ["Deposit Product Teams"],
-            ["Consumer Lending"],
-            ["Mortgage / Home Lending"],
-            ["Cards & Consumer Payments"],
-            ["Compliance / Financial Crime"],
-            ["Operations & Technology"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems that support customer-facing retail banking.",
-          cards: [
-            ["Core Banking Systems"],
-            ["Customer Relationship Management Systems"],
-            ["Account Opening Platforms"],
-            ["Digital / Mobile Banking Platforms"],
-            ["Customer Identity & Verification Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Retail Relationship & Advisory"],
+["🤝", "Retail Relationship & Advisory", "Personal Banker / Relationship Banker"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The customer market this role primarily serves.",
+cards: [
+["👤", "Retail & Consumer Banking Market", "Serves individual customers across everyday banking, borrowing and payment needs through the bank’s retail distribution channels."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core banking products commonly discussed with customers.",
+cards: [
+["🏦", "Deposit & Transaction Accounts", "Everyday accounts used to hold money, receive funds and conduct routine banking transactions."],
+["💰", "Savings Products", "Deposit products designed to help customers hold and accumulate savings."],
+["💵", "Consumer Loans", "Personal lending products used for household and other consumer financing needs."],
+["🏠", "Mortgage / Home Lending Products", "Financing products supporting home purchases and other residential borrowing needs."],
+["💳", "Cards & Payment Services", "Card products and payment capabilities used for purchases and money movement."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in retail relationship banking.",
+cards: [
+["🔎", "Understand Customer Banking Needs", "Discuss customer circumstances and identify relevant everyday banking, savings, borrowing and payment needs."],
+["💬", "Explain Banking Products & Services", "Explain available banking products, features, terms and relevant requirements to customers."],
+["🤝", "Open & Maintain Customer Relationships", "Support account opening and maintain ongoing relationships with retail customers."],
+["📝", "Support Product Applications", "Help customers complete applications and coordinate required information for relevant banking products."],
+["🛠️", "Coordinate Customer Service & Issue Resolution", "Help resolve customer issues or connect customers with the appropriate product, operations or specialist teams."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to retail customer relationships.",
+cards: [
+["🏢", "Branch Management", "Coordinates branch activity, service standards, controls and local business performance."],
+["🏦", "Deposit Product Teams", "Develop and manage deposit and everyday banking products offered to retail customers."],
+["💵", "Consumer Lending", "Provides consumer credit products and supports lending applications and decisions."],
+["🏠", "Mortgage / Home Lending", "Supports customers seeking residential property financing."],
+["💳", "Cards & Consumer Payments", "Provides card products and payment capabilities used by retail customers."],
+["⚖️", "Compliance / Financial Crime", "Supports KYC, customer due diligence and other regulatory control requirements."],
+["⚙️", "Operations & Technology", "Supports account servicing, transaction processing and customer-facing banking systems."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems supporting customer-facing retail banking.",
+cards: [
+["🏦", "Core Banking Systems", "Maintain customer accounts, balances and core banking records."],
+["🤝", "Customer Relationship Management Systems", "Support customer profiles, interactions and relationship activity."],
+["📝", "Account Opening Platforms", "Support customer onboarding and creation of new banking relationships."],
+["📱", "Digital / Mobile Banking Platforms", "Provide online and mobile access to customer banking products and services."],
+["🔐", "Customer Identity & Verification Systems", "Support identity verification, KYC and customer due-diligence processes."],
+],
+},
+]}
     />
   );
 }
@@ -2152,75 +3161,74 @@ function BranchManagerRole({ goBack }: { goBack: () => void }) {
       title="Branch Manager"
       intro="Leads a retail bank branch, coordinating customer service, relationship teams, operational execution and business performance while ensuring the branch operates within bank policies and controls."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Retail Relationship & Advisory"],
-            ["Distribution Channel", "Branch Banking"],
-            ["Role", "Branch Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The customer market served through the branch.",
-          cards: [
-            ["Retail & Consumer Banking Market"],
-          ],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical banking products distributed through the branch.",
-          cards: [
-            ["Deposit & Transaction Accounts"],
-            ["Savings Products"],
-            ["Consumer Lending Products"],
-            ["Mortgage / Home Lending Products"],
-            ["Cards & Payment Services"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Lead Branch Teams"],
-            ["Manage Customer Service & Relationships"],
-            ["Coordinate Retail Product Distribution"],
-            ["Monitor Branch Performance"],
-            ["Oversee Operational & Control Requirements"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to branch activity.",
-          cards: [
-            ["Personal / Relationship Bankers"],
-            ["Retail Product Teams"],
-            ["Consumer Lending & Mortgage Teams"],
-            ["Risk Management"],
-            ["Compliance / Financial Crime"],
-            ["Operations & Technology"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and infrastructure supporting branch banking.",
-          cards: [
-            ["Core Banking Systems"],
-            ["Branch Banking Platforms"],
-            ["Customer Relationship Management Systems"],
-            ["Cash & Transaction Processing Systems"],
-            ["Customer Identity & Verification Systems"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Retail Relationship & Advisory"],
+["🏢", "Branch Banking", "Branch Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The customer market served through the branch.",
+cards: [
+["👥", "Retail & Consumer Banking Market", "Serves individual customers through a physical retail banking distribution channel across everyday banking, lending and payment needs."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core banking products commonly distributed through the branch.",
+cards: [
+["🏦", "Deposit & Transaction Accounts", "Everyday accounts supporting deposits, withdrawals, transfers and routine customer banking activity."],
+["💰", "Savings Products", "Deposit products supporting customer savings and liquidity needs."],
+["💵", "Consumer Lending Products", "Personal lending products distributed to eligible retail customers."],
+["🏠", "Mortgage / Home Lending Products", "Residential financing products originated or referred through retail banking channels."],
+["💳", "Cards & Payment Services", "Consumer cards and payment capabilities distributed and serviced through the bank."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in retail branch management.",
+cards: [
+["👥", "Lead Branch Teams", "Manage and coordinate bankers and other branch staff responsible for customer service and relationship activity."],
+["🤝", "Manage Customer Service & Relationships", "Oversee service quality and support resolution of customer relationship issues within the branch."],
+["🧩", "Coordinate Retail Product Distribution", "Coordinate delivery of deposit, lending, card and other retail banking products through the branch."],
+["📊", "Monitor Branch Performance", "Track customer activity, service outcomes, business performance and other relevant branch indicators."],
+["🛡️", "Oversee Operational & Control Requirements", "Ensure branch activities follow applicable operational procedures, controls and regulatory requirements."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to branch banking.",
+cards: [
+["🤝", "Personal / Relationship Bankers", "Manage direct customer relationships and support everyday retail banking needs."],
+["🧩", "Retail Product Teams", "Develop the deposit, lending, card and other products distributed through the branch."],
+["💵", "Consumer Lending & Mortgage Teams", "Support customer borrowing needs, underwriting and lending processes."],
+["🛡️", "Risk Management", "Provides oversight of credit, operational and other risks affecting branch activity."],
+["⚖️", "Compliance / Financial Crime", "Supports KYC, AML and other regulatory control requirements."],
+["⚙️", "Operations & Technology", "Supports transaction processing, account servicing and branch technology."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and infrastructure supporting branch banking.",
+cards: [
+["🏦", "Core Banking Systems", "Maintain customer accounts, balances and core banking records."],
+["🏢", "Branch Banking Platforms", "Support customer servicing and branch-level banking workflows."],
+["🤝", "Customer Relationship Management Systems", "Support customer profiles, interactions and relationship activity."],
+["💸", "Cash & Transaction Processing Systems", "Support branch cash handling, payments and other transaction-processing activity."],
+["🔐", "Customer Identity & Verification Systems", "Support identity verification, KYC and customer due-diligence requirements."],
+],
+},
+]}
     />
   );
 }
@@ -2235,75 +3243,75 @@ function DigitalBankingProductManagerRole({ goBack }: { goBack: () => void }) {
       title="Digital Banking Product Manager"
       intro="Develops and manages consumer banking capabilities delivered through mobile and online channels, connecting customer needs with banking products, technology and operational requirements."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Digital Consumer Banking"],
-            ["Role", "Digital Banking Product Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The customer and delivery market this role supports.",
-          cards: [
-            ["Digital Retail & Consumer Banking Market"],
-          ],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical digital banking capabilities within the role’s coverage.",
-          cards: [
-            ["Mobile Banking"],
-            ["Online Banking"],
-            ["Digital Account Services"],
-            ["Digital Payments & Transfers"],
-            ["Self-Service Banking Features"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Define Digital Banking Product Roadmaps"],
-            ["Develop & Improve Digital Features"],
-            ["Prioritize Customer & Business Requirements"],
-            ["Coordinate Product Delivery"],
-            ["Monitor Digital Product Usage & Performance"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams connected to digital banking products.",
-          cards: [
-            ["Retail Product Teams"],
-            ["Technology / Engineering"],
-            ["Digital Journey / Experience Teams"],
-            ["Operations"],
-            ["Risk Management"],
-            ["Compliance / Financial Crime"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Systems and infrastructure enabling digital banking.",
-          cards: [
-            ["Mobile / Online Banking Platforms"],
-            ["Core Banking Systems"],
-            ["API & Integration Platforms"],
-            ["Identity & Authentication Systems"],
-            ["Payments Infrastructure"],
-            ["Customer & Product Data Platforms"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Digital Consumer Banking"],
+["📱", "Digital Consumer Banking", "Digital Banking Product Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The customer and delivery market this role primarily supports.",
+cards: [
+["📱", "Digital Retail & Consumer Banking Market", "Supports delivery of retail banking products and services through mobile, online and other digital channels."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core digital banking capabilities commonly managed.",
+cards: [
+["📱", "Mobile Banking", "Consumer banking capabilities delivered through mobile applications."],
+["💻", "Online Banking", "Browser-based access to accounts, transactions and other retail banking services."],
+["🏦", "Digital Account Services", "Digital capabilities for opening, viewing and managing customer accounts."],
+["💸", "Digital Payments & Transfers", "Capabilities allowing customers to initiate and manage payments and money movement digitally."],
+["⚙️", "Self-Service Banking Features", "Digital tools allowing customers to complete routine servicing tasks without direct staff assistance."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Digital Banking product management.",
+cards: [
+["🗺️", "Define Digital Banking Product Roadmaps", "Set priorities and development direction for digital banking capabilities based on customer and business needs."],
+["🧩", "Develop & Improve Digital Features", "Design and enhance customer-facing banking features across mobile and online channels."],
+["📋", "Prioritize Customer & Business Requirements", "Balance customer needs, commercial objectives, technology constraints and control requirements when setting priorities."],
+["🔗", "Coordinate Product Delivery", "Work across business, technology, operations and control teams to deliver digital banking capabilities."],
+["📊", "Monitor Digital Product Usage & Performance", "Track adoption, usage, reliability and other indicators of digital product performance."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions connected to Digital Banking products.",
+cards: [
+["🧩", "Retail Product Teams", "Provide deposit, lending, card and payment products delivered through digital channels."],
+["💻", "Technology / Engineering", "Builds and maintains the applications, services and integrations supporting digital banking."],
+["✨", "Digital Journey / Experience Teams", "Design and improve end-to-end customer experiences across digital banking journeys."],
+["⚙️", "Operations", "Supports servicing, transaction processing and operational workflows connected to digital products."],
+["🛡️", "Risk Management", "Provides oversight of operational, technology and other risks affecting digital banking."],
+["⚖️", "Compliance / Financial Crime", "Supports regulatory, KYC, fraud and financial-crime controls within digital journeys."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Systems and infrastructure supporting digital consumer banking.",
+cards: [
+["📱", "Mobile / Online Banking Platforms", "Provide the primary customer interfaces for digital banking services."],
+["🏦", "Core Banking Systems", "Maintain customer accounts, balances and core banking records used by digital channels."],
+["🔌", "API & Integration Platforms", "Connect digital channels with banking products, internal systems and external services."],
+["🔐", "Identity & Authentication Systems", "Verify customers and control secure access to digital banking services."],
+["💸", "Payments Infrastructure", "Supports transfers, payments and other money movement initiated through digital channels."],
+["📊", "Customer & Product Data Platforms", "Support analysis of customer behavior, product usage and digital performance."],
+],
+},
+]}
     />
   );
 }
@@ -2317,75 +3325,75 @@ function DigitalJourneyManagerRole({ goBack }: { goBack: () => void }) {
       title="Digital Journey / Experience Manager"
       intro="Designs and improves end-to-end digital banking journeys so customers can complete everyday banking tasks through clear, efficient and consistent digital experiences."
       sections={[
-        {
-          emoji: "📍",
-          title: "Where Am I?",
-          description: "The role’s position within the financial system.",
-          cards: [
-            ["Financial Institutions", "Banks"],
-            ["Retail / Consumer Banking", "Digital Consumer Banking"],
-            ["Role", "Digital Journey / Experience Manager"],
-          ],
-        },
-        {
-          emoji: "📈",
-          title: "What Market?",
-          description: "The customer and delivery market this role supports.",
-          cards: [
-            ["Digital Retail & Consumer Banking Market"],
-          ],
-        },
-        {
-          emoji: "🧩",
-          title: "What Products?",
-          description: "Typical customer journeys within the role’s coverage.",
-          cards: [
-            ["Digital Onboarding"],
-            ["Account Opening Journeys"],
-            ["Payments & Transfer Journeys"],
-            ["Digital Service & Support Journeys"],
-            ["Mobile / Online Banking Experiences"],
-          ],
-        },
-        {
-          emoji: "💼",
-          title: "What Do I Actually Do?",
-          description: "Core responsibilities commonly associated with the role.",
-          cards: [
-            ["Map End-to-End Customer Journeys"],
-            ["Identify Customer Friction & Drop-Off"],
-            ["Define Journey Improvements"],
-            ["Coordinate Cross-Functional Delivery"],
-            ["Monitor Digital Experience Performance"],
-          ],
-        },
-        {
-          emoji: "🔗",
-          title: "Who Do I Work With?",
-          description: "Key teams involved in digital customer journeys.",
-          cards: [
-            ["Digital Banking Product Teams"],
-            ["Technology / Engineering"],
-            ["UX / Design Teams"],
-            ["Retail Product Teams"],
-            ["Operations"],
-            ["Risk & Compliance"],
-          ],
-        },
-        {
-          emoji: "⚙️",
-          title: "What Infrastructure Supports the Work?",
-          description: "Platforms and data supporting digital customer journeys.",
-          cards: [
-            ["Mobile / Online Banking Platforms"],
-            ["Customer Analytics Platforms"],
-            ["Customer Relationship Management Systems"],
-            ["Identity & Authentication Systems"],
-            ["Digital Onboarding Platforms"],
-            ["Customer Feedback & Experience Data"],
-          ],
-        },
-      ]}
+{
+emoji: "📍",
+title: "Where Am I?",
+description: "See where this role sits within the financial system.",
+cards: [
+["🏦", "Financial Institutions", "Banks"],
+["💳", "Retail / Consumer Banking", "Digital Consumer Banking"],
+["✨", "Digital Consumer Banking", "Digital Journey / Experience Manager"],
+],
+},
+{
+emoji: "📈",
+title: "What Market?",
+description: "The customer and delivery market this role primarily supports.",
+cards: [
+["📱", "Digital Retail & Consumer Banking Market", "Supports how retail customers discover, access and complete banking activities through digital channels."],
+],
+},
+{
+emoji: "🧩",
+title: "What Products?",
+description: "Core digital customer journeys commonly covered by the role.",
+cards: [
+["👤", "Digital Onboarding", "End-to-end digital processes for establishing and verifying new customer relationships."],
+["🏦", "Account Opening Journeys", "Digital experiences allowing customers to apply for and open banking products."],
+["💸", "Payments & Transfer Journeys", "Customer experiences for initiating, confirming and tracking digital payments and transfers."],
+["🛠️", "Digital Service & Support Journeys", "Self-service and assisted digital experiences for managing accounts and resolving customer needs."],
+["📱", "Mobile / Online Banking Experiences", "Broader customer interactions across mobile applications and online banking channels."],
+],
+},
+{
+emoji: "💼",
+title: "What Do I Actually Do?",
+description: "Typical responsibilities in Digital Journey and Experience management.",
+cards: [
+["🗺️", "Map End-to-End Customer Journeys", "Document how customers move through digital banking processes across channels, systems and interaction points."],
+["🔎", "Identify Customer Friction & Drop-Off", "Use customer behavior, feedback and journey data to identify points where customers encounter difficulty or abandon processes."],
+["✨", "Define Journey Improvements", "Design changes that make digital banking journeys clearer, more efficient and more consistent."],
+["🔗", "Coordinate Cross-Functional Delivery", "Work with product, design, technology, operations and control teams to implement journey improvements."],
+["📊", "Monitor Digital Experience Performance", "Track completion, engagement, customer feedback and other indicators of digital journey performance."],
+],
+},
+{
+emoji: "🔗",
+title: "Who Do I Work With?",
+description: "Key functions involved in Digital Banking customer journeys.",
+cards: [
+["📱", "Digital Banking Product Teams", "Own the digital banking capabilities and product priorities underlying customer journeys."],
+["💻", "Technology / Engineering", "Builds and maintains the systems and integrations required to deliver digital experiences."],
+["🎨", "UX / Design Teams", "Design customer interfaces, interactions and experience patterns across digital channels."],
+["🧩", "Retail Product Teams", "Provide the underlying deposit, lending, card and payment products presented within customer journeys."],
+["⚙️", "Operations", "Supports servicing and operational processes connected to digital customer activity."],
+["🛡️", "Risk & Compliance", "Ensures digital journeys operate within applicable risk, regulatory and control requirements."],
+],
+},
+{
+emoji: "⚙️",
+title: "What Infrastructure Supports the Work?",
+description: "Platforms and data supporting digital customer journeys.",
+cards: [
+["📱", "Mobile / Online Banking Platforms", "Provide the digital interfaces through which customers complete banking journeys."],
+["📊", "Customer Analytics Platforms", "Provide behavioral and usage data used to understand customer interactions and journey performance."],
+["🤝", "Customer Relationship Management Systems", "Maintain customer relationship and interaction information across relevant channels."],
+["🔐", "Identity & Authentication Systems", "Support secure customer identification, verification and access."],
+["👤", "Digital Onboarding Platforms", "Support digital application, identity verification and customer onboarding workflows."],
+["💬", "Customer Feedback & Experience Data", "Provide customer feedback and experience signals used to identify and prioritize journey improvements."],
+],
+},
+]}
     />
   );
 }
@@ -13721,7 +14729,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "corporate-banking" | "investment-banking" | "ib-coverage" | "ib-coverage-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
     "system"
   );
 
@@ -14947,6 +15955,125 @@ function App() {
 
 
 
+if (page === "corporate-relationship-manager") {
+  return (
+    <CorporateRelationshipManagerRole
+      goBack={() => setPage("corporate-coverage")}
+    />
+  );
+}
+
+if (page === "corporate-coverage") {
+  return (
+    <CorporateCoverageMap
+      goBack={() => setPage("corporate-banking")}
+      openRole={() => setPage("corporate-relationship-manager")}
+    />
+  );
+}
+
+if (page === "corporate-lending-banker") {
+  return (
+    <CorporateLendingBankerRole
+      goBack={() => setPage("corporate-lending")}
+    />
+  );
+}
+
+if (page === "corporate-lending") {
+  return (
+    <CorporateLendingMap
+      goBack={() => setPage("corporate-banking")}
+      openRole={() => setPage("corporate-lending-banker")}
+    />
+  );
+}
+
+if (page === "corporate-credit-underwriter") {
+  return (
+    <CorporateCreditUnderwriterRole
+      goBack={() => setPage("corporate-credit")}
+    />
+  );
+}
+
+if (page === "corporate-credit") {
+  return (
+    <CorporateCreditMap
+      goBack={() => setPage("corporate-banking")}
+      openRole={() => setPage("corporate-credit-underwriter")}
+    />
+  );
+}
+
+if (page === "corporate-solutions-banker") {
+  return (
+    <CorporateSolutionsBankerRole
+      goBack={() => setPage("corporate-solutions")}
+    />
+  );
+}
+
+if (page === "corporate-solutions") {
+  return (
+    <CorporateSolutionsMap
+      goBack={() => setPage("corporate-banking")}
+      openRole={() => setPage("corporate-solutions-banker")}
+    />
+  );
+}
+
+if (page === "ib-coverage-banker") {
+  return (
+    <IBCoverageBankerRole
+      goBack={() => setPage("ib-coverage")}
+    />
+  );
+}
+
+if (page === "ib-coverage") {
+  return (
+    <RoleDetailPage
+      goBack={() => setPage("investment-banking")}
+      backLabel="Investment Banking"
+      eyebrow="INVESTMENT BANKING FUNCTION"
+      title="Industry / Client Coverage"
+      intro="Manage strategic client relationships and coordinate investment banking solutions."
+      sections={[
+        {
+          emoji: "🧭",
+          title: "Roles",
+          description: "Representative roles within this function.",
+          cards: [
+            ["🧭", "Investment Banking Coverage Banker", "Manages client relationships, originates opportunities and coordinates specialist product teams."],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+if (page === "investment-banking") {
+  return (
+    <InvestmentBankingMap
+      goBack={() => setPage("banks")}
+      openCoverage={() => setPage("ib-coverage")}
+    />
+  );
+}
+
+if (page === "corporate-banking") {
+  return (
+    <CorporateBankingMap
+      goBack={() => setPage("banks")}
+      openCoverage={() => setPage("corporate-coverage")}
+      openLending={() => setPage("corporate-lending")}
+      openCredit={() => setPage("corporate-credit")}
+      openSolutions={() => setPage("corporate-solutions")}
+    />
+  );
+}
+
 if (page === "commercial-product-solutions-manager") {
 return (
 <CommercialProductSolutionsManagerRole
@@ -15049,6 +16176,8 @@ if (page === "banks") {
         goBack={() => setPage("system")}
         openRetailBanking={() => setPage("retail-banking")}
 openCommercialBanking={() => setPage("commercial-banking")}
+      openCorporateBanking={() => setPage("corporate-banking")}
+      openInvestmentBanking={() => setPage("investment-banking")}
         openGlobalMarkets={() => setPage("global-markets")}
       />
     );
