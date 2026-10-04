@@ -2009,6 +2009,353 @@ function CorporateCoverageMap({
   );
 }
 
+function IBLeveragedFinanceBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🤝", "Investment Banking", "Leveraged Finance"],
+        ["🏗️", "Leveraged Finance", "Leveraged Finance Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financing markets this role primarily operates in.",
+      cards: [
+        [
+          "🏗️",
+          "Leveraged Debt Markets",
+          "Works across leveraged loan and high-yield debt markets, financing companies and transactions with higher leverage or non-investment-grade credit profiles.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The financing products commonly handled by this role.",
+      cards: [
+        ["💵", "Leveraged Loans", "Structures and arranges institutional and other leveraged loan financing."],
+        ["🧾", "High-Yield Bonds", "Supports non-investment-grade issuers raising capital in the bond market."],
+        ["🏢", "Acquisition Financing", "Structures debt financing supporting acquisitions and strategic transactions."],
+        ["🤝", "LBO Financing", "Supports leveraged buyouts sponsored by private equity and other financial sponsors."],
+        ["🔄", "Refinancing & Recapitalization", "Structures financing used to refinance existing debt or reshape a company's capital structure."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Credit Analysis", "Evaluates leverage, cash flow, debt capacity and downside risks of borrowers and transactions."],
+        ["🧮", "Capital Structure Analysis", "Assesses debt capacity and evaluates financing alternatives across loans, bonds and other instruments."],
+        ["🏗️", "Transaction Structuring", "Helps determine financing size, pricing, maturity, covenants, security and other terms."],
+        ["📑", "Client Materials", "Develops financing proposals, capital-structure analysis and transaction materials."],
+        ["⚙️", "Execution Coordination", "Coordinates financing processes across clients, sponsors, syndicate teams, investors and advisers."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders involved in leveraged finance transactions.",
+      cards: [
+        ["🧭", "Industry / Client Coverage", "Works with coverage bankers to identify financing needs and transaction opportunities."],
+        ["🏢", "M&A", "Coordinates acquisition financing for strategic transactions."],
+        ["🧾", "DCM", "Works together where financing includes high-yield bonds or broader debt-capital-markets execution."],
+        ["📣", "Loan & Bond Syndicate", "Coordinates distribution, investor demand, pricing and allocation of leveraged debt."],
+        ["💼", "Financial Sponsors", "Works with private equity and other sponsors financing acquisitions and portfolio companies."],
+        ["📈", "Credit Investors", "Interacts indirectly or through distribution teams with institutional loan and high-yield investors."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and tools supporting leveraged finance analysis and execution.",
+      cards: [
+        ["📊", "Credit & Market Data", "Provides credit spreads, loan and bond pricing, issuer data and comparable transactions."],
+        ["🧮", "Financial Modeling Tools", "Supports leverage, cash-flow, debt-capacity and transaction analysis."],
+        ["📚", "Loan & Bond Deal Databases", "Tracks leveraged loans, high-yield bonds, pricing and comparable financing transactions."],
+        ["📑", "Presentation & Document Tools", "Supports financing proposals, credit materials and transaction documentation."],
+        ["🔐", "Deal & Compliance Systems", "Supports approvals, conflicts, information barriers and transaction governance."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Leveraged Finance"
+      eyebrow="INVESTMENT BANKING ROLE"
+      title="Leveraged Finance Banker"
+      intro="Structures and executes leveraged debt financing for acquisitions, leveraged buyouts, refinancing and other corporate transactions."
+      sections={sections}
+    />
+  );
+}
+
+function IBDCMBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🤝", "Investment Banking", "Debt Capital Markets (DCM)"],
+        ["🧾", "Debt Capital Markets", "DCM Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The capital market this role primarily operates in.",
+      cards: [
+        [
+          "🧾",
+          "Primary Debt Capital Markets",
+          "Works in primary debt markets where companies, financial institutions and other issuers raise funding from bond investors.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The debt financing transactions commonly handled by this role.",
+      cards: [
+        ["🏢", "Corporate Bonds", "Supports companies issuing bonds to raise medium- and long-term funding."],
+        ["🏦", "Financial Institution Debt", "Supports banks and other financial institutions issuing senior and subordinated debt."],
+        ["🌍", "Investment-Grade Bonds", "Advises investment-grade issuers on accessing domestic and international bond markets."],
+        ["🔄", "Liability Management", "Supports transactions such as tender offers, exchanges and refinancing of existing debt."],
+        ["🧩", "Hybrid & Capital Securities", "Works on debt-like and hybrid capital instruments where relevant to issuer funding strategy."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Market Analysis", "Monitors rates, credit spreads, investor demand and issuance conditions."],
+        ["🧮", "Funding Analysis", "Evaluates maturity profiles, funding costs, capital structure and refinancing alternatives."],
+        ["🏗️", "Transaction Structuring", "Helps determine size, maturity, currency, ranking and other bond terms."],
+        ["📑", "Client Materials", "Develops funding proposals, market updates and transaction recommendations."],
+        ["⚙️", "Execution Coordination", "Coordinates issuance with clients, syndicate, sales, investors and external advisers."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders involved in debt capital markets transactions.",
+      cards: [
+        ["🧭", "Industry / Client Coverage", "Works with coverage bankers to identify funding and refinancing opportunities."],
+        ["📣", "Debt Syndicate", "Coordinates bookbuilding, pricing, investor demand and issuance execution."],
+        ["📈", "Rates & Credit Markets", "Uses rates and credit-market information to assess funding conditions and pricing."],
+        ["🌐", "Corporate Banking", "Coordinates where broader lending and financing relationships overlap."],
+        ["⚖️", "Legal & Other Advisers", "Works with legal, accounting and other advisers during issuance."],
+        ["🏢", "Issuers & Investors", "Connects issuer funding objectives with institutional investor demand."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and tools supporting DCM analysis and execution.",
+      cards: [
+        ["📊", "Rates & Credit Data", "Provides yield curves, spreads, comparable bonds and market conditions."],
+        ["📚", "Debt Deal Databases", "Tracks bond issuance, pricing, maturities and comparable transactions."],
+        ["🧮", "Funding Analysis Tools", "Supports pricing, refinancing and capital-structure analysis."],
+        ["📑", "Presentation & Document Tools", "Supports client materials and issuance documentation."],
+        ["🔐", "Deal & Compliance Systems", "Supports approvals, conflicts, information barriers and transaction governance."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Debt Capital Markets (DCM)"
+      eyebrow="INVESTMENT BANKING ROLE"
+      title="Debt Capital Markets Banker"
+      intro="Advises issuers on raising debt capital, refinancing liabilities and executing transactions in the primary bond markets."
+      sections={sections}
+    />
+  );
+}
+
+function IBECMBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🤝", "Investment Banking", "Equity Capital Markets (ECM)"],
+        ["💰", "Equity Capital Markets", "ECM Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The capital market this role primarily operates in.",
+      cards: [
+        [
+          "📈",
+          "Equity Capital Markets",
+          "Works in primary equity markets where companies and shareholders raise capital or sell equity securities to investors.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The equity financing transactions commonly handled by this role.",
+      cards: [
+        ["🚀", "Initial Public Offerings", "Supports companies entering public equity markets through an IPO."],
+        ["📈", "Follow-on Offerings", "Supports listed companies raising additional equity capital."],
+        ["🏷️", "Secondary Offerings", "Supports shareholders selling existing equity positions through marketed transactions."],
+        ["⚡", "Block Trades", "Supports accelerated sales of significant equity positions to institutional investors."],
+        ["🔄", "Convertible Securities", "Works on securities combining equity and debt characteristics where ECM is involved."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Market Analysis", "Assesses equity-market conditions, investor sentiment, valuation and issuance windows."],
+        ["🧮", "Valuation & Deal Analysis", "Analyzes valuation, dilution, ownership and transaction alternatives."],
+        ["🏗️", "Transaction Structuring", "Helps determine offering size, structure, timing and other transaction parameters."],
+        ["📑", "Client Materials", "Develops equity financing proposals, market updates and transaction materials."],
+        ["⚙️", "Execution Coordination", "Coordinates the offering process across clients, investors, syndicate teams and advisers."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders involved in equity capital markets transactions.",
+      cards: [
+        ["🧭", "Industry / Client Coverage", "Works with coverage bankers to identify equity financing opportunities."],
+        ["🏢", "M&A", "Coordinates where strategic transactions create equity financing needs."],
+        ["📣", "Equity Syndicate", "Works with syndicate teams on investor demand, allocation, pricing and transaction execution."],
+        ["📈", "Equity Sales & Trading", "Connects with markets teams for investor feedback and secondary-market context."],
+        ["⚖️", "Legal & Other Advisers", "Coordinates with legal, accounting and other transaction advisers."],
+        ["🏢", "Issuers & Shareholders", "Works with companies, management teams, boards and selling shareholders."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and tools supporting ECM analysis and execution.",
+      cards: [
+        ["📊", "Market & Deal Data", "Provides equity prices, valuation data, issuance history and comparable transactions."],
+        ["🧮", "Financial Modeling Tools", "Supports valuation, dilution and transaction analysis."],
+        ["📚", "Deal Databases", "Tracks IPOs, follow-ons, block trades and other equity transactions."],
+        ["📑", "Presentation & Document Tools", "Supports client materials and transaction documentation."],
+        ["🔐", "Deal & Compliance Systems", "Supports approvals, conflicts, information barriers and transaction governance."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Equity Capital Markets (ECM)"
+      eyebrow="INVESTMENT BANKING ROLE"
+      title="Equity Capital Markets Banker"
+      intro="Advises companies and shareholders on raising capital and executing transactions in the primary equity markets."
+      sections={sections}
+    />
+  );
+}
+
+function IBMABankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🤝", "Investment Banking", "Mergers & Acquisitions (M&A)"],
+        ["🏢", "M&A Advisory", "M&A Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The transaction environment this role primarily operates in.",
+      cards: [
+        [
+          "🏢",
+          "Corporate Control & Strategic Transactions",
+          "Advises companies, shareholders and financial sponsors on transactions involving ownership, control, business combinations and strategic asset transfers.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The advisory transactions commonly handled by this role.",
+      cards: [
+        ["🤝", "Mergers & Acquisitions", "Advises clients on acquisitions, mergers and combinations of businesses."],
+        ["🏷️", "Divestitures", "Advises clients on the sale of businesses, subsidiaries or strategic assets."],
+        ["🧱", "Carve-outs", "Supports transactions involving the separation and sale of business units or assets."],
+        ["🛡️", "Strategic & Defense Advisory", "Supports clients evaluating strategic alternatives, unsolicited approaches and other corporate-control situations."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🧮", "Valuation", "Analyzes companies and transactions using valuation methodologies such as comparable companies, precedent transactions and discounted cash flow analysis."],
+        ["🏢", "Transaction Analysis", "Evaluates transaction structures, strategic rationale, ownership implications and financial impact."],
+        ["📑", "Client Materials", "Develops presentations, valuation materials and transaction recommendations for clients."],
+        ["🔎", "Due Diligence Coordination", "Coordinates information and workstreams across clients, advisers and transaction counterparties."],
+        ["⚙️", "Execution", "Supports transaction processes from initial analysis and negotiation through signing and closing."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The teams and stakeholders involved in M&A transactions.",
+      cards: [
+        ["🧭", "Industry / Client Coverage", "Works with coverage bankers who manage the broader client relationship and originate strategic opportunities."],
+        ["💰", "ECM", "Coordinates where transactions involve equity financing or issuance."],
+        ["🧾", "DCM", "Coordinates where transactions involve debt financing."],
+        ["🏗️", "Leveraged Finance", "Works together when acquisitions require leveraged financing."],
+        ["⚖️", "Legal & Other Advisers", "Coordinates with legal, accounting, tax and other professional advisers."],
+        ["🏢", "Clients & Counterparties", "Works with senior management, boards, shareholders, sponsors and transaction counterparties."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and tools supporting M&A advisory and execution.",
+      cards: [
+        ["📊", "Market & Company Data", "Provides company financials, transaction comparables, ownership information and market data."],
+        ["🧮", "Financial Modeling Tools", "Supports valuation, transaction modeling and financial-impact analysis."],
+        ["📁", "Virtual Data Rooms", "Supports controlled exchange of confidential transaction and due-diligence information."],
+        ["📑", "Presentation & Document Tools", "Supports preparation of client materials, transaction documents and internal analysis."],
+        ["🔐", "Deal & Compliance Systems", "Supports conflicts checks, approvals, information barriers and transaction governance."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Mergers & Acquisitions (M&A)"
+      eyebrow="INVESTMENT BANKING ROLE"
+      title="M&A Banker"
+      intro="Advises clients on acquisitions, mergers, divestitures and other strategic transactions from valuation and structuring through execution."
+      sections={sections}
+    />
+  );
+}
+
 function IBCoverageBankerRole({ goBack }: { goBack: () => void }) {
   const sections: RoleDetailSection[] = [
     {
@@ -2092,9 +2439,17 @@ function IBCoverageBankerRole({ goBack }: { goBack: () => void }) {
 function InvestmentBankingMap({
   goBack,
   openCoverage,
+  openMA,
+  openECM,
+  openDCM,
+  openLevFin,
 }: {
   goBack: () => void;
   openCoverage: () => void;
+  openMA: () => void;
+  openECM: () => void;
+  openDCM: () => void;
+  openLevFin: () => void;
 }) {
   return (
     <main className="world">
@@ -2134,6 +2489,10 @@ function InvestmentBankingMap({
               type="button"
               onClick={() => {
                 if (item.id === "ib-coverage") openCoverage();
+                if (item.id === "ib-ma") openMA();
+                if (item.id === "ib-ecm") openECM();
+                if (item.id === "ib-dcm") openDCM();
+                if (item.id === "ib-levfin") openLevFin();
               }}
             >
               <span>{item.emoji}</span>
@@ -14729,7 +15088,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "corporate-banking" | "investment-banking" | "ib-coverage" | "ib-coverage-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "corporate-banking" | "investment-banking" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
     "system"
   );
 
@@ -16023,6 +16382,126 @@ if (page === "corporate-solutions") {
   );
 }
 
+if (page === "ib-levfin-banker") {
+  return (
+    <IBLeveragedFinanceBankerRole
+      goBack={() => setPage("ib-levfin")}
+    />
+  );
+}
+
+if (page === "ib-levfin") {
+  return (
+    <RoleDetailPage
+      goBack={() => setPage("investment-banking")}
+      backLabel="Investment Banking"
+      eyebrow="INVESTMENT BANKING FUNCTION"
+      title="Leveraged Finance"
+      intro="Structure and execute leveraged loans, high-yield debt and acquisition financing for corporate and sponsor clients."
+      sections={[
+        {
+          emoji: "🏗️",
+          title: "Roles",
+          description: "Representative roles within this function.",
+          cards: [
+            ["🏗️", "Leveraged Finance Banker", "Structures leveraged loans, high-yield debt and acquisition financing across leveraged corporate and sponsor transactions."],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+if (page === "ib-dcm-banker") {
+  return (
+    <IBDCMBankerRole
+      goBack={() => setPage("ib-dcm")}
+    />
+  );
+}
+
+if (page === "ib-dcm") {
+  return (
+    <RoleDetailPage
+      goBack={() => setPage("investment-banking")}
+      backLabel="Investment Banking"
+      eyebrow="INVESTMENT BANKING FUNCTION"
+      title="Debt Capital Markets (DCM)"
+      intro="Advise issuers on bond financing, refinancing strategy and access to primary debt capital markets."
+      sections={[
+        {
+          emoji: "🧾",
+          title: "Roles",
+          description: "Representative roles within this function.",
+          cards: [
+            ["🧾", "Debt Capital Markets Banker", "Advises issuers on debt financing strategy, transaction structure, market timing and bond execution."],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+if (page === "ib-ecm-banker") {
+  return (
+    <IBECMBankerRole
+      goBack={() => setPage("ib-ecm")}
+    />
+  );
+}
+
+if (page === "ib-ecm") {
+  return (
+    <RoleDetailPage
+      goBack={() => setPage("investment-banking")}
+      backLabel="Investment Banking"
+      eyebrow="INVESTMENT BANKING FUNCTION"
+      title="Equity Capital Markets (ECM)"
+      intro="Advise companies and shareholders on equity issuance, capital raising and primary-market transactions."
+      sections={[
+        {
+          emoji: "💰",
+          title: "Roles",
+          description: "Representative roles within this function.",
+          cards: [
+            ["💰", "Equity Capital Markets Banker", "Advises issuers on equity financing strategy, transaction structure, market timing and execution."],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+if (page === "ib-ma-banker") {
+  return (
+    <IBMABankerRole
+      goBack={() => setPage("ib-ma")}
+    />
+  );
+}
+
+if (page === "ib-ma") {
+  return (
+    <RoleDetailPage
+      goBack={() => setPage("investment-banking")}
+      backLabel="Investment Banking"
+      eyebrow="INVESTMENT BANKING FUNCTION"
+      title="Mergers & Acquisitions (M&A)"
+      intro="Advise clients on acquisitions, mergers, divestitures and other strategic corporate transactions."
+      sections={[
+        {
+          emoji: "🏢",
+          title: "Roles",
+          description: "Representative roles within this function.",
+          cards: [
+            ["🏢", "M&A Banker", "Advises clients on strategic transactions, valuation, transaction structure and execution."],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
 if (page === "ib-coverage-banker") {
   return (
     <IBCoverageBankerRole
@@ -16058,6 +16537,10 @@ if (page === "investment-banking") {
     <InvestmentBankingMap
       goBack={() => setPage("banks")}
       openCoverage={() => setPage("ib-coverage")}
+      openMA={() => setPage("ib-ma")}
+      openECM={() => setPage("ib-ecm")}
+      openDCM={() => setPage("ib-dcm")}
+      openLevFin={() => setPage("ib-levfin")}
     />
   );
 }
