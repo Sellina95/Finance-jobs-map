@@ -588,7 +588,7 @@ function FinancialSystemMap({
         </a>
         <a
           className="footer-link"
-          href="https://github.com/Sellina95/Finace-jobs-map"
+          href="https://github.com/Sellina95/Finance-jobs-map"
           target="_blank"
           rel="noreferrer"
         >
@@ -678,9 +678,13 @@ const globalMarketsFunctions: Item[] = [
 
 function BanksMap({
   goBack,
+  openRetailBanking,
+  openCommercialBanking,
   openGlobalMarkets,
 }: {
   goBack: () => void;
+  openRetailBanking: () => void;
+  openCommercialBanking: () => void;
   openGlobalMarkets: () => void;
 }) {
   return (
@@ -718,8 +722,19 @@ function BanksMap({
               className="finance-card"
               key={item.id}
               onClick={() => {
+                if (item.id === "retail-banking") {
+                  openRetailBanking();
+                }
+                if (item.id === "commercial-banking") {
+
+                  openCommercialBanking();
+
+                }
+
                 if (item.id === "global-markets") {
+
                   openGlobalMarkets();
+
                 }
               }}
             >
@@ -731,6 +746,1647 @@ function BanksMap({
         </div>
       </section>
     </main>
+  );
+}
+
+
+
+
+
+
+
+const commercialProductSolutionsRoles: Role[] = [
+  {
+    emoji: "🧩",
+    title: "Commercial Banking Product / Solutions Manager",
+    description:
+      "Develops and coordinates banking solutions for business clients, connecting commercial banking needs with lending, deposits, payments and other product capabilities.",
+  },
+];
+
+const commercialCreditRoles: Role[] = [
+  {
+    emoji: "🔎",
+    title: "Commercial Credit Analyst / Underwriter",
+    description:
+      "Analyzes business borrowers, cash flows and lending structures to assess creditworthiness and support commercial credit decisions.",
+  },
+];
+
+const commercialLendingRoles: Role[] = [
+  {
+    emoji: "💵",
+    title: "Commercial Lending Officer / Banker",
+    description:
+      "Originates and structures lending solutions for business clients, coordinating financing needs with credit underwriting, approval and execution.",
+  },
+];
+
+const commercialRelationshipRoles: Role[] = [
+  {
+    emoji: "🤝",
+    title: "Commercial Relationship Manager",
+    description:
+      "Manages banking relationships with business clients, understanding their financing and banking needs and coordinating solutions across the bank.",
+  },
+];
+
+const commercialBankingFunctions: Item[] = [
+  { id: "commercial-relationship", emoji: "🤝", label: "Relationship Management" },
+  { id: "commercial-lending", emoji: "💵", label: "Commercial Lending" },
+  { id: "commercial-credit", emoji: "🔎", label: "Credit Underwriting" },
+  { id: "commercial-product-solutions", emoji: "🧩", label: "Commercial Banking Product / Solutions" },
+];
+
+const retailBankingFunctions: Item[] = [
+  { id: "retail-deposits", emoji: "🏦", label: "Deposits & Everyday Banking" },
+  { id: "retail-consumer-lending", emoji: "💵", label: "Consumer Lending" },
+  { id: "retail-mortgage", emoji: "🏠", label: "Mortgage / Home Lending" },
+  { id: "retail-cards-payments", emoji: "💳", label: "Cards & Consumer Payments" },
+  { id: "retail-relationship", emoji: "🤝", label: "Retail Relationship & Advisory" },
+  { id: "retail-digital", emoji: "📱", label: "Digital Consumer Banking" },
+];
+
+const depositRoles: Item[] = [
+  {
+    id: "retail-deposits-product-manager",
+    emoji: "👤",
+    label: "Deposits Product Manager",
+  },
+];
+
+const consumerLendingRoles: Item[] = [
+  {
+    id: "retail-consumer-lending-product-manager",
+    emoji: "👤",
+    label: "Consumer Lending Product Manager",
+  },
+  {
+    id: "retail-consumer-credit-underwriter",
+    emoji: "👤",
+    label: "Consumer Credit Analyst / Underwriter",
+  },
+];
+
+const mortgageRoles: Item[] = [
+  {
+    id: "retail-mortgage-loan-officer",
+    emoji: "👤",
+    label: "Mortgage Loan Officer / Advisor",
+  },
+  {
+    id: "retail-mortgage-underwriter",
+    emoji: "👤",
+    label: "Mortgage Underwriter",
+  },
+];
+
+const cardsPaymentsRoles: Item[] = [
+  {
+    id: "retail-cards-product-manager",
+    emoji: "👤",
+    label: "Cards Product Manager",
+  },
+  {
+    id: "retail-consumer-payments-product-manager",
+    emoji: "👤",
+    label: "Consumer Payments Product Manager",
+  },
+];
+
+const retailRelationshipRoles: Item[] = [
+  {
+    id: "retail-personal-banker",
+    emoji: "👤",
+    label: "Personal Banker / Relationship Banker",
+  },
+  {
+    id: "retail-branch-manager",
+    emoji: "👤",
+    label: "Branch Manager",
+  },
+];
+
+const digitalConsumerBankingRoles: Item[] = [
+  {
+    id: "retail-digital-product-manager",
+    emoji: "👤",
+    label: "Digital Banking Product Manager",
+  },
+  {
+    id: "retail-digital-journey-manager",
+    emoji: "👤",
+    label: "Digital Journey / Experience Manager",
+  },
+];
+
+
+
+
+
+
+
+
+
+
+function CommercialProductSolutionsManagerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "Your position in the financial system.",
+      cards: [
+        ["Financial Institutions"],
+        ["Banks"],
+        ["Commercial Banking"],
+        ["Commercial Banking Product / Solutions"],
+        ["Commercial Banking Product / Solutions Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client environment this role serves.",
+      cards: [
+        ["Commercial & Business Banking Market"],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "Banking capabilities commonly coordinated for business clients.",
+      cards: [
+        ["Commercial Deposits & Operating Accounts"],
+        ["Commercial Loans & Credit Facilities"],
+        ["Payments & Cash Management"],
+        ["Working Capital Solutions"],
+        ["Trade Finance"],
+        ["Digital Business Banking Services"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Do I Actually Do?",
+      description: "Core responsibilities commonly associated with commercial banking solutions.",
+      cards: [
+        ["Identify Business Client Product Needs"],
+        ["Develop & Coordinate Commercial Banking Solutions"],
+        ["Connect Relationship Teams with Product Specialists"],
+        ["Support Product Proposition & Delivery"],
+        ["Monitor Product Usage & Performance"],
+        ["Coordinate Cross-Functional Product Initiatives"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "Who Do I Work With?",
+      description: "Teams involved in building and delivering commercial banking solutions.",
+      cards: [
+        ["Relationship Management"],
+        ["Commercial Lending"],
+        ["Credit Underwriting"],
+        ["Transaction Banking"],
+        ["Treasury / ALM"],
+        ["Risk Management"],
+        ["Compliance / Financial Crime"],
+        ["Operations & Technology"],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure Supports the Work?",
+      description: "Platforms supporting commercial banking products and client delivery.",
+      cards: [
+        ["Core Banking Systems"],
+        ["Customer Relationship Management (CRM)"],
+        ["Loan & Credit Platforms"],
+        ["Payments & Cash Management Platforms"],
+        ["Digital Business Banking Platforms"],
+        ["Product & Customer Analytics"],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Commercial Banking Product / Solutions"
+      eyebrow="COMMERCIAL BANKING ROLE"
+      title="Commercial Banking Product / Solutions Manager"
+      intro="Develops and coordinates banking solutions for business clients, connecting relationship needs with lending, deposits, payments and other product capabilities across the bank."
+      sections={sections}
+    />
+  );
+}
+
+function CommercialCreditUnderwriterRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "Your position in the financial system.",
+      cards: [
+        ["Financial Institutions"],
+        ["Banks"],
+        ["Commercial Banking"],
+        ["Credit Underwriting"],
+        ["Commercial Credit Analyst / Underwriter"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The credit environment this role analyzes.",
+      cards: [
+        ["Commercial Lending & Business Credit Market"],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "Typical credit products reviewed in underwriting.",
+      cards: [
+        ["Term Loans"],
+        ["Revolving Credit Facilities"],
+        ["Working Capital Loans"],
+        ["Secured Business Loans"],
+        ["Equipment / Asset Finance"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Do I Actually Do?",
+      description: "Core responsibilities commonly associated with commercial underwriting.",
+      cards: [
+        ["Analyze Financial Statements & Cash Flow"],
+        ["Assess Borrower & Industry Risk"],
+        ["Evaluate Debt Capacity & Repayment Ability"],
+        ["Review Loan Structure & Collateral"],
+        ["Prepare Credit Analysis & Recommendations"],
+        ["Support Credit Approval & Ongoing Review"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "Who Do I Work With?",
+      description: "Key teams involved in the commercial credit process.",
+      cards: [
+        ["Relationship Management"],
+        ["Commercial Lending"],
+        ["Risk Management"],
+        ["Legal"],
+        ["Loan Operations"],
+        ["Compliance / Financial Crime"],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure Supports the Work?",
+      description: "Systems and information used in commercial credit analysis.",
+      cards: [
+        ["Credit Underwriting & Workflow Systems"],
+        ["Financial Statement Analysis Tools"],
+        ["Credit Bureau / Rating Data"],
+        ["Collateral & Covenant Data"],
+        ["Risk Monitoring Systems"],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Credit Underwriting"
+      eyebrow="COMMERCIAL BANKING ROLE"
+      title="Commercial Credit Analyst / Underwriter"
+      intro="Analyzes business borrowers, financial performance, cash flows and lending structures to assess creditworthiness and support commercial credit decisions within established credit policies."
+      sections={sections}
+    />
+  );
+}
+
+function CommercialLendingOfficerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "Your position in the financial system.",
+      cards: [
+        ["Financial Institutions"],
+        ["Banks"],
+        ["Commercial Banking"],
+        ["Commercial Lending"],
+        ["Commercial Lending Officer / Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financing environment this role serves.",
+      cards: [
+        ["Commercial Lending & Business Credit Market"],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "Typical lending products used by business clients.",
+      cards: [
+        ["Term Loans"],
+        ["Revolving Credit Facilities"],
+        ["Working Capital Loans"],
+        ["Secured Business Loans"],
+        ["Equipment / Asset Finance"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Do I Actually Do?",
+      description: "Core responsibilities commonly associated with the role.",
+      cards: [
+        ["Assess Client Financing Needs"],
+        ["Structure Loan Terms & Facilities"],
+        ["Originate Lending Opportunities"],
+        ["Coordinate Credit Proposals & Approval"],
+        ["Support Documentation & Execution"],
+        ["Monitor Lending Relationships"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "Who Do I Work With?",
+      description: "Key teams involved in commercial lending.",
+      cards: [
+        ["Relationship Management"],
+        ["Credit Underwriting"],
+        ["Risk Management"],
+        ["Legal"],
+        ["Treasury / ALM"],
+        ["Loan Operations"],
+        ["Compliance / Financial Crime"],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure Supports the Work?",
+      description: "Systems and data supporting commercial lending workflows.",
+      cards: [
+        ["Loan Origination Systems"],
+        ["Credit Workflow & Approval Systems"],
+        ["Financial Statement & Credit Data"],
+        ["Collateral Management Systems"],
+        ["Document & Loan Administration Platforms"],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Commercial Lending"
+      eyebrow="COMMERCIAL BANKING ROLE"
+      title="Commercial Lending Officer / Banker"
+      intro="Originates and structures lending solutions for business clients, assessing financing needs and coordinating credit underwriting, approval and execution."
+      sections={sections}
+    />
+  );
+}
+
+function CommercialRelationshipManagerRole({
+  goBack,
+}: {
+  goBack: () => void;
+}) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "Your position in the financial system.",
+      cards: [
+        ["Financial Institutions"],
+        ["Banks"],
+        ["Commercial Banking"],
+        ["Relationship Management"],
+        ["Commercial Relationship Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client and financing environment this role serves.",
+      cards: [
+        ["Commercial & Business Banking Market"],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "Typical banking solutions coordinated for business clients.",
+      cards: [
+        ["Commercial Loans & Credit Facilities"],
+        ["Deposit & Operating Accounts"],
+        ["Working Capital Solutions"],
+        ["Cash Management & Payments"],
+        ["Trade Finance"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Do I Actually Do?",
+      description: "Core responsibilities commonly associated with the role.",
+      cards: [
+        ["Manage Business Client Relationships"],
+        ["Understand Financing & Banking Needs"],
+        ["Originate & Coordinate Credit Opportunities"],
+        ["Coordinate Product Specialists"],
+        ["Monitor Relationship & Credit Developments"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "Who Do I Work With?",
+      description: "Key teams involved in serving the client relationship.",
+      cards: [
+        ["Commercial Lending"],
+        ["Credit Underwriting"],
+        ["Commercial Banking Product / Solutions"],
+        ["Transaction Banking"],
+        ["Risk Management"],
+        ["Compliance / Financial Crime"],
+        ["Operations & Technology"],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure Supports the Work?",
+      description: "Systems commonly supporting relationship and credit workflows.",
+      cards: [
+        ["Customer Relationship Management (CRM)"],
+        ["Loan Origination & Credit Workflow Systems"],
+        ["Core Banking Systems"],
+        ["Credit & Financial Data"],
+        ["Payments & Cash Management Platforms"],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Relationship Management"
+      eyebrow="COMMERCIAL BANKING ROLE"
+      title="Commercial Relationship Manager"
+      intro="Manages banking relationships with business clients, understanding their financing and banking needs and coordinating lending and other banking solutions across product and control teams."
+      sections={sections}
+    />
+  );
+}
+
+function CommercialRoleMap({
+  goBack,
+  title,
+  emoji,
+  intro,
+  roles,
+  openRole,
+}: {
+  goBack: () => void;
+  title: string;
+  emoji: string;
+  intro: string;
+  roles: Role[];
+  openRole: (role: Role) => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Commercial Banking
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">{emoji}</div>
+        <div>
+          <p className="eyebrow">COMMERCIAL BANKING</p>
+          <h1>{title}</h1>
+          <p className="intro">{intro}</p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">{emoji}</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {roles.map((role) => (
+            <button
+              className="finance-card"
+              key={role.title}
+              onClick={() => openRole(role)}
+            >
+              <span>{role.emoji}</span>
+              <strong>{role.title}</strong>
+              <p>{role.description}</p>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function CommercialBankingMap({
+  goBack,
+  openRelationship,
+  openLending,
+  openCredit,
+  openProductSolutions,
+}: {
+  goBack: () => void;
+  openRelationship: () => void;
+  openLending: () => void;
+  openCredit: () => void;
+  openProductSolutions: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🏢</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Commercial Banking</h1>
+          <p className="intro">
+            Explore how banks serve business clients through relationship
+            management, lending, credit underwriting and commercial banking
+            solutions.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🏢</span>
+          <div>
+            <h2>Commercial Banking</h2>
+            <p>Select an area to explore its work and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {commercialBankingFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "commercial-relationship") {
+                  openRelationship();
+                }
+                if (item.id === "commercial-lending") {
+                  openLending();
+                }
+                if (item.id === "commercial-credit") {
+                  openCredit();
+                }
+                if (item.id === "commercial-product-solutions") {
+                  openProductSolutions();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function RetailBankingMap({
+  goBack,
+  openDeposits,
+  openConsumerLending,
+  openMortgage,
+  openCardsPayments,
+  openRelationship,
+  openDigitalBanking,
+}: {
+  goBack: () => void;
+  openDeposits: () => void;
+  openConsumerLending: () => void;
+  openMortgage: () => void;
+  openCardsPayments: () => void;
+  openRelationship: () => void;
+  openDigitalBanking: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💳</div>
+
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Retail / Consumer Banking</h1>
+          <p className="intro">
+            Explore the products, services and roles that serve individual banking customers.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💳</span>
+          <div>
+            <h2>Retail / Consumer Banking</h2>
+            <p>Select an area to explore its work and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {retailBankingFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "retail-deposits") openDeposits();
+                if (item.id === "retail-consumer-lending") openConsumerLending();
+                if (item.id === "retail-mortgage") openMortgage();
+                if (item.id === "retail-cards-payments") openCardsPayments();
+                if (item.id === "retail-relationship") openRelationship();
+                if (item.id === "retail-digital") openDigitalBanking();
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function RetailRoleMap({
+  goBack,
+  emoji,
+  title,
+  intro,
+  roles,
+  openRole,
+}: {
+  goBack: () => void;
+  emoji: string;
+  title: string;
+  intro: string;
+  roles: Item[];
+  openRole: (id: string) => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Retail / Consumer Banking
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">{emoji}</div>
+
+        <div>
+          <p className="eyebrow">RETAIL / CONSUMER BANKING</p>
+          <h1>{title}</h1>
+          <p className="intro">{intro}</p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">{emoji}</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to explore where it sits and what it does.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {roles.map((role) => (
+            <button
+              className="finance-card"
+              key={role.id}
+              onClick={() => role.id && openRole(role.id)}
+            >
+              <span>{role.emoji}</span>
+              <strong>{role.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+
+function DepositsProductManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Deposits & Everyday Banking"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Deposits Product Manager"
+      intro="Develops and manages consumer deposit and everyday banking products, balancing customer needs, product economics, regulatory requirements and the bank’s funding objectives."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Deposits & Everyday Banking"],
+            ["Role", "Deposits Product Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The customer and funding market this role supports.",
+          cards: [["Retail Deposit & Consumer Banking Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical products within the role’s coverage.",
+          cards: [
+            ["Current / Checking Accounts"],
+            ["Savings Accounts"],
+            ["Term / Time Deposits"],
+            ["Transaction Accounts"],
+            ["Deposit-linked Banking Services"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Develop & Manage Deposit Products"],
+            ["Set Product Features & Pricing"],
+            ["Monitor Customer & Deposit Trends"],
+            ["Manage Product Performance"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the role.",
+          cards: [
+            ["Retail Relationship / Branch Teams"],
+            ["Digital Banking"],
+            ["Treasury / ALM"],
+            ["Risk Management"],
+            ["Compliance"],
+            ["Operations & Technology"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and infrastructure that enable the work.",
+          cards: [
+            ["Core Banking Systems"],
+            ["Deposit & Account Platforms"],
+            ["Digital / Mobile Banking Platforms"],
+            ["Payments Infrastructure"],
+            ["Customer & Product Data Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function ConsumerLendingProductManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Consumer Lending"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Consumer Lending Product Manager"
+      intro="Develops and manages consumer lending products, balancing customer demand, pricing, credit economics, regulatory requirements and portfolio performance."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Consumer Lending"],
+            ["Role", "Consumer Lending Product Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The lending market this role supports.",
+          cards: [["Consumer Credit & Retail Lending Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical products within the role’s coverage.",
+          cards: [
+            ["Personal Loans"],
+            ["Auto Loans"],
+            ["Unsecured Consumer Loans"],
+            ["Lines of Credit"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Develop & Manage Lending Products"],
+            ["Set Product Features & Pricing"],
+            ["Monitor Portfolio Performance"],
+            ["Analyze Customer & Credit Trends"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the role.",
+          cards: [
+            ["Retail Relationship / Distribution Teams"],
+            ["Consumer Credit / Underwriting"],
+            ["Treasury / ALM"],
+            ["Risk Management"],
+            ["Compliance"],
+            ["Operations & Technology"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and infrastructure that enable the work.",
+          cards: [
+            ["Loan Origination Systems"],
+            ["Core Banking Systems"],
+            ["Credit Decisioning Platforms"],
+            ["Customer & Product Data Systems"],
+            ["Digital Banking Platforms"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function ConsumerCreditUnderwriterRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Consumer Lending"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Consumer Credit Analyst / Underwriter"
+      intro="Evaluates consumer credit applications and borrower risk to support lending decisions within the bank’s credit policies and risk appetite."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Consumer Lending"],
+            ["Role", "Consumer Credit Analyst / Underwriter"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The lending market this role supports.",
+          cards: [["Consumer Credit & Retail Lending Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical products reviewed by the role.",
+          cards: [
+            ["Personal Loans"],
+            ["Auto Loans"],
+            ["Unsecured Consumer Loans"],
+            ["Lines of Credit"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Assess Borrower Creditworthiness"],
+            ["Review Credit Applications"],
+            ["Apply Lending & Credit Policies"],
+            ["Support Credit Decisions"],
+            ["Monitor Credit Quality"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the role.",
+          cards: [
+            ["Consumer Lending Teams"],
+            ["Retail Relationship / Distribution Teams"],
+            ["Credit Risk"],
+            ["Fraud / Financial Crime Teams"],
+            ["Compliance"],
+            ["Loan Operations"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and data that enable credit decisions.",
+          cards: [
+            ["Loan Origination Systems"],
+            ["Credit Decisioning Engines"],
+            ["Credit Bureau / Credit Data"],
+            ["Customer Information Systems"],
+            ["Risk & Monitoring Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function MortgageLoanOfficerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Mortgage / Home Lending"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Mortgage Loan Officer / Advisor"
+      intro="Works with customers seeking home financing, helping structure mortgage applications and guiding borrowers through the lending process from initial inquiry to approval and closing."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Mortgage / Home Lending"],
+            ["Role", "Mortgage Loan Officer / Advisor"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The lending market this role supports.",
+          cards: [["Residential Mortgage & Home Lending Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical mortgage products within the role’s coverage.",
+          cards: [
+            ["Residential Mortgages"],
+            ["Fixed / Variable-Rate Mortgages"],
+            ["Home Purchase Loans"],
+            ["Refinancing Products"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Understand Borrower Financing Needs"],
+            ["Explain Mortgage Products & Terms"],
+            ["Originate Mortgage Applications"],
+            ["Coordinate Documentation & Approval"],
+            ["Support the Borrower Through Closing"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams and specialists connected to the role.",
+          cards: [
+            ["Mortgage Underwriters"],
+            ["Retail Relationship / Distribution Teams"],
+            ["Credit Risk"],
+            ["Compliance"],
+            ["Property Valuation / Appraisal"],
+            ["Loan Operations"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and infrastructure that enable mortgage origination.",
+          cards: [
+            ["Mortgage / Loan Origination Systems"],
+            ["Customer Information Systems"],
+            ["Credit Data & Verification Services"],
+            ["Property Valuation Systems"],
+            ["Document & Closing Platforms"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function MortgageUnderwriterRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Mortgage / Home Lending"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Mortgage Underwriter"
+      intro="Evaluates mortgage applications, borrower creditworthiness and property-related information to determine whether lending requests meet the bank’s underwriting standards and credit policies."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Mortgage / Home Lending"],
+            ["Role", "Mortgage Underwriter"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The lending market this role supports.",
+          cards: [["Residential Mortgage & Home Lending Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical products reviewed by the role.",
+          cards: [
+            ["Residential Mortgages"],
+            ["Home Purchase Loans"],
+            ["Refinancing Products"],
+            ["Secured Home Lending"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Assess Borrower Creditworthiness"],
+            ["Review Income, Debt & Financial Information"],
+            ["Evaluate Property & Collateral Information"],
+            ["Apply Mortgage Underwriting Standards"],
+            ["Support Approval / Decline Decisions"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams and specialists connected to the role.",
+          cards: [
+            ["Mortgage Loan Officers / Advisors"],
+            ["Credit Risk"],
+            ["Property Valuation / Appraisal"],
+            ["Compliance"],
+            ["Fraud / Financial Crime Teams"],
+            ["Loan Operations"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and data that support underwriting.",
+          cards: [
+            ["Mortgage Origination Systems"],
+            ["Credit Decisioning Platforms"],
+            ["Credit Bureau / Credit Data"],
+            ["Property Valuation Systems"],
+            ["Risk & Documentation Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+
+function CardsProductManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Cards & Consumer Payments"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Cards Product Manager"
+      intro="Develops and manages consumer card products, balancing customer needs, product economics, payment functionality, regulatory requirements and portfolio performance."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Cards & Consumer Payments"],
+            ["Role", "Cards Product Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The consumer payments market this role supports.",
+          cards: [["Consumer Cards & Payments Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical card products within the role’s coverage.",
+          cards: [
+            ["Credit Cards"],
+            ["Debit Cards"],
+            ["Prepaid Cards"],
+            ["Card-linked Features & Benefits"],
+            ["Digital / Tokenized Card Payments"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Develop & Manage Card Products"],
+            ["Set Product Features & Pricing"],
+            ["Manage Rewards / Benefits"],
+            ["Monitor Card Portfolio Performance"],
+            ["Analyze Customer Usage & Payment Trends"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the role.",
+          cards: [
+            ["Retail Relationship / Distribution Teams"],
+            ["Digital Banking"],
+            ["Consumer Credit / Underwriting"],
+            ["Risk Management"],
+            ["Compliance / Financial Crime"],
+            ["Operations & Technology"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and payment infrastructure that enable card products.",
+          cards: [
+            ["Card Processing Platforms"],
+            ["Payment Networks"],
+            ["Authorization & Clearing Systems"],
+            ["Digital Wallet / Tokenization Infrastructure"],
+            ["Customer & Product Data Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function ConsumerPaymentsProductManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Cards & Consumer Payments"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Consumer Payments Product Manager"
+      intro="Develops and manages consumer payment capabilities that allow customers to move money through bank accounts, digital channels and payment networks."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Cards & Consumer Payments"],
+            ["Role", "Consumer Payments Product Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The consumer payments market this role supports.",
+          cards: [["Consumer Payments & Money Movement Market"]],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical payment capabilities within the role’s coverage.",
+          cards: [
+            ["Account-to-Account Transfers"],
+            ["Domestic Payments"],
+            ["Bill Payments"],
+            ["Peer-to-Peer Payment Features"],
+            ["Digital Wallet / Payment Integrations"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Develop Consumer Payment Products"],
+            ["Design Payment Features & Customer Journeys"],
+            ["Monitor Payment Usage & Performance"],
+            ["Coordinate Payment Network / Platform Integration"],
+            ["Improve Payment Experience & Reliability"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the role.",
+          cards: [
+            ["Digital Banking"],
+            ["Retail Relationship / Distribution Teams"],
+            ["Payments Operations"],
+            ["Risk Management"],
+            ["Compliance / Financial Crime"],
+            ["Technology / Engineering"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and financial infrastructure that enable consumer payments.",
+          cards: [
+            ["Payment Rails / Networks"],
+            ["Core Banking Systems"],
+            ["Payment Processing Platforms"],
+            ["Digital / Mobile Banking Platforms"],
+            ["Fraud & Transaction Monitoring Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+
+function PersonalBankerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Retail Relationship & Advisory"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Personal Banker / Relationship Banker"
+      intro="Works directly with individual customers to understand their everyday banking needs, explain suitable banking products and services, and maintain ongoing customer relationships."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Retail Relationship & Advisory"],
+            ["Role", "Personal Banker / Relationship Banker"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The customer market this role serves.",
+          cards: [
+            ["Retail & Consumer Banking Market"],
+          ],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical banking products discussed with customers.",
+          cards: [
+            ["Deposit & Transaction Accounts"],
+            ["Savings Products"],
+            ["Consumer Loans"],
+            ["Mortgage / Home Lending Products"],
+            ["Cards & Payment Services"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Understand Customer Banking Needs"],
+            ["Explain Banking Products & Services"],
+            ["Open & Maintain Customer Relationships"],
+            ["Support Product Applications"],
+            ["Coordinate Customer Service & Issue Resolution"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to the customer relationship.",
+          cards: [
+            ["Branch Management"],
+            ["Deposit Product Teams"],
+            ["Consumer Lending"],
+            ["Mortgage / Home Lending"],
+            ["Cards & Consumer Payments"],
+            ["Compliance / Financial Crime"],
+            ["Operations & Technology"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems that support customer-facing retail banking.",
+          cards: [
+            ["Core Banking Systems"],
+            ["Customer Relationship Management Systems"],
+            ["Account Opening Platforms"],
+            ["Digital / Mobile Banking Platforms"],
+            ["Customer Identity & Verification Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function BranchManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Retail Relationship & Advisory"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Branch Manager"
+      intro="Leads a retail bank branch, coordinating customer service, relationship teams, operational execution and business performance while ensuring the branch operates within bank policies and controls."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Retail Relationship & Advisory"],
+            ["Distribution Channel", "Branch Banking"],
+            ["Role", "Branch Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The customer market served through the branch.",
+          cards: [
+            ["Retail & Consumer Banking Market"],
+          ],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical banking products distributed through the branch.",
+          cards: [
+            ["Deposit & Transaction Accounts"],
+            ["Savings Products"],
+            ["Consumer Lending Products"],
+            ["Mortgage / Home Lending Products"],
+            ["Cards & Payment Services"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Lead Branch Teams"],
+            ["Manage Customer Service & Relationships"],
+            ["Coordinate Retail Product Distribution"],
+            ["Monitor Branch Performance"],
+            ["Oversee Operational & Control Requirements"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to branch activity.",
+          cards: [
+            ["Personal / Relationship Bankers"],
+            ["Retail Product Teams"],
+            ["Consumer Lending & Mortgage Teams"],
+            ["Risk Management"],
+            ["Compliance / Financial Crime"],
+            ["Operations & Technology"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and infrastructure supporting branch banking.",
+          cards: [
+            ["Core Banking Systems"],
+            ["Branch Banking Platforms"],
+            ["Customer Relationship Management Systems"],
+            ["Cash & Transaction Processing Systems"],
+            ["Customer Identity & Verification Systems"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+
+function DigitalBankingProductManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Digital Consumer Banking"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Digital Banking Product Manager"
+      intro="Develops and manages consumer banking capabilities delivered through mobile and online channels, connecting customer needs with banking products, technology and operational requirements."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Digital Consumer Banking"],
+            ["Role", "Digital Banking Product Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The customer and delivery market this role supports.",
+          cards: [
+            ["Digital Retail & Consumer Banking Market"],
+          ],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical digital banking capabilities within the role’s coverage.",
+          cards: [
+            ["Mobile Banking"],
+            ["Online Banking"],
+            ["Digital Account Services"],
+            ["Digital Payments & Transfers"],
+            ["Self-Service Banking Features"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Define Digital Banking Product Roadmaps"],
+            ["Develop & Improve Digital Features"],
+            ["Prioritize Customer & Business Requirements"],
+            ["Coordinate Product Delivery"],
+            ["Monitor Digital Product Usage & Performance"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams connected to digital banking products.",
+          cards: [
+            ["Retail Product Teams"],
+            ["Technology / Engineering"],
+            ["Digital Journey / Experience Teams"],
+            ["Operations"],
+            ["Risk Management"],
+            ["Compliance / Financial Crime"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Systems and infrastructure enabling digital banking.",
+          cards: [
+            ["Mobile / Online Banking Platforms"],
+            ["Core Banking Systems"],
+            ["API & Integration Platforms"],
+            ["Identity & Authentication Systems"],
+            ["Payments Infrastructure"],
+            ["Customer & Product Data Platforms"],
+          ],
+        },
+      ]}
+    />
+  );
+}
+
+function DigitalJourneyManagerRole({ goBack }: { goBack: () => void }) {
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Digital Consumer Banking"
+      eyebrow="RETAIL BANKING ROLE"
+      title="Digital Journey / Experience Manager"
+      intro="Designs and improves end-to-end digital banking journeys so customers can complete everyday banking tasks through clear, efficient and consistent digital experiences."
+      sections={[
+        {
+          emoji: "📍",
+          title: "Where Am I?",
+          description: "The role’s position within the financial system.",
+          cards: [
+            ["Financial Institutions", "Banks"],
+            ["Retail / Consumer Banking", "Digital Consumer Banking"],
+            ["Role", "Digital Journey / Experience Manager"],
+          ],
+        },
+        {
+          emoji: "📈",
+          title: "What Market?",
+          description: "The customer and delivery market this role supports.",
+          cards: [
+            ["Digital Retail & Consumer Banking Market"],
+          ],
+        },
+        {
+          emoji: "🧩",
+          title: "What Products?",
+          description: "Typical customer journeys within the role’s coverage.",
+          cards: [
+            ["Digital Onboarding"],
+            ["Account Opening Journeys"],
+            ["Payments & Transfer Journeys"],
+            ["Digital Service & Support Journeys"],
+            ["Mobile / Online Banking Experiences"],
+          ],
+        },
+        {
+          emoji: "💼",
+          title: "What Do I Actually Do?",
+          description: "Core responsibilities commonly associated with the role.",
+          cards: [
+            ["Map End-to-End Customer Journeys"],
+            ["Identify Customer Friction & Drop-Off"],
+            ["Define Journey Improvements"],
+            ["Coordinate Cross-Functional Delivery"],
+            ["Monitor Digital Experience Performance"],
+          ],
+        },
+        {
+          emoji: "🔗",
+          title: "Who Do I Work With?",
+          description: "Key teams involved in digital customer journeys.",
+          cards: [
+            ["Digital Banking Product Teams"],
+            ["Technology / Engineering"],
+            ["UX / Design Teams"],
+            ["Retail Product Teams"],
+            ["Operations"],
+            ["Risk & Compliance"],
+          ],
+        },
+        {
+          emoji: "⚙️",
+          title: "What Infrastructure Supports the Work?",
+          description: "Platforms and data supporting digital customer journeys.",
+          cards: [
+            ["Mobile / Online Banking Platforms"],
+            ["Customer Analytics Platforms"],
+            ["Customer Relationship Management Systems"],
+            ["Identity & Authentication Systems"],
+            ["Digital Onboarding Platforms"],
+            ["Customer Feedback & Experience Data"],
+          ],
+        },
+      ]}
+    />
   );
 }
 
@@ -12065,7 +13721,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
     "system"
   );
 
@@ -13049,6 +14705,230 @@ function App() {
     );
   }
 
+
+
+
+
+
+  if (page === "retail-digital-product-manager") {
+    return (
+      <DigitalBankingProductManagerRole
+        goBack={() => setPage("retail-digital")}
+      />
+    );
+  }
+
+  if (page === "retail-digital-journey-manager") {
+    return (
+      <DigitalJourneyManagerRole
+        goBack={() => setPage("retail-digital")}
+      />
+    );
+  }
+
+  if (page === "retail-digital") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="📱"
+        title="Digital Consumer Banking"
+        intro="Explore roles that develop digital banking capabilities and improve end-to-end customer journeys."
+        roles={digitalConsumerBankingRoles}
+        openRole={(id) => {
+          if (id === "retail-digital-product-manager") {
+            setPage("retail-digital-product-manager");
+          }
+          if (id === "retail-digital-journey-manager") {
+            setPage("retail-digital-journey-manager");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-personal-banker") {
+    return (
+      <PersonalBankerRole
+        goBack={() => setPage("retail-relationship")}
+      />
+    );
+  }
+
+  if (page === "retail-branch-manager") {
+    return (
+      <BranchManagerRole
+        goBack={() => setPage("retail-relationship")}
+      />
+    );
+  }
+
+  if (page === "retail-relationship") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="🤝"
+        title="Retail Relationship & Advisory"
+        intro="Explore customer-facing roles that manage retail banking relationships and branch distribution."
+        roles={retailRelationshipRoles}
+        openRole={(id) => {
+          if (id === "retail-personal-banker") {
+            setPage("retail-personal-banker");
+          }
+          if (id === "retail-branch-manager") {
+            setPage("retail-branch-manager");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-cards-product-manager") {
+    return (
+      <CardsProductManagerRole
+        goBack={() => setPage("retail-cards-payments")}
+      />
+    );
+  }
+
+  if (page === "retail-consumer-payments-product-manager") {
+    return (
+      <ConsumerPaymentsProductManagerRole
+        goBack={() => setPage("retail-cards-payments")}
+      />
+    );
+  }
+
+  if (page === "retail-cards-payments") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="💳"
+        title="Cards & Consumer Payments"
+        intro="Explore roles that develop and manage consumer card products and everyday payment capabilities."
+        roles={cardsPaymentsRoles}
+        openRole={(id) => {
+          if (id === "retail-cards-product-manager") {
+            setPage("retail-cards-product-manager");
+          }
+          if (id === "retail-consumer-payments-product-manager") {
+            setPage("retail-consumer-payments-product-manager");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-deposits-product-manager") {
+    return (
+      <DepositsProductManagerRole
+        goBack={() => setPage("retail-deposits")}
+      />
+    );
+  }
+
+  if (page === "retail-consumer-lending-product-manager") {
+    return (
+      <ConsumerLendingProductManagerRole
+        goBack={() => setPage("retail-consumer-lending")}
+      />
+    );
+  }
+
+  if (page === "retail-consumer-credit-underwriter") {
+    return (
+      <ConsumerCreditUnderwriterRole
+        goBack={() => setPage("retail-consumer-lending")}
+      />
+    );
+  }
+
+  if (page === "retail-mortgage-loan-officer") {
+    return (
+      <MortgageLoanOfficerRole
+        goBack={() => setPage("retail-mortgage")}
+      />
+    );
+  }
+
+  if (page === "retail-mortgage-underwriter") {
+    return (
+      <MortgageUnderwriterRole
+        goBack={() => setPage("retail-mortgage")}
+      />
+    );
+  }
+
+  if (page === "retail-deposits") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="🏦"
+        title="Deposits & Everyday Banking"
+        intro="Explore roles that develop and manage everyday deposit and account products."
+        roles={depositRoles}
+        openRole={(id) => {
+          if (id === "retail-deposits-product-manager") {
+            setPage("retail-deposits-product-manager");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-consumer-lending") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="💵"
+        title="Consumer Lending"
+        intro="Explore roles involved in developing consumer credit products and evaluating borrower risk."
+        roles={consumerLendingRoles}
+        openRole={(id) => {
+          if (id === "retail-consumer-lending-product-manager") {
+            setPage("retail-consumer-lending-product-manager");
+          }
+          if (id === "retail-consumer-credit-underwriter") {
+            setPage("retail-consumer-credit-underwriter");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-mortgage") {
+    return (
+      <RetailRoleMap
+        goBack={() => setPage("retail-banking")}
+        emoji="🏠"
+        title="Mortgage / Home Lending"
+        intro="Explore roles involved in originating and underwriting residential mortgage lending."
+        roles={mortgageRoles}
+        openRole={(id) => {
+          if (id === "retail-mortgage-loan-officer") {
+            setPage("retail-mortgage-loan-officer");
+          }
+          if (id === "retail-mortgage-underwriter") {
+            setPage("retail-mortgage-underwriter");
+          }
+        }}
+      />
+    );
+  }
+
+  if (page === "retail-banking") {
+    return (
+      <RetailBankingMap
+        goBack={() => setPage("banks")}
+        openDeposits={() => setPage("retail-deposits")}
+        openConsumerLending={() => setPage("retail-consumer-lending")}
+        openMortgage={() => setPage("retail-mortgage")}
+        openCardsPayments={() => setPage("retail-cards-payments")}
+        openRelationship={() => setPage("retail-relationship")}
+        openDigitalBanking={() => setPage("retail-digital")}
+      />
+    );
+  }
+
   if (page === "global-markets") {
     return (
       <GlobalMarketsMap
@@ -13063,10 +14943,112 @@ function App() {
     );
   }
 
-  if (page === "banks") {
+  
+
+
+
+if (page === "commercial-product-solutions-manager") {
+return (
+<CommercialProductSolutionsManagerRole
+goBack={() => setPage("commercial-product-solutions")}
+/>
+);
+}
+
+if (page === "commercial-product-solutions") {
+return (
+<CommercialRoleMap
+goBack={() => setPage("commercial-banking")}
+title="Commercial Banking Product / Solutions"
+emoji="🧩"
+intro="Explore roles that coordinate commercial banking products and solutions across business-client needs and specialist teams."
+roles={commercialProductSolutionsRoles}
+openRole={() => setPage("commercial-product-solutions-manager")}
+/>
+);
+}
+
+if (page === "commercial-credit-underwriter") {
+return (
+<CommercialCreditUnderwriterRole
+goBack={() => setPage("commercial-credit")}
+/>
+);
+}
+
+if (page === "commercial-credit") {
+return (
+<CommercialRoleMap
+goBack={() => setPage("commercial-banking")}
+title="Credit Underwriting"
+emoji="🔎"
+intro="Explore roles that analyze business borrowers and lending structures to support commercial credit decisions."
+roles={commercialCreditRoles}
+openRole={() => setPage("commercial-credit-underwriter")}
+/>
+);
+}
+
+if (page === "commercial-lending-officer") {
+return (
+<CommercialLendingOfficerRole
+goBack={() => setPage("commercial-lending")}
+/>
+);
+}
+
+if (page === "commercial-lending") {
+return (
+<CommercialRoleMap
+goBack={() => setPage("commercial-banking")}
+title="Commercial Lending"
+emoji="💵"
+intro="Explore roles focused on originating and structuring lending solutions for business clients."
+roles={commercialLendingRoles}
+openRole={() => setPage("commercial-lending-officer")}
+/>
+);
+}
+
+if (page === "commercial-relationship-manager") {
+return (
+<CommercialRelationshipManagerRole
+goBack={() => setPage("commercial-relationship")}
+/>
+);
+}
+
+if (page === "commercial-relationship") {
+return (
+<CommercialRoleMap
+goBack={() => setPage("commercial-banking")}
+title="Relationship Management"
+emoji="🤝"
+intro="Explore roles that manage and coordinate banking relationships with business clients."
+roles={commercialRelationshipRoles}
+openRole={() => setPage("commercial-relationship-manager")}
+/>
+);
+}
+
+if (page === "commercial-banking") {
+return (
+<CommercialBankingMap
+goBack={() => setPage("banks")}
+openRelationship={() => setPage("commercial-relationship")}
+openLending={() => setPage("commercial-lending")}
+openCredit={() => setPage("commercial-credit")}
+openProductSolutions={() => setPage("commercial-product-solutions")}
+/>
+);
+}
+
+if (page === "banks") {
     return (
       <BanksMap
         goBack={() => setPage("system")}
+        openRetailBanking={() => setPage("retail-banking")}
+openCommercialBanking={() => setPage("commercial-banking")}
         openGlobalMarkets={() => setPage("global-markets")}
       />
     );
