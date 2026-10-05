@@ -1244,37 +1244,41 @@ function InvestmentFundsMap({
   openFundOperations: () => void;
 }) {
   return (
-    <main className="page">
+    <main className="world">
       <button className="back-button" onClick={goBack}>
         ← Financial System
       </button>
 
-      <section className="detail-hero">
-        <div className="detail-icon">💰</div>
+      <header className="hero detail-hero">
+        <div className="globe">💰</div>
+
         <div>
-          <div className="eyebrow">FINANCIAL INSTITUTION</div>
+          <p className="eyebrow">FINANCIAL INSTITUTION</p>
           <h1>Investment Funds</h1>
-          <p>
+
+          <p className="intro">
             Pool and manage investor capital through portfolio management,
             investment research, execution, risk oversight, client coverage
             and fund operations.
           </p>
         </div>
-      </section>
+      </header>
 
-      <section className="map-section">
-        <div className="section-heading">
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💰</span>
+
           <div>
-            <div className="eyebrow">FUNCTION MAP</div>
-            <h2>What happens inside Investment Funds?</h2>
+            <h2>Investment Fund Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
           </div>
         </div>
 
-        <div className="card-grid">
+        <div className="cards function-cards">
           {investmentFundsFunctions.map((item) => (
             <button
               key={item.id}
-              className="map-card"
+              className="finance-card"
               type="button"
               onClick={() => {
                 if (item.id === "funds-portfolio") {
@@ -1297,8 +1301,9 @@ function InvestmentFundsMap({
                 }
               }}
             >
-              <span className="map-card-icon">{item.emoji}</span>
+              <span>{item.emoji}</span>
               <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
             </button>
           ))}
         </div>
