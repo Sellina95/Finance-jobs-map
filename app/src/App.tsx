@@ -25007,13 +25007,6 @@ openCommercialBanking={() => setPage("commercial-banking")}
 
   return (
     <>
-      <button
-        className="interaction-launch-button"
-        onClick={() => setPage("interaction-map")}
-      >
-        🔗 Explore Interactions
-      </button>
-
       <FinancialSystemMap
       openCentralBank={() => setPage("central-bank")}
       openBanks={() => setPage("banks")}
@@ -25036,6 +25029,25 @@ openCommercialBanking={() => setPage("commercial-banking")}
         setPage("function");
       }}
     />
+
+      <button
+        className="interaction-system-cta"
+        onClick={() => setPage("interaction-map")}
+      >
+        <span className="interaction-system-cta-icon">🔗</span>
+
+        <span className="interaction-system-cta-copy">
+          <strong>See How They Connect</strong>
+          <small>
+            Institutions → Markets → Infrastructure
+          </small>
+          <span>
+            Follow real financial-system workflows
+          </span>
+        </span>
+
+        <span className="interaction-system-cta-arrow">→</span>
+      </button>
     </>
   );
 }
