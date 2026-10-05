@@ -689,3 +689,116 @@ footer .footer-link strong {
     gap: 4px;
   }
 }
+
+/* =========================================================
+   INTERACTION V0 — DESKTOP FIT PASS
+   Keep complete workflows visible without horizontal clipping.
+   ========================================================= */
+
+@media (min-width: 901px) {
+  .interaction-workflows {
+    width: min(1380px, calc(100% - 48px));
+  }
+
+  .interaction-card {
+    overflow: hidden;
+  }
+
+  .interaction-card-heading h2 {
+    color: #24343d;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .interaction-card-heading p {
+    color: #5f6f77;
+    opacity: 1;
+  }
+
+  .interaction-flow {
+    width: 100%;
+    display: grid;
+    grid-template-columns:
+      minmax(108px, 1fr)
+      minmax(82px, 0.72fr)
+      minmax(108px, 1fr)
+      minmax(82px, 0.72fr)
+      minmax(108px, 1fr)
+      minmax(82px, 0.72fr)
+      minmax(108px, 1fr)
+      minmax(82px, 0.72fr)
+      minmax(108px, 1fr);
+    align-items: center;
+    overflow: visible;
+    gap: 0;
+  }
+
+  .interaction-step-wrap {
+    display: contents;
+  }
+
+  .interaction-node {
+    width: auto;
+    min-width: 0;
+    min-height: 112px;
+    box-sizing: border-box;
+  }
+
+  .interaction-edge {
+    width: auto;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0 7px;
+  }
+
+  .interaction-edge small {
+    width: auto;
+    overflow-wrap: anywhere;
+  }
+
+  .interaction-related-row {
+    grid-template-columns:
+      minmax(100px, 0.7fr)
+      minmax(220px, 1.5fr)
+      minmax(260px, 2fr);
+  }
+
+  .interaction-related-row > * {
+    min-width: 0;
+  }
+
+  .interaction-related-row > span:last-child {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1150px) {
+  .interaction-flow {
+    grid-template-columns:
+      minmax(96px, 1fr)
+      minmax(68px, 0.65fr)
+      minmax(96px, 1fr)
+      minmax(68px, 0.65fr)
+      minmax(96px, 1fr)
+      minmax(68px, 0.65fr)
+      minmax(96px, 1fr)
+      minmax(68px, 0.65fr)
+      minmax(96px, 1fr);
+  }
+
+  .interaction-node {
+    padding: 13px 8px;
+  }
+
+  .interaction-edge {
+    padding: 0 4px;
+  }
+
+  .interaction-edge-symbol {
+    font-size: 1.25rem;
+  }
+
+  .interaction-edge small {
+    font-size: 0.58rem;
+  }
+}
