@@ -22,7 +22,7 @@ const institutions: Item[] = [
   { id: "central-bank", emoji: "🏛️", label: "Central Bank" },
   { id: "banks", emoji: "🏦", label: "Banks" },
   { id: "investment-funds", emoji: "💰", label: "Investment Funds" },
-  { emoji: "🛡️", label: "Insurance" },
+  { id: "insurance", emoji: "🛡️", label: "Insurance" },
   { emoji: "👵", label: "Pension Funds" },
 ];
 
@@ -443,11 +443,13 @@ function FinancialSystemMap({
   openCentralBank,
   openBanks,
   openInvestmentFunds,
+  openInsurance,
   openFunction,
 }: {
   openCentralBank: () => void;
   openBanks: () => void;
   openInvestmentFunds: () => void;
+  openInsurance: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -559,6 +561,10 @@ function FinancialSystemMap({
             if (item.id === "investment-funds") {
               openInvestmentFunds();
             }
+
+        if (item.id === "insurance") {
+          openInsurance();
+        }
           }}
         />
 
@@ -605,6 +611,461 @@ function FinancialSystemMap({
     </main>
   );
 }
+
+const insuranceClaimsOperationsSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["⚙️", "Function", "Claims & Insurance Operations"],
+      ["👤", "Role", "Claims / Insurance Operations Specialist"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The insurance markets and policy portfolios supported by insurance operations.",
+    cards: [
+      ["👤", "Retail Insurance Market", "Policies and claims serving individual and household customers."],
+      ["🏢", "Commercial Insurance Market", "Policies and claims covering businesses, assets and corporate liabilities."],
+      ["🌪️", "Specialty Insurance Market", "Operational servicing of more complex or specialized insurance risks."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Insurance contracts and claims commonly processed across the policy lifecycle.",
+    cards: [
+      ["❤️", "Life & Health Policies", "Insurance contracts covering life, health and related benefits."],
+      ["🏠", "Property & Casualty Policies", "Contracts covering property, motor, liability and other insured risks."],
+      ["🏢", "Commercial Policies", "Insurance contracts covering business assets, operations and liabilities."],
+      ["🌪️", "Specialty Policies", "Contracts covering complex or specialized exposures."],
+      ["💵", "Claims & Benefit Payments", "Financial obligations arising when insured events or policy benefits become payable."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What claims and insurance operations teams do in practice.",
+    cards: [
+      ["📑", "Policy Administration", "Maintain policy records, coverage details, endorsements, renewals and contractual changes."],
+      ["📥", "Claims Intake", "Receive and register claims, supporting documents and information about insured events."],
+      ["🔎", "Claims Assessment", "Review coverage, documentation and claim circumstances to support claim decisions."],
+      ["💵", "Claims Settlement & Payment", "Coordinate approved claim or benefit payments and settlement workflows."],
+      ["🔄", "Policy Servicing", "Process customer and intermediary requests throughout the insurance contract lifecycle."],
+      ["🚨", "Exception Management", "Investigate operational breaks, missing information and cases requiring escalation."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who claims and insurance operations teams work with.",
+    cards: [
+      ["👤", "Policyholders & Clients", "Support customers throughout policy servicing and claims processes."],
+      ["📋", "Underwriting", "Confirm coverage terms, exclusions and policy conditions relevant to servicing and claims."],
+      ["🤝", "Distribution Teams & Brokers", "Coordinate client servicing, policy changes and claim-related communication."],
+      ["🧮", "Actuarial", "Provide claims experience and operational data used in reserving and actuarial analysis."],
+      ["⚖️", "Legal & Compliance", "Escalate disputes, regulatory issues, fraud concerns and complex claims."],
+      ["💰", "Finance & Payments", "Coordinate claim payments, accounting records and financial reconciliation."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and infrastructure supporting insurance servicing and claims execution.",
+    cards: [
+      ["📑", "Policy Administration Systems", "Maintain policy records, coverage terms, endorsements and renewal information."],
+      ["🧾", "Claims Management Systems", "Track claims from notification through assessment, approval and settlement."],
+      ["💳", "Payment Infrastructure", "Support claim, benefit and other insurance-related payments."],
+      ["🗄️", "Document & Workflow Systems", "Manage supporting documents, approvals, tasks and operational workflows."],
+      ["🔍", "Fraud & Claims Analytics", "Identify unusual claim patterns and support investigation workflows."],
+      ["📊", "Operational Reporting", "Monitor claims volumes, processing times, exceptions and service performance."],
+    ],
+  },
+];
+
+const insuranceDistributionManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["🤝", "Function", "Distribution & Client Management"],
+      ["👤", "Role", "Insurance Distribution Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The client and distribution markets through which insurance products reach customers.",
+    cards: [
+      ["👤", "Retail Insurance Market", "Insurance distributed to individuals and households through direct, agent, broker and digital channels."],
+      ["🏢", "Commercial Insurance Market", "Insurance solutions distributed to businesses and corporate clients."],
+      ["🏦", "Institutional & Partnership Channels", "Distribution through banks, brokers, advisers and other institutional partners."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Insurance products distributed across client and partner channels.",
+    cards: [
+      ["❤️", "Life Insurance", "Protection and long-term insurance products for individuals and families."],
+      ["🏥", "Health Insurance", "Products covering medical and health-related risks."],
+      ["🏠", "Property & Casualty Insurance", "Coverage for property, motor, liability and other personal or commercial risks."],
+      ["🏢", "Commercial Insurance", "Insurance solutions covering business assets, operations and liabilities."],
+      ["🌪️", "Specialty Insurance", "More specialized coverage distributed to clients with complex risks."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What insurance distribution managers do in practice.",
+    cards: [
+      ["🤝", "Channel Management", "Manage relationships with agents, brokers, banks, advisers and other distribution partners."],
+      ["🧭", "Client Needs Discovery", "Understand client segments, protection needs and insurance requirements."],
+      ["📦", "Product Positioning", "Connect appropriate insurance products and coverage propositions with target clients and channels."],
+      ["📈", "Business Development", "Develop new client, broker and partnership opportunities."],
+      ["📊", "Distribution Performance", "Monitor sales, retention, channel productivity and portfolio development."],
+      ["🔄", "Renewal & Relationship Management", "Support ongoing client relationships and policy renewal activity."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who distribution managers connect across the insurance ecosystem.",
+    cards: [
+      ["👤", "Policyholders & Clients", "Understand client needs and maintain insurance relationships."],
+      ["🧑‍💼", "Agents & Brokers", "Work with intermediaries that originate and advise on insurance business."],
+      ["📋", "Underwriting", "Coordinate submissions, coverage terms and risk acceptance for client opportunities."],
+      ["📦", "Product Teams", "Connect product capabilities with client and channel demand."],
+      ["⚙️", "Claims & Operations", "Coordinate service and operational support across the policy lifecycle."],
+      ["⚖️", "Compliance", "Ensure distribution activity follows conduct, suitability and regulatory requirements."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and infrastructure supporting insurance distribution and client management.",
+    cards: [
+      ["🗂️", "CRM Systems", "Track clients, intermediaries, opportunities and relationship activity."],
+      ["💻", "Distribution Platforms", "Support agent, broker, bank and digital insurance channels."],
+      ["📑", "Policy Administration Systems", "Provide policy, coverage, renewal and servicing information."],
+      ["📊", "Sales & Distribution Analytics", "Measure channel performance, retention and portfolio development."],
+      ["🧾", "Quotation & Proposal Tools", "Support insurance quotations, proposals and client presentations."],
+      ["🔄", "Client Service Workflows", "Coordinate onboarding, servicing, renewals and policy changes."],
+    ],
+  },
+];
+
+const insuranceRiskManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["⚠️", "Function", "Risk Management"],
+      ["👤", "Role", "Insurance Risk Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The risk environments affecting an insurance company.",
+    cards: [
+      ["🛡️", "Insurance Markets", "Insurance portfolios expose the firm to mortality, morbidity, catastrophe, liability and other underwriting risks."],
+      ["💹", "Financial Markets", "Interest rates, credit spreads, equities, currencies and other market movements affect insurer assets and liabilities."],
+      ["🔁", "Reinsurance Markets", "Risk-transfer markets affect retained insurance exposure and counterparty risk."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "The exposures and balance-sheet positions overseen by insurance risk management.",
+    cards: [
+      ["📋", "Insurance Portfolios", "Life, health, property, casualty and specialty insurance exposures."],
+      ["🧾", "Fixed-Income Assets", "Government and corporate bonds carrying interest-rate and credit risk."],
+      ["📈", "Equities & Investment Assets", "Market-sensitive assets held within the insurer investment portfolio."],
+      ["🧮", "Derivatives", "Hedging instruments that create market, collateral and counterparty exposures."],
+      ["🔁", "Reinsurance Exposures", "Risk-transfer arrangements involving reinsurer credit and recoverability risk."],
+      ["💵", "Cash & Liquidity Positions", "Liquid resources needed for claims, collateral and other obligations."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What insurance risk managers do in practice.",
+    cards: [
+      ["🧭", "Risk Appetite & Limits", "Translate enterprise risk appetite into limits, tolerances and monitoring frameworks."],
+      ["📊", "Risk Measurement", "Measure underwriting, market, credit, liquidity and operational exposures across the insurer."],
+      ["🌪️", "Stress & Scenario Analysis", "Assess the effect of severe insurance, market and economic scenarios on the firm."],
+      ["🏦", "Capital & Solvency Oversight", "Evaluate whether risk exposures remain consistent with capital and solvency capacity."],
+      ["🔎", "Independent Risk Challenge", "Challenge business, underwriting and investment decisions from an independent risk perspective."],
+      ["📑", "Risk Reporting & Governance", "Report material exposures, limit usage and emerging risks to management and risk committees."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who insurance risk managers work with across the firm.",
+    cards: [
+      ["🧮", "Actuarial", "Use actuarial models and liability analysis to understand insurance risk."],
+      ["📋", "Underwriting", "Monitor underwriting portfolios against risk appetite and concentration limits."],
+      ["💰", "Investment Management", "Independently oversee investment exposures and financial-market risks."],
+      ["🏦", "Treasury / ALM", "Review liquidity, balance-sheet and asset-liability risks."],
+      ["🔁", "Reinsurance", "Assess retained risk, counterparty exposure and risk-transfer effectiveness."],
+      ["🏛️", "Executive & Risk Committees", "Escalate material risks and support enterprise risk governance."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and data supporting insurance risk oversight.",
+    cards: [
+      ["📊", "Enterprise Risk Systems", "Aggregate and monitor risk exposures across insurance and investment activities."],
+      ["🌪️", "Stress-Testing Platforms", "Model severe insurance, financial-market and macroeconomic scenarios."],
+      ["🧮", "Capital & Solvency Models", "Assess capital requirements and resilience against modeled risks."],
+      ["💹", "Market & Risk Data", "Provide market prices, curves, credit information and risk factors."],
+      ["📋", "Insurance Exposure Data", "Provide policy, claims, catastrophe and underwriting portfolio information."],
+      ["🚦", "Limit & Risk Reporting Systems", "Monitor limits, exceptions, concentrations and governance reporting."],
+    ],
+  },
+];
+
+const insuranceInvestmentManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["💰", "Function", "Investment Management"],
+      ["👤", "Role", "Insurance Investment Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The financial markets where insurer assets are invested.",
+    cards: [
+      ["🧾", "Bond Markets", "Government, corporate and other fixed-income markets that form a major part of insurer portfolios."],
+      ["📈", "Equity Markets", "Public equity markets used for return generation and portfolio diversification."],
+      ["💱", "FX Markets", "Currency markets used to manage and hedge foreign-currency investment exposures."],
+      ["🧮", "Derivatives Markets", "Markets used for interest-rate, currency, credit and other portfolio hedging."],
+      ["🏗️", "Private & Alternative Markets", "Private credit, infrastructure, real estate and other long-duration investments."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Assets and instruments commonly held or used by insurance investment portfolios.",
+    cards: [
+      ["🏛️", "Government Bonds", "Sovereign and public-sector debt used for liquidity, duration and liability matching."],
+      ["🏢", "Corporate Bonds", "Investment-grade and other corporate credit exposures used for income and spread return."],
+      ["📈", "Equities", "Public shares used for long-term growth and diversification."],
+      ["🏗️", "Private Assets", "Private credit, infrastructure, real estate and other less-liquid investments."],
+      ["🧮", "Derivatives", "Interest-rate, FX, credit and other derivatives used primarily for portfolio risk management and hedging."],
+      ["💵", "Cash & Short-Term Instruments", "Liquid assets used for claims, collateral and portfolio liquidity needs."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What insurance investment managers do in practice.",
+    cards: [
+      ["🧭", "Investment Strategy", "Translate insurer objectives, liabilities and constraints into strategic investment positioning."],
+      ["🧩", "Portfolio Construction", "Allocate capital across asset classes, sectors, maturities and risk exposures."],
+      ["⏳", "Duration & Liability Alignment", "Manage asset duration and cash-flow characteristics relative to insurance liabilities."],
+      ["📊", "Risk-Adjusted Return Management", "Seek investment returns while respecting solvency, capital and risk constraints."],
+      ["🔄", "Portfolio Rebalancing", "Adjust holdings as markets, liabilities, cash flows and risk conditions change."],
+      ["🛡️", "Hedging", "Use securities and derivatives to manage interest-rate, currency, credit and other financial risks."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who insurance investment managers interact with.",
+    cards: [
+      ["🧮", "Actuarial", "Use liability projections and actuarial assumptions when shaping investment strategy."],
+      ["⚠️", "Insurance Risk Management", "Coordinate portfolio exposures with risk appetite, limits and solvency constraints."],
+      ["🏦", "Treasury / ALM", "Coordinate liquidity, cash flows and asset-liability positioning across the insurer balance sheet."],
+      ["📈", "Banks & Broker-Dealers", "Access market liquidity, securities, derivatives, research and execution services."],
+      ["💼", "External Asset Managers", "Allocate mandates or specialist portfolios to third-party investment managers."],
+      ["🏛️", "Finance & Capital Teams", "Connect investment performance and risk with capital, accounting and financial reporting."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and market infrastructure supporting insurer investment portfolios.",
+    cards: [
+      ["💼", "Portfolio Management Systems", "Monitor holdings, allocations, performance and portfolio positioning."],
+      ["📊", "Risk & ALM Platforms", "Measure duration, cash-flow matching, market risk and asset-liability exposures."],
+      ["💹", "Market Data Platforms", "Provide pricing, yields, spreads, curves and financial-market information."],
+      ["🧾", "Order & Execution Systems", "Support investment orders, execution and transaction workflows."],
+      ["🏦", "Custody & Settlement Infrastructure", "Safekeep securities and support settlement, cash and asset servicing."],
+      ["🧮", "Capital & Solvency Analytics", "Measure the capital and solvency implications of investment exposures."],
+    ],
+  },
+];
+
+const insuranceUnderwriterSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["📋", "Function", "Underwriting"],
+      ["👤", "Role", "Underwriter"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The insurance markets in which underwriting decisions are made.",
+    cards: [
+      ["🛡️", "Insurance Markets", "Markets where insurers accept and price risks from individuals, businesses and institutions."],
+      ["🔁", "Reinsurance Markets", "Markets where insurers transfer portions of accepted risk to reinsurers."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Insurance products commonly evaluated by underwriters.",
+    cards: [
+      ["❤️", "Life & Health Insurance", "Coverage linked to mortality, health and policyholder characteristics."],
+      ["🏠", "Property Insurance", "Coverage for buildings, assets and physical property risks."],
+      ["🚗", "Motor Insurance", "Coverage for vehicles, drivers and related liability exposures."],
+      ["⚖️", "Liability Insurance", "Coverage for legal and financial liabilities arising from insured activities."],
+      ["🏢", "Commercial Insurance", "Coverage for businesses, assets, operations and corporate risks."],
+      ["🌪️", "Specialty Insurance", "Coverage for complex or less standardized risks such as marine, aviation and catastrophe exposures."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What underwriters do in practice.",
+    cards: [
+      ["🔎", "Risk Assessment", "Evaluate applicants, assets, businesses and exposures to understand the risk being proposed."],
+      ["✅", "Risk Selection", "Decide whether a proposed risk fits the insurer's underwriting appetite."],
+      ["💵", "Pricing & Terms", "Set or apply premiums, limits, deductibles, exclusions and other coverage terms."],
+      ["📑", "Policy Structuring", "Determine how insurance coverage should be structured for the accepted risk."],
+      ["📊", "Portfolio Monitoring", "Monitor underwriting performance, concentrations and changes in the insured portfolio."],
+      ["🔁", "Renewal Decisions", "Reassess existing risks and determine renewal terms as exposures and experience change."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who underwriters work with across insurance and distribution.",
+    cards: [
+      ["🧮", "Actuarial", "Use actuarial pricing assumptions and portfolio risk analysis when making underwriting decisions."],
+      ["🤝", "Brokers & Distribution", "Receive insurance submissions and negotiate coverage terms with distribution channels."],
+      ["⚙️", "Claims", "Use claims experience to understand how insured risks perform after policies are written."],
+      ["⚠️", "Risk Management", "Align underwriting activity with risk appetite, concentration limits and enterprise risk controls."],
+      ["🔁", "Reinsurance", "Coordinate risk transfer for exposures that exceed desired retention levels."],
+      ["📦", "Product Teams", "Apply product rules and provide feedback on coverage design and market demand."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems, data and infrastructure supporting underwriting decisions.",
+    cards: [
+      ["💻", "Underwriting Platforms", "Manage submissions, risk assessment, approvals and policy terms."],
+      ["🗄️", "Policy & Claims Data", "Historical policy, exposure and loss information used to evaluate risk."],
+      ["🧮", "Pricing Models", "Actuarial and statistical tools supporting premiums and risk differentiation."],
+      ["📊", "Risk Data & Analytics", "External and internal information used to assess insured exposures."],
+      ["📑", "Policy Administration Systems", "Record policy terms, coverage, endorsements and renewals."],
+      ["🔁", "Reinsurance Systems", "Support risk-transfer structures and insurer retention management."],
+    ],
+  },
+];
+
+const insuranceActuarySections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Insurance"],
+      ["🧮", "Function", "Actuarial"],
+      ["👤", "Role", "Actuary"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The markets and risk pools this role supports.",
+    cards: [
+      ["🛡️", "Insurance Markets", "Life, health, property & casualty and specialty insurance risk pools."],
+      ["💰", "Capital & Investment Markets", "Financial markets that affect discount rates, liabilities, solvency and insurer balance sheets."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Insurance products and liabilities commonly analyzed.",
+    cards: [
+      ["❤️", "Life Insurance", "Mortality, longevity and policyholder liabilities."],
+      ["🏥", "Health Insurance", "Medical-cost and utilization risk."],
+      ["🏠", "Property & Casualty Insurance", "Property, motor, liability and catastrophe exposures."],
+      ["📋", "Insurance Contracts", "Policies, benefits, premiums, reserves and contractual obligations."],
+      ["🔁", "Reinsurance", "Risk-transfer arrangements between insurers and reinsurers."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "What actuaries do in practice.",
+    cards: [
+      ["💵", "Pricing", "Estimate expected claims, expenses and risk costs to support insurance pricing."],
+      ["🧾", "Reserving", "Estimate liabilities for future claims and policy obligations."],
+      ["📊", "Risk Modeling", "Model mortality, morbidity, catastrophe, lapse and other insurance risks."],
+      ["🏦", "Capital & Solvency Analysis", "Assess capital requirements and the insurer's ability to absorb adverse outcomes."],
+      ["🧩", "Product Economics", "Evaluate the financial sustainability and risk characteristics of insurance products."],
+      ["🔬", "Experience Analysis", "Compare actual claims and policyholder behavior with actuarial assumptions."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who actuaries interact with across the insurance organization.",
+    cards: [
+      ["📋", "Underwriting", "Connect portfolio assumptions with the risks accepted through underwriting."],
+      ["💰", "Investment Management", "Coordinate liability characteristics with assets and investment assumptions."],
+      ["⚠️", "Risk Management", "Provide quantitative insurance-risk analysis for enterprise risk oversight."],
+      ["📦", "Product Teams", "Support product design, pricing and profitability analysis."],
+      ["⚙️", "Claims & Operations", "Use claims and policy experience as inputs to actuarial analysis."],
+      ["🏛️", "Finance & Regulatory Teams", "Support financial reporting, capital, solvency and regulatory requirements."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and data used for actuarial analysis.",
+    cards: [
+      ["🧮", "Actuarial Modeling Systems", "Project insurance cash flows, liabilities and risk scenarios."],
+      ["🗄️", "Policy & Claims Data", "Historical policyholder, premium, exposure and claims information."],
+      ["📊", "Statistical & Analytical Tools", "Probability, statistics, forecasting and scenario-analysis environments."],
+      ["💹", "Market & Economic Data", "Interest rates, inflation and market assumptions used in valuation and projections."],
+      ["🏦", "Capital & Solvency Models", "Measure capital requirements and insurer balance-sheet resilience."],
+    ],
+  },
+];
+
+const insuranceFunctions: Item[] = [
+  { id: "insurance-actuarial", emoji: "🧮", label: "Actuarial" },
+  { id: "insurance-underwriting", emoji: "📋", label: "Underwriting" },
+  { id: "insurance-investments", emoji: "💰", label: "Investment Management" },
+  { id: "insurance-risk", emoji: "⚠️", label: "Risk Management" },
+  { id: "insurance-distribution", emoji: "🤝", label: "Distribution & Client Management" },
+  { id: "insurance-operations", emoji: "⚙️", label: "Claims & Insurance Operations" },
+];
 
 const investmentFundsFunctions: Item[] = [
   { id: "funds-portfolio", emoji: "📊", label: "Portfolio Management" },
@@ -1223,6 +1684,91 @@ function PortfolioManagerRole({ goBack }: { goBack: () => void }) {
       intro="Allocates investor capital by translating an investment mandate and market views into portfolio construction, security selection, risk positioning and ongoing rebalancing."
       sections={sections}
     />
+  );
+}
+
+function InsuranceMap({
+  goBack,
+  openActuarial,
+  openUnderwriting,
+  openInvestmentManagement,
+  openInsuranceRisk,
+  openDistributionManagement,
+  openClaimsOperations,
+}: {
+  goBack: () => void;
+  openActuarial: () => void;
+  openUnderwriting: () => void;
+  openInvestmentManagement: () => void;
+  openInsuranceRisk: () => void;
+  openDistributionManagement: () => void;
+  openClaimsOperations: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial System
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🛡️</div>
+
+        <div>
+          <p className="eyebrow">FINANCIAL INSTITUTION</p>
+          <h1>Insurance</h1>
+
+          <p className="intro">
+            Pool and price risk, underwrite insurance coverage, manage long-term
+            investment assets, distribute policies and service claims and contracts.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🛡️</span>
+
+          <div>
+            <h2>Insurance Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {insuranceFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              type="button"
+              onClick={() => {
+                if (item.id === "insurance-actuarial") {
+                  openActuarial();
+                }
+                if (item.id === "insurance-underwriting") {
+                  openUnderwriting();
+                }
+                if (item.id === "insurance-investments") {
+                  openInvestmentManagement();
+                }
+                if (item.id === "insurance-risk") {
+                  openInsuranceRisk();
+                }
+                if (item.id === "insurance-distribution") {
+                  openDistributionManagement();
+                }
+                if (item.id === "insurance-operations") {
+                  openClaimsOperations();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
 
@@ -18577,7 +19123,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
     "system"
   );
 
@@ -21099,6 +21645,98 @@ openCommercialBanking={() => setPage("commercial-banking")}
     );
   }
 
+  if (page === "insurance-operations") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Claims / Insurance Operations Specialist"
+        intro="Executes and services insurance contracts after they are issued, maintaining policy records and coordinating claims from notification and assessment through settlement, payment and operational resolution."
+        sections={insuranceClaimsOperationsSections}
+      />
+    );
+  }
+
+  if (page === "insurance-distribution") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Insurance Distribution Manager"
+        intro="Connects insurance products with clients and distribution channels by managing broker, agent, bank and other partner relationships, developing business and coordinating coverage opportunities across the insurer."
+        sections={insuranceDistributionManagerSections}
+      />
+    );
+  }
+
+  if (page === "insurance-risk") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Insurance Risk Manager"
+        intro="Provides independent oversight of the insurer's underwriting, market, credit, liquidity and operational risks, connecting enterprise risk appetite with limits, stress testing, capital and solvency resilience."
+        sections={insuranceRiskManagerSections}
+      />
+    );
+  }
+
+  if (page === "insurance-investments") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Insurance Investment Manager"
+        intro="Manages the insurer's investment portfolio to generate risk-adjusted returns while aligning assets with long-term insurance liabilities, liquidity needs, solvency requirements and capital constraints."
+        sections={insuranceInvestmentManagerSections}
+      />
+    );
+  }
+
+  if (page === "insurance-underwriting") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Underwriter"
+        intro="Evaluates specific insurance risks and determines whether and on what terms the insurer should accept them, translating risk appetite and actuarial pricing into coverage decisions."
+        sections={insuranceUnderwriterSections}
+      />
+    );
+  }
+
+  if (page === "insurance-actuarial") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("insurance")}
+        backLabel="Insurance"
+        eyebrow="INSURANCE ROLE"
+        title="Actuary"
+        intro="Quantifies insurance risk using probability, statistics and financial modeling to support pricing, reserves, capital, product economics and the long-term financial sustainability of insurance obligations."
+        sections={insuranceActuarySections}
+      />
+    );
+  }
+
+  if (page === "insurance") {
+    return (
+      <InsuranceMap
+        goBack={() => setPage("system")}
+        openActuarial={() => setPage("insurance-actuarial")}
+        openUnderwriting={() => setPage("insurance-underwriting")}
+        openInvestmentManagement={() => setPage("insurance-investments")}
+        openInsuranceRisk={() => setPage("insurance-risk")}
+        openDistributionManagement={() => setPage("insurance-distribution")}
+        openClaimsOperations={() => setPage("insurance-operations")}
+      />
+    );
+  }
+
   if (page === "investment-funds") {
     return (
       <InvestmentFundsMap
@@ -21130,6 +21768,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openCentralBank={() => setPage("central-bank")}
       openBanks={() => setPage("banks")}
       openInvestmentFunds={() => setPage("investment-funds")}
+      openInsurance={() => setPage("insurance")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
