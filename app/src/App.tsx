@@ -7,6 +7,213 @@ type Item = {
   id?: string;
 };
 
+/* =========================================================
+   FINANCIAL SYSTEM INTERACTION LAYER V0
+
+   Nodes answer:
+   "What exists in the financial system?"
+
+   Edges answer:
+   "Why are these two things connected?"
+
+   Context answers:
+   "In which market / product does the interaction occur?"
+   ========================================================= */
+
+type InteractionEdgeType =
+  | "workflow"
+  | "information"
+  | "control"
+  | "mandate";
+
+type InteractionImportance =
+  | "primary"
+  | "secondary";
+
+type InteractionContext = {
+  market?: string;
+  products?: string[];
+};
+
+type InteractionEdge = {
+  id: string;
+  source: string;
+  target: string;
+  type: InteractionEdgeType;
+  importance: InteractionImportance;
+  label: string;
+  context?: InteractionContext;
+};
+
+export const interactionEdges: InteractionEdge[] = [
+  // -------------------------------------------------------
+  // WORKFLOW 1 — Investment Fund → Bond Market
+  // -------------------------------------------------------
+  {
+    id: "fund-research-to-pm",
+    source: "investment-analyst",
+    target: "portfolio-manager",
+    type: "information",
+    importance: "primary",
+    label: "Investment research and ideas",
+    context: {
+      market: "bond-market",
+    },
+  },
+  {
+    id: "fund-pm-to-fixed-income-sales",
+    source: "portfolio-manager",
+    target: "fixed-income-sales",
+    type: "workflow",
+    importance: "primary",
+    label: "Liquidity and execution request",
+    context: {
+      market: "bond-market",
+      products: ["government-bonds", "corporate-bonds"],
+    },
+  },
+  {
+    id: "fixed-income-sales-to-bond-trader",
+    source: "fixed-income-sales",
+    target: "bond-trader",
+    type: "workflow",
+    importance: "primary",
+    label: "Client flow and pricing request",
+    context: {
+      market: "bond-market",
+    },
+  },
+  {
+    id: "investment-risk-to-pm",
+    source: "investment-risk-manager",
+    target: "portfolio-manager",
+    type: "control",
+    importance: "primary",
+    label: "Portfolio risk monitoring and challenge",
+  },
+  {
+    id: "bond-trade-to-settlement",
+    source: "bond-trader",
+    target: "settlement-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Post-trade settlement",
+    context: {
+      market: "bond-market",
+    },
+  },
+
+  // -------------------------------------------------------
+  // WORKFLOW 2 — Corporate → FX Hedge
+  // -------------------------------------------------------
+  {
+    id: "corporate-to-fx-sales",
+    source: "corporate",
+    target: "fx-sales",
+    type: "workflow",
+    importance: "primary",
+    label: "FX transaction or hedging need",
+    context: {
+      market: "fx-market",
+      products: ["spot", "forward", "swap", "option"],
+    },
+  },
+  {
+    id: "fx-sales-to-fx-trader",
+    source: "fx-sales",
+    target: "fx-trader",
+    type: "workflow",
+    importance: "primary",
+    label: "Pricing and execution request",
+    context: {
+      market: "fx-market",
+    },
+  },
+  {
+    id: "fx-structurer-to-fx-sales",
+    source: "fx-structurer",
+    target: "fx-sales",
+    type: "information",
+    importance: "secondary",
+    label: "Hedging structure and product design",
+    context: {
+      market: "fx-market",
+      products: ["option", "structured-hedge"],
+    },
+  },
+  {
+    id: "fx-trader-to-payment",
+    source: "fx-trader",
+    target: "payment-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Cash payment flow",
+    context: {
+      market: "fx-market",
+    },
+  },
+  {
+    id: "fx-trader-to-settlement",
+    source: "fx-trader",
+    target: "settlement-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Transaction settlement",
+    context: {
+      market: "fx-market",
+    },
+  },
+
+  // -------------------------------------------------------
+  // WORKFLOW 3 — Pension Fund → External Manager
+  // -------------------------------------------------------
+  {
+    id: "pension-allocation-to-investment",
+    source: "asset-allocation-strategist",
+    target: "pension-investment-manager",
+    type: "workflow",
+    importance: "primary",
+    label: "Strategic asset allocation",
+  },
+  {
+    id: "pension-to-mandate-manager",
+    source: "pension-investment-manager",
+    target: "external-manager-mandate-manager",
+    type: "workflow",
+    importance: "primary",
+    label: "External management decision",
+  },
+  {
+    id: "mandate-manager-to-external-pm",
+    source: "external-manager-mandate-manager",
+    target: "external-portfolio-manager",
+    type: "mandate",
+    importance: "primary",
+    label: "Investment mandate and delegated authority",
+  },
+  {
+    id: "pension-risk-to-investment",
+    source: "pension-investment-risk-manager",
+    target: "pension-investment-manager",
+    type: "control",
+    importance: "primary",
+    label: "Portfolio and funding risk oversight",
+  },
+  {
+    id: "external-pm-to-bond-market",
+    source: "external-portfolio-manager",
+    target: "bond-market",
+    type: "workflow",
+    importance: "secondary",
+    label: "Portfolio investment activity",
+    context: {
+      market: "bond-market",
+    },
+  },
+];
+
+
+
 type Role = {
   emoji: string;
   title: string;
@@ -21669,8 +21876,196 @@ function TradeRepositoriesMap({ goBack }: { goBack: () => void }) {
   );
 }
 
+
+function InteractionMap({ goBack }: { goBack: () => void }) {
+  const workflows = [
+    {
+      emoji: "📜",
+      title: "Investment Fund → Bond Market",
+      subtitle: "How a buy-side investment decision reaches the market and post-trade infrastructure.",
+      nodes: [
+        ["🔬", "Investment Analyst", "research"],
+        ["💼", "Portfolio Manager", "decision"],
+        ["🤝", "Fixed Income Sales", "liquidity"],
+        ["📈", "Bond Trader", "execution"],
+        ["🗄️", "Settlement", "post-trade"],
+      ],
+      edgeIds: [
+        "fund-research-to-pm",
+        "fund-pm-to-fixed-income-sales",
+        "fixed-income-sales-to-bond-trader",
+        "bond-trade-to-settlement",
+      ],
+      relatedEdgeIds: [
+        "investment-risk-to-pm",
+      ],
+    },
+    {
+      emoji: "💱",
+      title: "Corporate → FX Hedge",
+      subtitle: "How a corporate hedging need reaches a bank FX desk and settlement infrastructure.",
+      nodes: [
+        ["🏢", "Corporate", "hedging need"],
+        ["🤝", "FX Sales", "client coverage"],
+        ["📈", "FX Trader", "pricing / execution"],
+        ["💸", "Payment Systems", "cash flow"],
+        ["🗄️", "Settlement", "completion"],
+      ],
+      edgeIds: [
+        "corporate-to-fx-sales",
+        "fx-sales-to-fx-trader",
+        "fx-trader-to-payment",
+        "fx-trader-to-settlement",
+      ],
+      relatedEdgeIds: [
+        "fx-structurer-to-fx-sales",
+      ],
+    },
+    {
+      emoji: "👵",
+      title: "Pension Fund → External Manager",
+      subtitle: "How long-term allocation becomes a delegated investment mandate.",
+      nodes: [
+        ["📐", "Asset Allocation", "strategy"],
+        ["💼", "Pension Investment", "implementation"],
+        ["🤝", "Mandate Manager", "manager selection"],
+        ["📄", "External Manager", "delegated authority"],
+        ["📜", "Bond Market", "investment"],
+      ],
+      edgeIds: [
+        "pension-allocation-to-investment",
+        "pension-to-mandate-manager",
+        "mandate-manager-to-external-pm",
+        "external-pm-to-bond-market",
+      ],
+      relatedEdgeIds: [
+        "pension-risk-to-investment",
+      ],
+    },
+  ];
+
+  const nodeNames: Record<string, string> = {
+    "investment-risk-manager": "Investment Risk Manager",
+    "portfolio-manager": "Portfolio Manager",
+    "fx-structurer": "FX Structurer",
+    "fx-sales": "FX Sales",
+    "pension-investment-risk-manager": "Pension Investment Risk Manager",
+    "pension-investment-manager": "Pension Investment Manager",
+  };
+
+  const edgeLabel = (id: string) => {
+    const edge = interactionEdges.find((item) => item.id === id);
+    if (!edge) return null;
+
+    const symbols: Record<InteractionEdgeType, string> = {
+      workflow: "→",
+      information: "⇢",
+      control: "⊣",
+      mandate: "⇒",
+    };
+
+    return (
+      <div className={`interaction-edge interaction-edge-${edge.type}`}>
+        <span className="interaction-edge-symbol">{symbols[edge.type]}</span>
+        <span>
+          <strong>{edge.type}</strong>
+          <small>{edge.label}</small>
+        </span>
+      </div>
+    );
+  };
+
+  return (
+    <div className="world interaction-world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial System
+      </button>
+
+      <section className="hero detail-hero interaction-hero">
+        <div className="globe">🔗</div>
+        <div className="eyebrow">FINANCIAL SYSTEM INTERACTIONS</div>
+        <h1>How the Financial System Connects</h1>
+        <p>
+          Follow real workflows across institutions, roles, markets, and
+          infrastructure.
+        </p>
+      </section>
+
+      <section className="interaction-legend">
+        <span><b>→ Workflow</b> — work / transaction flow</span>
+        <span><b>⇢ Information</b> — research / information</span>
+        <span><b>⊣ Control</b> — oversight / challenge</span>
+        <span><b>⇒ Mandate</b> — delegated authority</span>
+      </section>
+
+      <section className="interaction-workflows">
+        {workflows.map((workflow) => (
+          <article className="interaction-card" key={workflow.title}>
+            <div className="interaction-card-heading">
+              <span className="interaction-card-emoji">{workflow.emoji}</span>
+              <div>
+                <h2>{workflow.title}</h2>
+                <p>{workflow.subtitle}</p>
+              </div>
+            </div>
+
+            <div className="interaction-flow">
+              {workflow.nodes.map((node, index) => (
+                <div className="interaction-step-wrap" key={`${workflow.title}-${node[1]}`}>
+                  <div className="interaction-node">
+                    <span>{node[0]}</span>
+                    <strong>{node[1]}</strong>
+                    <small>{node[2]}</small>
+                  </div>
+
+                  {index < workflow.edgeIds.length &&
+                    edgeLabel(workflow.edgeIds[index])}
+                </div>
+              ))}
+            </div>
+
+            <div className="interaction-related">
+              <div className="interaction-related-title">
+                Related Controls & Information
+              </div>
+
+              {workflow.relatedEdgeIds.map((id) => {
+                const edge = interactionEdges.find((item) => item.id === id);
+                if (!edge) return null;
+
+                const symbols: Record<InteractionEdgeType, string> = {
+                  workflow: "→",
+                  information: "⇢",
+                  control: "⊣",
+                  mandate: "⇒",
+                };
+
+                return (
+                  <div className={`interaction-related-row interaction-edge-${edge.type}`} key={id}>
+                    <span className="interaction-related-type">
+                      {symbols[edge.type]} {edge.type}
+                    </span>
+
+                    <strong>
+                      {nodeNames[edge.source] ?? edge.source}
+                      {" → "}
+                      {nodeNames[edge.target] ?? edge.target}
+                    </strong>
+
+                    <span>{edge.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+        ))}
+      </section>
+    </div>
+  );
+}
+
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market" | "equity-market" | "fx-market" | "derivatives-market" | "commodities-market" | "payment-systems" | "clearing-ccps" | "settlement-systems" | "csds" | "trade-repositories">(
+  const [page, setPage] = useState<"system" | "interaction-map" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market" | "equity-market" | "fx-market" | "derivatives-market" | "commodities-market" | "payment-systems" | "clearing-ccps" | "settlement-systems" | "csds" | "trade-repositories">(
     "system"
   );
 
@@ -24606,8 +25001,20 @@ openCommercialBanking={() => setPage("commercial-banking")}
     );
   }
 
+  if (page === "interaction-map") {
+    return <InteractionMap goBack={() => setPage("system")} />;
+  }
+
   return (
-    <FinancialSystemMap
+    <>
+      <button
+        className="interaction-launch-button"
+        onClick={() => setPage("interaction-map")}
+      >
+        🔗 Explore Interactions
+      </button>
+
+      <FinancialSystemMap
       openCentralBank={() => setPage("central-bank")}
       openBanks={() => setPage("banks")}
       openInvestmentFunds={() => setPage("investment-funds")}
@@ -24629,6 +25036,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
         setPage("function");
       }}
     />
+    </>
   );
 }
 

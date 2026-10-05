@@ -467,3 +467,225 @@ footer .footer-link:hover {
 footer .footer-link strong {
   font-weight: 700;
 }
+
+/* =========================================================
+   FINANCIAL SYSTEM INTERACTION MAP V0
+   ========================================================= */
+
+.interaction-launch-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 20;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 20px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 10px 30px rgba(40, 50, 80, 0.16);
+}
+
+.interaction-world {
+  min-height: 100vh;
+}
+
+.interaction-hero {
+  margin-bottom: 18px;
+}
+
+.interaction-legend {
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.interaction-legend span {
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: 0.82rem;
+  box-shadow: 0 5px 16px rgba(40, 50, 80, 0.08);
+}
+
+.interaction-workflows {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding-bottom: 60px;
+  display: grid;
+  gap: 22px;
+}
+
+.interaction-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 28px;
+  padding: 26px;
+  box-shadow: 0 12px 34px rgba(40, 50, 80, 0.1);
+}
+
+.interaction-card-heading {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.interaction-card-emoji {
+  font-size: 2rem;
+}
+
+.interaction-card-heading h2 {
+  margin: 0 0 6px;
+  font-size: 1.25rem;
+}
+
+.interaction-card-heading p {
+  margin: 0;
+  opacity: 0.68;
+  line-height: 1.5;
+}
+
+.interaction-flow {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  padding: 6px 2px 12px;
+}
+
+.interaction-step-wrap {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.interaction-node {
+  width: 150px;
+  min-height: 112px;
+  padding: 16px 12px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 6px 20px rgba(40, 50, 80, 0.09);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.interaction-node > span {
+  font-size: 1.65rem;
+}
+
+.interaction-node strong {
+  font-size: 0.9rem;
+}
+
+.interaction-node small {
+  opacity: 0.58;
+  font-size: 0.72rem;
+}
+
+.interaction-edge {
+  width: 120px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  text-align: left;
+}
+
+.interaction-edge-symbol {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.interaction-edge span:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.interaction-edge strong {
+  text-transform: uppercase;
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.interaction-edge small {
+  width: 82px;
+  font-size: 0.65rem;
+  line-height: 1.25;
+  opacity: 0.6;
+}
+
+@media (max-width: 700px) {
+  .interaction-launch-button {
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .interaction-card {
+    padding: 20px 16px;
+  }
+
+  .interaction-node {
+    width: 132px;
+  }
+
+  .interaction-edge {
+    width: 100px;
+  }
+}
+
+/* Interaction V0 — supporting relationships */
+
+.interaction-related {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(40, 50, 80, 0.14);
+  display: grid;
+  gap: 8px;
+}
+
+.interaction-related-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.48;
+}
+
+.interaction-related-row {
+  display: grid;
+  grid-template-columns: 110px minmax(180px, 1fr) minmax(180px, 1.2fr);
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.58);
+  border-radius: 14px;
+  font-size: 0.78rem;
+}
+
+.interaction-related-type {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.interaction-related-row > span:last-child {
+  opacity: 0.62;
+}
+
+@media (max-width: 700px) {
+  .interaction-related-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
