@@ -23,7 +23,7 @@ const institutions: Item[] = [
   { id: "banks", emoji: "🏦", label: "Banks" },
   { id: "investment-funds", emoji: "💰", label: "Investment Funds" },
   { id: "insurance", emoji: "🛡️", label: "Insurance" },
-  { emoji: "👵", label: "Pension Funds" },
+  { id: "pension-funds", emoji: "👵", label: "Pension Funds" },
 ];
 
 const markets: Item[] = [
@@ -444,12 +444,14 @@ function FinancialSystemMap({
   openBanks,
   openInvestmentFunds,
   openInsurance,
+  openPensionFunds,
   openFunction,
 }: {
   openCentralBank: () => void;
   openBanks: () => void;
   openInvestmentFunds: () => void;
   openInsurance: () => void;
+  openPensionFunds: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -564,6 +566,10 @@ function FinancialSystemMap({
 
         if (item.id === "insurance") {
           openInsurance();
+        }
+
+        if (item.id === "pension-funds") {
+          openPensionFunds();
         }
           }}
         />
@@ -1056,6 +1062,473 @@ const insuranceActuarySections: RoleDetailSection[] = [
       ["🏦", "Capital & Solvency Models", "Measure capital requirements and insurer balance-sheet resilience."],
     ],
   },
+];
+
+const pensionOperationsSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["⚙️", "Function", "Pension Administration & Operations"],
+      ["👤", "Role", "Pension Operations Specialist"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The pension and investment ecosystem supported by operational and administrative infrastructure.",
+    cards: [
+      ["👵", "Pension System", "Operational administration of contributions, member records, benefit obligations and payments."],
+      ["📈", "Public Markets", "Operational support for pension investments in equities, bonds, currencies and derivatives."],
+      ["🏗️", "Private Markets", "Administration of capital calls, distributions and records for private and alternative investments."],
+      ["🏦", "Custody & Settlement Network", "Infrastructure connecting pension assets with custodians, settlement systems and asset servicing."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Pension obligations, investment assets and operational records administered across the fund.",
+    cards: [
+      ["💵", "Contributions", "Employer, employee or sponsor contributions received into the pension system."],
+      ["👵", "Pension Benefits", "Retirement and other benefit obligations administered and paid to eligible members."],
+      ["📈", "Public-Market Investments", "Equities, bonds, currencies and derivatives requiring investment operations support."],
+      ["🏗️", "Private Investments", "Private-market holdings requiring commitment, capital-call and distribution administration."],
+      ["💰", "Cash & Collateral", "Cash balances and collateral flows supporting benefits and investment activity."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How pension administration and operations keep liabilities, assets, cash and records functioning.",
+    cards: [
+      ["🧾", "Contribution Processing", "Record and reconcile pension contributions received from members, employers or sponsors."],
+      ["🗂️", "Member & Benefit Administration", "Maintain member records, eligibility information and pension benefit obligations."],
+      ["💵", "Benefit Payment Operations", "Process retirement and other benefit payments accurately and on schedule."],
+      ["🔄", "Investment Reconciliation", "Reconcile investment positions, transactions and cash against custodians and external records."],
+      ["🏦", "Custody & Settlement Coordination", "Coordinate settlement, asset servicing and safekeeping with custodians and counterparties."],
+      ["🚨", "Exception Management", "Investigate operational breaks, unmatched records, payment issues and reconciliation differences."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who pension operations connects across the pension and investment lifecycle.",
+    cards: [
+      ["👵", "Members & Beneficiaries", "Receive pension administration services and benefit payments."],
+      ["💼", "Investment Management", "Provide investment activity and portfolio information requiring operational processing."],
+      ["🤝", "External Managers", "Provide holdings, transactions, cash flows and mandate information for externally managed assets."],
+      ["🏦", "Custodians", "Safekeep assets and provide settlement, cash and asset-servicing records."],
+      ["🧮", "Actuarial & Liability Teams", "Use member, contribution and benefit information in pension liability analysis."],
+      ["💰", "Finance & Accounting", "Coordinate cash, accounting, valuation and financial reporting records."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and financial infrastructure supporting pension administration and investment operations.",
+    cards: [
+      ["👵", "Pension Administration Systems", "Maintain member, contribution, eligibility and benefit records."],
+      ["💼", "Investment Accounting Systems", "Maintain investment positions, transactions, valuations and accounting records."],
+      ["🔄", "Reconciliation Platforms", "Compare internal records with custodians, managers and counterparties."],
+      ["🏦", "Custody & Settlement Infrastructure", "Support asset safekeeping, settlement and asset servicing."],
+      ["💳", "Payment Infrastructure", "Process pension benefits and other cash movements."],
+      ["🗄️", "Data & Workflow Systems", "Coordinate operational records, approvals, exceptions and reporting workflows."],
+    ],
+  },
+];
+
+const pensionMandateManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["🤝", "Function", "External Manager & Mandate Management"],
+      ["👤", "Role", "External Manager / Mandate Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The investment markets accessed through external asset managers and specialist mandates.",
+    cards: [
+      ["📈", "Equity Markets", "External managers provide specialist domestic, global and regional equity strategies."],
+      ["🏛️", "Bond Markets", "Fixed-income managers provide government, credit and specialist debt strategies."],
+      ["🏗️", "Private Markets", "External managers provide access to private equity, private credit, infrastructure and real estate."],
+      ["🌍", "Multi-Asset Markets", "Managers combine exposures across asset classes within diversified mandates."],
+      ["🧮", "Alternative Strategies", "Specialist managers provide hedge-fund and other alternative investment strategies."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Investment vehicles and mandates used to delegate pension capital to external managers.",
+    cards: [
+      ["📑", "Segregated Mandates", "Customized portfolios managed by an external manager under pension-specific guidelines."],
+      ["💼", "Pooled Funds", "Commingled investment funds used to access established external strategies."],
+      ["🏗️", "Private-Market Funds", "Private equity, private credit, infrastructure and real-estate investment vehicles."],
+      ["📈", "Public-Market Strategies", "External equity, fixed-income and multi-asset investment strategies."],
+      ["🧮", "Alternative Strategies", "Specialist mandates providing differentiated return or diversification exposures."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How pension funds select, structure and oversee external investment managers.",
+    cards: [
+      ["🔎", "Manager Research & Due Diligence", "Evaluate investment process, people, performance, risk controls, operations and organizational strength."],
+      ["🏆", "Manager Selection", "Compare external managers and recommend appointments for specific investment mandates."],
+      ["📑", "Mandate Design", "Define objectives, benchmarks, investment guidelines, risk limits and reporting requirements."],
+      ["🤝", "Manager Relationship Management", "Maintain ongoing engagement with external managers and specialist investment partners."],
+      ["📊", "Performance & Risk Monitoring", "Monitor returns, exposures, style, risk and mandate compliance after appointment."],
+      ["🔄", "Review & Termination", "Conduct periodic reviews and recommend mandate changes, resizing or termination when necessary."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who mandate managers connect across the pension fund and external investment ecosystem.",
+    cards: [
+      ["💼", "External Asset Managers", "Manage pension capital under approved investment strategies and mandates."],
+      ["📐", "Asset Allocation & Strategy", "Determine which strategic exposures may be implemented through external mandates."],
+      ["💰", "Internal Investment Teams", "Coordinate external portfolios with internally managed investments and overall exposures."],
+      ["⚠️", "Investment Risk", "Monitor mandate risk, limits, concentration and portfolio-level implications."],
+      ["⚖️", "Legal & Compliance", "Review investment-management agreements, guidelines and regulatory requirements."],
+      ["🏛️", "Investment Committee / Board", "Approve major manager appointments, mandates and material changes where required."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and data supporting external-manager selection and mandate oversight.",
+    cards: [
+      ["🗂️", "Manager Research Platforms", "Store due diligence, manager assessments and investment-process information."],
+      ["📊", "Performance Analytics", "Compare manager returns, benchmarks, attribution and long-term track records."],
+      ["⚠️", "Risk Analytics", "Measure mandate exposures, portfolio risk and concentration."],
+      ["🚧", "Guideline Monitoring", "Track compliance with mandate restrictions and investment limits."],
+      ["📑", "Document & Contract Systems", "Maintain investment-management agreements, guidelines and due-diligence records."],
+      ["📈", "Manager & Portfolio Data", "Aggregate holdings, exposures, performance and reporting from external managers."],
+    ],
+  },
+];
+
+const pensionInvestmentRiskSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["⚠️", "Function", "Investment Risk Management"],
+      ["👤", "Role", "Pension Investment Risk Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The financial markets whose risks flow into the pension portfolio.",
+    cards: [
+      ["📈", "Equity Markets", "Equity volatility, concentration and factor risks affecting long-term portfolios."],
+      ["🏛️", "Bond Markets", "Interest-rate, duration, spread and credit risks across fixed-income portfolios."],
+      ["💱", "FX Markets", "Currency exposures arising from international investments and hedging activity."],
+      ["🧮", "Derivatives Markets", "Leverage, counterparty and market risks arising from derivative positions."],
+      ["🏗️", "Private & Alternative Markets", "Valuation, liquidity and concentration risks in private and alternative assets."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Portfolio exposures monitored across pension investments.",
+    cards: [
+      ["📈", "Equities", "Public equity exposures monitored for market, factor and concentration risk."],
+      ["🏛️", "Fixed Income", "Debt portfolios monitored for duration, credit, spread and liquidity risk."],
+      ["🏗️", "Private Assets", "Illiquid investments monitored for valuation, concentration and commitment risk."],
+      ["🧮", "Derivatives", "Derivative positions monitored for market, leverage and counterparty exposures."],
+      ["💵", "Cash & Liquidity", "Liquid resources monitored against benefit payments, collateral and investment commitments."],
+      ["📑", "External Mandates", "Externally managed portfolios monitored against mandates, limits and risk expectations."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How pension investment risk is independently measured, monitored and challenged.",
+    cards: [
+      ["📊", "Exposure Measurement", "Measure market, credit, factor, currency, duration and concentration exposures across the portfolio."],
+      ["🚧", "Limit Monitoring", "Monitor investment guidelines, risk limits and mandate constraints."],
+      ["🧪", "Stress & Scenario Analysis", "Test portfolio resilience under severe market, economic and funding scenarios."],
+      ["💧", "Liquidity Risk Analysis", "Assess the fund's ability to meet benefit payments, collateral calls and investment commitments."],
+      ["🧮", "Funding & Liability Risk", "Evaluate how investment risk interacts with pension liabilities and the fund's long-term financial position."],
+      ["🛡️", "Independent Risk Challenge", "Challenge portfolio decisions and risk concentrations independently from investment decision-makers."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who pension investment risk managers work with across governance and investment teams.",
+    cards: [
+      ["💼", "Investment Management", "Review portfolio exposures, limits and risk implications of investment decisions."],
+      ["📐", "Asset Allocation & Strategy", "Evaluate the risk characteristics of strategic asset-allocation choices."],
+      ["🔬", "Investment Research", "Assess risks and scenarios associated with investment theses and opportunities."],
+      ["🤝", "External Managers", "Monitor risk exposures and mandate compliance across externally managed portfolios."],
+      ["🧮", "Actuarial & Liability Teams", "Connect asset risk with pension obligations, funding requirements and future cash flows."],
+      ["🏛️", "Investment / Risk Committee", "Report material risks, stress results, limit issues and portfolio vulnerabilities."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and analytical infrastructure supporting pension investment risk oversight.",
+    cards: [
+      ["⚠️", "Portfolio Risk Systems", "Measure portfolio exposures, volatility, factors and risk concentrations."],
+      ["🧪", "Stress-Testing Platforms", "Model portfolio behavior under historical and hypothetical stress scenarios."],
+      ["🧮", "Asset-Liability Models", "Evaluate interactions between investment risk, liabilities and funding conditions."],
+      ["💧", "Liquidity Analytics", "Measure liquid resources against expected and stressed cash-flow requirements."],
+      ["🚧", "Guideline & Limit Monitoring", "Track portfolio and mandate compliance against approved investment constraints."],
+      ["📊", "Risk Reporting Infrastructure", "Aggregate risk measures and communicate them to investment and governance bodies."],
+    ],
+  },
+];
+
+const pensionInvestmentAnalystSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["🔬", "Function", "Investment Research"],
+      ["👤", "Role", "Pension Investment Analyst"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The public and private markets researched for long-term pension investment decisions.",
+    cards: [
+      ["📈", "Equity Markets", "Research public companies, sectors and equity-market opportunities."],
+      ["🏛️", "Bond Markets", "Analyze sovereign, corporate and other fixed-income markets."],
+      ["💱", "FX & Macro Markets", "Study currencies, rates, inflation and macroeconomic conditions affecting pension portfolios."],
+      ["🧮", "Derivatives Markets", "Analyze derivatives used for hedging and portfolio exposure management."],
+      ["🏗️", "Private & Alternative Markets", "Research private equity, private credit, infrastructure, real estate and other alternative investments."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Assets and investment opportunities evaluated by pension investment research teams.",
+    cards: [
+      ["📈", "Public Equities", "Companies, sectors and equity strategies evaluated for long-term investment."],
+      ["🏛️", "Fixed Income", "Government and corporate debt analyzed for return, credit and duration characteristics."],
+      ["🏗️", "Private Investments", "Private equity, private credit and infrastructure opportunities evaluated for long-term portfolios."],
+      ["🏢", "Real Assets", "Real estate and other tangible assets assessed for income, diversification and inflation sensitivity."],
+      ["🧮", "Derivatives & Hedges", "Instruments evaluated for risk management and efficient portfolio implementation."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How investment research supports pension portfolio and allocation decisions.",
+    cards: [
+      ["🌍", "Market & Macro Research", "Analyze economic, policy and market developments affecting long-term investment outcomes."],
+      ["🔎", "Security & Asset Research", "Evaluate securities, sectors, asset classes and investment opportunities."],
+      ["🧮", "Financial & Valuation Analysis", "Assess fundamentals, cash flows, valuation and expected investment returns."],
+      ["📝", "Investment Thesis Development", "Build evidence-based investment views and recommendations."],
+      ["🧪", "Scenario & Risk Analysis", "Evaluate how investment cases behave under different market and economic conditions."],
+      ["🔄", "Monitoring & Updates", "Track existing investments and update research as fundamentals, valuations and markets change."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who pension investment analysts work with across the investment process.",
+    cards: [
+      ["💼", "Pension Investment Managers", "Use research to support portfolio construction and investment decisions."],
+      ["📐", "Asset Allocation & Strategy", "Use research on markets and asset classes to inform strategic allocation assumptions."],
+      ["⚠️", "Investment Risk", "Evaluate risks, scenarios and portfolio implications of investment views."],
+      ["🤝", "External Managers", "Exchange investment views and evaluate specialist investment capabilities."],
+      ["🏦", "Banks & Sell-Side Research", "Provide market research, issuer analysis, data and market intelligence."],
+      ["🏢", "Companies & Asset Sponsors", "Provide financial, operational and investment information for due diligence."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Research and analytical infrastructure supporting pension investment analysis.",
+    cards: [
+      ["📈", "Market & Fundamental Data", "Provide prices, financial statements, economic data and investment-market information."],
+      ["🧮", "Financial Modeling Tools", "Support valuation, forecasting and investment scenario analysis."],
+      ["📚", "Research Platforms", "Aggregate company, sector, macro and market research."],
+      ["💼", "Portfolio Analytics", "Connect investment research with current portfolio exposures and holdings."],
+      ["🗂️", "Research Management Systems", "Store investment theses, due diligence and ongoing research records."],
+      ["🏗️", "Private-Market Data Rooms", "Support due diligence on private and alternative investment opportunities."],
+    ],
+  },
+];
+
+const pensionInvestmentManagerSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["💼", "Function", "Investment Management"],
+      ["👤", "Role", "Pension Investment Manager"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The financial markets in which pension portfolios deploy long-term capital.",
+    cards: [
+      ["📈", "Equity Markets", "Domestic and global equity markets used for long-term growth exposure."],
+      ["🏛️", "Bond Markets", "Government and corporate debt markets used for income, liquidity and liability alignment."],
+      ["💱", "FX Markets", "Currency markets affecting international assets and portfolio hedging."],
+      ["🧮", "Derivatives Markets", "Markets used for hedging, duration management and efficient portfolio exposure."],
+      ["🏗️", "Private & Alternative Markets", "Private equity, private credit, infrastructure, real estate and other long-duration investments."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Assets and instruments managed within pension investment portfolios.",
+    cards: [
+      ["📈", "Equities", "Public equity holdings managed for long-term capital appreciation and income."],
+      ["🏛️", "Fixed Income", "Government, corporate and other debt securities managed for income and liability objectives."],
+      ["🏗️", "Private Assets", "Private equity, private credit, infrastructure and other illiquid investments."],
+      ["🏢", "Real Assets", "Real estate and related assets providing diversification and inflation-sensitive exposure."],
+      ["🧮", "Derivatives", "Instruments used for hedging and portfolio exposure management."],
+      ["💵", "Cash & Short-Term Instruments", "Liquid assets used for benefit payments, commitments and portfolio management."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How pension investment managers implement strategic allocations in actual portfolios.",
+    cards: [
+      ["🧭", "Portfolio Construction", "Build portfolios within strategic asset-allocation targets, mandates and investment guidelines."],
+      ["💰", "Capital Deployment", "Allocate capital to securities, strategies and investment opportunities within assigned mandates."],
+      ["🔎", "Investment Selection", "Evaluate securities, managers or investment opportunities for inclusion in the portfolio."],
+      ["⚖️", "Risk Positioning", "Manage portfolio exposures while remaining within risk, liquidity and policy constraints."],
+      ["📊", "Performance Monitoring", "Evaluate portfolio returns, exposures and performance relative to objectives and benchmarks."],
+      ["🔄", "Portfolio Rebalancing", "Adjust holdings as markets, valuations, cash flows and strategic targets evolve."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who pension investment managers work with across the investment process.",
+    cards: [
+      ["📐", "Asset Allocation & Strategy", "Provide strategic asset-class targets, investment objectives and portfolio constraints."],
+      ["🔬", "Investment Research", "Provide market, security and investment analysis supporting portfolio decisions."],
+      ["⚠️", "Investment Risk", "Independently measure and monitor portfolio risk and investment limits."],
+      ["🤝", "External Managers", "Manage or complement investment exposures through external mandates and specialist managers."],
+      ["🏦", "Banks & Broker-Dealers", "Provide market access, liquidity, execution and financing services."],
+      ["⚙️", "Pension Operations", "Support trade processing, cash flows, records, custody and investment administration."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and market infrastructure supporting pension portfolio management.",
+    cards: [
+      ["💼", "Portfolio Management Systems", "Track holdings, exposures, mandates and portfolio decisions."],
+      ["📈", "Market Data Platforms", "Provide prices, yields, market information and investment data."],
+      ["⚠️", "Risk & Analytics Platforms", "Measure portfolio risk, factor exposures and scenario sensitivity."],
+      ["🧾", "Order & Execution Systems", "Route and manage investment orders and trading activity."],
+      ["🏦", "Custody & Settlement Infrastructure", "Safekeep assets and support settlement and asset servicing."],
+      ["📊", "Performance Analytics", "Measure returns, benchmarks, attribution and portfolio performance."],
+    ],
+  },
+];
+
+const pensionAssetAllocationSections: RoleDetailSection[] = [
+  {
+    emoji: "📍",
+    title: "WHERE",
+    description: "Where this role sits in the financial system.",
+    cards: [
+      ["🏦", "Institution", "Financial Institutions → Pension Funds"],
+      ["📐", "Function", "Asset Allocation & Investment Strategy"],
+      ["👤", "Role", "Asset Allocation Strategist"],
+    ],
+  },
+  {
+    emoji: "📈",
+    title: "MARKET",
+    description: "The broad capital markets considered when allocating long-term pension assets.",
+    cards: [
+      ["📈", "Equity Markets", "Public equity markets providing long-term growth exposure."],
+      ["🏛️", "Bond Markets", "Government and corporate debt markets supporting income, liquidity and liability alignment."],
+      ["💱", "FX Markets", "Currency markets affecting international portfolio exposures and hedging decisions."],
+      ["🧮", "Derivatives Markets", "Markets used for hedging, duration management and efficient exposure implementation."],
+      ["🏗️", "Private & Alternative Markets", "Private equity, private credit, infrastructure, real estate and other long-term assets."],
+    ],
+  },
+  {
+    emoji: "📦",
+    title: "PRODUCT",
+    description: "Asset classes and investment exposures used to construct the pension fund's strategic portfolio.",
+    cards: [
+      ["📈", "Public Equities", "Domestic and global equity allocations designed to support long-term growth."],
+      ["🏛️", "Fixed Income", "Government, corporate and other debt exposures used for income and liability management."],
+      ["🏗️", "Private Markets", "Private equity, private credit and infrastructure allocations with long investment horizons."],
+      ["🏢", "Real Assets", "Real estate and other real assets used for diversification and inflation-sensitive exposure."],
+      ["🧮", "Derivatives & Hedges", "Instruments used to manage duration, currency and other portfolio risks."],
+      ["💵", "Cash & Liquidity", "Liquid assets maintained for benefit payments, commitments and portfolio flexibility."],
+    ],
+  },
+  {
+    emoji: "🛠️",
+    title: "WORK",
+    description: "How long-term pension obligations are translated into strategic portfolio allocations.",
+    cards: [
+      ["🎯", "Investment Objective Setting", "Translate pension obligations, return requirements and risk tolerance into long-term investment objectives."],
+      ["📐", "Strategic Asset Allocation", "Determine long-term target weights across major asset classes."],
+      ["🧮", "Asset-Liability Analysis", "Assess how portfolio assets interact with pension liabilities, cash flows and funding requirements."],
+      ["🌍", "Capital Market Assumptions", "Develop or evaluate long-term assumptions for returns, risk and correlations across asset classes."],
+      ["🧪", "Scenario Analysis", "Test portfolio resilience under different economic, market and liability scenarios."],
+      ["🔄", "Allocation Review & Rebalancing", "Review strategic targets and recommend changes as funding conditions, markets or objectives evolve."],
+    ],
+  },
+  {
+    emoji: "🤝",
+    title: "PEOPLE",
+    description: "Who asset allocation strategists work with across the pension investment ecosystem.",
+    cards: [
+      ["💼", "Investment Management", "Translate strategic allocations into portfolios and investment exposures."],
+      ["🔬", "Investment Research", "Provide market, asset-class and investment evidence supporting allocation decisions."],
+      ["⚠️", "Investment Risk", "Evaluate portfolio risk, stress scenarios and allocation constraints."],
+      ["🤝", "External Managers", "Implement selected allocations through external investment mandates where appropriate."],
+      ["🧮", "Actuarial & Liability Teams", "Provide pension liability, benefit and funding assumptions relevant to investment strategy."],
+      ["🏛️", "Investment Committee / Board", "Approve investment policy, strategic allocation and major portfolio decisions."],
+    ],
+  },
+  {
+    emoji: "🔗",
+    title: "INFRASTRUCTURE",
+    description: "Systems and analytical infrastructure supporting pension asset allocation.",
+    cards: [
+      ["📊", "Asset Allocation Models", "Model expected portfolio return, risk and diversification across strategic allocations."],
+      ["🧮", "Asset-Liability Modeling", "Analyze interactions between pension assets, liabilities and future cash flows."],
+      ["📈", "Capital Market Data", "Provide historical and forward-looking market inputs for allocation analysis."],
+      ["⚠️", "Risk & Scenario Platforms", "Measure portfolio risk and simulate economic and market stress scenarios."],
+      ["💼", "Portfolio Analytics", "Track strategic weights, exposures, performance and allocation drift."],
+      ["📑", "Investment Policy & Governance Systems", "Support policy limits, approvals and strategic investment governance."],
+    ],
+  },
+];
+
+const pensionFundFunctions: Item[] = [
+  { id: "pension-allocation", emoji: "📐", label: "Asset Allocation & Investment Strategy" },
+  { id: "pension-investment", emoji: "💼", label: "Investment Management" },
+  { id: "pension-research", emoji: "🔬", label: "Investment Research" },
+  { id: "pension-risk", emoji: "⚠️", label: "Investment Risk Management" },
+  { id: "pension-mandates", emoji: "🤝", label: "External Manager & Mandate Management" },
+  { id: "pension-operations", emoji: "⚙️", label: "Pension Administration & Operations" },
 ];
 
 const insuranceFunctions: Item[] = [
@@ -1684,6 +2157,89 @@ function PortfolioManagerRole({ goBack }: { goBack: () => void }) {
       intro="Allocates investor capital by translating an investment mandate and market views into portfolio construction, security selection, risk positioning and ongoing rebalancing."
       sections={sections}
     />
+  );
+}
+
+function PensionFundsMap({
+  goBack,
+  openAssetAllocation,
+  openInvestmentManagement,
+  openInvestmentResearch,
+  openInvestmentRisk,
+  openMandateManagement,
+  openPensionOperations,
+}: {
+  goBack: () => void;
+  openAssetAllocation: () => void;
+  openInvestmentManagement: () => void;
+  openInvestmentResearch: () => void;
+  openInvestmentRisk: () => void;
+  openMandateManagement: () => void;
+  openPensionOperations: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial System
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">👵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL INSTITUTION</p>
+          <h1>Pension Funds</h1>
+          <p className="intro">
+            Manage long-term retirement assets and liabilities by allocating
+            capital, investing across markets, overseeing risk and external
+            mandates, and administering pension obligations.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">👵</span>
+          <div>
+            <h2>Pension Fund Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {pensionFundFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              type="button"
+              onClick={() => {
+                if (item.id === "pension-allocation") {
+                  openAssetAllocation();
+                }
+                if (item.id === "pension-investment") {
+                  openInvestmentManagement();
+                }
+                if (item.id === "pension-research") {
+                  openInvestmentResearch();
+                }
+                if (item.id === "pension-risk") {
+                  openInvestmentRisk();
+                }
+                if (item.id === "pension-mandates") {
+                  openMandateManagement();
+                }
+                if (item.id === "pension-operations") {
+                  openPensionOperations();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
 
@@ -19123,7 +19679,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations">(
     "system"
   );
 
@@ -21723,6 +22279,96 @@ openCommercialBanking={() => setPage("commercial-banking")}
     );
   }
 
+  if (page === "pension-operations") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="Pension Operations Specialist"
+        intro="Runs the operational infrastructure behind pension obligations and investment assets, administering contributions, member and benefit records, payments, investment reconciliations, custody and settlement across the pension lifecycle."
+        sections={pensionOperationsSections}
+      />
+    );
+  }
+
+  if (page === "pension-mandates") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="External Manager / Mandate Manager"
+        intro="Selects and oversees external asset managers that invest pension capital, conducting due diligence, designing mandates and monitoring performance, risk and compliance to ensure delegated portfolios remain aligned with the pension fund's objectives."
+        sections={pensionMandateManagerSections}
+      />
+    );
+  }
+
+  if (page === "pension-risk") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="Pension Investment Risk Manager"
+        intro="Provides independent oversight of pension investment risk by measuring portfolio exposures, monitoring limits, testing severe scenarios and assessing liquidity, funding and liability interactions across public and private investments."
+        sections={pensionInvestmentRiskSections}
+      />
+    );
+  }
+
+  if (page === "pension-research") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="Pension Investment Analyst"
+        intro="Produces market, asset-class, security and investment research that supports long-term pension allocation and portfolio decisions, evaluating fundamentals, valuations, expected returns and risks across public and private markets."
+        sections={pensionInvestmentAnalystSections}
+      />
+    );
+  }
+
+  if (page === "pension-investment") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="Pension Investment Manager"
+        intro="Manages pension assets within strategic allocation targets and investment mandates, constructing portfolios, deploying capital and adjusting exposures to pursue long-term return objectives while respecting risk, liquidity and liability constraints."
+        sections={pensionInvestmentManagerSections}
+      />
+    );
+  }
+
+  if (page === "pension-allocation") {
+    return (
+      <RoleDetailPage
+        goBack={() => setPage("pension-funds")}
+        backLabel="Pension Funds"
+        eyebrow="PENSION FUND ROLE"
+        title="Asset Allocation Strategist"
+        intro="Translates long-term pension liabilities, funding requirements and investment objectives into strategic asset allocation across public and private markets, balancing expected return, risk, liquidity and liability alignment."
+        sections={pensionAssetAllocationSections}
+      />
+    );
+  }
+
+  if (page === "pension-funds") {
+    return <PensionFundsMap
+        goBack={() => setPage("system")}
+        openAssetAllocation={() => setPage("pension-allocation")}
+        openInvestmentManagement={() => setPage("pension-investment")}
+        openInvestmentResearch={() => setPage("pension-research")}
+        openInvestmentRisk={() => setPage("pension-risk")}
+        openMandateManagement={() => setPage("pension-mandates")}
+        openPensionOperations={() => setPage("pension-operations")}
+      />;
+  }
+
   if (page === "insurance") {
     return (
       <InsuranceMap
@@ -21769,6 +22415,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openBanks={() => setPage("banks")}
       openInvestmentFunds={() => setPage("investment-funds")}
       openInsurance={() => setPage("insurance")}
+      openPensionFunds={() => setPage("pension-funds")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
