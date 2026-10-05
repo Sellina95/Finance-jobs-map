@@ -21,7 +21,7 @@ type CentralBankFunction = Item & {
 const institutions: Item[] = [
   { id: "central-bank", emoji: "🏛️", label: "Central Bank" },
   { id: "banks", emoji: "🏦", label: "Banks" },
-  { emoji: "💰", label: "Investment Funds" },
+  { id: "investment-funds", emoji: "💰", label: "Investment Funds" },
   { emoji: "🛡️", label: "Insurance" },
   { emoji: "👵", label: "Pension Funds" },
 ];
@@ -442,10 +442,12 @@ function Island({
 function FinancialSystemMap({
   openCentralBank,
   openBanks,
+  openInvestmentFunds,
   openFunction,
 }: {
   openCentralBank: () => void;
   openBanks: () => void;
+  openInvestmentFunds: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -534,7 +536,7 @@ function FinancialSystemMap({
               )}
             </div>
           )}
-        
+
         </div>
       </header>
 
@@ -552,6 +554,10 @@ function FinancialSystemMap({
 
             if (item.id === "banks") {
               openBanks();
+            }
+
+            if (item.id === "investment-funds") {
+              openInvestmentFunds();
             }
           }}
         />
@@ -599,6 +605,15 @@ function FinancialSystemMap({
     </main>
   );
 }
+
+const investmentFundsFunctions: Item[] = [
+  { id: "funds-portfolio", emoji: "📊", label: "Portfolio Management" },
+  { id: "funds-research", emoji: "🔬", label: "Investment Research" },
+  { id: "funds-trading", emoji: "📈", label: "Trading & Execution" },
+  { id: "funds-risk", emoji: "🧮", label: "Risk & Portfolio Analytics" },
+  { id: "funds-distribution", emoji: "🤝", label: "Distribution & Client Coverage" },
+  { id: "funds-operations", emoji: "⚙️", label: "Fund Operations" },
+];
 
 const bankFunctions: Item[] = [
   { emoji: "💳", label: "Retail / Consumer Banking", id: "retail-banking" },
@@ -676,12 +691,633 @@ const globalMarketsFunctions: Item[] = [
   { id: "markets-coo", emoji: "⚙️", label: "Markets COO / Business Management" },
 ];
 
+function FundOperationsAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["⚙️", "Fund Operations", "Investment Operations"],
+        ["📋", "Fund Operations", "Fund Operations Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The investment activity operationally supported by this role.",
+      cards: [
+        [
+          "🌐",
+          "Investment Funds & Capital Markets",
+          "Supports the operational lifecycle of investment portfolios after transactions are executed across financial markets.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The investment positions and fund structures commonly supported by operations.",
+      cards: [
+        ["📈", "Equities", "Supports transaction, position, cash and corporate-action records for equity investments."],
+        ["🧾", "Fixed Income", "Supports settlement, income, position and valuation records for debt instruments."],
+        ["💱", "FX", "Supports currency trades, cash balances and settlement associated with portfolio activity."],
+        ["🧮", "Derivatives", "Supports lifecycle events, collateral, cash flows and position records for derivative instruments."],
+        ["📦", "Investment Funds & Accounts", "Supports operational records across pooled funds, mandates and other managed investment vehicles."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔄", "Trade Processing", "Ensures executed trades flow accurately into fund, accounting and settlement processes."],
+        ["🧮", "Position & Cash Reconciliation", "Compares internal records with custodians, administrators and counterparties and resolves differences."],
+        ["💰", "Cash Management Support", "Monitors portfolio cash balances, expected movements and operational funding requirements."],
+        ["📊", "Valuation & NAV Support", "Supports accurate pricing, valuation inputs and net asset value processes for investment funds."],
+        ["🏦", "Settlement & Custody Coordination", "Coordinates settlement status, failed trades and asset-servicing activity with custodians and counterparties."],
+        ["🔎", "Exception Management", "Investigates breaks, missing data and processing issues affecting fund books and records."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and external providers around the role.",
+      cards: [
+        ["💼", "Portfolio Managers", "Depend on accurate positions, cash and fund records for portfolio oversight and investment decisions."],
+        ["📈", "Buy-Side Trading", "Provides executed transactions that Operations processes, settles and reconciles."],
+        ["🧮", "Investment Risk", "Uses accurate holdings, transactions and valuation data for portfolio-risk measurement."],
+        ["🏦", "Custodians", "Safeguard assets and provide external position, cash, settlement and asset-servicing records."],
+        ["📚", "Fund Administrators", "Support accounting, valuation and NAV calculation for funds where administration is outsourced."],
+        ["💹", "Brokers & Counterparties", "Provide trade confirmations, settlement information and transaction-related records."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and financial infrastructure supporting fund operations.",
+      cards: [
+        ["📊", "Investment Accounting Systems", "Maintain portfolio books, transaction records, valuations and accounting information."],
+        ["🔄", "Reconciliation Platforms", "Compare positions, cash and transactions across internal and external records."],
+        ["🏦", "Custody Infrastructure", "Provides safekeeping, settlement and asset-servicing records for portfolio assets."],
+        ["🗄️", "Settlement Infrastructure", "Supports movement and final settlement of securities and cash after execution."],
+        ["💰", "NAV & Valuation Systems", "Support security pricing, fund valuation and net asset value processes."],
+        ["📡", "Data & Workflow Platforms", "Distribute positions, prices, transactions and operational exceptions across investment workflows."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Fund Operations"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Fund Operations Analyst"
+      intro="Maintains the operational integrity of investment funds by processing trades, reconciling positions and cash, supporting valuation and NAV, coordinating settlement and resolving exceptions."
+      sections={sections}
+    />
+  );
+}
+
+function InstitutionalDistributionManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["🤝", "Distribution & Client Coverage", "Investor & Client Relationships"],
+        ["👥", "Distribution & Client Coverage", "Institutional Client / Distribution Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The investor and asset-management market this role serves.",
+      cards: [
+        [
+          "🌐",
+          "Institutional Asset Management",
+          "Connects investment strategies and fund capabilities with institutional investors, intermediaries and other eligible clients.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The investment strategies and vehicles commonly represented to clients.",
+      cards: [
+        ["📈", "Equity Strategies", "Represents equity funds, mandates and investment strategies to investors."],
+        ["🧾", "Fixed-Income Strategies", "Supports client coverage for government, corporate, credit and other fixed-income strategies."],
+        ["🌐", "Multi-Asset Strategies", "Represents portfolios combining multiple asset classes and allocation approaches."],
+        ["🏗️", "Alternative Strategies", "Supports distribution of private markets, real assets, hedge-fund or other alternative strategies where applicable."],
+        ["📦", "Funds & Mandates", "Supports pooled funds, separately managed accounts and other investment structures offered by the manager."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🤝", "Client Coverage", "Maintains relationships with institutional investors, consultants, intermediaries and other clients."],
+        ["🔎", "Client Needs Discovery", "Identifies investment objectives, portfolio needs, constraints and manager-selection requirements."],
+        ["📣", "Strategy Positioning", "Explains investment capabilities, philosophy, process, portfolio positioning and differentiation."],
+        ["📝", "RFP & Proposal Coordination", "Coordinates responses to due-diligence questionnaires, RFPs and investment proposals."],
+        ["📊", "Performance & Portfolio Communication", "Communicates investment performance, attribution, positioning and relevant portfolio developments."],
+        ["🌱", "Business Development", "Develops prospective relationships and supports asset gathering and mandate opportunities."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and external stakeholders around the role.",
+      cards: [
+        ["💼", "Portfolio Managers", "Provide investment views, portfolio positioning and strategy information used in client discussions."],
+        ["🔬", "Investment Research", "Provides research context supporting communication of investment themes and portfolio decisions."],
+        ["🏛️", "Institutional Investors", "Include pension funds, insurers, sovereign institutions, endowments and other asset owners."],
+        ["🧭", "Investment Consultants", "Evaluate managers and strategies and advise institutional investors on manager selection."],
+        ["⚖️", "Legal & Compliance", "Review marketing, disclosures, client communications and distribution requirements."],
+        ["⚙️", "Client Service & Operations", "Support onboarding, reporting, account servicing and operational delivery after mandates are won."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and information infrastructure supporting client coverage and distribution.",
+      cards: [
+        ["👥", "CRM Platforms", "Track investors, prospects, interactions, opportunities and relationship history."],
+        ["📊", "Performance & Reporting Systems", "Provide portfolio performance, attribution, holdings and client-reporting information."],
+        ["📝", "RFP & Content Platforms", "Maintain approved investment content, questionnaires and proposal materials."],
+        ["📚", "Fund & Strategy Data", "Provide strategy characteristics, assets, benchmarks, fees and other product information."],
+        ["🧾", "Client Reporting Infrastructure", "Produces periodic reports and investment communications for clients."],
+        ["🔄", "Onboarding & Workflow Systems", "Coordinate mandate setup, documentation and handoff to servicing and operational teams."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Distribution & Client Coverage"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Institutional Client / Distribution Manager"
+      intro="Connects investment capabilities with institutional investors and intermediaries through client coverage, strategy positioning, proposals, performance communication and business development."
+      sections={sections}
+    />
+  );
+}
+
+function InvestmentRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["🧮", "Risk & Portfolio Analytics", "Investment Risk Oversight"],
+        ["🛡️", "Risk & Portfolio Analytics", "Investment Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The portfolio exposures and financial markets monitored by this role.",
+      cards: [
+        [
+          "🌐",
+          "Multi-Asset Investment Portfolios",
+          "Measures and monitors risk across the markets, securities and strategies held within investment portfolios.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The investment exposures commonly covered by portfolio risk oversight.",
+      cards: [
+        ["📈", "Equities", "Monitors equity, sector, regional, factor and concentration exposures."],
+        ["🧾", "Fixed Income", "Monitors duration, spread, credit, issuer and interest-rate exposures."],
+        ["💱", "Currencies", "Measures direct and indirect foreign-exchange exposures across portfolios."],
+        ["🧮", "Derivatives", "Measures leverage, sensitivities and nonlinear exposures created by derivatives."],
+        ["🏗️", "Alternative & Private Assets", "Assesses concentration, liquidity and other relevant risks where portfolios hold alternative assets."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Exposure Measurement", "Measures portfolio exposures across securities, asset classes, factors, currencies and other risk dimensions."],
+        ["🚧", "Limit Monitoring", "Monitors portfolios against investment guidelines, risk limits and mandate constraints."],
+        ["🧪", "Stress & Scenario Analysis", "Tests portfolio sensitivity to severe market moves and alternative market scenarios."],
+        ["💧", "Liquidity Risk Analysis", "Assesses whether portfolio positions can be adjusted or liquidated under normal and stressed conditions."],
+        ["🔎", "Independent Risk Challenge", "Challenges portfolio positioning, concentrations and assumptions independently from investment decision-making."],
+        ["📋", "Risk Reporting", "Communicates portfolio risk, breaches, concentrations and emerging issues to investment and governance teams."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💼", "Portfolio Managers", "Take investment risk within mandates and receive independent portfolio-risk analysis and challenge."],
+        ["🔬", "Investment Research", "Provides investment assumptions and security-level analysis relevant to portfolio risk."],
+        ["📈", "Buy-Side Trading", "Provides execution and liquidity information relevant to portfolio implementation and liquidity risk."],
+        ["⚙️", "Fund Operations", "Provides positions, transactions, cash and other records required for accurate risk measurement."],
+        ["⚖️", "Compliance", "Coordinates where investment restrictions, guidelines and risk limits interact."],
+        ["🏛️", "Investment & Risk Committees", "Receive portfolio-risk information for oversight, escalation and governance."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and data used to measure and monitor investment risk.",
+      cards: [
+        ["🧮", "Portfolio Risk Systems", "Calculate exposures, sensitivities, volatility and other portfolio-risk measures."],
+        ["🧪", "Stress-Testing Platforms", "Model portfolio outcomes under historical and hypothetical market scenarios."],
+        ["📊", "Portfolio Analytics", "Provide holdings, factor exposures, attribution and portfolio-level analytics."],
+        ["🌐", "Market & Reference Data", "Provide prices, curves, volatility, security attributes and other risk inputs."],
+        ["🚧", "Guideline & Limit Monitoring", "Track portfolio restrictions, limits and potential breaches."],
+        ["📋", "Risk Reporting Infrastructure", "Produces dashboards, reports and escalation information for investment and governance teams."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Risk & Portfolio Analytics"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Investment Risk Manager"
+      intro="Independently measures, monitors and challenges portfolio risk through exposure analysis, limits, stress testing, liquidity analysis and risk reporting."
+      sections={sections}
+    />
+  );
+}
+
+function BuySideTraderRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["📈", "Trading & Execution", "Portfolio Implementation"],
+        ["💹", "Trading & Execution", "Buy-Side Trader"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The markets in which portfolio investment decisions are executed.",
+      cards: [
+        [
+          "🌐",
+          "Global Financial Markets",
+          "Executes portfolio orders across eligible markets while managing liquidity, transaction costs and market impact.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The instruments commonly executed by buy-side trading desks.",
+      cards: [
+        ["📈", "Equities", "Executes listed-equity orders across exchanges, venues and liquidity providers."],
+        ["🧾", "Fixed Income", "Executes government, corporate and other bond transactions in dealer and electronic markets."],
+        ["💱", "FX", "Executes currency transactions for investment exposure, funding and hedging."],
+        ["🧮", "Derivatives", "Executes futures, options, swaps and other derivatives used in portfolio implementation."],
+        ["💵", "Money-Market Instruments", "Executes short-term instruments used for liquidity and cash management."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📥", "Order Management", "Receives, prioritizes and manages portfolio orders within investment and trading instructions."],
+        ["💹", "Trade Execution", "Selects execution methods, venues and counterparties to complete portfolio transactions."],
+        ["💧", "Liquidity Assessment", "Evaluates available liquidity, spreads, depth and market conditions before and during execution."],
+        ["🎯", "Execution Strategy", "Chooses timing, order type, venue and execution approach based on order characteristics and market conditions."],
+        ["📊", "Transaction Cost Analysis", "Evaluates execution quality, market impact and trading costs against relevant benchmarks."],
+        ["📡", "Market Feedback", "Provides portfolio managers with real-time information on liquidity, pricing, flows and execution conditions."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and market participants around the role.",
+      cards: [
+        ["💼", "Portfolio Managers", "Provide portfolio decisions and orders that the trading desk implements in the market."],
+        ["🔬", "Investment Research", "Provides investment context that may affect order urgency, liquidity and implementation."],
+        ["🏦", "Sell-Side Sales & Trading", "Provide liquidity, pricing, execution services and market access."],
+        ["🧮", "Investment Risk", "Monitors portfolio exposures and trading activity within risk and investment constraints."],
+        ["⚙️", "Fund Operations", "Supports trade confirmation, settlement, reconciliation and position records after execution."],
+        ["⚖️", "Compliance", "Oversees trading conduct, restrictions and applicable investment or market rules."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and market infrastructure used to execute portfolio orders.",
+      cards: [
+        ["📋", "Order Management Systems", "Receive and manage portfolio orders from investment decision through execution."],
+        ["💻", "Execution Management Systems", "Provide trading workflows, venue connectivity and execution tools."],
+        ["🌐", "Market Data Platforms", "Provide real-time prices, quotes, liquidity and market information."],
+        ["🔗", "Exchanges & Trading Venues", "Provide electronic markets and execution venues for eligible instruments."],
+        ["🏦", "Broker & Dealer Connectivity", "Connect the fund with counterparties and liquidity providers."],
+        ["📊", "Transaction Cost Analytics", "Measure execution quality, trading costs and market impact."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Trading & Execution"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Buy-Side Trader"
+      intro="Implements portfolio investment decisions by executing orders across financial markets while managing liquidity, transaction costs, timing and market impact."
+      sections={sections}
+    />
+  );
+}
+
+function InvestmentAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["🔬", "Investment Research", "Investment Analysis"],
+        ["📊", "Investment Research", "Investment Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The markets and investment opportunities this role analyzes.",
+      cards: [
+        [
+          "🌐",
+          "Public & Private Capital Markets",
+          "Researches securities, issuers, sectors, economies and investment themes relevant to the fund's mandate.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The investments commonly analyzed by buy-side research.",
+      cards: [
+        ["📈", "Equities", "Analyzes companies, industries, earnings, valuation and competitive positioning."],
+        ["🧾", "Fixed Income", "Analyzes issuers, credit quality, yields, spreads and repayment capacity."],
+        ["💱", "Currencies & Macro Assets", "Analyzes macroeconomic and policy drivers affecting currencies and cross-asset positioning."],
+        ["🧮", "Derivatives", "Analyzes derivative exposures where relevant to investment, hedging or portfolio implementation."],
+        ["🏗️", "Private & Alternative Assets", "Evaluates businesses, credit opportunities, real assets or other alternatives where permitted by the strategy."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Fundamental Research", "Analyzes companies, issuers, industries, economies and other drivers of investment value."],
+        ["🧮", "Financial & Valuation Analysis", "Uses financial statements, forecasts, valuation frameworks and scenario analysis to evaluate investments."],
+        ["🧠", "Investment Thesis Development", "Builds evidence-based views on potential investment opportunities, risks and catalysts."],
+        ["📊", "Monitoring & Updates", "Tracks portfolio holdings, watchlists, market developments and changes to investment assumptions."],
+        ["📝", "Investment Recommendations", "Presents research conclusions and recommendations to portfolio decision-makers."],
+        ["⚠️", "Risk & Scenario Analysis", "Identifies downside cases, uncertainties and factors that could invalidate the investment thesis."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and market participants around the role.",
+      cards: [
+        ["💼", "Portfolio Managers", "Use research and recommendations as inputs to portfolio construction and capital-allocation decisions."],
+        ["📈", "Buy-Side Traders", "Provide market liquidity, pricing and execution feedback relevant to investment ideas."],
+        ["🧮", "Investment Risk", "Provides portfolio-risk context and independent monitoring of exposures and concentrations."],
+        ["🏦", "Sell-Side Research & Banks", "Provide external research, market intelligence, corporate access and market information."],
+        ["🏢", "Companies & Issuers", "Provide financial disclosures, management communication and information used in investment analysis."],
+        ["📚", "Data & Research Providers", "Supply market, fundamental, economic and alternative datasets used in research."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and information infrastructure used in investment research.",
+      cards: [
+        ["🌐", "Market & Fundamental Data", "Provide prices, financial statements, estimates, economic data and market information."],
+        ["🧮", "Financial Modeling Tools", "Support forecasting, valuation, scenario analysis and investment comparison."],
+        ["📚", "Research Platforms", "Organize internal research, external reports, notes and investment evidence."],
+        ["🏢", "Company & Issuer Information", "Provides filings, disclosures, presentations and other issuer-level information."],
+        ["📊", "Portfolio Analytics", "Shows existing holdings, exposures and portfolio context relevant to research recommendations."],
+        ["🗂️", "Research Management Systems", "Maintain investment theses, watchlists, recommendations and research history."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Investment Research"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Investment Analyst"
+      intro="Produces investment evidence by analyzing securities, issuers, sectors and macro drivers and translating that research into investment theses and recommendations for portfolio decision-makers."
+      sections={sections}
+    />
+  );
+}
+
+function PortfolioManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Investment Funds"],
+        ["📊", "Portfolio Management", "Investment Decision-Making"],
+        ["💼", "Portfolio Management", "Portfolio Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financial markets in which portfolios may invest.",
+      cards: [
+        [
+          "🌐",
+          "Public & Private Capital Markets",
+          "Allocates investor capital across eligible asset classes and markets according to the fund mandate and investment strategy.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The investments and exposures commonly managed within portfolios.",
+      cards: [
+        ["📈", "Equities", "Listed-equity exposure across companies, sectors, regions and investment styles."],
+        ["🧾", "Fixed Income", "Government, corporate and other debt instruments permitted by the mandate."],
+        ["💱", "Currencies", "Currency exposure and hedging associated with portfolio investments."],
+        ["🧮", "Derivatives", "Futures, options, swaps and other instruments used for exposure, hedging or implementation."],
+        ["💵", "Cash & Short-Term Instruments", "Liquidity and short-term investments held within portfolio constraints."],
+        ["🏗️", "Alternative & Private Assets", "Private equity, private credit, real assets or other alternatives where permitted by the strategy."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🧭", "Investment Strategy", "Translates the fund mandate and investment views into portfolio positioning."],
+        ["🧩", "Portfolio Construction", "Determines asset, security and risk allocations across the portfolio."],
+        ["💰", "Capital Allocation", "Decides where investor capital should be deployed, maintained, reduced or reallocated."],
+        ["📊", "Performance Monitoring", "Evaluates returns, attribution and investment outcomes against objectives and benchmarks."],
+        ["🧮", "Risk Positioning", "Manages portfolio exposures within investment guidelines, limits and risk objectives."],
+        ["🔄", "Portfolio Rebalancing", "Adjusts holdings as market conditions, investment views, flows or constraints change."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and market participants around the role.",
+      cards: [
+        ["🔬", "Investment Research", "Provides security, sector, macro and thematic analysis supporting investment decisions."],
+        ["📈", "Buy-Side Trading", "Executes portfolio orders and provides liquidity and execution feedback."],
+        ["🧮", "Investment Risk", "Measures and independently monitors portfolio exposures, limits and concentrations."],
+        ["🏦", "Banks & Broker-Dealers", "Provide market access, liquidity, execution, financing and market information."],
+        ["🤝", "Client & Distribution Teams", "Communicate strategy, positioning and performance to investors and clients."],
+        ["⚙️", "Fund Operations", "Maintains positions, cash, valuations and operational records supporting the portfolio."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The systems and infrastructure used to manage investment portfolios.",
+      cards: [
+        ["📊", "Portfolio Management Systems", "Maintain holdings, exposures, mandates and portfolio-level investment information."],
+        ["🌐", "Market Data Platforms", "Provide prices, yields, fundamentals, economic data and other market information."],
+        ["🧮", "Risk & Analytics Platforms", "Measure portfolio risk, factor exposures, scenarios and performance attribution."],
+        ["📈", "Order & Execution Systems", "Connect investment decisions with trading workflows and execution."],
+        ["📚", "Research Platforms", "Organize internal and external research used in investment decisions."],
+        ["🏦", "Custody & Fund Data", "Provide positions, cash, transactions and official fund records used for portfolio oversight."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Portfolio Management"
+      eyebrow="INVESTMENT FUNDS ROLE"
+      title="Portfolio Manager"
+      intro="Allocates investor capital by translating an investment mandate and market views into portfolio construction, security selection, risk positioning and ongoing rebalancing."
+      sections={sections}
+    />
+  );
+}
+
+function InvestmentFundsMap({
+  goBack,
+  openPortfolioManagement,
+  openInvestmentResearch,
+  openTradingExecution,
+  openInvestmentRisk,
+  openDistributionCoverage,
+  openFundOperations,
+}: {
+  goBack: () => void;
+  openPortfolioManagement: () => void;
+  openInvestmentResearch: () => void;
+  openTradingExecution: () => void;
+  openInvestmentRisk: () => void;
+  openDistributionCoverage: () => void;
+  openFundOperations: () => void;
+}) {
+  return (
+    <main className="page">
+      <button className="back-button" onClick={goBack}>
+        ← Financial System
+      </button>
+
+      <section className="detail-hero">
+        <div className="detail-icon">💰</div>
+        <div>
+          <div className="eyebrow">FINANCIAL INSTITUTION</div>
+          <h1>Investment Funds</h1>
+          <p>
+            Pool and manage investor capital through portfolio management,
+            investment research, execution, risk oversight, client coverage
+            and fund operations.
+          </p>
+        </div>
+      </section>
+
+      <section className="map-section">
+        <div className="section-heading">
+          <div>
+            <div className="eyebrow">FUNCTION MAP</div>
+            <h2>What happens inside Investment Funds?</h2>
+          </div>
+        </div>
+
+        <div className="card-grid">
+          {investmentFundsFunctions.map((item) => (
+            <button
+              key={item.id}
+              className="map-card"
+              type="button"
+              onClick={() => {
+                if (item.id === "funds-portfolio") {
+                  openPortfolioManagement();
+                }
+                if (item.id === "funds-research") {
+                  openInvestmentResearch();
+                }
+                if (item.id === "funds-trading") {
+                  openTradingExecution();
+                }
+                if (item.id === "funds-risk") {
+                  openInvestmentRisk();
+                }
+                if (item.id === "funds-distribution") {
+                  openDistributionCoverage();
+                }
+                if (item.id === "funds-operations") {
+                  openFundOperations();
+                }
+              }}
+            >
+              <span className="map-card-icon">{item.emoji}</span>
+              <strong>{item.label}</strong>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function BanksMap({
   goBack,
   openRetailBanking,
   openCommercialBanking,
   openCorporateBanking,
   openInvestmentBanking,
+  openTransactionBanking,
+  openTreasuryALM,
+  openRiskManagement,
+  openComplianceFinancialCrime,
+  openOperationsTechnology,
   openGlobalMarkets,
 }: {
   goBack: () => void;
@@ -689,6 +1325,11 @@ function BanksMap({
   openCommercialBanking: () => void;
   openCorporateBanking: () => void;
   openInvestmentBanking: () => void;
+  openTransactionBanking: () => void;
+  openTreasuryALM: () => void;
+  openRiskManagement: () => void;
+  openComplianceFinancialCrime: () => void;
+  openOperationsTechnology: () => void;
   openGlobalMarkets: () => void;
 }) {
   return (
@@ -737,6 +1378,27 @@ function BanksMap({
               }
               if (item.id === "investment-banking") {
                 openInvestmentBanking();
+              }
+              if (item.id === "transaction-banking") {
+                openTransactionBanking();
+              }
+              if (item.id === "treasury-alm") {
+                openTreasuryALM();
+              }
+              if (item.id === "risk-management") {
+                openRiskManagement();
+              }
+              if (
+                item.label === "Compliance / Financial Crime" ||
+                item.id === "compliance-financial-crime"
+              ) {
+                openComplianceFinancialCrime();
+              }
+              if (
+                item.label === "Operations & Technology" ||
+                item.id === "operations-technology"
+              ) {
+                openOperationsTechnology();
               }
               if (item.id === "global-markets") {
                 openGlobalMarkets();
@@ -810,6 +1472,53 @@ const investmentBankingFunctions: Item[] = [
   { id: "ib-dcm", emoji: "🧾", label: "Debt Capital Markets (DCM)" },
   { id: "ib-levfin", emoji: "🏗️", label: "Leveraged Finance" },
 ];
+
+const transactionBankingFunctions: Item[] = [
+  { id: "tb-cash-management", emoji: "💵", label: "Cash Management" },
+  { id: "tb-payments", emoji: "💳", label: "Payments" },
+  { id: "tb-trade-finance", emoji: "🌍", label: "Trade Finance" },
+  { id: "tb-liquidity", emoji: "🏦", label: "Liquidity Management" },
+  { id: "tb-solutions", emoji: "🧩", label: "Transaction Banking Product / Solutions" },
+];
+
+const treasuryALMFunctions: Item[] = [
+  { id: "treasury-liquidity-funding", emoji: "💧", label: "Liquidity & Funding Management" },
+  { id: "treasury-alm-core", emoji: "📊", label: "Asset-Liability Management (ALM)" },
+  { id: "treasury-capital", emoji: "💵", label: "Capital Management" },
+  { id: "treasury-irrbb", emoji: "📈", label: "Interest Rate Risk in the Banking Book (IRRBB)" },
+  { id: "treasury-investment", emoji: "🏦", label: "Treasury Investment / Balance Sheet Management" },
+];
+
+const riskManagementFunctions: Item[] = [
+  { id: "risk-credit", emoji: "💳", label: "Credit Risk" },
+  { id: "risk-market", emoji: "📈", label: "Market Risk" },
+  { id: "risk-liquidity", emoji: "💧", label: "Liquidity Risk" },
+  { id: "risk-operational", emoji: "⚙️", label: "Operational Risk" },
+  { id: "risk-model", emoji: "🧮", label: "Model Risk" },
+  { id: "risk-enterprise", emoji: "🏦", label: "Enterprise Risk / Risk Governance" },
+];
+
+const complianceFinancialCrimeFunctions: Item[] = [
+  { id: "compliance-regulatory", emoji: "📜", label: "Regulatory Compliance" },
+  { id: "compliance-fincrime", emoji: "🚨", label: "AML / Financial Crime" },
+  { id: "compliance-kyc", emoji: "👤", label: "KYC / Customer Due Diligence" },
+  { id: "compliance-markets", emoji: "📈", label: "Markets Compliance / Surveillance" },
+  { id: "compliance-conduct", emoji: "🧭", label: "Conduct Risk & Compliance Governance" },
+];
+
+const operationsTechnologyFunctions: Item[] = [
+  { id: "ops-markets", emoji: "🔄", label: "Markets Operations" },
+  { id: "ops-payments", emoji: "💸", label: "Payments & Transaction Operations" },
+  { id: "ops-banking", emoji: "🏦", label: "Loan & Banking Operations" },
+  { id: "ops-onboarding", emoji: "🧾", label: "Client Onboarding & Reference Data" },
+  { id: "ops-technology", emoji: "💻", label: "Banking Technology / Engineering" },
+  { id: "ops-resilience", emoji: "🛡️", label: "Technology Infrastructure & Resilience" },
+];
+
+
+
+
+
 
 const corporateBankingFunctions: Item[] = [
   { id: "corporate-coverage", emoji: "🤝", label: "Corporate Coverage / Relationship Management" },
@@ -2433,6 +3142,2781 @@ function IBCoverageBankerRole({ goBack }: { goBack: () => void }) {
       intro="Manages strategic client relationships and coordinates investment banking advisory and financing capabilities."
       sections={sections}
     />
+  );
+}
+
+function TechnologyInfrastructureResilienceManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Technology Infrastructure & Resilience"],
+        ["🛡️", "Technology Infrastructure & Resilience", "Technology Infrastructure / Resilience Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The banking environment whose technology continuity this role supports.",
+      cards: [
+        [
+          "🌐",
+          "Bank-Wide Technology Environment",
+          "Supports resilient technology infrastructure across banking, financial markets, payments, operations and control functions.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The business platforms whose availability and resilience commonly depend on this function.",
+      cards: [
+        ["📈", "Markets Platforms", "Supports infrastructure used by trading, pricing, market data and post-trade systems."],
+        ["🏦", "Core Banking Platforms", "Supports infrastructure behind accounts, lending and core banking services."],
+        ["💸", "Payments Platforms", "Supports highly available infrastructure for payment processing and connectivity."],
+        ["📊", "Risk & Control Platforms", "Supports technology used for risk, compliance, finance and regulatory processes."],
+        ["🧾", "Operational Platforms", "Supports onboarding, processing, reconciliation and other bank-wide operational systems."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🖥️", "Infrastructure Management", "Oversees computing, storage, network and platform infrastructure supporting critical banking systems."],
+        ["📡", "Availability & Performance", "Monitors service health, capacity and performance to maintain reliable technology services."],
+        ["🚨", "Incident Management", "Coordinates response and recovery when technology failures disrupt or threaten business services."],
+        ["🔁", "Business Continuity & Disaster Recovery", "Maintains recovery capabilities and tests whether critical technology can resume after disruption."],
+        ["🧪", "Resilience Testing", "Tests systems, dependencies and recovery arrangements against severe but plausible disruption scenarios."],
+        ["📋", "Technology Resilience Governance", "Tracks critical services, vulnerabilities, remediation and resilience indicators through governance processes."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💻", "Technology Engineering", "Builds applications and services that depend on resilient production infrastructure."],
+        ["📈", "Global Markets", "Depends on reliable low-latency systems, market connectivity and trading infrastructure."],
+        ["💸", "Payments & Operations", "Depend on continuous transaction-processing and settlement technology."],
+        ["🛡️", "Risk Management", "Provides independent oversight of operational and technology-related risks."],
+        ["🔐", "Cybersecurity", "Coordinates where security incidents and technology resilience affect critical services."],
+        ["🏦", "Business & Service Owners", "Define critical services, recovery priorities and business-impact requirements."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure used to keep critical banking technology available and recoverable.",
+      cards: [
+        ["🖥️", "Compute & Hosting Platforms", "Provide production environments for banking, markets and operational applications."],
+        ["🌐", "Network Infrastructure", "Provides internal and external connectivity between users, systems, markets and financial infrastructure."],
+        ["🗄️", "Storage & Data Infrastructure", "Provides resilient storage, replication and availability for critical banking data."],
+        ["☁️", "Cloud & Platform Infrastructure", "Provides scalable infrastructure and managed platforms for supported workloads."],
+        ["📡", "Monitoring & Observability", "Detects failures, performance degradation and service-health issues across technology environments."],
+        ["🔁", "Recovery & Continuity Infrastructure", "Provides backup, replication, failover and disaster-recovery capabilities."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Technology Infrastructure & Resilience"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Technology Infrastructure / Resilience Manager"
+      intro="Maintains the availability, recoverability and operational resilience of the technology infrastructure supporting critical banking and financial-market services."
+      sections={sections}
+    />
+  );
+}
+
+function BankingTechnologyEngineerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Banking Technology / Engineering"],
+        ["💻", "Banking Technology / Engineering", "Banking Technology Engineer"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The banking and financial-market environment this role technologically supports.",
+      cards: [
+        [
+          "🌐",
+          "Banking & Financial-Market Technology",
+          "Builds and maintains technology supporting banking products, financial-market activity, payments and operational processes.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The business platforms and financial activities commonly supported by engineering.",
+      cards: [
+        ["📈", "Trading & Markets Platforms", "Support pricing, execution, booking, positions and downstream processing across financial markets."],
+        ["🏦", "Core Banking Platforms", "Support accounts, deposits, lending and core transaction processing."],
+        ["💸", "Payments Platforms", "Support payment initiation, routing, processing, messaging and settlement connectivity."],
+        ["🧾", "Client & Onboarding Platforms", "Support client records, onboarding workflows and reference-data distribution."],
+        ["📊", "Risk & Finance Platforms", "Provide transaction, position and financial data used by risk, control and reporting functions."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["💻", "Software Engineering", "Designs, develops and maintains applications and services used across banking and markets workflows."],
+        ["🔗", "Systems Integration", "Connects front-office, banking, operations, risk and external infrastructure through interfaces and APIs."],
+        ["📊", "Data Engineering", "Builds and maintains data flows supporting transactions, positions, customers, risk and reporting."],
+        ["🧪", "Testing & Release", "Tests changes and coordinates reliable deployment of technology into production environments."],
+        ["🔧", "Production Support", "Investigates system incidents, processing failures and application issues affecting business activity."],
+        ["🏗️", "Architecture & Modernization", "Improves system design, scalability, maintainability and integration as technology evolves."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📈", "Global Markets", "Defines trading, pricing and workflow requirements for markets technology."],
+        ["🏦", "Banking Businesses", "Provide requirements for lending, accounts and customer-facing banking systems."],
+        ["💸", "Transaction Banking", "Defines payment, cash-management and transaction-service technology requirements."],
+        ["🔄", "Operations", "Uses technology for transaction processing, reconciliation, servicing and exception management."],
+        ["🛡️", "Risk & Compliance", "Require reliable data, controls and technology for monitoring and regulatory processes."],
+        ["🏗️", "Infrastructure & Resilience Teams", "Provide computing, network, platform and production infrastructure supporting applications."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The technical infrastructure used to build and operate banking systems.",
+      cards: [
+        ["🖥️", "Application Platforms", "Host banking, markets, operations and control applications."],
+        ["🔗", "APIs & Integration Middleware", "Connect systems and exchange data across internal and external platforms."],
+        ["🗄️", "Databases & Data Platforms", "Store and distribute transaction, customer, position and reference data."],
+        ["☁️", "Compute & Cloud Platforms", "Provide scalable computing environments for supported applications and services."],
+        ["🔄", "CI/CD & Development Tooling", "Support source control, testing, deployment and software-release processes."],
+        ["📡", "Monitoring & Observability", "Track system health, performance, errors and production incidents."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Banking Technology / Engineering"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Banking Technology Engineer"
+      intro="Builds, integrates and supports the applications, data flows and technology platforms that enable banking, financial-market and operational activity."
+      sections={sections}
+    />
+  );
+}
+
+function ClientOnboardingAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Client Onboarding & Reference Data"],
+        ["🧾", "Client Onboarding & Reference Data", "Client Onboarding Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The client and counterparty environment this role supports.",
+      cards: [
+        [
+          "🌐",
+          "Banking & Financial-Market Clients",
+          "Supports operational setup of corporate, institutional and other clients across banking, transaction and financial-market activities.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The products and relationships commonly supported during onboarding.",
+      cards: [
+        ["🏢", "Corporate Banking", "Supports operational setup of corporate banking relationships, accounts and services."],
+        ["📈", "Global Markets", "Supports client and counterparty setup required before eligible trading activity can begin."],
+        ["💸", "Transaction Banking", "Supports onboarding for cash-management, payments, trade and liquidity services."],
+        ["💰", "Financing", "Supports customer and account setup associated with lending and financing relationships."],
+        ["🏦", "Institutional Relationships", "Maintains client, counterparty and account reference information used across bank systems."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📄", "Documentation Coordination", "Collects and tracks documents and operational requirements needed to establish client relationships."],
+        ["👤", "Client & Account Setup", "Creates or coordinates client, counterparty and account records in relevant banking systems."],
+        ["🧾", "Reference Data Maintenance", "Maintains identifiers, legal-entity information, account attributes and other static data."],
+        ["🔄", "Onboarding Workflow Management", "Coordinates onboarding tasks, dependencies, approvals and outstanding requirements across teams."],
+        ["✅", "Activation & Readiness", "Confirms required operational steps are complete before accounts, products or services become active."],
+        ["🔎", "Exception & Data Quality Management", "Investigates incomplete, inconsistent or incorrect onboarding and reference-data records."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["👤", "KYC / CDD", "Provides customer due-diligence review and required compliance approval for relevant relationships."],
+        ["🤝", "Coverage & Relationship Teams", "Provide client context, service requirements and onboarding requests."],
+        ["📈", "Global Markets", "Requires accurate client and counterparty setup before eligible markets activity."],
+        ["💸", "Transaction Banking", "Requires account and service setup for payments, cash-management and trade products."],
+        ["⚖️", "Legal & Compliance", "Supports documentation, regulatory requirements and escalation of onboarding issues."],
+        ["💻", "Technology & Operations", "Maintain systems and workflows used to create and service client records."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting onboarding and reference-data management.",
+      cards: [
+        ["🧾", "Client Onboarding Platforms", "Coordinate onboarding workflows, requirements, approvals and status."],
+        ["👤", "Client & Counterparty Master Data", "Maintains core records used consistently across banking and markets systems."],
+        ["🏷️", "Reference Data Systems", "Store identifiers, classifications, account attributes and other standardized data."],
+        ["📄", "Document Management Systems", "Store agreements, forms and supporting onboarding documentation."],
+        ["🔄", "Workflow & Approval Systems", "Route onboarding tasks and approvals between business, compliance and operations teams."],
+        ["🔗", "Downstream System Interfaces", "Distribute approved client and account data into trading, banking, payment and reporting systems."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Client Onboarding & Reference Data"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Client Onboarding Analyst"
+      intro="Coordinates the operational setup of clients, counterparties and accounts by managing documentation, workflows, reference data and system activation across the bank."
+      sections={sections}
+    />
+  );
+}
+
+function BankingOperationsAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Loan & Banking Operations"],
+        ["🏦", "Loan & Banking Operations", "Banking Operations Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The banking activities this role operationally supports.",
+      cards: [
+        [
+          "🏦",
+          "Banking & Lending",
+          "Supports the operational lifecycle of loans, deposits and other banking activities after business and credit decisions are made.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The banking products commonly supported by operations.",
+      cards: [
+        ["💵", "Corporate Loans", "Supports booking, servicing and repayment activity for corporate lending."],
+        ["🏢", "Commercial Loans", "Supports operational processing of commercial credit facilities and loans."],
+        ["🏠", "Consumer & Mortgage Loans", "Supports servicing and transaction processing across consumer lending products."],
+        ["💰", "Deposits & Accounts", "Supports account maintenance, balances, interest and related banking records."],
+        ["📋", "Credit Facilities", "Supports operational records for commitments, drawdowns, repayments and facility changes."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📝", "Loan Booking", "Records approved loans and facilities accurately in the bank's operational systems."],
+        ["🔄", "Loan Servicing", "Processes drawdowns, repayments, interest, fees, maturities and other lifecycle events."],
+        ["💸", "Cash & Payment Processing", "Coordinates cash movements associated with lending and banking transactions."],
+        ["📋", "Account & Record Maintenance", "Maintains operational records when terms, customer information or facility details change."],
+        ["🧮", "Reconciliation & Exception Management", "Identifies differences between records, balances or systems and coordinates resolution."],
+        ["📊", "Operational Control & Reporting", "Monitors processing completeness, outstanding exceptions and operational-control indicators."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate & Commercial Banking", "Provides approved lending and client instructions that Operations books and services."],
+        ["🔎", "Credit & Underwriting", "Provides approved credit terms, limits and conditions relevant to operational processing."],
+        ["💰", "Finance", "Uses accurate balances, interest, fees and transaction records for accounting and reporting."],
+        ["🛡️", "Risk Management", "Uses loan, exposure and account information for independent risk monitoring."],
+        ["🤝", "Client Service & Relationship Teams", "Coordinate operational requests and resolution of client servicing issues."],
+        ["💻", "Technology", "Maintains loan, account, servicing and operational workflow systems."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting loan and banking operations.",
+      cards: [
+        ["🏦", "Core Banking Systems", "Maintain customer accounts, balances and core banking transaction records."],
+        ["💵", "Loan Management Systems", "Store loan terms, balances, schedules, interest and lifecycle events."],
+        ["📋", "Facility & Limit Systems", "Maintain credit facilities, commitments and operational limits."],
+        ["💸", "Payment Infrastructure", "Supports disbursements, repayments and other cash movements."],
+        ["🧮", "Reconciliation Platforms", "Compare balances and transaction records across operational and accounting systems."],
+        ["🔄", "Workflow & Exception Systems", "Manage operational tasks, approvals, exceptions and servicing requests."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Loan & Banking Operations"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Banking Operations Analyst"
+      intro="Supports the operational lifecycle of loans, accounts and banking transactions through booking, servicing, payment processing, record maintenance and reconciliation."
+      sections={sections}
+    />
+  );
+}
+
+function PaymentsOperationsAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Payments & Transaction Operations"],
+        ["💸", "Payments & Transaction Operations", "Payments Operations Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The transaction environment this role primarily supports.",
+      cards: [
+        [
+          "🌐",
+          "Payments & Transaction Services",
+          "Supports the operational flow of domestic and cross-border payments between customers, banks and financial-market infrastructures.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The payment and transaction services commonly supported by operations.",
+      cards: [
+        ["💸", "Domestic Payments", "Supports processing of payments through domestic banking and payment networks."],
+        ["🌍", "Cross-Border Payments", "Supports international payment flows involving correspondent banks and financial messaging networks."],
+        ["⚡", "Real-Time Payments", "Supports payment flows processed through instant or real-time payment infrastructure."],
+        ["🏢", "Corporate Payments", "Supports bulk, payroll, supplier and other corporate payment activity."],
+        ["🏦", "Bank-to-Bank Payments", "Supports interbank transfers, settlement flows and correspondent-banking transactions."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["⚙️", "Payment Processing", "Monitors and supports payments as they move through internal systems and external payment networks."],
+        ["🔎", "Exception Management", "Investigates payments that fail, reject, queue or require manual intervention."],
+        ["🧮", "Reconciliation", "Compares payment records, accounts and settlement information to identify and resolve breaks."],
+        ["💰", "Settlement Monitoring", "Monitors completion of payment obligations and associated cash movements."],
+        ["↩️", "Returns & Investigations", "Supports returned, recalled, amended or disputed payment transactions."],
+        ["📊", "Operational Control & Reporting", "Tracks payment volumes, exceptions, processing status and operational-control indicators."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💳", "Payments Product", "Defines payment products and capabilities that Operations executes and supports."],
+        ["💵", "Cash Management", "Works with corporate cash-management services whose payment flows require operational processing."],
+        ["🏦", "Client Service & Relationship Teams", "Coordinate resolution when payment issues affect customers."],
+        ["🚨", "Financial Crime Compliance", "Supports screening, escalation and investigation where payment activity creates financial-crime concerns."],
+        ["💻", "Technology", "Maintains payment-processing systems, integrations and operational tooling."],
+        ["🌐", "Payment Networks & Correspondent Banks", "Provide external routing, messaging, clearing and settlement connectivity."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting payment processing and settlement.",
+      cards: [
+        ["💸", "Payment Processing Platforms", "Validate, route and process payment instructions through the bank."],
+        ["🌐", "Payment Rails", "Provide domestic, cross-border and real-time payment connectivity."],
+        ["💬", "Financial Messaging", "Carries standardized payment and settlement instructions between financial institutions."],
+        ["🏛️", "Clearing Systems", "Calculate and coordinate payment obligations before final settlement."],
+        ["💰", "Settlement Systems", "Complete final movement of funds between participating institutions."],
+        ["🧮", "Reconciliation & Exception Platforms", "Compare transaction records and support investigation of processing breaks."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Payments & Transaction Operations"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Payments Operations Analyst"
+      intro="Supports the processing, investigation, reconciliation and settlement of domestic and cross-border payments across the bank's transaction infrastructure."
+      sections={sections}
+    />
+  );
+}
+
+function MarketsOperationsAnalystRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚙️", "Operations & Technology", "Markets Operations"],
+        ["🔄", "Markets Operations", "Markets Operations Analyst"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financial markets whose transactions this role supports.",
+      cards: [
+        [
+          "🌐",
+          "Global Financial Markets",
+          "Supports the operational lifecycle of transactions across rates, FX, credit, equities, derivatives and other supported markets.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The markets products commonly supported by operations.",
+      cards: [
+        ["💱", "FX", "Supports confirmation, settlement and lifecycle processing of foreign-exchange transactions."],
+        ["📊", "Rates & Fixed Income", "Supports bonds, rates products and related cash and settlement activity."],
+        ["💳", "Credit", "Supports operational processing of credit and corporate-debt transactions."],
+        ["📈", "Equities", "Supports trade processing, settlement and position reconciliation for equity transactions."],
+        ["🧮", "Derivatives", "Supports confirmations, lifecycle events, collateral and settlement for derivatives."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📝", "Trade Capture & Validation", "Checks transaction details and helps ensure trades are accurately represented in operational systems."],
+        ["🤝", "Confirmation & Matching", "Confirms economic terms and resolves mismatches with counterparties or internal teams."],
+        ["💸", "Settlement", "Coordinates delivery of cash or securities through applicable settlement infrastructure."],
+        ["🔄", "Lifecycle Processing", "Processes events such as payments, resets, maturities and other post-trade changes."],
+        ["🧮", "Reconciliation & Exception Management", "Identifies breaks between systems or records and coordinates resolution."],
+        ["📊", "Operational Control & Reporting", "Monitors processing status, outstanding exceptions and operational-control indicators."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📈", "Trading", "Provides executed trade information and works with Operations to resolve transaction exceptions."],
+        ["🤝", "Sales", "Provides client context where transaction or settlement issues affect client activity."],
+        ["🧩", "Structuring", "Supports operational handling of structured or complex transaction terms."],
+        ["🛡️", "Risk & Product Control", "Uses accurate positions, valuations and transaction records for independent control and risk processes."],
+        ["🏦", "Counterparties & Custodians", "Coordinate confirmations, settlement instructions and post-trade processing."],
+        ["💻", "Technology", "Maintains and improves trading, processing, reconciliation and settlement systems."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting the post-trade transaction lifecycle.",
+      cards: [
+        ["📈", "Trading & Booking Systems", "Provide executed transaction records used by downstream operations."],
+        ["🤝", "Confirmation & Matching Platforms", "Support agreement and matching of transaction terms between parties."],
+        ["🔄", "Post-Trade Processing Systems", "Manage transaction lifecycle events and operational workflows."],
+        ["🏛️", "Clearing & CCP Infrastructure", "Supports clearing and risk management for eligible transactions."],
+        ["💸", "Settlement & CSD Infrastructure", "Supports movement and final settlement of cash and securities."],
+        ["🧮", "Reconciliation & Exception Platforms", "Compare records across systems and support investigation of processing breaks."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Markets Operations"
+      eyebrow="OPERATIONS & TECHNOLOGY ROLE"
+      title="Markets Operations Analyst"
+      intro="Supports the post-trade lifecycle of financial-market transactions, from trade validation and confirmation through settlement, reconciliation and lifecycle processing."
+      sections={sections}
+    />
+  );
+}
+
+function OperationsTechnologyMap({
+  goBack,
+  openMarketsOperations,
+  openPaymentsOperations,
+  openBankingOperations,
+  openClientOnboarding,
+  openBankingTechnology,
+  openTechnologyResilience,
+}: {
+  goBack: () => void;
+  openMarketsOperations: () => void;
+  openPaymentsOperations: () => void;
+  openBankingOperations: () => void;
+  openClientOnboarding: () => void;
+  openBankingTechnology: () => void;
+  openTechnologyResilience: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>← Banks</button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚙️</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Operations & Technology</h1>
+          <p className="intro">
+            Operate the transaction lifecycle and technology infrastructure that keep banking and financial-market activities running.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚙️</span>
+          <div>
+            <h2>Operations & Technology Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {operationsTechnologyFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "ops-markets") {
+                  openMarketsOperations();
+                }
+                if (item.id === "ops-payments") {
+                  openPaymentsOperations();
+                }
+                if (item.id === "ops-banking") {
+                  openBankingOperations();
+                }
+                if (item.id === "ops-onboarding") {
+                  openClientOnboarding();
+                }
+                if (item.id === "ops-technology") {
+                  openBankingTechnology();
+                }
+                if (item.id === "ops-resilience") {
+                  openTechnologyResilience();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function ConductRiskComplianceGovernanceManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚖️", "Compliance / Financial Crime", "Conduct Risk & Compliance Governance"],
+        ["🧭", "Conduct Risk & Compliance Governance", "Conduct Risk / Compliance Governance Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The business environment this role oversees.",
+      cards: [
+        [
+          "🏦",
+          "Bank-Wide Conduct & Compliance",
+          "Oversees conduct and compliance governance across businesses, products, customers and financial-market activities.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The activities commonly covered by conduct and compliance governance.",
+      cards: [
+        ["💳", "Retail & Commercial Banking", "Covers customer treatment and conduct across banking and lending activities."],
+        ["🏢", "Corporate Banking", "Supports conduct and compliance governance across corporate-client activities."],
+        ["📈", "Global Markets", "Covers conduct risks arising from sales, trading and markets activity."],
+        ["💸", "Transaction Banking", "Covers conduct and compliance considerations across payments, cash and trade services."],
+        ["🤝", "Investment Banking", "Supports conduct governance across advisory and capital-markets activities."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🧭", "Conduct Risk Framework", "Develops and maintains frameworks for identifying, assessing and managing conduct risk."],
+        ["📊", "Compliance Risk Governance", "Aggregates compliance risks, issues and indicators across businesses for governance oversight."],
+        ["📋", "Policy & Standards Governance", "Coordinates bank-wide compliance policies, standards and governance requirements."],
+        ["🚨", "Issue & Escalation Oversight", "Tracks significant conduct and compliance issues and supports escalation and remediation governance."],
+        ["🔎", "Management Information & Monitoring", "Uses indicators, trends and compliance information to identify emerging conduct concerns."],
+        ["🏛️", "Committee & Senior Management Reporting", "Supports governance forums with consolidated conduct and compliance reporting."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📜", "Regulatory Compliance", "Provides regulatory-compliance risks, issues and policy information for enterprise governance."],
+        ["🚨", "Financial Crime Compliance", "Provides financial-crime risks and significant control issues for governance oversight."],
+        ["📈", "Markets Compliance", "Provides markets-conduct and surveillance issues requiring broader escalation or governance."],
+        ["🏦", "Business & Front-Line Teams", "Own business conduct and first-line controls across products and customer activities."],
+        ["🛡️", "Risk Management", "Coordinates where conduct and compliance risks interact with enterprise risk frameworks."],
+        ["👔", "Senior Management & Governance Committees", "Receive aggregated conduct and compliance information for oversight and decision-making."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting conduct-risk and compliance governance.",
+      cards: [
+        ["📊", "Compliance Risk Dashboards", "Aggregate compliance indicators, issues and trends across businesses."],
+        ["🚨", "Issue Management Systems", "Track significant findings, remediation plans, ownership and escalation."],
+        ["📋", "Policy Management Platforms", "Maintain compliance policies, standards, approvals and review cycles."],
+        ["🧭", "Conduct Risk Assessment Tools", "Support identification and assessment of conduct risks across businesses."],
+        ["📑", "Governance Reporting Platforms", "Support committee packs, management information and senior-management reporting."],
+        ["🗂️", "Regulatory & Compliance Data", "Provides structured information used for enterprise compliance oversight and governance."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Conduct Risk & Compliance Governance"
+      eyebrow="COMPLIANCE / FINANCIAL CRIME ROLE"
+      title="Conduct Risk / Compliance Governance Manager"
+      intro="Coordinates bank-wide conduct-risk and compliance governance by aggregating risks, issues, policies and management information across businesses."
+      sections={sections}
+    />
+  );
+}
+
+function MarketsComplianceOfficerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚖️", "Compliance / Financial Crime", "Markets Compliance / Surveillance"],
+        ["📈", "Markets Compliance / Surveillance", "Markets Compliance Officer"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financial markets this role primarily oversees.",
+      cards: [
+        [
+          "🌐",
+          "Global Financial Markets",
+          "Provides compliance oversight across regulated sales, trading and markets activities in rates, FX, credit, equities, derivatives and other supported markets.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The markets products commonly covered by compliance oversight.",
+      cards: [
+        ["💱", "FX", "Oversees conduct and regulatory requirements affecting foreign-exchange activity."],
+        ["📊", "Rates & Fixed Income", "Covers trading and client activity in rates, government securities and fixed-income products."],
+        ["💳", "Credit", "Supports compliance oversight of credit-market and corporate-debt activity."],
+        ["📈", "Equities", "Covers regulated equity sales, trading and related market activity."],
+        ["🧮", "Derivatives", "Oversees applicable requirements affecting derivatives trading, sales and lifecycle activity."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["⚖️", "Markets Compliance Advisory", "Advises Sales, Trading and Structuring on regulatory and conduct requirements affecting markets activity."],
+        ["👀", "Trade Surveillance", "Reviews trading activity and alerts for patterns that may indicate manipulation or other prohibited conduct."],
+        ["💬", "Communications Surveillance", "Supports monitoring of relevant business communications for potential conduct or compliance issues."],
+        ["🔎", "Conduct Monitoring", "Assesses sales and trading activity against applicable market-conduct standards and internal controls."],
+        ["🚨", "Issue Investigation & Escalation", "Investigates potential compliance concerns and escalates material issues through appropriate governance channels."],
+        ["📋", "Policy & Control Framework", "Maintains policies, procedures and controls supporting compliant markets activity."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🤝", "Sales", "Works with client-facing teams on conduct, communications and regulatory requirements."],
+        ["📈", "Trading", "Provides independent compliance oversight and challenge around trading activity and market conduct."],
+        ["🧩", "Structuring", "Advises on compliance considerations affecting structured products and transactions."],
+        ["📚", "Research / Strategy", "Coordinates where research publication, information handling or market-conduct requirements apply."],
+        ["🛡️", "Risk & Legal", "Coordinates on issues involving market risk, legal obligations, investigations and governance."],
+        ["⚙️", "Operations & Technology", "Supports surveillance data, control implementation and markets compliance infrastructure."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting markets compliance and surveillance.",
+      cards: [
+        ["👀", "Trade Surveillance Systems", "Analyze orders and trades for potentially abusive or unusual market behavior."],
+        ["💬", "Communications Surveillance", "Supports monitoring and review of relevant electronic and voice communications."],
+        ["📊", "Trading & Order Data", "Provides the transaction and order records needed for surveillance and investigations."],
+        ["🚨", "Case Management Systems", "Track alerts, investigations, evidence, decisions and escalation."],
+        ["📚", "Compliance Rules & Controls", "Translate applicable requirements into monitoring rules, policies and control frameworks."],
+        ["📑", "Governance & Reporting", "Supports management information, issue reporting and applicable regulatory engagement."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Markets Compliance / Surveillance"
+      eyebrow="COMPLIANCE / FINANCIAL CRIME ROLE"
+      title="Markets Compliance Officer"
+      intro="Provides independent compliance oversight, advice and surveillance across sales, trading and other markets activities to support fair and compliant market conduct."
+      sections={sections}
+    />
+  );
+}
+
+function KYCCDDOfficerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚖️", "Compliance / Financial Crime", "KYC / Customer Due Diligence"],
+        ["👤", "KYC / Customer Due Diligence", "KYC / CDD Officer"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The customer and counterparty environment this role primarily covers.",
+      cards: [
+        [
+          "🌐",
+          "Customer & Counterparty Relationships",
+          "Supports the bank's understanding of who its customers and counterparties are, who owns or controls them and what financial-crime risks they present.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The relationships and services commonly subject to KYC and due-diligence requirements.",
+      cards: [
+        ["🏦", "Bank Accounts", "Customer relationships require identity, ownership and risk information before and during account activity."],
+        ["💵", "Lending Relationships", "Corporate and commercial borrowers require appropriate customer and ownership due diligence."],
+        ["💸", "Transaction Banking", "Cash, payments and trade relationships require customer-risk assessment and ongoing due diligence."],
+        ["📈", "Markets Relationships", "Institutional clients and counterparties require onboarding and KYC before regulated markets activity."],
+        ["🌍", "Correspondent Banking", "Financial-institution relationships often require enhanced due diligence because of cross-border financial-crime risks."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🪪", "Customer Identification", "Collects and verifies information used to establish the identity of customers and relevant parties."],
+        ["🏢", "Ownership & Control Analysis", "Identifies beneficial owners, controlling persons and relevant corporate structures."],
+        ["📊", "Customer Risk Assessment", "Assesses customer risk using factors such as business activity, geography, ownership and expected activity."],
+        ["🔎", "Customer Due Diligence", "Reviews supporting information to understand the nature and purpose of the customer relationship."],
+        ["🚨", "Enhanced Due Diligence", "Performs deeper review where customers or relationships present elevated financial-crime risk."],
+        ["🔄", "Periodic & Trigger Reviews", "Updates customer information when reviews become due or material changes occur."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🚨", "Financial Crime Compliance", "Sets or oversees AML and financial-crime requirements supported by customer due diligence."],
+        ["🤝", "Relationship & Coverage Teams", "Provide customer information and business context during onboarding and ongoing reviews."],
+        ["📈", "Global Markets", "Requires KYC completion for institutional clients and counterparties before relevant markets activity."],
+        ["💸", "Transaction Banking", "Uses customer due diligence across payments, cash-management and trade relationships."],
+        ["⚙️", "Client Onboarding & Operations", "Coordinates document collection, workflow processing and account or service activation."],
+        ["⚖️", "Legal & Compliance", "Supports interpretation and escalation of ownership, regulatory and customer-risk issues."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting customer due diligence and KYC controls.",
+      cards: [
+        ["👤", "KYC Platforms", "Store customer profiles, documents, risk assessments and review status."],
+        ["🏢", "Corporate Registry & Ownership Data", "Support verification of legal entities, directors, owners and corporate structures."],
+        ["🌍", "Screening Systems", "Screen customers and related parties against sanctions, PEP and other relevant risk data."],
+        ["📄", "Document Management Systems", "Store identity, corporate and supporting due-diligence documentation."],
+        ["🔄", "Workflow & Review Systems", "Manage onboarding, periodic reviews, approvals and escalations."],
+        ["📊", "Customer Risk Engines", "Support consistent customer-risk scoring and classification."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="KYC / Customer Due Diligence"
+      eyebrow="COMPLIANCE / FINANCIAL CRIME ROLE"
+      title="KYC / CDD Officer"
+      intro="Identifies and assesses customers, beneficial owners and counterparties so the bank understands who it is doing business with and the financial-crime risks involved."
+      sections={sections}
+    />
+  );
+}
+
+function FinancialCrimeComplianceOfficerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚖️", "Compliance / Financial Crime", "AML / Financial Crime"],
+        ["🚨", "AML / Financial Crime", "Financial Crime Compliance Officer"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financial-crime environment this role primarily oversees.",
+      cards: [
+        [
+          "🌐",
+          "Banking & Financial Transactions",
+          "Oversees financial-crime risks arising as customers, counterparties and funds move through banking and financial markets.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The products and activities commonly covered by financial-crime oversight.",
+      cards: [
+        ["💳", "Accounts & Deposits", "Customer accounts can be used to hold or move illicit funds and require financial-crime controls."],
+        ["💸", "Payments & Transfers", "Domestic and cross-border payments are monitored for suspicious activity and sanctions exposure."],
+        ["🌍", "Trade Finance", "Trade transactions can create money-laundering, sanctions and trade-based financial-crime risks."],
+        ["📈", "Markets Transactions", "Securities and markets activity can create counterparty, sanctions and illicit-finance risks."],
+        ["🏦", "Correspondent Banking", "Interbank relationships create elevated cross-border AML and sanctions risks."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Financial Crime Risk Assessment", "Identifies and assesses AML, sanctions and related financial-crime risks across businesses and products."],
+        ["🚨", "Suspicious Activity Oversight", "Reviews or oversees escalation of activity that may indicate money laundering or other financial crime."],
+        ["🌍", "Sanctions Oversight", "Supports controls designed to identify prohibited or restricted parties, jurisdictions and transactions."],
+        ["📋", "Policy & Control Framework", "Develops and maintains financial-crime policies, standards and control requirements."],
+        ["⚖️", "Advisory & Challenge", "Provides independent advice and challenges business decisions involving financial-crime risk."],
+        ["📑", "Escalation & Reporting", "Supports internal escalation and applicable regulatory or suspicious-activity reporting processes."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["👤", "KYC / CDD", "Provides customer identity, ownership and risk information used in financial-crime controls."],
+        ["💸", "Transaction Banking & Payments", "Operates payment and transaction services exposed to AML and sanctions risks."],
+        ["📈", "Global Markets", "Manages client and counterparty activity requiring appropriate financial-crime controls."],
+        ["🏦", "Business & Relationship Teams", "Own customer relationships and first-line financial-crime controls."],
+        ["⚙️", "Operations & Technology", "Runs screening, monitoring and investigation-supporting processes and systems."],
+        ["🏛️", "Legal, Regulators & Law Enforcement", "Interact where financial-crime matters create legal, reporting or investigative obligations."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting financial-crime prevention and oversight.",
+      cards: [
+        ["🚨", "Transaction Monitoring Systems", "Analyze transaction activity to identify potentially suspicious patterns and alerts."],
+        ["🌍", "Sanctions Screening Systems", "Screen customers, counterparties and transactions against applicable sanctions restrictions."],
+        ["👤", "Customer Risk Systems", "Store customer risk ratings, ownership information and financial-crime risk factors."],
+        ["🔎", "Case Management Platforms", "Support alert investigation, escalation, documentation and disposition."],
+        ["📊", "Financial Crime Analytics", "Support pattern detection, risk analysis and monitoring effectiveness."],
+        ["📑", "Regulatory Reporting Infrastructure", "Supports required financial-crime reports, records and governance information."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="AML / Financial Crime"
+      eyebrow="COMPLIANCE / FINANCIAL CRIME ROLE"
+      title="Financial Crime Compliance Officer"
+      intro="Provides independent oversight of money laundering, sanctions and related financial-crime risks across the bank's customers, products and transactions."
+      sections={sections}
+    />
+  );
+}
+
+function ComplianceOfficerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["⚖️", "Compliance / Financial Crime", "Regulatory Compliance"],
+        ["📜", "Regulatory Compliance", "Compliance Officer"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The regulatory environment this role primarily oversees.",
+      cards: [
+        ["🏛️", "Banking & Financial Regulation", "Oversees compliance with laws, regulations and regulatory expectations affecting the bank's businesses and activities."],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The banking activities commonly covered by regulatory-compliance oversight.",
+      cards: [
+        ["🏦", "Banking Products", "Reviews regulatory requirements affecting deposits, lending and other banking activities."],
+        ["📈", "Markets Products", "Supports compliance oversight of regulated sales, trading and markets activities."],
+        ["💸", "Transaction Services", "Covers regulatory requirements affecting payments, cash and transaction-banking services."],
+        ["💰", "Financing & Capital Markets", "Supports compliance oversight of financing and capital-markets activities."],
+        ["💻", "Digital Financial Services", "Assesses regulatory requirements affecting digital channels, products and delivery models."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📚", "Regulatory Interpretation", "Interprets applicable rules and assesses how they affect the bank's businesses and processes."],
+        ["🔎", "Compliance Risk Assessment", "Identifies and evaluates regulatory-compliance risks across relevant activities."],
+        ["📋", "Policy & Control Framework", "Develops or maintains policies, standards and controls supporting regulatory compliance."],
+        ["🧪", "Compliance Monitoring & Testing", "Assesses whether activities and controls operate consistently with regulatory requirements."],
+        ["⚖️", "Advisory & Challenge", "Provides independent compliance advice and challenges business decisions where regulatory risks arise."],
+        ["📑", "Regulatory & Governance Reporting", "Escalates material compliance issues and supports management, committee and regulatory reporting."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏦", "Business & Front-Line Teams", "Own activities subject to regulatory requirements and first-line controls."],
+        ["🛡️", "Risk Management", "Coordinates where regulatory requirements interact with broader risk frameworks."],
+        ["⚖️", "Legal", "Provides legal interpretation and advice on laws and regulatory obligations."],
+        ["🚨", "Financial Crime Compliance", "Coordinates where regulatory obligations intersect with financial-crime controls."],
+        ["⚙️", "Operations & Technology", "Implements processes, systems and controls supporting regulatory compliance."],
+        ["🏛️", "Regulators & Governance Bodies", "Interact through supervision, reporting and internal governance."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting regulatory-compliance oversight.",
+      cards: [
+        ["📚", "Regulatory Inventory", "Tracks applicable laws, rules, obligations and regulatory changes."],
+        ["📋", "Policy & Control Systems", "Maintain compliance policies, standards, controls and ownership."],
+        ["🧪", "Monitoring & Testing Platforms", "Support compliance reviews, testing and evidence collection."],
+        ["🚨", "Issue Management Systems", "Track findings, remediation actions, ownership and escalation."],
+        ["📊", "Compliance Risk Assessment Tools", "Support assessment and monitoring of compliance risks."],
+        ["📑", "Governance & Regulatory Reporting", "Supports committee reporting and applicable regulatory submissions."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Regulatory Compliance"
+      eyebrow="COMPLIANCE / FINANCIAL CRIME ROLE"
+      title="Compliance Officer"
+      intro="Provides independent oversight, advice and challenge to help the bank operate consistently with applicable laws, regulations and regulatory expectations."
+      sections={sections}
+    />
+  );
+}
+
+function ComplianceFinancialCrimeMap({
+  goBack,
+  openRegulatoryCompliance,
+  openFinancialCrime,
+  openKYC,
+  openMarketsCompliance,
+  openConductGovernance,
+}: {
+  goBack: () => void;
+  openRegulatoryCompliance: () => void;
+  openFinancialCrime: () => void;
+  openKYC: () => void;
+  openMarketsCompliance: () => void;
+  openConductGovernance: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>← Banks</button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚖️</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Compliance / Financial Crime</h1>
+          <p className="intro">
+            Oversee regulatory compliance, financial-crime controls and conduct across the bank.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚖️</span>
+          <div>
+            <h2>Compliance / Financial Crime Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {complianceFinancialCrimeFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "compliance-regulatory") {
+                  openRegulatoryCompliance();
+                }
+                if (item.id === "compliance-fincrime") {
+                  openFinancialCrime();
+                }
+                if (item.id === "compliance-kyc") {
+                  openKYC();
+                }
+                if (item.id === "compliance-markets") {
+                  openMarketsCompliance();
+                }
+                if (item.id === "compliance-conduct") {
+                  openConductGovernance();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function EnterpriseRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Enterprise Risk / Risk Governance"],
+        ["🏦", "Enterprise Risk", "Enterprise Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The risk environment this role primarily oversees.",
+      cards: [
+        [
+          "🌐",
+          "Enterprise-Wide Risk",
+          "Oversees the bank's aggregate risk profile across businesses, legal entities, portfolios and major risk types.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The major risk categories brought together at enterprise level.",
+      cards: [
+        ["💳", "Credit Risk", "Borrower, issuer and counterparty credit exposures contribute to the bank's aggregate risk profile."],
+        ["📈", "Market Risk", "Trading and market-price exposures contribute to enterprise-wide risk."],
+        ["💧", "Liquidity Risk", "Funding and liquidity exposures form a core part of the bank's overall risk position."],
+        ["⚙️", "Operational Risk", "Process, people, systems and external-event risks contribute to non-financial risk exposure."],
+        ["🧮", "Model Risk", "Model limitations and failures can affect decisions and risk measurement across multiple businesses."],
+        ["🏦", "Capital & Concentration Risk", "Capital adequacy and concentrations are assessed across businesses and risk types."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🎯", "Risk Appetite Framework", "Supports the definition, monitoring and escalation of the bank's overall risk appetite and limits."],
+        ["📊", "Enterprise Risk Aggregation", "Brings together major risk exposures to form an enterprise-wide view of the bank's risk profile."],
+        ["🧪", "Enterprise Stress Testing", "Assesses how severe scenarios may affect multiple businesses, risk types, earnings and capital simultaneously."],
+        ["🔎", "Emerging Risk Assessment", "Identifies cross-cutting risks that may affect the bank beyond a single business or risk discipline."],
+        ["⚖️", "Risk Governance & Challenge", "Supports independent challenge, escalation and governance across major risk-taking activities."],
+        ["📑", "Board & Senior Management Reporting", "Communicates the bank's aggregate risk profile, appetite usage and material risk developments to senior governance bodies."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💳", "Credit Risk", "Provides credit-risk exposures, concentrations and emerging portfolio concerns."],
+        ["📈", "Market Risk", "Provides trading and market-risk exposures, limits and stress information."],
+        ["💧", "Liquidity Risk", "Provides independent assessment of funding and liquidity risk."],
+        ["⚙️", "Operational & Model Risk", "Provides non-financial and model-risk assessments across the bank."],
+        ["💰", "Treasury, Finance & Capital Management", "Provides balance-sheet, capital, funding and financial information used in enterprise risk assessment."],
+        ["🏛️", "Senior Management & Board Risk Committees", "Set risk appetite, review material exposures and oversee the bank's overall risk profile."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting enterprise-wide risk governance.",
+      cards: [
+        ["📊", "Enterprise Risk Data Platforms", "Aggregate risk information across businesses, entities and risk types."],
+        ["🎯", "Risk Appetite & Limit Systems", "Track enterprise metrics, thresholds, limits and escalation triggers."],
+        ["🧪", "Enterprise Stress-Testing Platforms", "Combine scenarios and risk impacts across portfolios and businesses."],
+        ["📈", "Risk Aggregation & Analytics", "Support concentration analysis, trend monitoring and enterprise-level risk measurement."],
+        ["📋", "Governance & Issue Systems", "Track material risk issues, actions, ownership and escalation."],
+        ["📑", "Board & Regulatory Reporting Infrastructure", "Supports senior-management, board and applicable supervisory risk reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Enterprise Risk / Risk Governance"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Enterprise Risk Manager"
+      intro="Provides an enterprise-wide view of the bank's risk profile by aggregating major risks, monitoring risk appetite and supporting senior risk governance."
+      sections={sections}
+    />
+  );
+}
+
+function ModelRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Model Risk"],
+        ["🧮", "Model Risk", "Model Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The analytical environment this role primarily oversees.",
+      cards: [
+        [
+          "🧮",
+          "Bank-Wide Model Risk",
+          "Oversees risks arising from models used for valuation, risk measurement, credit decisions, forecasting and other material banking activities.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The models and analytical applications commonly covered by model-risk oversight.",
+      cards: [
+        ["📈", "Pricing & Valuation Models", "Models used to value financial instruments and estimate market-dependent cash flows."],
+        ["💳", "Credit Risk Models", "Models used for credit scoring, ratings, default risk and loss estimation."],
+        ["📊", "Market & Liquidity Risk Models", "Models used to measure sensitivities, stress losses, liquidity exposures and related risks."],
+        ["🏦", "Balance-Sheet & Forecasting Models", "Models used in planning, ALM, capital and balance-sheet analysis."],
+        ["🤖", "Statistical & Machine-Learning Models", "Data-driven models used in banking decisions, monitoring and analytical processes."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Independent Model Validation", "Evaluates model design, methodology, assumptions, data and implementation independently from model developers."],
+        ["🧪", "Performance Testing", "Tests model outputs, stability and performance using appropriate quantitative and qualitative methods."],
+        ["⚖️", "Model Challenge", "Challenges model limitations, assumptions, methodology and intended use."],
+        ["🚨", "Issue & Limitation Management", "Identifies model weaknesses and tracks remediation, restrictions and compensating controls."],
+        ["📋", "Model Inventory & Governance", "Supports classification, approval status, ownership and lifecycle governance across the model inventory."],
+        ["📑", "Validation & Risk Reporting", "Documents validation conclusions and communicates material model risks to governance bodies."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🧮", "Model Developers & Quantitative Teams", "Build and maintain models subject to independent model-risk oversight."],
+        ["📈", "Global Markets", "Uses pricing, valuation and risk models across trading and structuring activities."],
+        ["💳", "Credit Risk", "Uses credit models for borrower, counterparty and portfolio risk assessment."],
+        ["💰", "Treasury / ALM", "Uses balance-sheet, liquidity, interest-rate and forecasting models."],
+        ["💻", "Technology & Data Teams", "Support model implementation, data pipelines and production infrastructure."],
+        ["🏦", "Enterprise Risk & Model Governance", "Sets model-risk standards, appetite, governance and escalation frameworks."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting model-risk oversight and validation.",
+      cards: [
+        ["📚", "Model Inventory Systems", "Track models, ownership, materiality, validation status and lifecycle information."],
+        ["🧪", "Validation Environments", "Provide controlled environments for independent testing and model replication."],
+        ["📊", "Data & Analytics Platforms", "Provide datasets and analytical tools used for validation and performance testing."],
+        ["💻", "Model Implementation Platforms", "Host or execute models used in production banking processes."],
+        ["📋", "Issue Management Systems", "Track validation findings, remediation actions and model limitations."],
+        ["📑", "Governance & Reporting Infrastructure", "Supports model approvals, committee reporting and applicable regulatory documentation."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Model Risk"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Model Risk Manager"
+      intro="Provides independent oversight and validation of models used across valuation, risk management, credit, forecasting and other material banking activities."
+      sections={sections}
+    />
+  );
+}
+
+function OperationalRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Operational Risk"],
+        ["⚙️", "Operational Risk", "Operational Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The operating environment this role primarily oversees.",
+      cards: [
+        [
+          "⚙️",
+          "Bank-Wide Operations & Control Environment",
+          "Oversees risks arising from inadequate or failed processes, people, systems and external events across the bank.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The activities and services commonly covered by operational-risk oversight.",
+      cards: [
+        ["💳", "Banking Activities", "Lending, deposits and other banking activities depend on reliable processes and controls."],
+        ["📈", "Markets Activities", "Trading and markets businesses create execution, processing, systems and control risks."],
+        ["💸", "Payments & Transactions", "Payments and transaction services depend on resilient processing and operational infrastructure."],
+        ["💻", "Technology & Digital Services", "Technology platforms and digital channels create availability, change and systems-related operational risks."],
+        ["🤝", "Third-Party Services", "External vendors and service providers can introduce dependency, resilience and control risks."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Risk & Control Assessment", "Assesses operational risks and the effectiveness of controls across business processes."],
+        ["🚨", "Incident & Loss Monitoring", "Tracks operational incidents, losses, control failures and emerging risk events."],
+        ["📊", "Risk Indicator Monitoring", "Monitors key risk indicators and other signals of changing operational-risk exposure."],
+        ["🧪", "Scenario Analysis", "Assesses severe operational events and their potential impact on the bank."],
+        ["⚖️", "Independent Challenge", "Challenges business assessments, control effectiveness and remediation plans."],
+        ["📑", "Risk & Governance Reporting", "Reports material operational risks, incidents and remediation progress to risk committees and senior management."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏦", "Business & Front-Line Teams", "Own operational risks and controls within their day-to-day activities."],
+        ["⚙️", "Operations", "Runs processing and operational workflows where many operational risks and controls reside."],
+        ["💻", "Technology", "Manages systems, infrastructure and technology processes supporting the bank."],
+        ["🛡️", "Information & Cybersecurity", "Coordinates on technology, security and resilience-related operational risks."],
+        ["⚖️", "Compliance & Legal", "Coordinates where operational events interact with regulatory, conduct or legal obligations."],
+        ["🏦", "Enterprise Risk & Internal Audit", "Connects operational-risk oversight with broader risk governance and independent assurance."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting operational-risk identification and oversight.",
+      cards: [
+        ["🧮", "Operational Risk Systems", "Capture risk assessments, controls, issues and operational-risk information."],
+        ["🚨", "Incident & Loss Databases", "Record operational incidents, losses, causes and remediation actions."],
+        ["📊", "Risk Indicator Platforms", "Track key risk indicators, thresholds and emerging operational-risk trends."],
+        ["🧪", "Scenario & Assessment Tools", "Support risk assessments and severe operational-event analysis."],
+        ["📋", "Issue & Control Management Systems", "Track control deficiencies, remediation plans and accountable owners."],
+        ["📑", "Risk Reporting Infrastructure", "Aggregates operational-risk information for governance and applicable regulatory reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Operational Risk"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Operational Risk Manager"
+      intro="Provides independent oversight of risks arising from processes, people, systems and external events across the bank."
+      sections={sections}
+    />
+  );
+}
+
+function LiquidityRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Liquidity Risk"],
+        ["💧", "Liquidity Risk", "Liquidity Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The funding and liquidity environment this role primarily oversees.",
+      cards: [
+        [
+          "💧",
+          "Bank Funding & Liquidity Risk",
+          "Oversees the risk that the bank may be unable to meet cash obligations when due without unacceptable cost or disruption.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The balance-sheet positions and funding sources commonly relevant to liquidity-risk oversight.",
+      cards: [
+        ["🏦", "Deposits", "Customer and institutional deposits influence the stability and behavior of the bank's funding base."],
+        ["📄", "Wholesale Funding", "Market-based borrowing creates refinancing, maturity and funding-concentration risks."],
+        ["🔄", "Secured Funding", "Collateralized funding depends on available collateral, market access and financing conditions."],
+        ["💵", "Liquid Asset Portfolio", "Cash, reserves and liquid securities provide resources for meeting liquidity needs."],
+        ["🧮", "Contingent & Off-Balance-Sheet Exposures", "Commitments and other contingent obligations can create additional liquidity demands under stress."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Independent Liquidity Risk Measurement", "Measures liquidity exposures independently from the Treasury function managing the bank's funding position."],
+        ["⚖️", "Limit Monitoring", "Monitors liquidity metrics, concentrations and exposures against approved risk appetite and limits."],
+        ["🧪", "Liquidity Stress Testing", "Tests the bank's ability to withstand institution-specific and market-wide liquidity stress scenarios."],
+        ["🔎", "Treasury Challenge", "Independently reviews and challenges funding assumptions, liquidity positions and Treasury actions."],
+        ["🚨", "Early-Warning Monitoring", "Tracks indicators that may signal deterioration in funding access or liquidity conditions."],
+        ["📑", "Risk & Governance Reporting", "Reports liquidity-risk exposures, stress results and limit usage to senior management and risk committees."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💧", "Treasury Liquidity & Funding", "Manages the bank's actual funding and liquidity position while Liquidity Risk provides independent oversight."],
+        ["📊", "Asset-Liability Management", "Provides balance-sheet structure, cash-flow and behavioral assumptions relevant to liquidity risk."],
+        ["📑", "Finance", "Provides balance-sheet, planning and financial information used in liquidity analysis."],
+        ["📈", "Global Markets", "Provides market information and activities that may affect funding access, collateral and liquidity."],
+        ["🏦", "Enterprise Risk", "Aggregates liquidity risk within the bank's overall risk appetite and governance framework."],
+        ["🏛️", "Regulatory & Supervisory Teams", "Coordinate around applicable liquidity standards, reporting and supervisory requirements."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting independent liquidity-risk oversight.",
+      cards: [
+        ["🧮", "Liquidity Risk Engines", "Calculate contractual and modeled cash flows, liquidity metrics and risk exposures."],
+        ["🧪", "Stress-Testing Platforms", "Model funding outflows, market disruption and liquidity-buffer usage under stress."],
+        ["🏦", "Balance-Sheet Data Systems", "Provide deposit, loan, funding, securities and other balance-sheet information."],
+        ["📊", "Treasury Data Feeds", "Provide funding, cash and liquidity-position information for independent risk review."],
+        ["⚖️", "Limit & Early-Warning Systems", "Track liquidity limits, thresholds and emerging risk indicators."],
+        ["📑", "Risk & Regulatory Reporting", "Supports governance reporting and applicable liquidity-risk disclosures and submissions."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Liquidity Risk"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Liquidity Risk Manager"
+      intro="Provides independent oversight of the bank's funding and liquidity risk, challenging Treasury positions, assumptions, limits and stress resilience."
+      sections={sections}
+    />
+  );
+}
+
+function MarketRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Market Risk"],
+        ["📈", "Market Risk", "Market Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The markets whose price movements this role primarily oversees.",
+      cards: [
+        [
+          "🌐",
+          "Rates, FX, Credit, Equity & Commodity Markets",
+          "Oversees exposures whose value can change as interest rates, currencies, credit spreads, equity prices, commodity prices and market volatility move.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The market-risk exposures commonly covered by this role.",
+      cards: [
+        ["📄", "Fixed Income", "Bonds and related positions create interest-rate, spread and volatility exposures."],
+        ["💱", "FX", "Currency positions create exposure to movements in exchange rates and volatility."],
+        ["📈", "Equities", "Stocks, indices and related positions create equity-price and volatility risk."],
+        ["🧮", "Derivatives", "Options, swaps, futures and other derivatives create sensitivities to multiple market factors."],
+        ["🛢️", "Commodities", "Commodity positions create exposure to movements in energy, metals and other commodity markets where relevant."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Exposure Monitoring", "Monitors market-risk exposures and sensitivities across desks, portfolios and risk factors."],
+        ["⚖️", "Limit Monitoring", "Tracks positions against approved market-risk limits and escalation thresholds."],
+        ["🧪", "Stress Testing", "Assesses potential losses under severe but plausible market scenarios."],
+        ["📉", "Risk Measurement", "Uses measures such as sensitivities, scenario losses and other approved risk metrics to quantify exposure."],
+        ["🔎", "Independent Challenge", "Challenges trading-desk positions, concentrations, assumptions and changes in risk."],
+        ["📑", "Risk Reporting", "Communicates exposures, limit usage and emerging market risks to senior risk and governance forums."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📈", "Trading", "Owns and manages market positions that generate trading-book market risk."],
+        ["🧩", "Structuring", "Designs products whose payoff structures can create complex market sensitivities."],
+        ["💰", "Treasury / ALM", "Manages structural and treasury positions that may create relevant market exposures."],
+        ["💳", "Credit Risk", "Coordinates where market movements interact with issuer or counterparty credit exposure."],
+        ["📊", "Finance & Product Control", "Provides valuation, P&L and position information used in risk oversight."],
+        ["🏦", "Enterprise Risk", "Aggregates market risk within the bank's overall risk appetite and governance framework."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting market-risk measurement and oversight.",
+      cards: [
+        ["🧮", "Market Risk Engines", "Calculate sensitivities, scenario losses and other market-risk measures."],
+        ["📈", "Market Data Platforms", "Provide prices, curves, volatilities and other inputs required for risk measurement."],
+        ["💻", "Trading & Position Systems", "Provide positions and transaction data from markets businesses."],
+        ["🧪", "Stress-Testing Platforms", "Apply historical and hypothetical market scenarios across portfolios."],
+        ["⚖️", "Limit Monitoring Systems", "Track risk usage against approved desk, portfolio and firm-level limits."],
+        ["📑", "Risk Reporting Infrastructure", "Aggregates exposures for management, governance and applicable regulatory reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Market Risk"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Market Risk Manager"
+      intro="Provides independent oversight of the bank's exposure to movements in rates, FX, credit spreads, equities, commodities and market volatility."
+      sections={sections}
+    />
+  );
+}
+
+function CreditRiskManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["🛡️", "Risk Management", "Credit Risk"],
+        ["💳", "Credit Risk", "Credit Risk Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The risk environment this role primarily oversees.",
+      cards: [
+        [
+          "💳",
+          "Credit & Counterparty Risk",
+          "Oversees the risk that borrowers, issuers or counterparties may fail to meet their financial obligations.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The exposures commonly covered by credit-risk oversight.",
+      cards: [
+        ["💵", "Corporate Loans", "Lending exposures create credit risk to corporate borrowers."],
+        ["🏢", "Commercial Credit", "Commercial lending creates borrower and portfolio credit exposures."],
+        ["📄", "Debt Securities", "Bond and other debt holdings create issuer credit exposure."],
+        ["🔄", "Derivatives & Counterparty Exposure", "Trading relationships can create current and potential future exposure to counterparties."],
+        ["🌍", "Trade & Transaction Exposures", "Trade-finance and transaction structures can create bank, corporate and country-related credit exposures."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Credit Assessment", "Evaluates borrower and counterparty financial strength, repayment capacity and risk factors."],
+        ["📊", "Exposure Monitoring", "Monitors individual and portfolio credit exposures against approved limits."],
+        ["🧪", "Stress & Scenario Analysis", "Assesses how adverse economic or market conditions may affect credit quality and losses."],
+        ["⚖️", "Credit Approval & Challenge", "Provides independent review, approval or challenge within the bank's credit-governance framework."],
+        ["🚨", "Watchlist & Early-Warning Monitoring", "Identifies deteriorating exposures and emerging credit concerns."],
+        ["📑", "Portfolio & Risk Reporting", "Reports concentrations, trends, limit usage and other credit-risk measures to governance bodies."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🤝", "Corporate & Commercial Banking", "Originate lending relationships and provide information supporting credit decisions."],
+        ["📈", "Global Markets", "Creates counterparty and issuer exposures through markets activity."],
+        ["💰", "Investment Banking", "Coordinates where financing and transaction activity creates credit exposure."],
+        ["📊", "Finance", "Provides financial, accounting and portfolio information relevant to credit analysis."],
+        ["🛡️", "Enterprise Risk", "Aggregates credit risk within the bank's broader risk framework and appetite."],
+        ["⚖️", "Legal & Compliance", "Supports documentation, regulatory and control considerations affecting credit exposures."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting credit-risk measurement and oversight.",
+      cards: [
+        ["🧮", "Credit Risk Systems", "Aggregate borrower, counterparty, facility and portfolio-level credit exposures."],
+        ["📊", "Risk Rating Models", "Support consistent assessment of borrower and counterparty credit quality."],
+        ["🏦", "Loan & Exposure Systems", "Provide facility, utilization, collateral and exposure information."],
+        ["📈", "Market & Reference Data", "Provide market, issuer and instrument information relevant to credit monitoring."],
+        ["🧪", "Stress-Testing Platforms", "Estimate portfolio behavior and losses under adverse scenarios."],
+        ["📑", "Risk Reporting Infrastructure", "Supports limit monitoring, portfolio reporting and risk-governance processes."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Credit Risk"
+      eyebrow="RISK MANAGEMENT ROLE"
+      title="Credit Risk Manager"
+      intro="Provides independent oversight of borrower, issuer and counterparty credit risk across the bank's lending, investment and markets activities."
+      sections={sections}
+    />
+  );
+}
+
+function RiskManagementMap({
+  goBack,
+  openCreditRisk,
+  openMarketRisk,
+  openLiquidityRisk,
+  openOperationalRisk,
+  openModelRisk,
+  openEnterpriseRisk,
+}: {
+  goBack: () => void;
+  openCreditRisk: () => void;
+  openMarketRisk: () => void;
+  openLiquidityRisk: () => void;
+  openOperationalRisk: () => void;
+  openModelRisk: () => void;
+  openEnterpriseRisk: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🛡️</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Risk Management</h1>
+          <p className="intro">
+            Independently measure, monitor and challenge the risks arising across the bank.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🛡️</span>
+          <div>
+            <h2>Risk Management Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {riskManagementFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "risk-credit") {
+                  openCreditRisk();
+                }
+                if (item.id === "risk-market") {
+                  openMarketRisk();
+                }
+                if (item.id === "risk-liquidity") {
+                  openLiquidityRisk();
+                }
+                if (item.id === "risk-operational") {
+                  openOperationalRisk();
+                }
+                if (item.id === "risk-model") {
+                  openModelRisk();
+                }
+                if (item.id === "risk-enterprise") {
+                  openEnterpriseRisk();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function TreasuryInvestmentManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💰", "Treasury / ALM", "Treasury Investment / Balance Sheet Management"],
+        ["🏦", "Treasury Investment / Balance Sheet Management", "Treasury Investment Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The markets this role primarily interacts with for balance-sheet purposes.",
+      cards: [
+        [
+          "📊",
+          "Rates & Fixed-Income Markets",
+          "Uses liquid fixed-income and money-market instruments to manage the bank's liquidity portfolio, balance-sheet resources and structural investment needs.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The instruments commonly relevant to treasury investment and balance-sheet management.",
+      cards: [
+        ["🏛️", "Government Securities", "Highly liquid sovereign securities used for liquidity, investment and balance-sheet purposes."],
+        ["🏦", "Central Bank Reserves", "Cash and reserve balances held with central banks as part of the bank's liquidity position."],
+        ["📄", "High-Quality Fixed-Income Securities", "Eligible liquid securities held within treasury or liquidity portfolios."],
+        ["💵", "Money-Market Instruments", "Short-term instruments used to manage cash and liquidity across different horizons."],
+        ["🔄", "Secured Financing", "Collateralized transactions used to manage cash, securities and short-term balance-sheet needs."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Portfolio Management", "Manages treasury investment and liquidity portfolios within approved mandates and limits."],
+        ["💧", "Liquidity Buffer Management", "Maintains assets that can support the bank's liquidity needs under normal and stressed conditions."],
+        ["📈", "Market & Yield Analysis", "Evaluates rates, curves, spreads and market conditions relevant to treasury investments."],
+        ["⚖️", "Risk-Return Assessment", "Balances liquidity, risk, yield and balance-sheet objectives when managing treasury assets."],
+        ["🔄", "Balance-Sheet Execution", "Executes approved investment, funding or secured-financing actions supporting treasury objectives."],
+        ["📑", "Portfolio Reporting", "Monitors positions, performance, limits and portfolio characteristics for treasury governance."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💧", "Liquidity & Funding Management", "Defines liquidity requirements and the role of liquid assets within the bank's funding framework."],
+        ["📊", "Asset-Liability Management", "Connects treasury portfolios with the broader structure and objectives of the bank balance sheet."],
+        ["📈", "Global Markets", "Provides market access, pricing and execution capabilities where organizational structures require separation."],
+        ["🛡️", "Risk Management", "Provides independent market, credit and liquidity risk oversight and limits."],
+        ["📑", "Finance", "Supports accounting, valuation, planning and financial reporting for treasury portfolios."],
+        ["⚙️", "Operations & Settlement", "Supports confirmation, collateral, settlement and lifecycle processing of treasury transactions."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting treasury investment and balance-sheet management.",
+      cards: [
+        ["📈", "Market Data Platforms", "Provide rates, curves, prices and market information used in investment decisions."],
+        ["💻", "Treasury & Portfolio Systems", "Record positions, transactions, cash flows and portfolio characteristics."],
+        ["🧮", "Risk & Valuation Engines", "Calculate valuations, sensitivities and risk measures for treasury positions."],
+        ["🔗", "Trading & Execution Infrastructure", "Provides controlled access to relevant money and securities markets."],
+        ["🏦", "Custody & Settlement Systems", "Support safekeeping and settlement of securities and cash."],
+        ["📊", "Liquidity Reporting Systems", "Connect treasury portfolio holdings with broader liquidity measurement and reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Treasury Investment / Balance Sheet Management"
+      eyebrow="TREASURY / ALM ROLE"
+      title="Treasury Investment Manager"
+      intro="Manages treasury investment and liquidity portfolios to support the bank's liquidity, balance-sheet and risk objectives rather than client-facing trading activity."
+      sections={sections}
+    />
+  );
+}
+
+function IRRBBManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💰", "Treasury / ALM", "Interest Rate Risk in the Banking Book (IRRBB)"],
+        ["📈", "IRRBB", "IRRBB Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The balance-sheet risk environment this role primarily operates in.",
+      cards: [
+        [
+          "📉",
+          "Banking-Book Interest Rate Risk",
+          "Manages structural interest-rate exposure arising from differences in the repricing, maturity and behavior of banking-book assets and liabilities.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The banking-book positions and instruments commonly relevant to this role.",
+      cards: [
+        ["💵", "Loans", "Fixed- and floating-rate lending creates different repricing and maturity exposures."],
+        ["🏦", "Deposits", "Deposit balances and behavioral assumptions affect the bank's structural interest-rate position."],
+        ["📈", "Investment Securities", "Banking-book securities contribute duration and interest-rate exposure."],
+        ["📄", "Bank Funding", "Funding instruments influence the liability-side repricing and maturity profile."],
+        ["🔄", "Interest Rate Hedges", "Derivatives and other hedging instruments may be used to manage structural interest-rate exposure."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Interest Rate Exposure Measurement", "Measures structural rate exposure across banking-book assets and liabilities."],
+        ["📉", "Earnings Sensitivity Analysis", "Assesses how changes in interest rates may affect net interest income and earnings."],
+        ["💰", "Economic Value Analysis", "Evaluates how rate movements may affect the economic value of banking-book positions."],
+        ["🧪", "Scenario & Stress Testing", "Tests the balance sheet under alternative interest-rate scenarios and shocks."],
+        ["🔄", "Hedging Analysis", "Evaluates potential hedging actions for structural interest-rate exposures."],
+        ["📑", "Limit & Governance Reporting", "Monitors exposures against internal limits and supports ALCO and risk-governance processes."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📊", "Asset-Liability Management", "Connects interest-rate risk analysis with overall balance-sheet structure."],
+        ["💧", "Liquidity & Funding Management", "Coordinates assumptions and decisions affecting funding and liability behavior."],
+        ["📈", "Treasury Markets / Hedging", "Supports execution of approved structural interest-rate hedges."],
+        ["🛡️", "Risk Management", "Provides independent oversight, limits and risk-governance frameworks."],
+        ["📑", "Finance", "Provides earnings, balance-sheet and planning information used in sensitivity analysis."],
+        ["🏦", "Business Lines", "Originate loans, deposits and other positions that generate structural rate exposure."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting IRRBB measurement and management.",
+      cards: [
+        ["🧮", "ALM & IRRBB Engines", "Model repricing, maturity and behavioral characteristics across banking-book positions."],
+        ["📊", "Scenario & Stress Systems", "Calculate exposure under prescribed and internally designed interest-rate scenarios."],
+        ["📈", "Market Data Platforms", "Provide yield curves, rates and other market inputs used in valuation and sensitivity analysis."],
+        ["🏦", "Core Banking Systems", "Provide loan, deposit and account-level information feeding IRRBB models."],
+        ["🧠", "Behavioral Models", "Estimate characteristics such as deposit behavior and loan prepayments where relevant."],
+        ["📑", "Risk & Regulatory Reporting", "Supports limit monitoring, governance and applicable regulatory reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Interest Rate Risk in the Banking Book (IRRBB)"
+      eyebrow="TREASURY / ALM ROLE"
+      title="IRRBB Manager"
+      intro="Measures and manages structural interest-rate risk arising from the bank's lending, deposit, funding and other banking-book activities."
+      sections={sections}
+    />
+  );
+}
+
+function CapitalManagementManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💰", "Treasury / ALM", "Capital Management"],
+        ["💵", "Capital Management", "Capital Management Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The balance-sheet environment this role primarily operates in.",
+      cards: [
+        [
+          "🏦",
+          "Bank Capital & Balance Sheet",
+          "Manages the bank's capital resources and capital position relative to business growth, risk, regulatory requirements and strategic objectives.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The capital instruments and balance-sheet resources commonly relevant to this role.",
+      cards: [
+        ["💵", "Common Equity", "Core shareholder capital supporting the bank's balance sheet and risk-taking capacity."],
+        ["📄", "Additional Capital Instruments", "Eligible instruments that can supplement the bank's regulatory capital resources."],
+        ["🏦", "Retained Earnings", "Accumulated earnings that contribute to the bank's capital base."],
+        ["📊", "Risk-Weighted Assets", "Risk-adjusted exposures that influence the amount of capital the bank must maintain."],
+        ["🛡️", "Capital Buffers", "Capital maintained above minimum requirements to support resilience under stress."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Capital Position Monitoring", "Monitors current and projected capital resources, requirements and ratios."],
+        ["🧭", "Capital Planning", "Forecasts capital needs across business plans, growth scenarios and strategic decisions."],
+        ["🧪", "Capital Stress Testing", "Assesses how adverse scenarios could affect the bank's capital position."],
+        ["⚖️", "Regulatory Capital Management", "Evaluates capital positions against applicable regulatory requirements and buffers."],
+        ["🏦", "Capital Allocation", "Supports decisions about how scarce capital is allocated across businesses and activities."],
+        ["📑", "Management & Regulatory Reporting", "Produces capital analysis supporting governance, planning and regulatory processes."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📊", "Asset-Liability Management", "Connects capital decisions with the structure and evolution of the bank balance sheet."],
+        ["📑", "Finance", "Provides earnings, planning and accounting inputs affecting capital forecasts."],
+        ["🛡️", "Risk Management", "Provides risk measures and scenarios that influence capital requirements."],
+        ["🏦", "Business Lines", "Use capital through lending, markets and other balance-sheet activities."],
+        ["📈", "Treasury & Funding", "Coordinates capital planning with funding and broader balance-sheet strategy."],
+        ["🏛️", "Regulators", "Set capital frameworks, minimum requirements and supervisory expectations."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting bank capital management.",
+      cards: [
+        ["🧮", "Capital Calculation Engines", "Calculate regulatory capital resources, requirements and capital ratios."],
+        ["📊", "Risk-Weighted Asset Systems", "Aggregate exposures and risk measures used in capital calculations."],
+        ["📑", "Finance & Planning Systems", "Provide earnings forecasts, balance-sheet plans and financial projections."],
+        ["🧪", "Stress-Testing Platforms", "Model the effect of adverse scenarios on earnings, losses and capital."],
+        ["🏦", "Balance-Sheet Data Platforms", "Provide consolidated information on assets, liabilities and capital resources."],
+        ["📋", "Regulatory Reporting Systems", "Support production, control and submission of required capital reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Capital Management"
+      eyebrow="TREASURY / ALM ROLE"
+      title="Capital Management Manager"
+      intro="Plans and manages the bank's capital resources so the institution can support business activity, absorb risk and meet regulatory requirements."
+      sections={sections}
+    />
+  );
+}
+
+function ALMManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💰", "Treasury / ALM", "Asset-Liability Management (ALM)"],
+        ["📊", "Asset-Liability Management (ALM)", "ALM Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The balance-sheet environment this role primarily operates in.",
+      cards: [
+        [
+          "🏦",
+          "Bank Balance Sheet",
+          "Manages the structural relationship between the bank's assets and liabilities across funding, liquidity, maturity and interest-rate characteristics.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The balance-sheet components and instruments commonly relevant to this role.",
+      cards: [
+        ["💵", "Loans & Banking Assets", "Assets whose maturity, repricing and cash-flow characteristics shape the bank balance sheet."],
+        ["🏦", "Deposits", "Customer funding with contractual and behavioral characteristics relevant to ALM."],
+        ["📄", "Wholesale Funding", "Market-based funding used to manage the bank's liability structure and maturity profile."],
+        ["📈", "Securities Portfolio", "Balance-sheet securities held for liquidity, investment or structural management purposes."],
+        ["🔄", "Hedging Instruments", "Financial instruments used to manage structural interest-rate and other balance-sheet exposures."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Balance-Sheet Analysis", "Analyzes the composition and behavior of assets and liabilities across the bank."],
+        ["⏳", "Maturity & Repricing Analysis", "Evaluates timing differences between asset and liability cash flows and repricing."],
+        ["🧭", "Balance-Sheet Planning", "Supports decisions about the desired structure and evolution of the bank balance sheet."],
+        ["🧪", "Scenario Analysis", "Tests how changes in rates, funding conditions and business assumptions affect the balance sheet."],
+        ["🔄", "Structural Hedging Coordination", "Supports hedging decisions for structural balance-sheet exposures."],
+        ["📑", "ALCO Analysis & Reporting", "Produces analysis supporting Asset-Liability Committee decisions and governance."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["💧", "Liquidity & Funding Management", "Connects balance-sheet structure with the bank's funding and liquidity profile."],
+        ["📈", "IRRBB", "Measures and manages structural interest-rate risk arising from banking-book positions."],
+        ["💵", "Capital Management", "Connects balance-sheet decisions with capital resources and constraints."],
+        ["📑", "Finance", "Provides financial planning, accounting and balance-sheet information."],
+        ["🛡️", "Risk Management", "Provides independent oversight of structural balance-sheet risks and limits."],
+        ["🏦", "Business Lines", "Generate assets, deposits and other positions that shape the bank balance sheet."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting asset-liability management.",
+      cards: [
+        ["📊", "ALM Systems", "Model asset and liability cash flows, repricing characteristics and balance-sheet exposures."],
+        ["🏦", "Core Banking Systems", "Provide loan, deposit and account information feeding balance-sheet analysis."],
+        ["🧮", "Risk & Scenario Engines", "Model balance-sheet behavior under alternative market and business scenarios."],
+        ["📈", "Market Data Platforms", "Provide yield curves, interest rates and other market inputs used in ALM analysis."],
+        ["📑", "Finance & Planning Systems", "Provide financial forecasts and balance-sheet planning information."],
+        ["🗂️", "Management Reporting", "Supports ALCO and other governance processes with consolidated balance-sheet information."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Asset-Liability Management (ALM)"
+      eyebrow="TREASURY / ALM ROLE"
+      title="ALM Manager"
+      intro="Manages the structural relationship between a bank's assets and liabilities to support a resilient and sustainable balance sheet."
+      sections={sections}
+    />
+  );
+}
+
+function LiquidityFundingManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💰", "Treasury / ALM", "Liquidity & Funding Management"],
+        ["💧", "Liquidity & Funding Management", "Liquidity & Funding Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The balance-sheet environment this role primarily operates in.",
+      cards: [
+        [
+          "🏦",
+          "Bank Funding & Liquidity",
+          "Manages the bank's own liquidity position and funding needs across deposits, wholesale funding and liquid assets.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The funding and liquidity instruments commonly relevant to this role.",
+      cards: [
+        ["💰", "Deposits", "Customer and institutional deposits that form an important part of bank funding."],
+        ["📄", "Wholesale Funding", "Market-based borrowing used to diversify and manage the bank's funding profile."],
+        ["🔄", "Secured Funding", "Funding raised against eligible collateral through secured financing transactions."],
+        ["🏦", "Central Bank Facilities", "Liquidity facilities available to eligible banks under applicable central-bank frameworks."],
+        ["💵", "High-Quality Liquid Assets", "Liquid securities and reserves maintained to support liquidity needs and regulatory requirements."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["📊", "Liquidity Position Monitoring", "Monitors current and projected liquidity across the bank."],
+        ["🧭", "Funding Planning", "Plans the amount, composition and maturity profile of bank funding."],
+        ["📉", "Cash-Flow Forecasting", "Projects contractual and behavioral cash inflows and outflows."],
+        ["🛡️", "Liquidity Stress Testing", "Assesses the bank's ability to withstand stressed funding and liquidity conditions."],
+        ["📑", "Contingency Funding Planning", "Maintains plans and available actions for periods of liquidity stress."],
+        ["⚖️", "Regulatory Liquidity Management", "Monitors liquidity positions against applicable regulatory requirements and internal limits."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["📊", "Asset-Liability Management", "Coordinates liquidity decisions with the broader structure of the bank balance sheet."],
+        ["📈", "Global Markets", "Connects Treasury with relevant money-market, funding and securities-market activity."],
+        ["🏦", "Business Lines", "Provides forecasts and balance-sheet information affecting funding and liquidity needs."],
+        ["🛡️", "Risk Management", "Provides independent oversight of liquidity risk and limits."],
+        ["📑", "Finance", "Connects liquidity and funding decisions with financial planning and balance-sheet reporting."],
+        ["🏛️", "Central Banks & Regulators", "Provide monetary, liquidity and regulatory frameworks affecting bank treasury activity."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting bank liquidity and funding management.",
+      cards: [
+        ["📊", "Treasury Management Systems", "Aggregate cash positions, funding requirements and treasury transactions."],
+        ["🏦", "Core Banking & Deposit Systems", "Provide deposit balances and customer cash-flow information."],
+        ["📈", "Market Data Platforms", "Provide rates, funding-market conditions and securities-market information."],
+        ["🧮", "Liquidity Risk Engines", "Calculate liquidity positions, scenarios and regulatory metrics."],
+        ["🔗", "Payment & Settlement Systems", "Support movement and settlement of the bank's cash and securities."],
+        ["📑", "Regulatory Reporting Systems", "Support production and control of required liquidity reporting."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Liquidity & Funding Management"
+      eyebrow="TREASURY / ALM ROLE"
+      title="Liquidity & Funding Manager"
+      intro="Manages the bank's own liquidity position and funding profile so the institution can meet obligations and maintain a resilient balance sheet."
+      sections={sections}
+    />
+  );
+}
+
+function TreasuryALMMap({
+  goBack,
+  openLiquidityFunding,
+  openALM,
+  openCapital,
+  openIRRBB,
+  openTreasuryInvestment,
+}: {
+  goBack: () => void;
+  openLiquidityFunding: () => void;
+  openALM: () => void;
+  openCapital: () => void;
+  openIRRBB: () => void;
+  openTreasuryInvestment: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💰</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Treasury / ALM</h1>
+          <p className="intro">
+            Manage the bank's own funding, liquidity, capital and balance-sheet risks.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💰</span>
+          <div>
+            <h2>Treasury / ALM Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {treasuryALMFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "treasury-liquidity-funding") {
+                  openLiquidityFunding();
+                }
+                if (item.id === "treasury-alm-core") {
+                  openALM();
+                }
+                if (item.id === "treasury-capital") {
+                  openCapital();
+                }
+                if (item.id === "treasury-irrbb") {
+                  openIRRBB();
+                }
+                if (item.id === "treasury-investment") {
+                  openTreasuryInvestment();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function TransactionBankingSolutionsBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💸", "Transaction Banking", "Transaction Banking Product / Solutions"],
+        ["🧩", "Transaction Banking Product / Solutions", "Transaction Banking Solutions Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The transaction-services environment this role primarily serves.",
+      cards: [
+        [
+          "🏢",
+          "Corporate Treasury & Transaction Services",
+          "Supports companies and institutions combining cash, payments, trade and liquidity capabilities into integrated transaction-banking solutions.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The transaction-banking capabilities commonly combined by this role.",
+      cards: [
+        ["💵", "Cash Management", "Account, collection and cash-management capabilities supporting corporate treasury operations."],
+        ["💳", "Payments", "Domestic and cross-border payment capabilities used to move corporate funds."],
+        ["🌍", "Trade Finance", "Trade instruments and financing supporting commercial flows and working capital."],
+        ["🏦", "Liquidity Management", "Structures helping clients concentrate, control and optimize liquidity."],
+        ["🔌", "Digital & Connectivity Solutions", "APIs, host-to-host and digital channels connecting corporate systems with bank services."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Client Needs Discovery", "Maps treasury processes, transaction flows and client requirements across products."],
+        ["🧩", "Solution Architecture", "Combines transaction-banking capabilities into an integrated client solution."],
+        ["📑", "RFPs & Client Proposals", "Develops responses, presentations and solution proposals for client opportunities."],
+        ["🤝", "Cross-Product Coordination", "Coordinates specialists across cash, payments, trade and liquidity management."],
+        ["⚙️", "Implementation Handoff", "Works with implementation and operations teams to move approved solutions into delivery."],
+        ["📊", "Solution Review", "Reviews client usage and evolving requirements to identify improvements or additional capabilities."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate Treasury", "Works with treasury and finance teams managing cash, payments, liquidity and trade flows."],
+        ["🤝", "Corporate Banking", "Coordinates with relationship teams responsible for the broader corporate client relationship."],
+        ["💵", "Cash Management", "Provides account, collection and cash-management expertise."],
+        ["💳", "Payments", "Provides domestic and cross-border payment capabilities."],
+        ["🌍", "Trade Finance", "Provides trade and working-capital solutions."],
+        ["🏦", "Liquidity Management", "Provides liquidity structures and balance-management expertise."],
+        ["⚙️", "Operations & Technology", "Supports implementation, connectivity and ongoing transaction processing."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting integrated transaction-banking solutions.",
+      cards: [
+        ["🏦", "Transaction Banking Platforms", "Provide account, cash, payment, trade and reporting capabilities to clients."],
+        ["🔌", "APIs & Host-to-Host Connectivity", "Connect corporate systems directly with bank transaction services."],
+        ["🖥️", "ERP & Treasury Management Systems", "Connect corporate finance and treasury workflows with banking services."],
+        ["💳", "Payment Networks", "Move funds through domestic and cross-border payment systems."],
+        ["📨", "Financial Messaging Networks", "Transmit standardized payment and trade instructions between institutions."],
+        ["🔗", "Clearing & Settlement Infrastructure", "Supports final processing and settlement of underlying transactions."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Transaction Banking Product / Solutions"
+      eyebrow="TRANSACTION BANKING ROLE"
+      title="Transaction Banking Solutions Banker"
+      intro="Designs integrated transaction-banking solutions by connecting corporate treasury needs with cash, payments, trade and liquidity capabilities."
+      sections={sections}
+    />
+  );
+}
+
+function LiquidityManagementSpecialistRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💸", "Transaction Banking", "Liquidity Management"],
+        ["🏦", "Liquidity Management", "Liquidity Management Specialist"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The treasury-services environment this role primarily serves.",
+      cards: [
+        [
+          "💧",
+          "Corporate Treasury & Liquidity",
+          "Supports companies and institutions managing cash balances, funding availability and liquidity across accounts, entities, currencies and jurisdictions.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The liquidity-management solutions commonly handled by this role.",
+      cards: [
+        ["🔄", "Cash Concentration", "Structures that consolidate balances across accounts to improve control and liquidity visibility."],
+        ["🧹", "Physical Sweeps", "Automatically move balances between accounts according to defined treasury rules."],
+        ["🏦", "Liquidity Pools", "Structures that coordinate balances across participating accounts where supported by local rules and banking capabilities."],
+        ["💱", "Multi-Currency Liquidity", "Solutions supporting liquidity management across multiple currencies and accounts."],
+        ["📊", "Balance & Interest Optimization", "Structures designed to improve the use and economics of corporate cash balances."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Liquidity Analysis", "Analyzes client balances, cash flows, account structures and liquidity requirements."],
+        ["🧩", "Structure Design", "Designs liquidity structures across accounts, entities and currencies."],
+        ["📐", "Feasibility Assessment", "Evaluates operational, regulatory and jurisdictional constraints affecting proposed structures."],
+        ["⚙️", "Implementation Coordination", "Coordinates setup with clients, operations, technology and other product teams."],
+        ["📊", "Ongoing Optimization", "Reviews structures as balances, businesses and treasury requirements change."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate Treasury", "Works with treasury teams responsible for cash positioning and liquidity management."],
+        ["💵", "Cash Management", "Coordinates liquidity structures within broader corporate cash-management solutions."],
+        ["💳", "Payments", "Connects liquidity structures with underlying corporate payment and collection flows."],
+        ["🤝", "Corporate Banking", "Coordinates with relationship teams covering the broader corporate client."],
+        ["⚖️", "Legal, Tax & Compliance", "Supports jurisdictional, regulatory and structural considerations where relevant."],
+        ["⚙️", "Operations & Technology", "Implements and operates account, sweep and liquidity-management structures."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting corporate liquidity management.",
+      cards: [
+        ["🏦", "Account Platforms", "Maintain balances and account structures used in liquidity solutions."],
+        ["🔄", "Sweep & Pooling Engines", "Automate movement or coordination of balances across participating accounts."],
+        ["📊", "Cash Positioning & Reporting", "Provide visibility into balances, transactions and liquidity positions."],
+        ["🔌", "APIs & Bank Connectivity", "Connect corporate treasury systems with bank account and transaction data."],
+        ["🖥️", "Treasury Management Systems", "Support corporate cash forecasting, positioning and liquidity workflows."],
+        ["🔗", "Payment & Settlement Infrastructure", "Supports the movement and settlement of cash underlying liquidity structures."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Liquidity Management"
+      eyebrow="TRANSACTION BANKING ROLE"
+      title="Liquidity Management Specialist"
+      intro="Designs and coordinates structures that help corporate and institutional clients control, concentrate and optimize liquidity across accounts and currencies."
+      sections={sections}
+    />
+  );
+}
+
+function TradeFinanceBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💸", "Transaction Banking", "Trade Finance"],
+        ["🌍", "Trade Finance", "Trade Finance Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The transaction-services environment this role primarily serves.",
+      cards: [
+        [
+          "🌐",
+          "Global Trade & Working Capital",
+          "Supports companies financing and managing payment, performance and counterparty risks arising from domestic and cross-border trade.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The trade-finance solutions commonly handled by this role.",
+      cards: [
+        ["📄", "Letters of Credit", "Bank-supported payment structures used in trade transactions between buyers and sellers."],
+        ["🛡️", "Guarantees & Standby Letters of Credit", "Bank undertakings supporting contractual, payment and performance obligations."],
+        ["📑", "Documentary Collections", "Bank-facilitated handling of commercial and financial documents linked to trade payments."],
+        ["💵", "Trade Loans", "Short-term financing supporting import, export and other trade-related working-capital needs."],
+        ["🔄", "Supply Chain & Receivables Finance", "Financing structures supporting supplier payments, receivables and working-capital efficiency."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Trade Needs Analysis", "Analyzes client trade flows, counterparties, payment terms and working-capital requirements."],
+        ["🧩", "Solution Structuring", "Structures trade-finance solutions around transaction, credit and risk requirements."],
+        ["📑", "Client Proposals", "Develops pricing, proposals and transaction structures for clients."],
+        ["🛡️", "Risk Coordination", "Coordinates with credit, compliance and control teams on transaction risks and approvals."],
+        ["⚙️", "Execution Coordination", "Works with operations and clients to support documentation and transaction execution."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate Treasury & Trade Teams", "Works with clients managing trade flows, working capital and transaction risks."],
+        ["🤝", "Corporate Banking", "Coordinates with relationship teams covering the broader corporate client relationship."],
+        ["🛡️", "Credit & Risk", "Assesses credit exposure, transaction structures and risk limits."],
+        ["⚖️", "Compliance / Financial Crime", "Supports sanctions, KYC and financial-crime controls affecting trade transactions."],
+        ["⚙️", "Trade Operations", "Processes documents, instruments and operational steps supporting trade-finance transactions."],
+        ["🌐", "Correspondent Banks", "Supports transactions requiring banking relationships across jurisdictions."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting trade-finance activity.",
+      cards: [
+        ["📨", "Financial Messaging Networks", "Transmit standardized trade and payment instructions between financial institutions."],
+        ["🖥️", "Trade Finance Platforms", "Support issuance, processing and monitoring of trade-finance instruments."],
+        ["📑", "Document Management Systems", "Support handling and review of transaction and trade documentation."],
+        ["🔗", "Payment & Settlement Infrastructure", "Moves and settles funds associated with underlying trade transactions."],
+        ["🛡️", "Sanctions & Screening Systems", "Support regulatory and financial-crime controls around parties and transactions."],
+        ["📚", "Trade Rules & Standards", "Common international rules and standards support consistent handling of trade-finance instruments."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Trade Finance"
+      eyebrow="TRANSACTION BANKING ROLE"
+      title="Trade Finance Banker"
+      intro="Structures and coordinates banking solutions that help corporate clients finance trade, manage working capital and reduce transaction risks."
+      sections={sections}
+    />
+  );
+}
+
+function PaymentsProductManagerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💸", "Transaction Banking", "Payments"],
+        ["💳", "Payments", "Payments Product Manager"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The transaction-services environment this role primarily serves.",
+      cards: [
+        [
+          "🌐",
+          "Corporate & Institutional Payments",
+          "Supports payment services used by companies and institutions to move funds domestically and across borders.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The payment capabilities commonly managed by this role.",
+      cards: [
+        ["🏦", "Domestic Payments", "Payment capabilities for moving funds within domestic banking systems."],
+        ["🌍", "Cross-Border Payments", "Solutions for transferring funds across currencies, banks and jurisdictions."],
+        ["📦", "Bulk Payments", "Capabilities supporting high-volume corporate payment files and recurring transaction flows."],
+        ["⚡", "Real-Time Payments", "Instant or near-real-time payment capabilities where supported by local infrastructure."],
+        ["🔌", "Payment APIs & Connectivity", "Digital interfaces connecting corporate systems with bank payment services."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🧭", "Product Strategy & Roadmap", "Defines priorities and development plans for payment products and capabilities."],
+        ["🔎", "Client & Market Analysis", "Analyzes client needs, payment trends and changes in market infrastructure."],
+        ["🧩", "Product Design", "Develops payment features, service models and propositions."],
+        ["⚙️", "Delivery Coordination", "Works with technology and operations to implement and improve payment capabilities."],
+        ["📊", "Performance & Risk Management", "Monitors product usage, service performance, controls and operational risks."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate Treasury", "Works with treasury teams responsible for corporate payment flows."],
+        ["💵", "Cash Management", "Coordinates payment capabilities within broader cash-management solutions."],
+        ["⚙️", "Operations & Technology", "Builds and operates the systems supporting payment processing."],
+        ["⚖️", "Compliance / Financial Crime", "Supports regulatory, sanctions and financial-crime controls around payments."],
+        ["🌐", "Payment Networks & Correspondent Banks", "Connects payment flows across banking networks and jurisdictions."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting corporate and institutional payments.",
+      cards: [
+        ["🏦", "Domestic Payment Rails", "Clearing and payment systems supporting domestic fund transfers."],
+        ["🌐", "Cross-Border Messaging & Correspondent Networks", "Connect banks and payment instructions across jurisdictions."],
+        ["⚡", "Instant Payment Systems", "Support real-time or near-real-time settlement where available."],
+        ["🔌", "APIs & Host-to-Host Connectivity", "Connect corporate systems directly with bank payment services."],
+        ["🔗", "Clearing & Settlement Systems", "Process and settle underlying payment obligations between institutions."],
+        ["📨", "Payment Messaging Standards", "Standardized financial messages support interoperable payment processing."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Payments"
+      eyebrow="TRANSACTION BANKING ROLE"
+      title="Payments Product Manager"
+      intro="Develops and manages payment capabilities used by corporate and institutional clients to move funds domestically and across borders."
+      sections={sections}
+    />
+  );
+}
+
+function CashManagementBankerRole({ goBack }: { goBack: () => void }) {
+  const sections: RoleDetailSection[] = [
+    {
+      emoji: "📍",
+      title: "Where Am I?",
+      description: "See where this role sits within the financial system.",
+      cards: [
+        ["🏦", "Financial Institutions", "Banks"],
+        ["💸", "Transaction Banking", "Cash Management"],
+        ["💵", "Cash Management", "Cash Management Banker"],
+      ],
+    },
+    {
+      emoji: "📈",
+      title: "What Market?",
+      description: "The financial-services environment this role primarily serves.",
+      cards: [
+        [
+          "🏢",
+          "Corporate Cash & Treasury Services",
+          "Supports companies and institutions managing operating cash, collections, payments and day-to-day treasury flows across accounts and currencies.",
+        ],
+      ],
+    },
+    {
+      emoji: "🧩",
+      title: "What Products?",
+      description: "The cash-management solutions commonly handled by this role.",
+      cards: [
+        ["🏦", "Operating Accounts", "Accounts used to receive, hold and move corporate cash."],
+        ["📥", "Collections & Receivables", "Solutions for collecting and reconciling incoming cash."],
+        ["📤", "Payables Solutions", "Solutions for controlled and efficient corporate payments."],
+        ["🔄", "Cash Concentration", "Structures that centralize balances across accounts."],
+        ["🌐", "Cross-Border Cash Management", "Treasury structures spanning currencies, entities and jurisdictions."],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Work?",
+      description: "The core activities performed in the role.",
+      cards: [
+        ["🔎", "Treasury Needs Analysis", "Analyzes how clients collect, hold, move and control cash."],
+        ["🧩", "Solution Design", "Combines accounts, collections, payments and liquidity tools into treasury solutions."],
+        ["📑", "Client Proposals", "Develops solution proposals and implementation plans."],
+        ["⚙️", "Implementation Coordination", "Coordinates onboarding across clients, product teams and operations."],
+        ["🤝", "Relationship Support", "Supports evolving treasury requirements and operating structures."],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Do I Work With?",
+      description: "The main teams and stakeholders around the role.",
+      cards: [
+        ["🏢", "Corporate Treasury", "Works with treasurers, cash managers and finance teams."],
+        ["🌐", "Corporate Banking", "Coordinates with broader corporate relationship teams."],
+        ["💳", "Payments", "Works with domestic and cross-border payments specialists."],
+        ["🏦", "Liquidity Management", "Coordinates liquidity and account structures."],
+        ["⚙️", "Operations & Technology", "Supports implementation, servicing and transaction flows."],
+      ],
+    },
+    {
+      emoji: "⚙️",
+      title: "What Infrastructure?",
+      description: "The infrastructure supporting corporate cash management.",
+      cards: [
+        ["💳", "Payment Rails", "Move funds between accounts and financial institutions."],
+        ["🏦", "Banking Platforms", "Provide account information, transaction initiation and treasury controls."],
+        ["🔌", "APIs & Host-to-Host Connectivity", "Connect corporate systems directly with bank services."],
+        ["🖥️", "ERP & Treasury Systems", "Connect corporate accounting and treasury workflows with banks."],
+        ["🔗", "Clearing & Settlement Infrastructure", "Supports processing and settlement of underlying cash movements."],
+      ],
+    },
+  ];
+
+  return (
+    <RoleDetailPage
+      goBack={goBack}
+      backLabel="Cash Management"
+      eyebrow="TRANSACTION BANKING ROLE"
+      title="Cash Management Banker"
+      intro="Helps corporate and institutional clients manage operating cash, collections, payments and treasury structures."
+      sections={sections}
+    />
+  );
+}
+
+function TransactionBankingMap({
+  goBack,
+  openCashManagement,
+  openPayments,
+  openTradeFinance,
+  openLiquidity,
+  openSolutions,
+}: {
+  goBack: () => void;
+  openCashManagement: () => void;
+  openPayments: () => void;
+  openTradeFinance: () => void;
+  openLiquidity: () => void;
+  openSolutions: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Banks
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💸</div>
+        <div>
+          <p className="eyebrow">BANK FUNCTION</p>
+          <h1>Transaction Banking</h1>
+          <p className="intro">
+            Help companies manage cash, payments, trade flows and liquidity through the banking system.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💸</span>
+          <div>
+            <h2>Transaction Banking Functions</h2>
+            <p>Select a function to explore its work, teams and roles.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          {transactionBankingFunctions.map((item) => (
+            <button
+              className="finance-card"
+              key={item.id}
+              onClick={() => {
+                if (item.id === "tb-cash-management") {
+                  openCashManagement();
+                }
+                if (item.id === "tb-payments") {
+                  openPayments();
+                }
+                if (item.id === "tb-trade-finance") {
+                  openTradeFinance();
+                }
+                if (item.id === "tb-liquidity") {
+                  openLiquidity();
+                }
+                if (item.id === "tb-solutions") {
+                  openSolutions();
+                }
+              }}
+            >
+              <span>{item.emoji}</span>
+              <strong>{item.label}</strong>
+              <span className="card-arrow">→</span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }
 
@@ -15088,7 +18572,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "commercial-banking" | "corporate-banking" | "investment-banking" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function">(
     "system"
   );
 
@@ -16310,7 +19794,7 @@ function App() {
     );
   }
 
-  
+
 
 
 
@@ -16392,22 +19876,19 @@ if (page === "ib-levfin-banker") {
 
 if (page === "ib-levfin") {
   return (
-    <RoleDetailPage
+    <CommercialRoleMap
       goBack={() => setPage("investment-banking")}
-      backLabel="Investment Banking"
-      eyebrow="INVESTMENT BANKING FUNCTION"
       title="Leveraged Finance"
+      emoji="🏗️"
       intro="Structure and execute leveraged loans, high-yield debt and acquisition financing for corporate and sponsor clients."
-      sections={[
+      roles={[
         {
           emoji: "🏗️",
-          title: "Roles",
-          description: "Representative roles within this function.",
-          cards: [
-            ["🏗️", "Leveraged Finance Banker", "Structures leveraged loans, high-yield debt and acquisition financing across leveraged corporate and sponsor transactions."],
-          ],
+          title: "Leveraged Finance Banker",
+          description: "Structures leveraged loans, high-yield debt and acquisition financing across leveraged corporate and sponsor transactions.",
         },
       ]}
+      openRole={() => setPage("ib-levfin-banker")}
     />
   );
 }
@@ -16422,22 +19903,19 @@ if (page === "ib-dcm-banker") {
 
 if (page === "ib-dcm") {
   return (
-    <RoleDetailPage
+    <CommercialRoleMap
       goBack={() => setPage("investment-banking")}
-      backLabel="Investment Banking"
-      eyebrow="INVESTMENT BANKING FUNCTION"
       title="Debt Capital Markets (DCM)"
+      emoji="🧾"
       intro="Advise issuers on bond financing, refinancing strategy and access to primary debt capital markets."
-      sections={[
+      roles={[
         {
           emoji: "🧾",
-          title: "Roles",
-          description: "Representative roles within this function.",
-          cards: [
-            ["🧾", "Debt Capital Markets Banker", "Advises issuers on debt financing strategy, transaction structure, market timing and bond execution."],
-          ],
+          title: "Debt Capital Markets Banker",
+          description: "Advises issuers on debt financing strategy, transaction structure, market timing and bond execution.",
         },
       ]}
+      openRole={() => setPage("ib-dcm-banker")}
     />
   );
 }
@@ -16452,22 +19930,19 @@ if (page === "ib-ecm-banker") {
 
 if (page === "ib-ecm") {
   return (
-    <RoleDetailPage
+    <CommercialRoleMap
       goBack={() => setPage("investment-banking")}
-      backLabel="Investment Banking"
-      eyebrow="INVESTMENT BANKING FUNCTION"
       title="Equity Capital Markets (ECM)"
+      emoji="💰"
       intro="Advise companies and shareholders on equity issuance, capital raising and primary-market transactions."
-      sections={[
+      roles={[
         {
           emoji: "💰",
-          title: "Roles",
-          description: "Representative roles within this function.",
-          cards: [
-            ["💰", "Equity Capital Markets Banker", "Advises issuers on equity financing strategy, transaction structure, market timing and execution."],
-          ],
+          title: "Equity Capital Markets Banker",
+          description: "Advises issuers on equity financing strategy, transaction structure, market timing and execution.",
         },
       ]}
+      openRole={() => setPage("ib-ecm-banker")}
     />
   );
 }
@@ -16482,22 +19957,19 @@ if (page === "ib-ma-banker") {
 
 if (page === "ib-ma") {
   return (
-    <RoleDetailPage
+    <CommercialRoleMap
       goBack={() => setPage("investment-banking")}
-      backLabel="Investment Banking"
-      eyebrow="INVESTMENT BANKING FUNCTION"
       title="Mergers & Acquisitions (M&A)"
+      emoji="🏢"
       intro="Advise clients on acquisitions, mergers, divestitures and other strategic corporate transactions."
-      sections={[
+      roles={[
         {
           emoji: "🏢",
-          title: "Roles",
-          description: "Representative roles within this function.",
-          cards: [
-            ["🏢", "M&A Banker", "Advises clients on strategic transactions, valuation, transaction structure and execution."],
-          ],
+          title: "M&A Banker",
+          description: "Advises clients on strategic transactions, valuation, transaction structure and execution.",
         },
       ]}
+      openRole={() => setPage("ib-ma-banker")}
     />
   );
 }
@@ -16512,22 +19984,811 @@ if (page === "ib-coverage-banker") {
 
 if (page === "ib-coverage") {
   return (
-    <RoleDetailPage
+    <CommercialRoleMap
       goBack={() => setPage("investment-banking")}
-      backLabel="Investment Banking"
-      eyebrow="INVESTMENT BANKING FUNCTION"
       title="Industry / Client Coverage"
+      emoji="🧭"
       intro="Manage strategic client relationships and coordinate investment banking solutions."
-      sections={[
+      roles={[
         {
           emoji: "🧭",
-          title: "Roles",
-          description: "Representative roles within this function.",
-          cards: [
-            ["🧭", "Investment Banking Coverage Banker", "Manages client relationships, originates opportunities and coordinates specialist product teams."],
-          ],
+          title: "Investment Banking Coverage Banker",
+          description: "Manages client relationships, originates opportunities and coordinates specialist product teams.",
         },
       ]}
+      openRole={() => setPage("ib-coverage-banker")}
+    />
+  );
+}
+
+if (page === "tb-solutions-banker") {
+  return (
+    <TransactionBankingSolutionsBankerRole
+      goBack={() => setPage("tb-solutions")}
+    />
+  );
+}
+
+if (page === "tb-solutions") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("transaction-banking")}
+      title="Transaction Banking Product / Solutions"
+      emoji="🧩"
+      intro="Connect cash, payments, trade and liquidity capabilities into integrated solutions for corporate and institutional clients."
+      roles={[
+        {
+          emoji: "🧩",
+          title: "Transaction Banking Solutions Banker",
+          description: "Designs integrated transaction-banking solutions around corporate treasury and transaction needs.",
+        },
+      ]}
+      openRole={() => setPage("tb-solutions-banker")}
+    />
+  );
+}
+
+if (page === "tb-liquidity-specialist") {
+  return (
+    <LiquidityManagementSpecialistRole
+      goBack={() => setPage("tb-liquidity")}
+    />
+  );
+}
+
+if (page === "tb-liquidity") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("transaction-banking")}
+      title="Liquidity Management"
+      emoji="🏦"
+      intro="Help companies control, concentrate and optimize liquidity across accounts, entities and currencies."
+      roles={[
+        {
+          emoji: "🏦",
+          title: "Liquidity Management Specialist",
+          description: "Designs liquidity structures for corporate and institutional treasury clients.",
+        },
+      ]}
+      openRole={() => setPage("tb-liquidity-specialist")}
+    />
+  );
+}
+
+if (page === "tb-trade-finance-banker") {
+  return (
+    <TradeFinanceBankerRole
+      goBack={() => setPage("tb-trade-finance")}
+    />
+  );
+}
+
+if (page === "tb-trade-finance") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("transaction-banking")}
+      title="Trade Finance"
+      emoji="🌍"
+      intro="Support domestic and cross-border trade through financing, payment and risk-mitigation solutions."
+      roles={[
+        {
+          emoji: "🌍",
+          title: "Trade Finance Banker",
+          description: "Structures trade-finance and working-capital solutions for corporate clients.",
+        },
+      ]}
+      openRole={() => setPage("tb-trade-finance-banker")}
+    />
+  );
+}
+
+if (page === "tb-payments-product-manager") {
+  return (
+    <PaymentsProductManagerRole
+      goBack={() => setPage("tb-payments")}
+    />
+  );
+}
+
+if (page === "tb-payments") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("transaction-banking")}
+      title="Payments"
+      emoji="💳"
+      intro="Move corporate and institutional funds through domestic and cross-border payment systems."
+      roles={[
+        {
+          emoji: "💳",
+          title: "Payments Product Manager",
+          description: "Develops and manages payment capabilities for corporate and institutional clients.",
+        },
+      ]}
+      openRole={() => setPage("tb-payments-product-manager")}
+    />
+  );
+}
+
+if (page === "tb-cash-management-banker") {
+  return (
+    <CashManagementBankerRole
+      goBack={() => setPage("tb-cash-management")}
+    />
+  );
+}
+
+if (page === "tb-cash-management") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("transaction-banking")}
+      title="Cash Management"
+      emoji="💵"
+      intro="Help companies manage operating cash, collections, payments and treasury structures."
+      roles={[
+        {
+          emoji: "💵",
+          title: "Cash Management Banker",
+          description: "Designs and coordinates cash-management solutions for corporate and institutional clients.",
+        },
+      ]}
+      openRole={() => setPage("tb-cash-management-banker")}
+    />
+  );
+}
+
+if (page === "treasury-investment-manager") {
+  return (
+    <TreasuryInvestmentManagerRole
+      goBack={() => setPage("treasury-investment")}
+    />
+  );
+}
+
+if (page === "treasury-investment") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("treasury-alm")}
+      title="Treasury Investment / Balance Sheet Management"
+      emoji="🏦"
+      intro="Manage treasury investment and liquidity portfolios in support of the bank's own balance sheet."
+      roles={[
+        {
+          emoji: "🏦",
+          title: "Treasury Investment Manager",
+          description: "Manages liquid assets and treasury investments within the bank's balance-sheet, liquidity and risk objectives.",
+        },
+      ]}
+      openRole={() => setPage("treasury-investment-manager")}
+    />
+  );
+}
+
+if (page === "treasury-irrbb-manager") {
+  return (
+    <IRRBBManagerRole
+      goBack={() => setPage("treasury-irrbb")}
+    />
+  );
+}
+
+if (page === "treasury-irrbb") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("treasury-alm")}
+      title="Interest Rate Risk in the Banking Book (IRRBB)"
+      emoji="📈"
+      intro="Measure and manage structural interest-rate risk arising from the bank's banking-book assets and liabilities."
+      roles={[
+        {
+          emoji: "📈",
+          title: "IRRBB Manager",
+          description: "Measures structural interest-rate exposure and supports balance-sheet risk management and hedging decisions.",
+        },
+      ]}
+      openRole={() => setPage("treasury-irrbb-manager")}
+    />
+  );
+}
+
+if (page === "treasury-capital-manager") {
+  return (
+    <CapitalManagementManagerRole
+      goBack={() => setPage("treasury-capital")}
+    />
+  );
+}
+
+if (page === "treasury-capital") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("treasury-alm")}
+      title="Capital Management"
+      emoji="💵"
+      intro="Plan and manage the bank's capital resources relative to business growth, risk and regulatory requirements."
+      roles={[
+        {
+          emoji: "💵",
+          title: "Capital Management Manager",
+          description: "Plans, monitors and manages the bank's capital position and capital requirements.",
+        },
+      ]}
+      openRole={() => setPage("treasury-capital-manager")}
+    />
+  );
+}
+
+if (page === "treasury-alm-manager") {
+  return (
+    <ALMManagerRole
+      goBack={() => setPage("treasury-alm-core")}
+    />
+  );
+}
+
+if (page === "treasury-alm-core") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("treasury-alm")}
+      title="Asset-Liability Management (ALM)"
+      emoji="📊"
+      intro="Manage the structural relationship between the bank's assets and liabilities across maturity, repricing and balance-sheet characteristics."
+      roles={[
+        {
+          emoji: "📊",
+          title: "ALM Manager",
+          description: "Analyzes and manages the structural composition and behavior of the bank's balance sheet.",
+        },
+      ]}
+      openRole={() => setPage("treasury-alm-manager")}
+    />
+  );
+}
+
+if (page === "treasury-liquidity-funding-manager") {
+  return (
+    <LiquidityFundingManagerRole
+      goBack={() => setPage("treasury-liquidity-funding")}
+    />
+  );
+}
+
+if (page === "treasury-liquidity-funding") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("treasury-alm")}
+      title="Liquidity & Funding Management"
+      emoji="💧"
+      intro="Manage the bank's own liquidity position, funding profile and ability to meet cash obligations."
+      roles={[
+        {
+          emoji: "💧",
+          title: "Liquidity & Funding Manager",
+          description: "Manages bank liquidity, funding requirements and the resilience of the institution's funding profile.",
+        },
+      ]}
+      openRole={() => setPage("treasury-liquidity-funding-manager")}
+    />
+  );
+}
+
+if (page === "ops-resilience-manager") {
+  return (
+    <TechnologyInfrastructureResilienceManagerRole
+      goBack={() => setPage("ops-resilience")}
+    />
+  );
+}
+
+if (page === "ops-resilience") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Technology Infrastructure & Resilience"
+      emoji="🛡️"
+      intro="Keep critical banking technology available, recoverable and resilient through infrastructure management, incident response and continuity planning."
+      roles={[
+        {
+          emoji: "🛡️",
+          title: "Technology Infrastructure / Resilience Manager",
+          description: "Oversees critical technology infrastructure, availability, incident recovery and operational resilience.",
+        },
+      ]}
+      openRole={() => setPage("ops-resilience-manager")}
+    />
+  );
+}
+
+if (page === "ops-technology-engineer") {
+  return (
+    <BankingTechnologyEngineerRole
+      goBack={() => setPage("ops-technology")}
+    />
+  );
+}
+
+if (page === "ops-technology") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Banking Technology / Engineering"
+      emoji="💻"
+      intro="Build and operate the applications, integrations and data platforms that enable banking and financial-market activity."
+      roles={[
+        {
+          emoji: "💻",
+          title: "Banking Technology Engineer",
+          description: "Develops and integrates applications, data flows and technology platforms supporting banking and markets.",
+        },
+      ]}
+      openRole={() => setPage("ops-technology-engineer")}
+    />
+  );
+}
+
+if (page === "ops-onboarding-analyst") {
+  return (
+    <ClientOnboardingAnalystRole
+      goBack={() => setPage("ops-onboarding")}
+    />
+  );
+}
+
+if (page === "ops-onboarding") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Client Onboarding & Reference Data"
+      emoji="🧾"
+      intro="Operationally establish clients, counterparties and accounts and maintain the reference data used across banking systems."
+      roles={[
+        {
+          emoji: "🧾",
+          title: "Client Onboarding Analyst",
+          description: "Coordinates documentation, client setup, reference data, approvals and system activation.",
+        },
+      ]}
+      openRole={() => setPage("ops-onboarding-analyst")}
+    />
+  );
+}
+
+if (page === "ops-banking-analyst") {
+  return (
+    <BankingOperationsAnalystRole
+      goBack={() => setPage("ops-banking")}
+    />
+  );
+}
+
+if (page === "ops-banking") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Loan & Banking Operations"
+      emoji="🏦"
+      intro="Operate the booking, servicing, payment and record lifecycle of loans and banking products."
+      roles={[
+        {
+          emoji: "🏦",
+          title: "Banking Operations Analyst",
+          description: "Supports loan booking, servicing, cash processing, record maintenance and reconciliation.",
+        },
+      ]}
+      openRole={() => setPage("ops-banking-analyst")}
+    />
+  );
+}
+
+if (page === "ops-payments-analyst") {
+  return (
+    <PaymentsOperationsAnalystRole
+      goBack={() => setPage("ops-payments")}
+    />
+  );
+}
+
+if (page === "ops-payments") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Payments & Transaction Operations"
+      emoji="💸"
+      intro="Operate and control the processing, investigation, reconciliation and settlement of payment transactions."
+      roles={[
+        {
+          emoji: "💸",
+          title: "Payments Operations Analyst",
+          description: "Supports payment processing, exceptions, investigations, reconciliation and settlement.",
+        },
+      ]}
+      openRole={() => setPage("ops-payments-analyst")}
+    />
+  );
+}
+
+if (page === "ops-markets-analyst") {
+  return (
+    <MarketsOperationsAnalystRole
+      goBack={() => setPage("ops-markets")}
+    />
+  );
+}
+
+if (page === "ops-markets") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("operations-technology")}
+      title="Markets Operations"
+      emoji="🔄"
+      intro="Support the post-trade lifecycle of transactions across global financial markets."
+      roles={[
+        {
+          emoji: "🔄",
+          title: "Markets Operations Analyst",
+          description: "Supports trade validation, confirmation, settlement, lifecycle processing and reconciliation.",
+        },
+      ]}
+      openRole={() => setPage("ops-markets-analyst")}
+    />
+  );
+}
+
+if (page === "operations-technology") {
+  return (
+    <OperationsTechnologyMap
+      goBack={() => setPage("banks")}
+      openMarketsOperations={() => setPage("ops-markets")}
+      openPaymentsOperations={() => setPage("ops-payments")}
+      openBankingOperations={() => setPage("ops-banking")}
+      openClientOnboarding={() => setPage("ops-onboarding")}
+      openBankingTechnology={() => setPage("ops-technology")}
+      openTechnologyResilience={() => setPage("ops-resilience")}
+    />
+  );
+}
+
+if (page === "compliance-conduct-manager") {
+  return (
+    <ConductRiskComplianceGovernanceManagerRole
+      goBack={() => setPage("compliance-conduct")}
+    />
+  );
+}
+
+if (page === "compliance-conduct") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("compliance-financial-crime")}
+      title="Conduct Risk & Compliance Governance"
+      emoji="🧭"
+      intro="Coordinate bank-wide conduct-risk frameworks, compliance governance, issue oversight and senior-management reporting."
+      roles={[
+        {
+          emoji: "🧭",
+          title: "Conduct Risk / Compliance Governance Manager",
+          description: "Aggregates conduct and compliance risks, issues and policies into an enterprise governance framework.",
+        },
+      ]}
+      openRole={() => setPage("compliance-conduct-manager")}
+    />
+  );
+}
+
+if (page === "compliance-markets-officer") {
+  return (
+    <MarketsComplianceOfficerRole
+      goBack={() => setPage("compliance-markets")}
+    />
+  );
+}
+
+if (page === "compliance-markets") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("compliance-financial-crime")}
+      title="Markets Compliance / Surveillance"
+      emoji="📈"
+      intro="Provide independent compliance oversight and surveillance across sales, trading and other regulated markets activities."
+      roles={[
+        {
+          emoji: "📈",
+          title: "Markets Compliance Officer",
+          description: "Advises markets businesses, monitors conduct and supports surveillance of trading and communications activity.",
+        },
+      ]}
+      openRole={() => setPage("compliance-markets-officer")}
+    />
+  );
+}
+
+if (page === "compliance-kyc-officer") {
+  return (
+    <KYCCDDOfficerRole
+      goBack={() => setPage("compliance-kyc")}
+    />
+  );
+}
+
+if (page === "compliance-kyc") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("compliance-financial-crime")}
+      title="KYC / Customer Due Diligence"
+      emoji="👤"
+      intro="Identify customers, ownership structures and financial-crime risk before and throughout the banking relationship."
+      roles={[
+        {
+          emoji: "👤",
+          title: "KYC / CDD Officer",
+          description: "Verifies customers and beneficial owners, assesses customer risk and performs ongoing due diligence.",
+        },
+      ]}
+      openRole={() => setPage("compliance-kyc-officer")}
+    />
+  );
+}
+
+if (page === "compliance-fincrime-officer") {
+  return (
+    <FinancialCrimeComplianceOfficerRole
+      goBack={() => setPage("compliance-fincrime")}
+    />
+  );
+}
+
+if (page === "compliance-fincrime") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("compliance-financial-crime")}
+      title="AML / Financial Crime"
+      emoji="🚨"
+      intro="Prevent and oversee money laundering, sanctions and related financial-crime risks across the bank."
+      roles={[
+        {
+          emoji: "🚨",
+          title: "Financial Crime Compliance Officer",
+          description: "Oversees AML, sanctions and related financial-crime risks, controls and escalation processes.",
+        },
+      ]}
+      openRole={() => setPage("compliance-fincrime-officer")}
+    />
+  );
+}
+
+if (page === "compliance-officer") {
+  return <ComplianceOfficerRole goBack={() => setPage("compliance-regulatory")} />;
+}
+
+if (page === "compliance-regulatory") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("compliance-financial-crime")}
+      title="Regulatory Compliance"
+      emoji="📜"
+      intro="Oversee compliance with laws, regulations and regulatory expectations affecting the bank."
+      roles={[
+        {
+          emoji: "📜",
+          title: "Compliance Officer",
+          description: "Interprets regulatory requirements, advises the business and independently monitors compliance risk.",
+        },
+      ]}
+      openRole={() => setPage("compliance-officer")}
+    />
+  );
+}
+
+if (page === "compliance-financial-crime") {
+  return (
+    <ComplianceFinancialCrimeMap
+      goBack={() => setPage("banks")}
+      openRegulatoryCompliance={() => setPage("compliance-regulatory")}
+      openFinancialCrime={() => setPage("compliance-fincrime")}
+      openKYC={() => setPage("compliance-kyc")}
+      openMarketsCompliance={() => setPage("compliance-markets")}
+      openConductGovernance={() => setPage("compliance-conduct")}
+    />
+  );
+}
+
+if (page === "risk-enterprise-manager") {
+  return (
+    <EnterpriseRiskManagerRole
+      goBack={() => setPage("risk-enterprise")}
+    />
+  );
+}
+
+if (page === "risk-enterprise") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Enterprise Risk / Risk Governance"
+      emoji="🏦"
+      intro="Aggregate major risks across the bank and support enterprise-wide risk appetite, governance and senior oversight."
+      roles={[
+        {
+          emoji: "🏦",
+          title: "Enterprise Risk Manager",
+          description: "Aggregates major risks, monitors risk appetite and supports enterprise-wide risk governance.",
+        },
+      ]}
+      openRole={() => setPage("risk-enterprise-manager")}
+    />
+  );
+}
+
+if (page === "risk-model-manager") {
+  return (
+    <ModelRiskManagerRole
+      goBack={() => setPage("risk-model")}
+    />
+  );
+}
+
+if (page === "risk-model") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Model Risk"
+      emoji="🧮"
+      intro="Independently validate and oversee models used across the bank and their associated limitations and risks."
+      roles={[
+        {
+          emoji: "🧮",
+          title: "Model Risk Manager",
+          description: "Validates models, challenges assumptions and oversees model limitations, governance and lifecycle risk.",
+        },
+      ]}
+      openRole={() => setPage("risk-model-manager")}
+    />
+  );
+}
+
+if (page === "risk-operational-manager") {
+  return (
+    <OperationalRiskManagerRole
+      goBack={() => setPage("risk-operational")}
+    />
+  );
+}
+
+if (page === "risk-operational") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Operational Risk"
+      emoji="⚙️"
+      intro="Independently oversee risks arising from processes, people, systems and external events across the bank."
+      roles={[
+        {
+          emoji: "⚙️",
+          title: "Operational Risk Manager",
+          description: "Assesses operational risks, challenges controls and monitors incidents, indicators and remediation.",
+        },
+      ]}
+      openRole={() => setPage("risk-operational-manager")}
+    />
+  );
+}
+
+if (page === "risk-liquidity-manager") {
+  return (
+    <LiquidityRiskManagerRole
+      goBack={() => setPage("risk-liquidity")}
+    />
+  );
+}
+
+if (page === "risk-liquidity") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Liquidity Risk"
+      emoji="💧"
+      intro="Independently measure, monitor and challenge the bank's funding and liquidity risk."
+      roles={[
+        {
+          emoji: "💧",
+          title: "Liquidity Risk Manager",
+          description: "Provides independent oversight of liquidity exposures, limits, funding assumptions and stress resilience.",
+        },
+      ]}
+      openRole={() => setPage("risk-liquidity-manager")}
+    />
+  );
+}
+
+if (page === "risk-market-manager") {
+  return (
+    <MarketRiskManagerRole
+      goBack={() => setPage("risk-market")}
+    />
+  );
+}
+
+if (page === "risk-market") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Market Risk"
+      emoji="📈"
+      intro="Independently measure, monitor and challenge the bank's exposure to movements in financial markets."
+      roles={[
+        {
+          emoji: "📈",
+          title: "Market Risk Manager",
+          description: "Monitors market exposures, limits and stress risks across trading and relevant treasury activities.",
+        },
+      ]}
+      openRole={() => setPage("risk-market-manager")}
+    />
+  );
+}
+
+if (page === "risk-credit-manager") {
+  return (
+    <CreditRiskManagerRole
+      goBack={() => setPage("risk-credit")}
+    />
+  );
+}
+
+if (page === "risk-credit") {
+  return (
+    <CommercialRoleMap
+      goBack={() => setPage("risk-management")}
+      title="Credit Risk"
+      emoji="💳"
+      intro="Independently assess and oversee borrower, issuer and counterparty credit risk across the bank."
+      roles={[
+        {
+          emoji: "💳",
+          title: "Credit Risk Manager",
+          description: "Assesses credit quality, monitors exposures and provides independent credit-risk oversight.",
+        },
+      ]}
+      openRole={() => setPage("risk-credit-manager")}
+    />
+  );
+}
+
+if (page === "risk-management") {
+  return (
+    <RiskManagementMap
+      goBack={() => setPage("banks")}
+      openCreditRisk={() => setPage("risk-credit")}
+      openMarketRisk={() => setPage("risk-market")}
+      openLiquidityRisk={() => setPage("risk-liquidity")}
+      openOperationalRisk={() => setPage("risk-operational")}
+      openModelRisk={() => setPage("risk-model")}
+      openEnterpriseRisk={() => setPage("risk-enterprise")}
+    />
+  );
+}
+
+if (page === "treasury-alm") {
+  return (
+    <TreasuryALMMap
+      goBack={() => setPage("banks")}
+      openLiquidityFunding={() => setPage("treasury-liquidity-funding")}
+      openALM={() => setPage("treasury-alm-core")}
+      openCapital={() => setPage("treasury-capital")}
+      openIRRBB={() => setPage("treasury-irrbb")}
+      openTreasuryInvestment={() => setPage("treasury-investment")}
+    />
+  );
+}
+
+if (page === "transaction-banking") {
+  return (
+    <TransactionBankingMap
+      goBack={() => setPage("banks")}
+      openCashManagement={() => setPage("tb-cash-management")}
+      openPayments={() => setPage("tb-payments")}
+      openTradeFinance={() => setPage("tb-trade-finance")}
+      openLiquidity={() => setPage("tb-liquidity")}
+      openSolutions={() => setPage("tb-solutions")}
     />
   );
 }
@@ -16661,7 +20922,188 @@ if (page === "banks") {
 openCommercialBanking={() => setPage("commercial-banking")}
       openCorporateBanking={() => setPage("corporate-banking")}
       openInvestmentBanking={() => setPage("investment-banking")}
+      openTransactionBanking={() => setPage("transaction-banking")}
+      openTreasuryALM={() => setPage("treasury-alm")}
+      openRiskManagement={() => setPage("risk-management")}
+      openComplianceFinancialCrime={() => setPage("compliance-financial-crime")}
+      openOperationsTechnology={() => setPage("operations-technology")}
         openGlobalMarkets={() => setPage("global-markets")}
+      />
+    );
+  }
+
+  if (page === "funds-operations-analyst") {
+    return (
+      <FundOperationsAnalystRole
+        goBack={() => setPage("funds-operations")}
+      />
+    );
+  }
+
+  if (page === "funds-operations") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Fund Operations"
+        emoji="⚙️"
+        intro="Maintain accurate fund books and records through trade processing, reconciliation, settlement, valuation and operational control."
+        roles={[
+          {
+            emoji: "📋",
+            title: "Fund Operations Analyst",
+            description: "Processes investment activity and maintains accurate positions, cash, settlement, valuation and fund records.",
+          },
+        ]}
+        openRole={() => setPage("funds-operations-analyst")}
+      />
+    );
+  }
+
+  if (page === "funds-distribution-manager") {
+    return (
+      <InstitutionalDistributionManagerRole
+        goBack={() => setPage("funds-distribution")}
+      />
+    );
+  }
+
+  if (page === "funds-distribution") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Distribution & Client Coverage"
+        emoji="🤝"
+        intro="Connect investment strategies and fund capabilities with institutional investors, intermediaries and prospective clients."
+        roles={[
+          {
+            emoji: "👥",
+            title: "Institutional Client / Distribution Manager",
+            description: "Covers institutional investors, positions investment strategies and supports proposals, client communication and business development.",
+          },
+        ]}
+        openRole={() => setPage("funds-distribution-manager")}
+      />
+    );
+  }
+
+  if (page === "funds-risk-manager") {
+    return (
+      <InvestmentRiskManagerRole
+        goBack={() => setPage("funds-risk")}
+      />
+    );
+  }
+
+  if (page === "funds-risk") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Risk & Portfolio Analytics"
+        emoji="🧮"
+        intro="Independently measure and monitor portfolio exposures, limits, liquidity and stress risks across investment strategies."
+        roles={[
+          {
+            emoji: "🛡️",
+            title: "Investment Risk Manager",
+            description: "Measures portfolio risk, monitors limits and concentrations, performs stress analysis and independently challenges investment risk.",
+          },
+        ]}
+        openRole={() => setPage("funds-risk-manager")}
+      />
+    );
+  }
+
+  if (page === "funds-trading-trader") {
+    return (
+      <BuySideTraderRole
+        goBack={() => setPage("funds-trading")}
+      />
+    );
+  }
+
+  if (page === "funds-trading") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Trading & Execution"
+        emoji="📈"
+        intro="Implement portfolio decisions in the market through order management, liquidity assessment and execution."
+        roles={[
+          {
+            emoji: "💹",
+            title: "Buy-Side Trader",
+            description: "Executes portfolio orders while managing liquidity, transaction costs, timing and market impact.",
+          },
+        ]}
+        openRole={() => setPage("funds-trading-trader")}
+      />
+    );
+  }
+
+  if (page === "funds-research-analyst") {
+    return (
+      <InvestmentAnalystRole
+        goBack={() => setPage("funds-research")}
+      />
+    );
+  }
+
+  if (page === "funds-research") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Investment Research"
+        emoji="🔬"
+        intro="Research securities, issuers, sectors and macro drivers to produce investment evidence and recommendations for portfolio decisions."
+        roles={[
+          {
+            emoji: "📊",
+            title: "Investment Analyst",
+            description: "Develops investment theses and recommendations through fundamental, valuation and market analysis.",
+          },
+        ]}
+        openRole={() => setPage("funds-research-analyst")}
+      />
+    );
+  }
+
+  if (page === "funds-portfolio-manager") {
+    return (
+      <PortfolioManagerRole
+        goBack={() => setPage("funds-portfolio")}
+      />
+    );
+  }
+
+  if (page === "funds-portfolio") {
+    return (
+      <CommercialRoleMap
+        goBack={() => setPage("investment-funds")}
+        title="Portfolio Management"
+        emoji="📊"
+        intro="Turn an investment mandate and market views into portfolio construction, capital allocation and ongoing positioning."
+        roles={[
+          {
+            emoji: "💼",
+            title: "Portfolio Manager",
+            description: "Allocates capital, constructs portfolios and manages investment exposures within the fund mandate.",
+          },
+        ]}
+        openRole={() => setPage("funds-portfolio-manager")}
+      />
+    );
+  }
+
+  if (page === "investment-funds") {
+    return (
+      <InvestmentFundsMap
+        goBack={() => setPage("system")}
+        openPortfolioManagement={() => setPage("funds-portfolio")}
+        openInvestmentResearch={() => setPage("funds-research")}
+        openTradingExecution={() => setPage("funds-trading")}
+        openInvestmentRisk={() => setPage("funds-risk")}
+        openDistributionCoverage={() => setPage("funds-distribution")}
+        openFundOperations={() => setPage("funds-operations")}
       />
     );
   }
@@ -16682,6 +21124,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     <FinancialSystemMap
       openCentralBank={() => setPage("central-bank")}
       openBanks={() => setPage("banks")}
+      openInvestmentFunds={() => setPage("investment-funds")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
