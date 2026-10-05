@@ -2160,6 +2160,309 @@ function PortfolioManagerRole({ goBack }: { goBack: () => void }) {
   );
 }
 
+function PensionAllocationRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">📐</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>Asset Allocation &amp; Investment Strategy</h1>
+          <p className="intro">
+            Set long-term asset allocation by translating pension liabilities,
+            funded position, return objectives and risk tolerance into
+            strategic portfolio weights.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">📐</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Asset Allocation Strategist</strong>
+            <p>
+              Designs long-term asset-class allocation using pension
+              liabilities, funded status, return objectives and risk tolerance.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PensionInvestmentRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💼</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>Investment Management</h1>
+          <p className="intro">
+            Manage pension assets within strategic allocation, investment
+            mandates and long-term retirement obligations.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💼</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Pension Investment Manager</strong>
+            <p>
+              Manages the actual investment portfolio within strategic asset
+              allocation, mandates, risk limits and pension objectives.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PensionResearchRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🔬</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>Investment Research</h1>
+          <p className="intro">
+            Develop research and investment evidence across markets, asset
+            classes, managers and securities to support pension investment
+            decisions.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🔬</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Pension Investment Analyst</strong>
+            <p>
+              Researches markets, asset classes and investment opportunities
+              to support pension portfolio decisions.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PensionRiskRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚠️</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>Investment Risk Management</h1>
+          <p className="intro">
+            Independently measure and monitor pension portfolio risk,
+            including exposures, concentrations and interaction with funding
+            and liability objectives.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚠️</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Pension Investment Risk Manager</strong>
+            <p>
+              Independently monitors investment risk and challenges portfolio
+              exposures against pension objectives and risk limits.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PensionMandateRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🤝</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>External Manager &amp; Mandate Management</h1>
+          <p className="intro">
+            Select, structure and monitor external investment managers and
+            mandates used to implement the pension fund's investment strategy.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🤝</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>External Manager / Mandate Manager</strong>
+            <p>
+              Selects and monitors external managers while designing mandates,
+              guidelines and performance expectations.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PensionOperationsRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Pension Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚙️</div>
+        <div>
+          <p className="eyebrow">PENSION FUND FUNCTION</p>
+          <h1>Pension Administration &amp; Operations</h1>
+          <p className="intro">
+            Operate pension administration and investment records across
+            contributions, benefits, cash, custody and reconciliation.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚙️</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Pension Operations Specialist</strong>
+            <p>
+              Supports pension administration and investment operations across
+              contributions, benefits, records, custody, cash and reconciliation.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 function PensionFundsMap({
   goBack,
   openAssetAllocation,
@@ -2237,6 +2540,306 @@ function PensionFundsMap({
               <span className="card-arrow">→</span>
             </button>
           ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceActuarialRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🧮</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Actuarial</h1>
+          <p className="intro">
+            Quantify insurance risk and uncertainty to support pricing,
+            reserving, capital management and product economics.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🧮</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Actuary</strong>
+            <p>
+              Models insurance risk and financial uncertainty for pricing,
+              reserves, capital requirements and product design.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceUnderwritingRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">📋</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Underwriting</h1>
+          <p className="intro">
+            Evaluate specific insurance risks and determine whether coverage
+            should be offered and on what terms.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">📋</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Underwriter</strong>
+            <p>
+              Assesses individual risks and determines acceptance, coverage,
+              pricing and policy terms.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceInvestmentRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💰</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Investment Management</h1>
+          <p className="intro">
+            Manage insurer investment assets while balancing return objectives
+            with liabilities, liquidity needs and solvency constraints.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">💰</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Insurance Investment Manager</strong>
+            <p>
+              Manages the insurer's investment portfolio under liability,
+              liquidity, capital and regulatory constraints.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceRiskRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚠️</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Risk Management</h1>
+          <p className="intro">
+            Independently identify, measure and challenge risks across
+            underwriting, investments, operations and the balance sheet.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚠️</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Insurance Risk Manager</strong>
+            <p>
+              Provides independent oversight of enterprise risks and challenges
+              exposures against risk appetite and governance standards.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceDistributionRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🤝</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Distribution &amp; Client Management</h1>
+          <p className="intro">
+            Connect insurance products with clients through distribution
+            channels, brokers, agents and institutional relationships.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🤝</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Insurance Distribution Manager</strong>
+            <p>
+              Manages distribution channels and client relationships while
+              connecting insurance products with customer needs.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InsuranceOperationsRoleMap({
+  goBack,
+  openRole,
+}: {
+  goBack: () => void;
+  openRole: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Insurance
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚙️</div>
+        <div>
+          <p className="eyebrow">INSURANCE FUNCTION</p>
+          <h1>Claims &amp; Insurance Operations</h1>
+          <p className="intro">
+            Operate insurance contracts after issuance through policy servicing,
+            claims processing and operational execution.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚙️</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button className="finance-card" type="button" onClick={openRole}>
+            <span>👤</span>
+            <strong>Claims / Insurance Operations Specialist</strong>
+            <p>
+              Supports policy servicing and claims execution across the
+              post-issuance insurance lifecycle.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
         </div>
       </section>
     </main>
@@ -2322,6 +2925,335 @@ function InsuranceMap({
               <span className="card-arrow">→</span>
             </button>
           ))}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PortfolioManagementRoleMap({
+  goBack,
+  openPortfolioManager,
+}: {
+  goBack: () => void;
+  openPortfolioManager: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">📊</div>
+
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Portfolio Management</h1>
+          <p className="intro">
+            Construct and manage investment portfolios by translating mandates,
+            market views and investment research into capital allocation and
+            portfolio decisions.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">📊</span>
+
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openPortfolioManager}
+          >
+            <span>👤</span>
+            <strong>Portfolio Manager</strong>
+            <p>
+              Allocates investor capital by translating an investment mandate
+              and market views into portfolio construction, security selection,
+              risk positioning and ongoing rebalancing.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InvestmentResearchRoleMap({
+  goBack,
+  openInvestmentAnalyst,
+}: {
+  goBack: () => void;
+  openInvestmentAnalyst: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🔬</div>
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Investment Research</h1>
+          <p className="intro">
+            Develop investment evidence and ideas through company, industry,
+            macroeconomic and market analysis to support portfolio decisions.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🔬</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openInvestmentAnalyst}
+          >
+            <span>👤</span>
+            <strong>Investment Analyst</strong>
+            <p>
+              Researches securities, sectors and market themes to generate
+              evidence and investment ideas for portfolio managers.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function TradingExecutionRoleMap({
+  goBack,
+  openBuySideTrader,
+}: {
+  goBack: () => void;
+  openBuySideTrader: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">📈</div>
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Trading &amp; Execution</h1>
+          <p className="intro">
+            Execute portfolio decisions in financial markets while managing
+            liquidity, transaction costs, market impact and execution quality.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">📈</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openBuySideTrader}
+          >
+            <span>👤</span>
+            <strong>Buy-Side Trader</strong>
+            <p>
+              Executes portfolio orders across markets and works with dealers
+              and trading venues to achieve efficient execution.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function InvestmentRiskRoleMap({
+  goBack,
+  openInvestmentRiskManager,
+}: {
+  goBack: () => void;
+  openInvestmentRiskManager: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🧮</div>
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Risk &amp; Portfolio Analytics</h1>
+          <p className="intro">
+            Measure and monitor portfolio exposures, concentrations and risk
+            against mandates, limits and investment objectives.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🧮</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openInvestmentRiskManager}
+          >
+            <span>👤</span>
+            <strong>Investment Risk Manager</strong>
+            <p>
+              Independently measures and monitors portfolio risk and challenges
+              exposures that may exceed mandates or risk tolerances.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function DistributionCoverageRoleMap({
+  goBack,
+  openDistributionManager,
+}: {
+  goBack: () => void;
+  openDistributionManager: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">🤝</div>
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Distribution &amp; Client Coverage</h1>
+          <p className="intro">
+            Connect investment capabilities with institutional investors and
+            clients through coverage, communication and distribution.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">🤝</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openDistributionManager}
+          >
+            <span>👤</span>
+            <strong>Institutional Client / Distribution Manager</strong>
+            <p>
+              Manages relationships with institutional investors and connects
+              client needs with investment strategies and fund capabilities.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function FundOperationsRoleMap({
+  goBack,
+  openFundOperationsAnalyst,
+}: {
+  goBack: () => void;
+  openFundOperationsAnalyst: () => void;
+}) {
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Investment Funds
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">⚙️</div>
+        <div>
+          <p className="eyebrow">INVESTMENT FUND FUNCTION</p>
+          <h1>Fund Operations</h1>
+          <p className="intro">
+            Maintain the operational integrity of investment funds through
+            position, cash, valuation, reconciliation and fund-lifecycle
+            processes.
+          </p>
+        </div>
+      </header>
+
+      <section className="island central-bank-island">
+        <div className="island-heading">
+          <span className="island-emoji">⚙️</span>
+          <div>
+            <h2>Representative Roles</h2>
+            <p>Select a role to see where it sits in the financial system.</p>
+          </div>
+        </div>
+
+        <div className="cards function-cards">
+          <button
+            className="finance-card"
+            type="button"
+            onClick={openFundOperationsAnalyst}
+          >
+            <span>👤</span>
+            <strong>Fund Operations Analyst</strong>
+            <p>
+              Supports post-execution fund processes including positions, cash,
+              valuation, reconciliation and records across the fund lifecycle.
+            </p>
+            <span className="card-arrow">→</span>
+          </button>
         </div>
       </section>
     </main>
@@ -19679,7 +20611,7 @@ function FunctionMap({
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles">(
     "system"
   );
 
@@ -22050,7 +22982,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-operations") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-operations-roles")}
         title="Fund Operations"
         emoji="⚙️"
         intro="Maintain accurate fund books and records through trade processing, reconciliation, settlement, valuation and operational control."
@@ -22077,7 +23009,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-distribution") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-distribution-roles")}
         title="Distribution & Client Coverage"
         emoji="🤝"
         intro="Connect investment strategies and fund capabilities with institutional investors, intermediaries and prospective clients."
@@ -22104,7 +23036,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-risk") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-risk-roles")}
         title="Risk & Portfolio Analytics"
         emoji="🧮"
         intro="Independently measure and monitor portfolio exposures, limits, liquidity and stress risks across investment strategies."
@@ -22131,7 +23063,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-trading") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-trading-roles")}
         title="Trading & Execution"
         emoji="📈"
         intro="Implement portfolio decisions in the market through order management, liquidity assessment and execution."
@@ -22158,7 +23090,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-research") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-research-roles")}
         title="Investment Research"
         emoji="🔬"
         intro="Research securities, issuers, sectors and macro drivers to produce investment evidence and recommendations for portfolio decisions."
@@ -22185,7 +23117,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "funds-portfolio") {
     return (
       <CommercialRoleMap
-        goBack={() => setPage("investment-funds")}
+        goBack={() => setPage("funds-portfolio-roles")}
         title="Portfolio Management"
         emoji="📊"
         intro="Turn an investment mandate and market views into portfolio construction, capital allocation and ongoing positioning."
@@ -22204,7 +23136,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-operations") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-operations-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Claims / Insurance Operations Specialist"
@@ -22217,7 +23149,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-distribution") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-distribution-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Insurance Distribution Manager"
@@ -22230,7 +23162,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-risk") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-risk-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Insurance Risk Manager"
@@ -22243,7 +23175,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-investments") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-investments-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Insurance Investment Manager"
@@ -22256,7 +23188,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-underwriting") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-underwriting-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Underwriter"
@@ -22269,7 +23201,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "insurance-actuarial") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("insurance")}
+        goBack={() => setPage("insurance-actuarial-roles")}
         backLabel="Insurance"
         eyebrow="INSURANCE ROLE"
         title="Actuary"
@@ -22282,7 +23214,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-operations") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-operations-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="Pension Operations Specialist"
@@ -22295,7 +23227,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-mandates") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-mandates-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="External Manager / Mandate Manager"
@@ -22308,7 +23240,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-risk") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-risk-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="Pension Investment Risk Manager"
@@ -22321,7 +23253,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-research") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-research-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="Pension Investment Analyst"
@@ -22334,7 +23266,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-investment") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-investment-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="Pension Investment Manager"
@@ -22347,7 +23279,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
   if (page === "pension-allocation") {
     return (
       <RoleDetailPage
-        goBack={() => setPage("pension-funds")}
+        goBack={() => setPage("pension-allocation-roles")}
         backLabel="Pension Funds"
         eyebrow="PENSION FUND ROLE"
         title="Asset Allocation Strategist"
@@ -22357,28 +23289,190 @@ openCommercialBanking={() => setPage("commercial-banking")}
     );
   }
 
+  if (page === "pension-allocation-roles") {
+    return (
+      <PensionAllocationRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-allocation")}
+      />
+    );
+  }
+
+  if (page === "pension-investment-roles") {
+    return (
+      <PensionInvestmentRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-investment")}
+      />
+    );
+  }
+
+  if (page === "pension-research-roles") {
+    return (
+      <PensionResearchRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-research")}
+      />
+    );
+  }
+
+  if (page === "pension-risk-roles") {
+    return (
+      <PensionRiskRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-risk")}
+      />
+    );
+  }
+
+  if (page === "pension-mandates-roles") {
+    return (
+      <PensionMandateRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-mandates")}
+      />
+    );
+  }
+
+  if (page === "pension-operations-roles") {
+    return (
+      <PensionOperationsRoleMap
+        goBack={() => setPage("pension-funds")}
+        openRole={() => setPage("pension-operations")}
+      />
+    );
+  }
+
   if (page === "pension-funds") {
     return <PensionFundsMap
         goBack={() => setPage("system")}
-        openAssetAllocation={() => setPage("pension-allocation")}
-        openInvestmentManagement={() => setPage("pension-investment")}
-        openInvestmentResearch={() => setPage("pension-research")}
-        openInvestmentRisk={() => setPage("pension-risk")}
-        openMandateManagement={() => setPage("pension-mandates")}
-        openPensionOperations={() => setPage("pension-operations")}
+        openAssetAllocation={() => setPage("pension-allocation-roles")}
+        openInvestmentManagement={() => setPage("pension-investment-roles")}
+        openInvestmentResearch={() => setPage("pension-research-roles")}
+        openInvestmentRisk={() => setPage("pension-risk-roles")}
+        openMandateManagement={() => setPage("pension-mandates-roles")}
+        openPensionOperations={() => setPage("pension-operations-roles")}
       />;
+  }
+
+  if (page === "insurance-actuarial-roles") {
+    return (
+      <InsuranceActuarialRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-actuarial")}
+      />
+    );
+  }
+
+  if (page === "insurance-underwriting-roles") {
+    return (
+      <InsuranceUnderwritingRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-underwriting")}
+      />
+    );
+  }
+
+  if (page === "insurance-investments-roles") {
+    return (
+      <InsuranceInvestmentRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-investments")}
+      />
+    );
+  }
+
+  if (page === "insurance-risk-roles") {
+    return (
+      <InsuranceRiskRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-risk")}
+      />
+    );
+  }
+
+  if (page === "insurance-distribution-roles") {
+    return (
+      <InsuranceDistributionRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-distribution")}
+      />
+    );
+  }
+
+  if (page === "insurance-operations-roles") {
+    return (
+      <InsuranceOperationsRoleMap
+        goBack={() => setPage("insurance")}
+        openRole={() => setPage("insurance-operations")}
+      />
+    );
   }
 
   if (page === "insurance") {
     return (
       <InsuranceMap
         goBack={() => setPage("system")}
-        openActuarial={() => setPage("insurance-actuarial")}
-        openUnderwriting={() => setPage("insurance-underwriting")}
-        openInvestmentManagement={() => setPage("insurance-investments")}
-        openInsuranceRisk={() => setPage("insurance-risk")}
-        openDistributionManagement={() => setPage("insurance-distribution")}
-        openClaimsOperations={() => setPage("insurance-operations")}
+        openActuarial={() => setPage("insurance-actuarial-roles")}
+        openUnderwriting={() => setPage("insurance-underwriting-roles")}
+        openInvestmentManagement={() => setPage("insurance-investments-roles")}
+        openInsuranceRisk={() => setPage("insurance-risk-roles")}
+        openDistributionManagement={() => setPage("insurance-distribution-roles")}
+        openClaimsOperations={() => setPage("insurance-operations-roles")}
+      />
+    );
+  }
+
+  if (page === "funds-portfolio-roles") {
+    return (
+      <PortfolioManagementRoleMap
+        goBack={() => setPage("investment-funds")}
+        openPortfolioManager={() => setPage("funds-portfolio")}
+      />
+    );
+  }
+
+  if (page === "funds-research-roles") {
+    return (
+      <InvestmentResearchRoleMap
+        goBack={() => setPage("investment-funds")}
+        openInvestmentAnalyst={() => setPage("funds-research")}
+      />
+    );
+  }
+
+  if (page === "funds-trading-roles") {
+    return (
+      <TradingExecutionRoleMap
+        goBack={() => setPage("investment-funds")}
+        openBuySideTrader={() => setPage("funds-trading")}
+      />
+    );
+  }
+
+  if (page === "funds-risk-roles") {
+    return (
+      <InvestmentRiskRoleMap
+        goBack={() => setPage("investment-funds")}
+        openInvestmentRiskManager={() => setPage("funds-risk")}
+      />
+    );
+  }
+
+  if (page === "funds-distribution-roles") {
+    return (
+      <DistributionCoverageRoleMap
+        goBack={() => setPage("investment-funds")}
+        openDistributionManager={() => setPage("funds-distribution")}
+      />
+    );
+  }
+
+  if (page === "funds-operations-roles") {
+    return (
+      <FundOperationsRoleMap
+        goBack={() => setPage("investment-funds")}
+        openFundOperationsAnalyst={() => setPage("funds-operations")}
       />
     );
   }
@@ -22387,12 +23481,12 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <InvestmentFundsMap
         goBack={() => setPage("system")}
-        openPortfolioManagement={() => setPage("funds-portfolio")}
-        openInvestmentResearch={() => setPage("funds-research")}
-        openTradingExecution={() => setPage("funds-trading")}
-        openInvestmentRisk={() => setPage("funds-risk")}
-        openDistributionCoverage={() => setPage("funds-distribution")}
-        openFundOperations={() => setPage("funds-operations")}
+        openPortfolioManagement={() => setPage("funds-portfolio-roles")}
+        openInvestmentResearch={() => setPage("funds-research-roles")}
+        openTradingExecution={() => setPage("funds-trading-roles")}
+        openInvestmentRisk={() => setPage("funds-risk-roles")}
+        openDistributionCoverage={() => setPage("funds-distribution-roles")}
+        openFundOperations={() => setPage("funds-operations-roles")}
       />
     );
   }
