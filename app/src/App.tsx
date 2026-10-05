@@ -663,6 +663,7 @@ function FinancialSystemMap({
   openSettlementSystems,
   openCSDs,
   openTradeRepositories,
+  openInteractions,
   openFunction,
 }: {
   openCentralBank: () => void;
@@ -681,6 +682,7 @@ function FinancialSystemMap({
   openSettlementSystems: () => void;
   openCSDs: () => void;
   openTradeRepositories: () => void;
+  openInteractions: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -858,6 +860,21 @@ function FinancialSystemMap({
           }}
         />
       </div>
+
+      <button
+        className="interaction-system-cta"
+        onClick={openInteractions}
+      >
+        <span className="interaction-system-cta-icon">🔗</span>
+
+        <span className="interaction-system-cta-copy">
+          <strong>See How They Connect</strong>
+          <small>Institutions → Markets → Infrastructure</small>
+          <span>Follow real financial-system workflows</span>
+        </span>
+
+        <span className="interaction-system-cta-arrow">→</span>
+      </button>
 
       <footer>
         <span>🏦 Institutions</span>
@@ -25026,30 +25043,14 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openSettlementSystems={() => setPage("settlement-systems")}
       openCSDs={() => setPage("csds")}
       openTradeRepositories={() => setPage("trade-repositories")}
+      openInteractions={() => setPage("interaction-map")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
       }}
     />
 
-      <button
-        className="interaction-system-cta"
-        onClick={() => setPage("interaction-map")}
-      >
-        <span className="interaction-system-cta-icon">🔗</span>
 
-        <span className="interaction-system-cta-copy">
-          <strong>See How They Connect</strong>
-          <small>
-            Institutions → Markets → Infrastructure
-          </small>
-          <span>
-            Follow real financial-system workflows
-          </span>
-        </span>
-
-        <span className="interaction-system-cta-arrow">→</span>
-      </button>
 
 
     </>
