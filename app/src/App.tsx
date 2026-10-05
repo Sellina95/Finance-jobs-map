@@ -447,6 +447,15 @@ function FinancialSystemMap({
   openPensionFunds,
   openMoneyMarket,
   openBondMarket,
+  openEquityMarket,
+  openFXMarket,
+  openDerivativesMarket,
+  openCommoditiesMarket,
+  openPaymentSystems,
+  openClearingCCPs,
+  openSettlementSystems,
+  openCSDs,
+  openTradeRepositories,
   openFunction,
 }: {
   openCentralBank: () => void;
@@ -456,6 +465,15 @@ function FinancialSystemMap({
   openPensionFunds: () => void;
   openMoneyMarket: () => void;
   openBondMarket: () => void;
+  openEquityMarket: () => void;
+  openFXMarket: () => void;
+  openDerivativesMarket: () => void;
+  openCommoditiesMarket: () => void;
+  openPaymentSystems: () => void;
+  openClearingCCPs: () => void;
+  openSettlementSystems: () => void;
+  openCSDs: () => void;
+  openTradeRepositories: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -591,6 +609,18 @@ function FinancialSystemMap({
             if (item.label === "Bond Market") {
               openBondMarket();
             }
+            if (item.label === "Equity Market") {
+              openEquityMarket();
+            }
+            if (item.label === "FX Market") {
+              openFXMarket();
+            }
+            if (item.label === "Derivatives") {
+              openDerivativesMarket();
+            }
+            if (item.label === "Commodities") {
+              openCommoditiesMarket();
+            }
           }}
         />
 
@@ -600,6 +630,23 @@ function FinancialSystemMap({
           subtitle="Infrastructure supporting the financial system"
           items={infrastructure}
           className="infrastructure"
+          onItemClick={(item) => {
+            if (item.label === "Payment Systems") {
+              openPaymentSystems();
+            }
+            if (item.label === "Clearing / CCPs") {
+              openClearingCCPs();
+            }
+            if (item.label === "Settlement Systems") {
+              openSettlementSystems();
+            }
+            if (item.label === "CSDs") {
+              openCSDs();
+            }
+            if (item.label === "Trade Repositories") {
+              openTradeRepositories();
+            }
+          }}
         />
       </div>
 
@@ -20803,8 +20850,827 @@ function BondMarketMap({ goBack }: { goBack: () => void }) {
   );
 }
 
+
+function EquityMarketMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "📈",
+      title: "What Is Traded?",
+      items: [
+        ["🏢", "Common Stocks"],
+        ["⭐", "Preferred Stocks"],
+        ["📦", "ETFs"],
+        ["🌍", "Depositary Receipts"],
+        ["🧺", "Equity Indices / Index Products"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Participates?",
+      items: [
+        ["💼", "Investment Funds"],
+        ["👵", "Pension Funds"],
+        ["🛡️", "Insurance Companies"],
+        ["🏦", "Banks / Broker-Dealers"],
+        ["🏢", "Corporates / Issuers"],
+        ["👤", "Retail Investors"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📊", "Equity Trader"],
+        ["🤝", "Equity Sales"],
+        ["🔬", "Equity Research Analyst"],
+        ["💼", "Equity Portfolio Manager"],
+        ["🏢", "Equity Capital Markets Banker"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Infrastructure Supports It?",
+      items: [
+        ["🏛️", "Stock Exchanges / Trading Venues"],
+        ["🔄", "Clearing Houses / CCPs"],
+        ["🏦", "Central Securities Depositories"],
+        ["💸", "Settlement Systems"],
+        ["🗂️", "Custody & Securities Services"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Equity Market</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function FXMarketMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "💱",
+      title: "What Is Traded?",
+      items: [
+        ["💵", "Spot FX"],
+        ["📅", "FX Forwards"],
+        ["🔄", "FX Swaps"],
+        ["🧩", "FX Options"],
+        ["🌍", "NDFs"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Participates?",
+      items: [
+        ["🏦", "Banks / FX Dealers"],
+        ["🏛️", "Central Banks"],
+        ["💼", "Investment Funds"],
+        ["👵", "Pension Funds"],
+        ["🛡️", "Insurance Companies"],
+        ["🏢", "Corporates"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📈", "FX Trader"],
+        ["🤝", "FX Sales"],
+        ["🧩", "FX Structurer"],
+        ["🔬", "FX Strategist / Research Analyst"],
+        ["💼", "FX Portfolio Manager"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Infrastructure Supports It?",
+      items: [
+        ["💻", "Electronic Trading Platforms"],
+        ["🔄", "FX Clearing / CCPs"],
+        ["💸", "Payment & Settlement Systems"],
+        ["🌐", "CLS"],
+        ["📚", "Trade Reporting Infrastructure"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>FX Market</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function DerivativesMarketMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🧩",
+      title: "What Is Traded?",
+      items: [
+        ["📅", "Futures"],
+        ["🔄", "Swaps"],
+        ["🎯", "Options"],
+        ["📑", "Forwards"],
+        ["🧱", "Structured / Hybrid Derivatives"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Participates?",
+      items: [
+        ["🏦", "Banks / Dealers"],
+        ["💼", "Investment Funds"],
+        ["👵", "Pension Funds"],
+        ["🛡️", "Insurance Companies"],
+        ["🏢", "Corporates"],
+        ["🏛️", "Public-Sector Institutions"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📈", "Derivatives Trader"],
+        ["🤝", "Derivatives Sales"],
+        ["🧩", "Structurer"],
+        ["🧮", "Quantitative Analyst"],
+        ["⚠️", "Market / Counterparty Risk Manager"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Infrastructure Supports It?",
+      items: [
+        ["🏛️", "Exchanges / Trading Venues"],
+        ["🔄", "Clearing Houses / CCPs"],
+        ["💰", "Margin & Collateral Systems"],
+        ["💸", "Settlement Systems"],
+        ["📚", "Trade Repositories"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Derivatives Market</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function CommoditiesMarketMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🛢️",
+      title: "What Is Traded?",
+      items: [
+        ["🛢️", "Oil & Refined Products"],
+        ["🔥", "Natural Gas & Power"],
+        ["🥇", "Metals"],
+        ["🌾", "Agricultural Commodities"],
+        ["📑", "Commodity Futures & Derivatives"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Participates?",
+      items: [
+        ["🏦", "Banks / Commodity Dealers"],
+        ["💼", "Investment Funds"],
+        ["🏭", "Producers & Commodity Companies"],
+        ["🏢", "Industrial / Commercial Users"],
+        ["🚢", "Trading Houses / Merchants"],
+        ["⚡", "Utilities & Energy Companies"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📈", "Commodity Trader"],
+        ["🤝", "Commodity Sales"],
+        ["🧩", "Commodity Structurer"],
+        ["🔬", "Commodity Analyst / Strategist"],
+        ["⚠️", "Commodity Risk Manager"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Infrastructure Supports It?",
+      items: [
+        ["🏛️", "Commodity Exchanges"],
+        ["🔄", "Clearing Houses / CCPs"],
+        ["📦", "Warehousing & Storage"],
+        ["🚢", "Physical Delivery & Logistics"],
+        ["📊", "Price Reporting & Market Data"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Commodities Market</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function PaymentSystemsMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "⚙️",
+      title: "What Does It Do?",
+      items: [
+        ["💸", "Transfers Funds"],
+        ["🏦", "Connects Financial Institutions"],
+        ["🧾", "Processes Payment Instructions"],
+        ["⚡", "Supports Real-Time / High-Value Payments"],
+        ["🌍", "Supports Domestic & Cross-Border Payments"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Uses It?",
+      items: [
+        ["🏛️", "Central Banks"],
+        ["🏦", "Commercial Banks"],
+        ["💳", "Payment Service Providers"],
+        ["🏢", "Corporates"],
+        ["👤", "Individuals"],
+        ["🌐", "Financial Market Participants"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["⚙️", "Payments Operations Specialist"],
+        ["💻", "Payments Technology Engineer"],
+        ["📋", "Payments Product Manager"],
+        ["🛡️", "Payments Risk / Control Specialist"],
+        ["🏛️", "Payment Systems Policy / Oversight Specialist"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Does It Connect?",
+      items: [
+        ["🏦", "Banks & Central Banks"],
+        ["💱", "FX & Cross-Border Payments"],
+        ["💳", "Transaction Banking"],
+        ["🔄", "Clearing Systems"],
+        ["🏁", "Settlement Systems"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Payment Systems</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function ClearingCCPsMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🔄",
+      title: "What Does It Do?",
+      items: [
+        ["🤝", "Clears Financial Transactions"],
+        ["🛡️", "Manages Counterparty Risk"],
+        ["🔁", "Nets Obligations"],
+        ["💰", "Collects Margin & Collateral"],
+        ["⚙️", "Coordinates Default Management"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Uses It?",
+      items: [
+        ["🏦", "Banks / Broker-Dealers"],
+        ["💼", "Investment Funds"],
+        ["🏛️", "Trading Venues / Exchanges"],
+        ["🏢", "Clearing Members"],
+        ["📈", "Derivatives Market Participants"],
+        ["🏛️", "Regulators / Central Banks"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["⚙️", "Clearing Operations Specialist"],
+        ["⚠️", "CCP Risk Manager"],
+        ["💰", "Margin / Collateral Specialist"],
+        ["💻", "Clearing Technology Engineer"],
+        ["🛡️", "Default Management / Risk Specialist"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Does It Connect?",
+      items: [
+        ["📈", "Trading Venues"],
+        ["🏦", "Clearing Members"],
+        ["🧩", "Derivatives Markets"],
+        ["💰", "Collateral & Margin Systems"],
+        ["🏁", "Settlement Systems"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Clearing / CCPs</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function SettlementSystemsMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🏁",
+      title: "What Does It Do?",
+      items: [
+        ["💸", "Completes Cash Transfers"],
+        ["📜", "Completes Securities Transfers"],
+        ["🤝", "Exchanges Assets Between Parties"],
+        ["🔒", "Supports Delivery-versus-Payment"],
+        ["📋", "Finalizes Financial Obligations"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Uses It?",
+      items: [
+        ["🏦", "Banks / Broker-Dealers"],
+        ["🏛️", "Central Banks"],
+        ["🗄️", "CSDs / Securities Depositories"],
+        ["🔄", "CCPs / Clearing Houses"],
+        ["🗂️", "Custodians"],
+        ["💼", "Investment Institutions"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["⚙️", "Settlement Operations Specialist"],
+        ["🧾", "Securities Operations Analyst"],
+        ["💰", "Cash & Liquidity Operations Specialist"],
+        ["💻", "Settlement Technology Engineer"],
+        ["🛡️", "Settlement Risk / Control Specialist"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Does It Connect?",
+      items: [
+        ["🔄", "Clearing Houses / CCPs"],
+        ["🗄️", "Central Securities Depositories"],
+        ["💸", "Payment Systems"],
+        ["🏦", "Custodians & Banks"],
+        ["📈", "Financial Markets"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Settlement Systems</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function CSDsMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🗄️",
+      title: "What Does It Do?",
+      items: [
+        ["📜", "Records Securities Ownership"],
+        ["🏁", "Supports Securities Settlement"],
+        ["🔐", "Safekeeps Securities"],
+        ["🔄", "Processes Securities Transfers"],
+        ["💰", "Supports Corporate Actions & Asset Servicing"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Uses It?",
+      items: [
+        ["🏦", "Banks / Broker-Dealers"],
+        ["🗂️", "Custodians"],
+        ["🔄", "CCPs / Clearing Houses"],
+        ["💼", "Investment Institutions"],
+        ["🏢", "Securities Issuers"],
+        ["🏛️", "Central Banks / Public Institutions"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["⚙️", "Securities Settlement Specialist"],
+        ["🗄️", "CSD Operations Specialist"],
+        ["💰", "Corporate Actions Specialist"],
+        ["💻", "Securities Infrastructure Engineer"],
+        ["🛡️", "CSD Risk / Control Specialist"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Does It Connect?",
+      items: [
+        ["📈", "Securities Markets"],
+        ["🔄", "Clearing Houses / CCPs"],
+        ["🏁", "Settlement Systems"],
+        ["🏦", "Custodians & Banks"],
+        ["🏢", "Issuers & Investors"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Central Securities Depositories (CSDs)</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
+
+function TradeRepositoriesMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "📚",
+      title: "What Does It Do?",
+      items: [
+        ["📝", "Collects Transaction Records"],
+        ["🧩", "Stores Derivatives Trade Data"],
+        ["🔍", "Supports Regulatory Transparency"],
+        ["📊", "Provides Market & Risk Data"],
+        ["🛡️", "Supports Systemic Risk Monitoring"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Uses It?",
+      items: [
+        ["🏦", "Banks / Dealers"],
+        ["💼", "Investment Institutions"],
+        ["🏢", "Corporates / Market Participants"],
+        ["🔄", "CCPs / Clearing Houses"],
+        ["🏛️", "Regulators"],
+        ["🏛️", "Central Banks / Supervisors"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📋", "Trade Reporting Specialist"],
+        ["📊", "Regulatory Data Analyst"],
+        ["⚙️", "Repository Operations Specialist"],
+        ["💻", "Data / Infrastructure Engineer"],
+        ["🛡️", "Data Quality / Control Specialist"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Does It Connect?",
+      items: [
+        ["🧩", "Derivatives Markets"],
+        ["🏦", "Banks & Market Participants"],
+        ["🔄", "Clearing Houses / CCPs"],
+        ["🏛️", "Regulators & Supervisors"],
+        ["📊", "Financial Stability Monitoring"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Trade Repositories</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market" | "equity-market" | "fx-market" | "derivatives-market" | "commodities-market" | "payment-systems" | "clearing-ccps" | "settlement-systems" | "csds" | "trade-repositories">(
     "system"
   );
 
@@ -20817,6 +21683,42 @@ function App() {
 
   if (page === "bond-market") {
     return <BondMarketMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "equity-market") {
+    return <EquityMarketMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "fx-market") {
+    return <FXMarketMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "derivatives-market") {
+    return <DerivativesMarketMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "commodities-market") {
+    return <CommoditiesMarketMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "payment-systems") {
+    return <PaymentSystemsMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "clearing-ccps") {
+    return <ClearingCCPsMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "settlement-systems") {
+    return <SettlementSystemsMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "csds") {
+    return <CSDsMap goBack={() => setPage("system")} />;
+  }
+
+  if (page === "trade-repositories") {
+    return <TradeRepositoriesMap goBack={() => setPage("system")} />;
   }
 
   if (page === "function" && selectedFunction) {
@@ -23713,6 +24615,15 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openPensionFunds={() => setPage("pension-funds")}
       openMoneyMarket={() => setPage("money-market")}
       openBondMarket={() => setPage("bond-market")}
+      openEquityMarket={() => setPage("equity-market")}
+      openFXMarket={() => setPage("fx-market")}
+      openDerivativesMarket={() => setPage("derivatives-market")}
+      openCommoditiesMarket={() => setPage("commodities-market")}
+      openPaymentSystems={() => setPage("payment-systems")}
+      openClearingCCPs={() => setPage("clearing-ccps")}
+      openSettlementSystems={() => setPage("settlement-systems")}
+      openCSDs={() => setPage("csds")}
+      openTradeRepositories={() => setPage("trade-repositories")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
