@@ -445,6 +445,7 @@ function FinancialSystemMap({
   openInvestmentFunds,
   openInsurance,
   openPensionFunds,
+  openMoneyMarket,
   openFunction,
 }: {
   openCentralBank: () => void;
@@ -452,6 +453,7 @@ function FinancialSystemMap({
   openInvestmentFunds: () => void;
   openInsurance: () => void;
   openPensionFunds: () => void;
+  openMoneyMarket: () => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
@@ -580,6 +582,11 @@ function FinancialSystemMap({
           subtitle="Markets for financial instruments"
           items={markets}
           className="markets"
+          onItemClick={(item) => {
+            if (item.label === "Money Market") {
+              openMoneyMarket();
+            }
+          }}
         />
 
         <Island
@@ -20610,13 +20617,107 @@ function FunctionMap({
   );
 }
 
+
+function MoneyMarketMap({ goBack }: { goBack: () => void }) {
+  const sections = [
+    {
+      emoji: "🧩",
+      title: "What Is Traded?",
+      items: [
+        ["🏛️", "Treasury Bills"],
+        ["🏦", "Interbank & Short-Term Bank Funding"],
+        ["🔄", "Repurchase Agreements (Repo)"],
+        ["📄", "Commercial Paper"],
+        ["💰", "Certificates of Deposit"],
+      ],
+    },
+    {
+      emoji: "👥",
+      title: "Who Participates?",
+      items: [
+        ["🏛️", "Central Banks"],
+        ["🏦", "Banks"],
+        ["💼", "Investment Funds"],
+        ["🛡️", "Insurance Companies"],
+        ["👵", "Pension Funds"],
+        ["🏢", "Corporates"],
+      ],
+    },
+    {
+      emoji: "💼",
+      title: "What Roles Work Here?",
+      items: [
+        ["📊", "Money Market Trader"],
+        ["💰", "Treasury / Liquidity Manager"],
+        ["🤝", "Institutional Sales"],
+        ["🔬", "Rates / Money Market Analyst"],
+        ["💼", "Portfolio Manager"],
+      ],
+    },
+    {
+      emoji: "🔗",
+      title: "What Infrastructure Supports It?",
+      items: [
+        ["💸", "Payment Systems"],
+        ["🔄", "Clearing Systems"],
+        ["💰", "Settlement Systems"],
+        ["🏦", "Central Bank Facilities"],
+      ],
+    },
+  ];
+
+  return (
+    <main className="world">
+      <button className="back-button" onClick={goBack}>
+        ← Financial Markets
+      </button>
+
+      <header className="hero detail-hero">
+        <div className="globe">💵</div>
+        <div>
+          <p className="eyebrow">FINANCIAL MARKETS</p>
+          <h1>Money Market</h1>
+          <p className="intro">
+            Explore the short-term funding and liquidity market connecting
+            central banks, banks, institutional investors and corporations.
+          </p>
+        </div>
+      </header>
+
+      {sections.map((section) => (
+        <section className="island central-bank-island" key={section.title}>
+          <div className="island-heading">
+            <span className="island-emoji">{section.emoji}</span>
+            <div>
+              <h2>{section.title}</h2>
+            </div>
+          </div>
+
+          <div className="cards function-cards">
+            {section.items.map(([emoji, label]) => (
+              <div className="finance-card" key={label}>
+                <span>{emoji}</span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+  );
+}
+
 function App() {
-  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles">(
+  const [page, setPage] = useState<"system" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market">(
     "system"
   );
 
   const [selectedFunction, setSelectedFunction] =
     useState<CentralBankFunction | null>(null);
+
+  if (page === "money-market") {
+    return <MoneyMarketMap goBack={() => setPage("system")} />;
+  }
 
   if (page === "function" && selectedFunction) {
     return (
@@ -23510,6 +23611,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openInvestmentFunds={() => setPage("investment-funds")}
       openInsurance={() => setPage("insurance")}
       openPensionFunds={() => setPage("pension-funds")}
+      openMoneyMarket={() => setPage("money-market")}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
