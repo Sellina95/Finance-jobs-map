@@ -773,6 +773,8 @@ function FinancialSystemMap({
         </div>
       </header>
 
+
+
       <div className="world-map">
         <Island
           emoji="🏦"
@@ -25048,6 +25050,8 @@ openCommercialBanking={() => setPage("commercial-banking")}
 
         <span className="interaction-system-cta-arrow">→</span>
       </button>
+
+
     </>
   );
 }
