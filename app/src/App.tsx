@@ -646,6 +646,8 @@ function Island({
   );
 }
 
+type Page = "system" | "interaction-map" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market" | "equity-market" | "fx-market" | "derivatives-market" | "commodities-market" | "payment-systems" | "clearing-ccps" | "settlement-systems" | "csds" | "trade-repositories";
+
 function FinancialSystemMap({
   openCentralBank,
   openBanks,
@@ -664,6 +666,7 @@ function FinancialSystemMap({
   openCSDs,
   openTradeRepositories,
   openInteractions,
+  openPage,
   openFunction,
 }: {
   openCentralBank: () => void;
@@ -683,39 +686,1160 @@ function FinancialSystemMap({
   openCSDs: () => void;
   openTradeRepositories: () => void;
   openInteractions: () => void;
+  openPage: (page: Page) => void;
   openFunction: (item: CentralBankFunction) => void;
 }) {
   const [search, setSearch] = useState("");
 
   const normalizedSearch = search.trim().toLowerCase();
 
+  type SearchResult = {
+    type:
+      | "Institution"
+      | "Function"
+      | "Role"
+      | "Market"
+      | "Infrastructure";
+    title: string;
+    path: string;
+    route?: Page;
+    centralBankFunction?: CentralBankFunction;
+    keywords?: string[];
+  };
+
+  const bankFunctionSearchRoutes: Record<string, Page> = {
+    "retail-banking": "retail-banking",
+    "commercial-banking": "commercial-banking",
+    "corporate-banking": "corporate-banking",
+    "global-markets": "global-markets",
+    "investment-banking": "investment-banking",
+    "transaction-banking": "transaction-banking",
+    "treasury-alm": "treasury-alm",
+    "risk-management": "risk-management",
+    "compliance-fincrime": "compliance-financial-crime",
+    "operations-technology": "operations-technology",
+  };
+
+  const globalMarketsFunctionSearchRoutes: Record<string, Page> = {
+    sales: "sales",
+    trading: "trading",
+    structuring: "structuring",
+    "research-strategy": "research-strategy",
+    "financing-securities-finance": "financing",
+    "markets-coo": "markets-coo",
+  };
+
+  const investmentFundsFunctionSearchRoutes: Record<string, Page> = {
+    "funds-portfolio": "funds-portfolio-roles",
+    "funds-research": "funds-research-roles",
+    "funds-trading": "funds-trading-roles",
+    "funds-risk": "funds-risk-roles",
+    "funds-distribution": "funds-distribution-roles",
+    "funds-operations": "funds-operations-roles",
+  };
+
+  const insuranceFunctionSearchRoutes: Record<string, Page> = {
+    "insurance-actuarial": "insurance-actuarial-roles",
+    "insurance-underwriting": "insurance-underwriting-roles",
+    "insurance-investments": "insurance-investments-roles",
+    "insurance-risk": "insurance-risk-roles",
+    "insurance-distribution": "insurance-distribution-roles",
+    "insurance-operations": "insurance-operations-roles",
+  };
+
+  const pensionFunctionSearchRoutes: Record<string, Page> = {
+    "pension-allocation": "pension-allocation-roles",
+    "pension-investment": "pension-investment-roles",
+    "pension-research": "pension-research-roles",
+    "pension-risk": "pension-risk-roles",
+    "pension-mandates": "pension-mandates-roles",
+    "pension-operations": "pension-operations-roles",
+  };
+
+  const searchIndex: SearchResult[] = [
+    {
+      type: "Institution",
+      title: "Central Bank",
+      path: "Financial Institutions › Central Bank",
+      route: "central-bank",
+      keywords: ["monetary authority"],
+    },
+    {
+      type: "Institution",
+      title: "Banks",
+      path: "Financial Institutions › Banks",
+      route: "banks",
+      keywords: ["bank", "banking"],
+    },
+    {
+      type: "Institution",
+      title: "Investment Funds",
+      path: "Financial Institutions › Investment Funds",
+      route: "investment-funds",
+      keywords: ["asset management", "funds", "buy side"],
+    },
+    {
+      type: "Institution",
+      title: "Insurance",
+      path: "Financial Institutions › Insurance",
+      route: "insurance",
+      keywords: ["insurer"],
+    },
+    {
+      type: "Institution",
+      title: "Pension Funds",
+      path: "Financial Institutions › Pension Funds",
+      route: "pension-funds",
+      keywords: ["pension", "retirement"],
+    },
+
+    ...bankFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › ${item.label}`,
+      route: bankFunctionSearchRoutes[item.id ?? ""],
+    })),
+
+    ...commercialBankingFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Commercial Banking › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...corporateBankingFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Corporate Banking › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...retailBankingFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Retail / Consumer Banking › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...globalMarketsFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Global Markets › ${item.label}`,
+      route: globalMarketsFunctionSearchRoutes[item.id ?? ""],
+    })),
+
+    ...investmentBankingFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Investment Banking › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...transactionBankingFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Transaction Banking › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...treasuryALMFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Treasury / ALM › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...riskManagementFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Risk Management › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...complianceFinancialCrimeFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Compliance / Financial Crime › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...operationsTechnologyFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Banks › Operations & Technology › ${item.label}`,
+      route: item.id as Page,
+    })),
+
+    ...investmentFundsFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Investment Funds › ${item.label}`,
+      route: investmentFundsFunctionSearchRoutes[item.id ?? ""],
+    })),
+
+    ...insuranceFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Insurance › ${item.label}`,
+      route: insuranceFunctionSearchRoutes[item.id ?? ""],
+    })),
+
+    ...pensionFundFunctions.map((item) => ({
+      type: "Function" as const,
+      title: item.label,
+      path: `Pension Funds › ${item.label}`,
+      route: pensionFunctionSearchRoutes[item.id ?? ""],
+    })),
+
+    ...([
+      ["Money Market", "money-market"],
+      ["Bond Market", "bond-market"],
+      ["Equity Market", "equity-market"],
+      ["FX Market", "fx-market"],
+      ["Derivatives", "derivatives-market"],
+      ["Commodities", "commodities-market"],
+    ] as const).map(([title, route]) => ({
+      type: "Market" as const,
+      title,
+      path: `Financial Markets › ${title}`,
+      route,
+    })),
+
+    ...([
+      ["Payment Systems", "payment-systems"],
+      ["Clearing / CCPs", "clearing-ccps"],
+      ["Settlement Systems", "settlement-systems"],
+      ["CSDs", "csds"],
+      ["Trade Repositories", "trade-repositories"],
+    ] as const).map(([title, route]) => ({
+      type: "Infrastructure" as const,
+      title,
+      path: `Financial Infrastructure › ${title}`,
+      route,
+    })),
+
+    // Banks — Retail / Consumer Banking
+    {
+      type: "Role",
+      title: "Deposit Product Manager",
+      path: "Banks › Retail / Consumer Banking › Deposits",
+      route: "retail-deposits-product-manager",
+      keywords: ["deposits", "retail banking", "consumer banking"],
+    },
+    {
+      type: "Role",
+      title: "Consumer Lending Product Manager",
+      path: "Banks › Retail / Consumer Banking › Consumer Lending",
+      route: "retail-consumer-lending-product-manager",
+      keywords: ["consumer lending", "loans", "retail banking"],
+    },
+    {
+      type: "Role",
+      title: "Consumer Credit Underwriter",
+      path: "Banks › Retail / Consumer Banking › Consumer Lending",
+      route: "retail-consumer-credit-underwriter",
+      keywords: ["credit", "underwriting", "consumer lending"],
+    },
+    {
+      type: "Role",
+      title: "Mortgage Loan Officer",
+      path: "Banks › Retail / Consumer Banking › Mortgage",
+      route: "retail-mortgage-loan-officer",
+      keywords: ["mortgage", "home loan", "lending"],
+    },
+    {
+      type: "Role",
+      title: "Mortgage Underwriter",
+      path: "Banks › Retail / Consumer Banking › Mortgage",
+      route: "retail-mortgage-underwriter",
+      keywords: ["mortgage", "underwriting", "credit"],
+    },
+    {
+      type: "Role",
+      title: "Cards Product Manager",
+      path: "Banks › Retail / Consumer Banking › Cards & Payments",
+      route: "retail-cards-product-manager",
+      keywords: ["cards", "payments", "product"],
+    },
+    {
+      type: "Role",
+      title: "Consumer Payments Product Manager",
+      path: "Banks › Retail / Consumer Banking › Cards & Payments",
+      route: "retail-consumer-payments-product-manager",
+      keywords: ["payments", "consumer payments", "product"],
+    },
+    {
+      type: "Role",
+      title: "Personal Banker",
+      path: "Banks › Retail / Consumer Banking › Retail Relationship / Advisory",
+      route: "retail-personal-banker",
+      keywords: ["relationship", "advisory", "branch", "retail"],
+    },
+    {
+      type: "Role",
+      title: "Branch Manager",
+      path: "Banks › Retail / Consumer Banking › Retail Relationship / Advisory",
+      route: "retail-branch-manager",
+      keywords: ["branch", "retail banking", "relationship"],
+    },
+    {
+      type: "Role",
+      title: "Digital Banking Product Manager",
+      path: "Banks › Retail / Consumer Banking › Digital Banking",
+      route: "retail-digital-product-manager",
+      keywords: ["digital banking", "product", "mobile banking"],
+    },
+    {
+      type: "Role",
+      title: "Digital Journey Manager",
+      path: "Banks › Retail / Consumer Banking › Digital Banking",
+      route: "retail-digital-journey-manager",
+      keywords: ["digital", "customer journey", "consumer banking"],
+    },
+
+    // Banks — Commercial Banking
+    {
+      type: "Role",
+      title: "Commercial Relationship Manager",
+      path: "Banks › Commercial Banking › Relationship Management",
+      route: "commercial-relationship-manager",
+      keywords: ["relationship manager", "rm", "commercial banking"],
+    },
+    {
+      type: "Role",
+      title: "Commercial Lending Officer / Banker",
+      path: "Banks › Commercial Banking › Commercial Lending",
+      route: "commercial-lending-officer",
+      keywords: ["lending", "commercial banker", "credit"],
+    },
+    {
+      type: "Role",
+      title: "Commercial Credit Analyst / Underwriter",
+      path: "Banks › Commercial Banking › Credit Underwriting",
+      route: "commercial-credit-underwriter",
+      keywords: ["credit analyst", "underwriter", "commercial credit"],
+    },
+    {
+      type: "Role",
+      title: "Commercial Banking Product / Solutions Manager",
+      path: "Banks › Commercial Banking › Commercial Banking Product / Solutions",
+      route: "commercial-product-solutions-manager",
+      keywords: ["solutions", "product", "commercial banking"],
+    },
+
+    // Banks — Corporate Banking
+    {
+      type: "Role",
+      title: "Corporate Relationship Manager",
+      path: "Banks › Corporate Banking › Corporate Coverage / Relationship Management",
+      route: "corporate-relationship-manager",
+      keywords: ["relationship manager", "rm", "coverage", "corporate banking"],
+    },
+    {
+      type: "Role",
+      title: "Corporate Lending Banker",
+      path: "Banks › Corporate Banking › Corporate Lending",
+      route: "corporate-lending-banker",
+      keywords: ["corporate lending", "loans", "banker"],
+    },
+    {
+      type: "Role",
+      title: "Corporate Credit Analyst / Underwriter",
+      path: "Banks › Corporate Banking › Corporate Credit Analysis / Underwriting",
+      route: "corporate-credit-underwriter",
+      keywords: ["credit analyst", "underwriter", "corporate credit"],
+    },
+    {
+      type: "Role",
+      title: "Corporate Banking Solutions Banker",
+      path: "Banks › Corporate Banking › Corporate Banking Solutions",
+      route: "corporate-solutions-banker",
+      keywords: ["solutions", "corporate banking", "client coverage"],
+    },
+
+    // Banks — Investment Banking
+    {
+      type: "Role",
+      title: "Coverage Banker",
+      path: "Banks › Investment Banking › Industry / Client Coverage",
+      route: "ib-coverage-banker",
+      keywords: ["coverage", "investment banking", "client"],
+    },
+    {
+      type: "Role",
+      title: "M&A Banker",
+      path: "Banks › Investment Banking › M&A",
+      route: "ib-ma-banker",
+      keywords: ["mergers acquisitions", "m&a", "investment banking"],
+    },
+    {
+      type: "Role",
+      title: "ECM Banker",
+      path: "Banks › Investment Banking › Equity Capital Markets",
+      route: "ib-ecm-banker",
+      keywords: ["ecm", "equity capital markets", "investment banking"],
+    },
+    {
+      type: "Role",
+      title: "DCM Banker",
+      path: "Banks › Investment Banking › Debt Capital Markets",
+      route: "ib-dcm-banker",
+      keywords: ["dcm", "debt capital markets", "bonds"],
+    },
+    {
+      type: "Role",
+      title: "Leveraged Finance Banker",
+      path: "Banks › Investment Banking › Leveraged Finance",
+      route: "ib-levfin-banker",
+      keywords: ["leveraged finance", "levfin", "credit"],
+    },
+
+    // Banks — Transaction Banking
+    {
+      type: "Role",
+      title: "Cash Management Banker",
+      path: "Banks › Transaction Banking › Cash Management",
+      route: "tb-cash-management-banker",
+      keywords: ["cash management", "transaction banking", "treasury services"],
+    },
+    {
+      type: "Role",
+      title: "Payments Product Manager",
+      path: "Banks › Transaction Banking › Payments",
+      route: "tb-payments-product-manager",
+      keywords: ["payments", "transaction banking", "product"],
+    },
+    {
+      type: "Role",
+      title: "Trade Finance Banker",
+      path: "Banks › Transaction Banking › Trade Finance",
+      route: "tb-trade-finance-banker",
+      keywords: ["trade finance", "letters of credit", "transaction banking"],
+    },
+    {
+      type: "Role",
+      title: "Liquidity Management Specialist",
+      path: "Banks › Transaction Banking › Liquidity Management",
+      route: "tb-liquidity-specialist",
+      keywords: ["liquidity", "cash", "transaction banking"],
+    },
+    {
+      type: "Role",
+      title: "Transaction Banking Solutions Banker",
+      path: "Banks › Transaction Banking › Product / Solutions",
+      route: "tb-solutions-banker",
+      keywords: ["solutions", "transaction banking", "client"],
+    },
+
+    // Banks — Treasury / ALM
+    {
+      type: "Role",
+      title: "Liquidity & Funding Manager",
+      path: "Banks › Treasury / ALM › Liquidity & Funding Management",
+      route: "treasury-liquidity-funding-manager",
+      keywords: ["liquidity", "funding", "treasury"],
+    },
+    {
+      type: "Role",
+      title: "ALM Manager",
+      path: "Banks › Treasury / ALM › Asset-Liability Management",
+      route: "treasury-alm-manager",
+      keywords: ["alm", "asset liability management", "treasury"],
+    },
+    {
+      type: "Role",
+      title: "Capital Management Manager",
+      path: "Banks › Treasury / ALM › Capital Management",
+      route: "treasury-capital-manager",
+      keywords: ["capital management", "treasury", "capital"],
+    },
+    {
+      type: "Role",
+      title: "IRRBB Manager",
+      path: "Banks › Treasury / ALM › IRRBB",
+      route: "treasury-irrbb-manager",
+      keywords: ["irrbb", "interest rate risk", "banking book"],
+    },
+    {
+      type: "Role",
+      title: "Treasury Investment Manager",
+      path: "Banks › Treasury / ALM › Treasury Investment / Balance Sheet Management",
+      route: "treasury-investment-manager",
+      keywords: ["treasury investment", "balance sheet", "liquidity"],
+    },
+
+    // Banks — Risk Management
+    {
+      type: "Role",
+      title: "Credit Risk Manager",
+      path: "Banks › Risk Management › Credit Risk",
+      route: "risk-credit-manager",
+      keywords: ["credit risk", "risk management"],
+    },
+    {
+      type: "Role",
+      title: "Market Risk Manager",
+      path: "Banks › Risk Management › Market Risk",
+      route: "risk-market-manager",
+      keywords: ["market risk", "risk management"],
+    },
+    {
+      type: "Role",
+      title: "Liquidity Risk Manager",
+      path: "Banks › Risk Management › Liquidity Risk",
+      route: "risk-liquidity-manager",
+      keywords: ["liquidity risk", "risk management"],
+    },
+    {
+      type: "Role",
+      title: "Operational Risk Manager",
+      path: "Banks › Risk Management › Operational Risk",
+      route: "risk-operational-manager",
+      keywords: ["operational risk", "risk management"],
+    },
+    {
+      type: "Role",
+      title: "Model Risk Manager",
+      path: "Banks › Risk Management › Model Risk",
+      route: "risk-model-manager",
+      keywords: ["model risk", "validation", "risk management"],
+    },
+    {
+      type: "Role",
+      title: "Enterprise Risk Manager",
+      path: "Banks › Risk Management › Enterprise Risk / Risk Governance",
+      route: "risk-enterprise-manager",
+      keywords: ["enterprise risk", "risk governance", "erm"],
+    },
+
+    // Banks — Compliance / Financial Crime
+    {
+      type: "Role",
+      title: "Compliance Officer",
+      path: "Banks › Compliance / Financial Crime › Regulatory Compliance",
+      route: "compliance-officer",
+      keywords: ["compliance", "regulatory"],
+    },
+    {
+      type: "Role",
+      title: "Financial Crime Compliance Officer",
+      path: "Banks › Compliance / Financial Crime › AML / Financial Crime",
+      route: "compliance-fincrime-officer",
+      keywords: ["aml", "financial crime", "compliance"],
+    },
+    {
+      type: "Role",
+      title: "KYC / CDD Officer",
+      path: "Banks › Compliance / Financial Crime › KYC / CDD",
+      route: "compliance-kyc-officer",
+      keywords: ["kyc", "cdd", "client due diligence"],
+    },
+    {
+      type: "Role",
+      title: "Markets Compliance Officer",
+      path: "Banks › Compliance / Financial Crime › Markets Compliance / Surveillance",
+      route: "compliance-markets-officer",
+      keywords: ["markets compliance", "surveillance", "conduct"],
+    },
+    {
+      type: "Role",
+      title: "Conduct Risk / Compliance Governance Manager",
+      path: "Banks › Compliance / Financial Crime › Conduct Risk & Compliance Governance",
+      route: "compliance-conduct-manager",
+      keywords: ["conduct risk", "governance", "compliance"],
+    },
+
+    // Banks — Operations & Technology
+    {
+      type: "Role",
+      title: "Markets Operations Analyst",
+      path: "Banks › Operations & Technology › Markets Operations",
+      route: "ops-markets-analyst",
+      keywords: ["markets operations", "settlement", "trade operations"],
+    },
+    {
+      type: "Role",
+      title: "Payments Operations Analyst",
+      path: "Banks › Operations & Technology › Payments & Transaction Operations",
+      route: "ops-payments-analyst",
+      keywords: ["payments operations", "transaction operations"],
+    },
+    {
+      type: "Role",
+      title: "Banking Operations Analyst",
+      path: "Banks › Operations & Technology › Loan & Banking Operations",
+      route: "ops-banking-analyst",
+      keywords: ["banking operations", "loan operations"],
+    },
+    {
+      type: "Role",
+      title: "Client Onboarding Analyst",
+      path: "Banks › Operations & Technology › Client Onboarding & Reference Data",
+      route: "ops-onboarding-analyst",
+      keywords: ["client onboarding", "reference data", "static data"],
+    },
+    {
+      type: "Role",
+      title: "Banking Technology Engineer",
+      path: "Banks › Operations & Technology › Banking Technology / Engineering",
+      route: "ops-technology-engineer",
+      keywords: ["technology", "engineering", "banking systems"],
+    },
+    {
+      type: "Role",
+      title: "Technology Infrastructure / Resilience Manager",
+      path: "Banks › Operations & Technology › Technology Infrastructure & Resilience",
+      route: "ops-resilience-manager",
+      keywords: ["infrastructure", "resilience", "technology risk"],
+    },
+
+    // Banks — Global Markets — Sales
+    {
+      type: "Role",
+      title: "FX Salesperson",
+      path: "Banks › Global Markets › Sales › FX Sales",
+      route: "sales-fx-salesperson",
+      keywords: ["fx sales", "foreign exchange", "client coverage"],
+    },
+    {
+      type: "Role",
+      title: "Rates Salesperson",
+      path: "Banks › Global Markets › Sales › Rates Sales",
+      route: "sales-rates-salesperson",
+      keywords: ["rates sales", "fixed income sales", "interest rates"],
+    },
+    {
+      type: "Role",
+      title: "Credit Salesperson",
+      path: "Banks › Global Markets › Sales › Credit Sales",
+      route: "sales-credit-salesperson",
+      keywords: ["credit sales", "fixed income", "bonds"],
+    },
+    {
+      type: "Role",
+      title: "Equities Salesperson",
+      path: "Banks › Global Markets › Sales › Equities Sales",
+      route: "sales-equities-salesperson",
+      keywords: ["equity sales", "equities", "stocks"],
+    },
+    {
+      type: "Role",
+      title: "Commodities Salesperson",
+      path: "Banks › Global Markets › Sales › Commodities Sales",
+      route: "sales-commodities-salesperson",
+      keywords: ["commodity sales", "commodities"],
+    },
+    {
+      type: "Role",
+      title: "Cross-Asset Salesperson",
+      path: "Banks › Global Markets › Sales › Cross-Asset Sales",
+      route: "sales-cross-asset-salesperson",
+      keywords: ["cross asset", "sales", "multi asset"],
+    },
+
+    // Banks — Global Markets — Trading / Credit
+    {
+      type: "Role",
+      title: "IG Credit Trader",
+      path: "Banks › Global Markets › Trading › Credit › Investment Grade",
+      route: "credit-ig-trader",
+      keywords: ["credit trader", "ig", "investment grade", "bonds"],
+    },
+    {
+      type: "Role",
+      title: "HY Credit Trader",
+      path: "Banks › Global Markets › Trading › Credit › High Yield",
+      route: "credit-hy-trader",
+      keywords: ["credit trader", "hy", "high yield"],
+    },
+    {
+      type: "Role",
+      title: "EM Credit Trader",
+      path: "Banks › Global Markets › Trading › Credit › Emerging Markets",
+      route: "credit-em-trader",
+      keywords: ["credit trader", "em", "emerging markets"],
+    },
+    {
+      type: "Role",
+      title: "Credit Derivatives Trader",
+      path: "Banks › Global Markets › Trading › Credit › Credit Derivatives",
+      route: "credit-derivatives-trader",
+      keywords: ["credit derivatives", "cds", "trader"],
+    },
+    {
+      type: "Role",
+      title: "Electronic Credit Trader",
+      path: "Banks › Global Markets › Trading › Credit › Electronic Credit",
+      route: "credit-electronic-trader",
+      keywords: ["electronic trading", "credit", "trader"],
+    },
+
+    // Banks — Global Markets — Trading / Cross Asset
+    {
+      type: "Role",
+      title: "Cross-Asset Trader",
+      path: "Banks › Global Markets › Trading › Cross-Asset",
+      route: "cross-asset-trader",
+      keywords: ["cross asset", "multi asset", "trader"],
+    },
+
+    // Banks — Global Markets — Trading / Commodities
+    {
+      type: "Role",
+      title: "Oil & Energy Trader",
+      path: "Banks › Global Markets › Trading › Commodities › Oil & Energy",
+      route: "commodities-oil-energy-trader",
+      keywords: ["oil", "energy", "commodity trader"],
+    },
+    {
+      type: "Role",
+      title: "Natural Gas Trader",
+      path: "Banks › Global Markets › Trading › Commodities › Natural Gas",
+      route: "commodities-natural-gas-trader",
+      keywords: ["natural gas", "commodity trader"],
+    },
+    {
+      type: "Role",
+      title: "Power Trader",
+      path: "Banks › Global Markets › Trading › Commodities › Power",
+      route: "commodities-power-trader",
+      keywords: ["power", "electricity", "commodity trader"],
+    },
+    {
+      type: "Role",
+      title: "Metals Trader",
+      path: "Banks › Global Markets › Trading › Commodities › Metals",
+      route: "commodities-metals-trader",
+      keywords: ["metals", "commodity trader"],
+    },
+    {
+      type: "Role",
+      title: "Agriculture Trader",
+      path: "Banks › Global Markets › Trading › Commodities › Agriculture",
+      route: "commodities-agriculture-trader",
+      keywords: ["agriculture", "agricultural commodities", "trader"],
+    },
+
+    // Banks — Global Markets — Trading / Equities
+    {
+      type: "Role",
+      title: "Cash Equities Trader",
+      path: "Banks › Global Markets › Trading › Equities › Cash Equities",
+      route: "equities-cash-trader",
+      keywords: ["cash equities", "equity trader", "stocks"],
+    },
+    {
+      type: "Role",
+      title: "Equity Derivatives Trader",
+      path: "Banks › Global Markets › Trading › Equities › Equity Derivatives",
+      route: "equities-derivatives-trader",
+      keywords: ["equity derivatives", "options", "trader"],
+    },
+    {
+      type: "Role",
+      title: "Index / ETF Trader",
+      path: "Banks › Global Markets › Trading › Equities › Index / ETF",
+      route: "equities-index-etf-trader",
+      keywords: ["index", "etf", "equity trader"],
+    },
+    {
+      type: "Role",
+      title: "Electronic Equities Trader",
+      path: "Banks › Global Markets › Trading › Equities › Electronic",
+      route: "equities-electronic-trader",
+      keywords: ["electronic trading", "equities", "trader"],
+    },
+    {
+      type: "Role",
+      title: "EM Equities Trader",
+      path: "Banks › Global Markets › Trading › Equities › Emerging Markets",
+      route: "equities-em-trader",
+      keywords: ["em equities", "emerging markets", "trader"],
+    },
+
+    // Banks — Global Markets — Trading / Rates
+    {
+      type: "Role",
+      title: "Government Bond Trader",
+      path: "Banks › Global Markets › Trading › Rates › Government Bonds",
+      route: "rates-government-bond-trader",
+      keywords: ["rates", "government bonds", "treasury", "bond trader"],
+    },
+    {
+      type: "Role",
+      title: "Swap Trader",
+      path: "Banks › Global Markets › Trading › Rates › Swaps",
+      route: "rates-swap-trader",
+      keywords: ["rates", "swaps", "interest rate swaps"],
+    },
+    {
+      type: "Role",
+      title: "Futures / STIR Trader",
+      path: "Banks › Global Markets › Trading › Rates › Futures / STIR",
+      route: "rates-futures-trader",
+      keywords: ["rates futures", "stir", "futures"],
+    },
+    {
+      type: "Role",
+      title: "Rates Options Trader",
+      path: "Banks › Global Markets › Trading › Rates › Options",
+      route: "rates-options-trader",
+      keywords: ["rates options", "options", "interest rates"],
+    },
+    {
+      type: "Role",
+      title: "Electronic Rates Trader",
+      path: "Banks › Global Markets › Trading › Rates › Electronic",
+      route: "rates-electronic-trader",
+      keywords: ["electronic trading", "rates", "trader"],
+    },
+
+    // Banks — Global Markets — Trading / FX
+    {
+      type: "Role",
+      title: "FX Spot Trader",
+      path: "Banks › Global Markets › Trading › FX › Spot",
+      route: "fx-spot-trader",
+      keywords: ["fx trader", "spot fx", "foreign exchange"],
+    },
+    {
+      type: "Role",
+      title: "FX Forward / Swap Trader",
+      path: "Banks › Global Markets › Trading › FX › Forwards & Swaps",
+      route: "fx-forward-swap-trader",
+      keywords: ["fx trader", "fx forwards", "fx swaps"],
+    },
+    {
+      type: "Role",
+      title: "FX Options Trader",
+      path: "Banks › Global Markets › Trading › FX › Options",
+      route: "fx-options-trader",
+      keywords: ["fx trader", "fx options", "volatility"],
+    },
+    {
+      type: "Role",
+      title: "EM / NDF Trader",
+      path: "Banks › Global Markets › Trading › FX › EM / NDF",
+      route: "fx-em-ndf-trader",
+      keywords: ["fx trader", "ndf", "em fx", "emerging markets"],
+    },
+    {
+      type: "Role",
+      title: "Electronic FX Trader",
+      path: "Banks › Global Markets › Trading › FX › Electronic",
+      route: "fx-electronic-trader",
+      keywords: ["fx trader", "electronic trading", "foreign exchange"],
+    },
+
+    // Banks — Global Markets — Structuring
+    {
+      type: "Role",
+      title: "FX Structurer",
+      path: "Banks › Global Markets › Structuring › FX",
+      route: "structuring-fx-structurer",
+      keywords: ["fx structuring", "derivatives", "structured products"],
+    },
+    {
+      type: "Role",
+      title: "Rates Structurer",
+      path: "Banks › Global Markets › Structuring › Rates",
+      route: "structuring-rates-structurer",
+      keywords: ["rates structuring", "derivatives"],
+    },
+    {
+      type: "Role",
+      title: "Credit Structurer",
+      path: "Banks › Global Markets › Structuring › Credit",
+      route: "structuring-credit-structurer",
+      keywords: ["credit structuring", "derivatives"],
+    },
+    {
+      type: "Role",
+      title: "Equity Structurer",
+      path: "Banks › Global Markets › Structuring › Equity",
+      route: "structuring-equity-structurer",
+      keywords: ["equity structuring", "structured products"],
+    },
+    {
+      type: "Role",
+      title: "Commodities Structurer",
+      path: "Banks › Global Markets › Structuring › Commodities",
+      route: "structuring-commodities-structurer",
+      keywords: ["commodity structuring", "derivatives"],
+    },
+    {
+      type: "Role",
+      title: "Cross-Asset Structurer",
+      path: "Banks › Global Markets › Structuring › Cross-Asset",
+      route: "structuring-cross-asset-structurer",
+      keywords: ["cross asset", "structuring", "structured products"],
+    },
+
+    // Banks — Global Markets — Research / Strategy
+    {
+      type: "Role",
+      title: "Macro Strategist",
+      path: "Banks › Global Markets › Research / Strategy › Macro",
+      route: "research-macro-role",
+      keywords: ["macro", "strategy", "research", "economics"],
+    },
+    {
+      type: "Role",
+      title: "FX Strategist",
+      path: "Banks › Global Markets › Research / Strategy › FX",
+      route: "research-fx-role",
+      keywords: ["fx strategy", "research", "foreign exchange"],
+    },
+    {
+      type: "Role",
+      title: "Rates Strategist",
+      path: "Banks › Global Markets › Research / Strategy › Rates",
+      route: "research-rates-role",
+      keywords: ["rates strategy", "research", "interest rates"],
+    },
+    {
+      type: "Role",
+      title: "Credit Strategist / Analyst",
+      path: "Banks › Global Markets › Research / Strategy › Credit",
+      route: "research-credit-role",
+      keywords: ["credit strategy", "credit analyst", "research"],
+    },
+    {
+      type: "Role",
+      title: "Equity Strategist / Research",
+      path: "Banks › Global Markets › Research / Strategy › Equity",
+      route: "research-equity-role",
+      keywords: ["equity strategy", "equity research"],
+    },
+    {
+      type: "Role",
+      title: "Cross-Asset Strategist",
+      path: "Banks › Global Markets › Research / Strategy › Cross-Asset",
+      route: "research-cross-asset-role",
+      keywords: ["cross asset", "strategy", "research"],
+    },
+
+    // Banks — Global Markets — Financing / Securities Finance
+    {
+      type: "Role",
+      title: "Repo Financing Specialist",
+      path: "Banks › Global Markets › Financing / Securities Finance › Repo",
+      route: "financing-repo-role",
+      keywords: ["repo", "financing", "securities finance"],
+    },
+    {
+      type: "Role",
+      title: "Securities Lending Specialist",
+      path: "Banks › Global Markets › Financing / Securities Finance › Securities Lending",
+      route: "financing-securities-lending-role",
+      keywords: ["securities lending", "stock loan", "financing"],
+    },
+    {
+      type: "Role",
+      title: "Equity Financing Specialist",
+      path: "Banks › Global Markets › Financing / Securities Finance › Equity Financing",
+      route: "financing-equity-role",
+      keywords: ["equity financing", "prime financing", "securities finance"],
+    },
+    {
+      type: "Role",
+      title: "Credit Financing Specialist",
+      path: "Banks › Global Markets › Financing / Securities Finance › Credit Financing",
+      route: "financing-credit-role",
+      keywords: ["credit financing", "securities finance"],
+    },
+    {
+      type: "Role",
+      title: "Cross-Asset Financing Specialist",
+      path: "Banks › Global Markets › Financing / Securities Finance › Cross-Asset Financing",
+      route: "financing-cross-asset-role",
+      keywords: ["cross asset", "financing", "securities finance"],
+    },
+
+    // Banks — Global Markets — COO / Business Management
+    {
+      type: "Role",
+      title: "Markets COO / Business Manager",
+      path: "Banks › Global Markets › Markets COO / Business Management",
+      route: "markets-coo-role",
+      keywords: ["markets coo", "business management", "global markets"],
+    },
+
+    // Investment Funds — representative roles
+    {
+      type: "Role",
+      title: "Portfolio Manager",
+      path: "Investment Funds › Portfolio Management",
+      route: "funds-portfolio-manager",
+      keywords: ["asset management", "portfolio", "investment"],
+    },
+    {
+      type: "Role",
+      title: "Investment Analyst",
+      path: "Investment Funds › Investment Research",
+      route: "funds-research-analyst",
+      keywords: ["research", "buy side", "investment research"],
+    },
+    {
+      type: "Role",
+      title: "Buy-Side Trader",
+      path: "Investment Funds › Trading & Execution",
+      route: "funds-trading-trader",
+      keywords: ["trader", "execution", "buy side"],
+    },
+    {
+      type: "Role",
+      title: "Investment Risk Manager",
+      path: "Investment Funds › Risk & Portfolio Analytics",
+      route: "funds-risk-manager",
+      keywords: ["risk", "portfolio risk", "analytics"],
+    },
+    {
+      type: "Role",
+      title: "Institutional Client / Distribution Manager",
+      path: "Investment Funds › Distribution & Client Coverage",
+      route: "funds-distribution-manager",
+      keywords: ["distribution", "client coverage", "institutional client"],
+    },
+    {
+      type: "Role",
+      title: "Fund Operations Analyst",
+      path: "Investment Funds › Fund Operations",
+      route: "funds-operations-analyst",
+      keywords: ["operations", "fund operations", "reconciliation"],
+    },
+
+    // Insurance — representative roles
+    {
+      type: "Role",
+      title: "Actuary",
+      path: "Insurance › Actuarial",
+      route: "insurance-actuarial",
+      keywords: ["actuarial", "pricing", "reserves", "insurance risk"],
+    },
+    {
+      type: "Role",
+      title: "Underwriter",
+      path: "Insurance › Underwriting",
+      route: "insurance-underwriting",
+      keywords: ["underwriting", "insurance risk"],
+    },
+    {
+      type: "Role",
+      title: "Insurance Investment Manager",
+      path: "Insurance › Investment Management",
+      route: "insurance-investments",
+      keywords: ["portfolio", "asset management", "insurance investments"],
+    },
+    {
+      type: "Role",
+      title: "Insurance Risk Manager",
+      path: "Insurance › Risk Management",
+      route: "insurance-risk",
+      keywords: ["risk", "enterprise risk", "insurance risk"],
+    },
+    {
+      type: "Role",
+      title: "Insurance Distribution Manager",
+      path: "Insurance › Distribution & Client Management",
+      route: "insurance-distribution",
+      keywords: ["distribution", "client", "broker", "insurance sales"],
+    },
+    {
+      type: "Role",
+      title: "Claims / Insurance Operations Specialist",
+      path: "Insurance › Claims & Insurance Operations",
+      route: "insurance-operations",
+      keywords: ["claims", "operations", "policy servicing"],
+    },
+
+    // Pension Funds — representative roles
+    {
+      type: "Role",
+      title: "Asset Allocation Strategist",
+      path: "Pension Funds › Asset Allocation & Investment Strategy",
+      route: "pension-allocation",
+      keywords: ["asset allocation", "strategy", "pension liabilities"],
+    },
+    {
+      type: "Role",
+      title: "Pension Investment Manager",
+      path: "Pension Funds › Investment Management",
+      route: "pension-investment",
+      keywords: ["portfolio", "investment", "pension fund"],
+    },
+    {
+      type: "Role",
+      title: "Pension Investment Analyst",
+      path: "Pension Funds › Investment Research",
+      route: "pension-research",
+      keywords: ["research", "investment analyst", "pension"],
+    },
+    {
+      type: "Role",
+      title: "Pension Investment Risk Manager",
+      path: "Pension Funds › Investment Risk Management",
+      route: "pension-risk",
+      keywords: ["risk", "funding risk", "investment risk"],
+    },
+    {
+      type: "Role",
+      title: "External Manager / Mandate Manager",
+      path: "Pension Funds › External Manager & Mandate Management",
+      route: "pension-mandates",
+      keywords: ["external manager", "mandate", "manager selection"],
+    },
+    {
+      type: "Role",
+      title: "Pension Operations Specialist",
+      path: "Pension Funds › Pension Administration & Operations",
+      route: "pension-operations",
+      keywords: ["operations", "administration", "benefits", "pension"],
+    },
+
+    ...centralBankFunctions.flatMap((fn): SearchResult[] => [
+      {
+        type: "Function",
+        title: fn.label,
+        path: `Central Bank › ${fn.label}`,
+        centralBankFunction: fn,
+      },
+      ...fn.roles.map((role) => ({
+        type: "Role" as const,
+        title: role.title,
+        path: `Central Bank › ${fn.label}`,
+        centralBankFunction: fn,
+        keywords: [role.description],
+      })),
+    ]),
+  ];
+
+  const scoreSearchResult = (result: SearchResult) => {
+    const title = result.title.toLowerCase();
+    const path = result.path.toLowerCase();
+    const keywords = (result.keywords ?? []).join(" ").toLowerCase();
+
+    if (title === normalizedSearch) return 100;
+    if (title.startsWith(normalizedSearch)) return 80;
+    if (title.includes(normalizedSearch)) return 60;
+    if (path.includes(normalizedSearch)) return 30;
+    if (keywords.includes(normalizedSearch)) return 10;
+
+    return 0;
+  };
+
   const searchResults = normalizedSearch
-    ? centralBankFunctions.flatMap((fn) => {
-        const results = [];
-
-        if (fn.label.toLowerCase().includes(normalizedSearch)) {
-          results.push({
-            type: "Function",
-            title: fn.label,
-            path: `Central Bank › ${fn.label}`,
-          });
-        }
-
-        for (const role of fn.roles) {
-          if (
-            role.title.toLowerCase().includes(normalizedSearch) ||
-            role.description.toLowerCase().includes(normalizedSearch)
-          ) {
-            results.push({
-              type: "Role",
-              title: role.title,
-              path: `Central Bank › ${fn.label}`,
-            });
-          }
-        }
-
-        return results;
-      })
+    ? searchIndex
+        .map((result) => ({
+          ...result,
+          score: scoreSearchResult(result),
+        }))
+        .filter((result) => result.score > 0)
+        .sort(
+          (a, b) =>
+            b.score - a.score ||
+            a.title.localeCompare(b.title)
+        )
     : [];
 
   return (
@@ -749,12 +1873,15 @@ function FinancialSystemMap({
                     className="search-result-item"
                     key={`${result.title}-${index}`}
                     onClick={() => {
-                      const target = centralBankFunctions.find(
-                        (fn) => result.path === `Central Bank › ${fn.label}`
-                      );
+                    if (result.centralBankFunction) {
+                      openFunction(result.centralBankFunction);
+                      return;
+                    }
 
-                      if (target) openFunction(target);
-                    }}
+                    if (result.route) {
+                      openPage(result.route);
+                    }
+                  }}
                   >
                     <div>
                       <strong>{result.title}</strong>
@@ -22084,10 +23211,9 @@ function InteractionMap({ goBack }: { goBack: () => void }) {
 }
 
 function App() {
-  const [page, setPage] = useState<"system" | "interaction-map" | "central-bank" | "banks" | "investment-funds" | "insurance" | "insurance-actuarial" | "insurance-underwriting" | "insurance-investments" | "insurance-risk" | "insurance-distribution" | "insurance-operations" | "funds-portfolio" | "funds-portfolio-manager" | "funds-research" | "funds-research-analyst" | "funds-trading" | "funds-trading-trader" | "funds-risk" | "funds-risk-manager" | "funds-distribution" | "funds-distribution-manager" | "funds-operations" | "funds-operations-analyst" | "commercial-banking" | "corporate-banking" | "investment-banking" | "transaction-banking" | "treasury-alm" | "risk-management" | "risk-credit" | "risk-credit-manager" | "risk-market" | "risk-market-manager" | "risk-liquidity" | "risk-liquidity-manager" | "risk-operational" | "risk-operational-manager" | "risk-model" | "risk-model-manager" | "risk-enterprise" | "risk-enterprise-manager" | "compliance-financial-crime" | "compliance-regulatory" | "compliance-officer" | "compliance-fincrime" | "compliance-fincrime-officer" | "compliance-kyc" | "compliance-kyc-officer" | "compliance-markets" | "compliance-markets-officer" | "compliance-conduct" | "compliance-conduct-manager" | "operations-technology" | "ops-markets" | "ops-markets-analyst" | "ops-payments" | "ops-payments-analyst" | "ops-banking" | "ops-banking-analyst" | "ops-onboarding" | "ops-onboarding-analyst" | "ops-technology" | "ops-technology-engineer" | "ops-resilience" | "ops-resilience-manager" | "treasury-liquidity-funding" | "treasury-liquidity-funding-manager" | "treasury-alm-core" | "treasury-alm-manager" | "treasury-capital" | "treasury-capital-manager" | "treasury-irrbb" | "treasury-irrbb-manager" | "treasury-investment" | "treasury-investment-manager" | "tb-cash-management" | "tb-cash-management-banker" | "tb-payments" | "tb-payments-product-manager" | "tb-trade-finance" | "tb-trade-finance-banker" | "tb-liquidity" | "tb-liquidity-specialist" | "tb-solutions" | "tb-solutions-banker" | "ib-coverage" | "ib-coverage-banker" | "ib-ma" | "ib-ma-banker" | "ib-ecm" | "ib-ecm-banker" | "ib-dcm" | "ib-dcm-banker" | "ib-levfin" | "ib-levfin-banker" | "corporate-solutions" | "corporate-solutions-banker" | "corporate-credit" | "corporate-credit-underwriter" | "corporate-lending" | "corporate-lending-banker" | "corporate-coverage" | "corporate-relationship-manager" | "commercial-relationship" | "commercial-relationship-manager" | "commercial-lending" | "commercial-lending-officer" | "commercial-credit" | "commercial-credit-underwriter" | "commercial-product-solutions" | "commercial-product-solutions-manager" | "retail-banking" | "retail-deposits" | "retail-deposits-product-manager" | "retail-consumer-lending" | "retail-consumer-lending-product-manager" | "retail-consumer-credit-underwriter" | "retail-mortgage" | "retail-mortgage-loan-officer" | "retail-mortgage-underwriter" | "retail-cards-payments" | "retail-cards-product-manager" | "retail-consumer-payments-product-manager" | "retail-relationship" | "retail-personal-banker" | "retail-branch-manager" | "retail-digital" | "retail-digital-product-manager" | "retail-digital-journey-manager" | "global-markets" | "financing" | "financing-repo" | "financing-repo-role" | "financing-securities-lending" | "financing-securities-lending-role" | "financing-equity" | "financing-equity-role" | "financing-credit" | "financing-credit-role" | "financing-cross-asset" | "financing-cross-asset-role" | "markets-coo" | "markets-coo-role" | "research-strategy" | "research-macro" | "research-macro-role" | "research-fx" | "research-fx-role" | "research-rates" | "research-rates-role" | "research-credit" | "research-credit-role" | "research-equity" | "research-equity-role" | "research-cross-asset" | "research-cross-asset-role" | "structuring" | "structuring-fx" | "structuring-fx-structurer" | "structuring-rates" | "structuring-rates-structurer" | "structuring-credit" | "structuring-credit-structurer" | "structuring-equity" | "structuring-equity-structurer" | "structuring-commodities" | "structuring-commodities-structurer" | "structuring-cross-asset" | "structuring-cross-asset-structurer" | "sales" | "sales-fx" | "sales-fx-salesperson" | "sales-rates" | "sales-rates-salesperson" | "sales-credit" | "sales-credit-salesperson" | "sales-equities" | "sales-equities-salesperson" | "sales-commodities" | "sales-commodities-salesperson" | "sales-cross-asset" | "sales-cross-asset-salesperson" | "trading" | "credit-trading" | "credit-ig" | "credit-ig-trader" | "credit-hy" | "credit-hy-trader" | "credit-em" | "credit-em-trader" | "credit-derivatives" | "credit-derivatives-trader" | "credit-electronic" | "credit-electronic-trader" | "cross-asset-trading" | "cross-asset-trader" | "commodities-trading" | "commodities-oil-energy" | "commodities-oil-energy-trader" | "commodities-natural-gas" | "commodities-natural-gas-trader" | "commodities-power" | "commodities-power-trader" | "commodities-metals" | "commodities-metals-trader" | "commodities-agriculture" | "commodities-agriculture-trader" | "equities-trading" | "equities-cash" | "equities-cash-trader" | "equities-derivatives" | "equities-derivatives-trader" | "equities-index-etf" | "equities-index-etf-trader" | "equities-electronic" | "equities-electronic-trader" | "equities-em" | "equities-em-trader" | "rates-trading" | "rates-government-bonds" | "rates-government-bond-trader" | "rates-swaps" | "rates-swap-trader" | "rates-futures-stir" | "rates-futures-trader" | "rates-options" | "rates-options-trader" | "rates-electronic" | "rates-electronic-trader" | "fx-trading" | "fx-spot" | "fx-spot-trader" | "fx-forwards-swaps" | "fx-forward-swap-trader" | "fx-options" | "fx-options-trader" | "fx-em-ndf" | "fx-em-ndf-trader" | "fx-electronic" | "fx-electronic-trader" | "function" | "pension-funds" | "pension-allocation" | "pension-investment" | "pension-research" | "pension-risk" | "pension-mandates" | "pension-operations" | "funds-portfolio-roles" | "funds-research-roles" | "funds-trading-roles" | "funds-risk-roles" | "funds-distribution-roles" | "funds-operations-roles" | "insurance-actuarial-roles" | "insurance-underwriting-roles" | "insurance-investments-roles" | "insurance-risk-roles" | "insurance-distribution-roles" | "insurance-operations-roles" | "pension-allocation-roles" | "pension-investment-roles" | "pension-research-roles" | "pension-risk-roles" | "pension-mandates-roles" | "pension-operations-roles" | "money-market" | "bond-market" | "equity-market" | "fx-market" | "derivatives-market" | "commodities-market" | "payment-systems" | "clearing-ccps" | "settlement-systems" | "csds" | "trade-repositories">(
+const [page, setPage] = useState<Page>(
     "system"
   );
-
   const [selectedFunction, setSelectedFunction] =
     useState<CentralBankFunction | null>(null);
 
@@ -25044,6 +26170,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
       openCSDs={() => setPage("csds")}
       openTradeRepositories={() => setPage("trade-repositories")}
       openInteractions={() => setPage("interaction-map")}
+    openPage={(targetPage) => setPage(targetPage)}
       openFunction={(item) => {
         setSelectedFunction(item);
         setPage("function");
