@@ -2,6 +2,8 @@
 
 **Finance Jobs Map** is an interactive visual map designed to show where financial roles sit within the broader financial system — and how institutions, markets, infrastructure, functions, and jobs connect with one another.
 
+**Finance Jobs Map goes beyond listing individual financial roles by visualizing how institutions, functions, markets, products, and infrastructure interact across the financial system.**
+
 🌐 **Open the Live Finance Jobs Map**
 https://sellina95.github.io/Finance-jobs-map/
 
@@ -66,20 +68,36 @@ The map currently begins with three major components of the financial system:
 
 Detailed role mapping is being developed progressively.
 
-Current deeper coverage includes:
+Current implemented coverage includes:
 
-- Central Bank functions and representative role families
-- Bank → Global Markets
-  - Sales
-  - Trading
-  - Structuring
-  - Research / Strategy
-  - Financing / Securities Finance
-  - Markets COO / Business Management
+- **Central Banks** — core functions and representative role families
+- **Banks** — Retail / Consumer Banking, Commercial Banking, Corporate Banking, Global Markets, Investment Banking, Transaction Banking, Treasury / ALM, Risk Management, Compliance / Financial Crime, and Operations & Technology
+- **Investment Funds / Asset Management** — Portfolio Management, Investment Research, Trading & Execution, Risk & Portfolio Analytics, Distribution & Client Coverage, and Fund Operations
+- **Insurance** — Actuarial, Underwriting, Investment Management, Risk Management, Distribution & Client Management, and Claims / Insurance Operations
+- **Pension Funds** — Asset Allocation & Investment Strategy, Investment Management, Investment Research, Investment Risk Management, External Manager & Mandate Management, and Pension Administration & Operations
+- **Financial Markets** — Money, Bond, Equity, FX, Derivatives, and Commodities markets
+- **Financial Infrastructure** — Payment Systems, Clearing / CCPs, Settlement Systems, CSDs, and Trade Repositories
+
+Role-level depth varies across areas. Central Bank functions, major banking functions, Global Markets, Investment Funds, Insurance, and Pension Funds currently include deeper function-to-role navigation, while market and infrastructure coverage is focused primarily on system structure, participants, and connections.
 
 Individual role pages are structured around a common set of questions:
 
 **📍 Where am I? → 📈 What market? → 🧩 What products? → 💼 What do I actually do? → 🔗 Who do I work with? → ⚙️ What infrastructure supports the work?**
+
+## Interaction Map
+
+The **Interaction Map** extends the project beyond hierarchical role navigation by showing how institutions, roles, markets, and financial infrastructure connect through representative financial workflows.
+
+Rather than treating every connection as the same kind of relationship, the map distinguishes four interaction types:
+
+- **Workflow** — how financial activity moves through participants and infrastructure
+- **Information** — how research, reporting, market information, or other information flows between functions
+- **Control** — independent oversight, risk monitoring, or governance relationships
+- **Mandate** — delegated investment or management relationships between asset owners and external managers
+
+Representative workflows currently include investment-fund participation in bond markets, corporate FX hedging, debt capital raising, corporate payments, derivatives clearing, and pension-fund external-manager mandates.
+
+Markets may act as the context in which a workflow occurs rather than as a sequential operational participant. This distinction helps keep the map focused on how financial activity actually moves between institutions, roles, and infrastructure.
 
 ## Design Principle
 
@@ -122,4 +140,6 @@ In other words: one map for finance first — and, eventually, perhaps a much bi
 
 🚧 **V0 — Active Development**
 
-The project is being expanded iteratively. Additional institutions, functions, roles, market relationships, and infrastructure connections will be added over time.
+The core navigation structure is now implemented across financial institutions, markets, and infrastructure, together with unified search and an initial Interaction Map for exploring representative financial-system workflows.
+
+Development is continuing through content validation, taxonomy refinement, additional role and relationship coverage, and user feedback. The goal is to expand the map without turning it into an exhaustive or institution-specific organizational chart.
