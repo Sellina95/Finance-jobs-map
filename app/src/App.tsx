@@ -165,6 +165,145 @@ export const interactionEdges: InteractionEdge[] = [
   },
 
   // -------------------------------------------------------
+  // WORKFLOW 4 — Corporate → Debt Capital Raising
+  // -------------------------------------------------------
+  {
+    id: "corporate-to-dcm",
+    source: "corporate",
+    target: "dcm-banker",
+    type: "workflow",
+    importance: "primary",
+    label: "Debt financing and capital raising need",
+    context: {
+      market: "bond-market",
+      products: ["corporate-bonds"],
+    },
+  },
+  {
+    id: "dcm-to-investor",
+    source: "dcm-banker",
+    target: "institutional-investor",
+    type: "workflow",
+    importance: "primary",
+    label: "Primary bond distribution to investors",
+    context: {
+      market: "bond-market",
+      products: ["corporate-bonds"],
+    },
+  },
+  {
+    id: "investor-to-csd",
+    source: "institutional-investor",
+    target: "csds",
+    type: "workflow",
+    importance: "primary",
+    label: "Securities issuance and holding infrastructure",
+    context: {
+      market: "bond-market",
+      products: ["corporate-bonds"],
+    },
+  },
+  {
+    id: "csd-to-settlement",
+    source: "csds",
+    target: "settlement-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Securities and cash settlement",
+    context: {
+      market: "bond-market",
+      products: ["corporate-bonds"],
+    },
+  },
+
+  // -------------------------------------------------------
+  // WORKFLOW 5 — Corporate → Payments
+  // -------------------------------------------------------
+  {
+    id: "corporate-to-cash-management",
+    source: "corporate",
+    target: "cash-management-banker",
+    type: "workflow",
+    importance: "primary",
+    label: "Corporate cash and payment need",
+  },
+  {
+    id: "cash-management-to-payments-operations",
+    source: "cash-management-banker",
+    target: "payments-operations-analyst",
+    type: "workflow",
+    importance: "primary",
+    label: "Payment service and processing flow",
+  },
+  {
+    id: "payments-operations-to-payment-systems",
+    source: "payments-operations-analyst",
+    target: "payment-systems",
+    type: "workflow",
+    importance: "primary",
+    label: "Payment instruction and processing",
+  },
+  {
+    id: "payment-systems-to-settlement",
+    source: "payment-systems",
+    target: "settlement-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Final movement and settlement of funds",
+  },
+
+  // -------------------------------------------------------
+  // WORKFLOW 6 — Investor → Derivatives Clearing
+  // -------------------------------------------------------
+  {
+    id: "investor-to-equity-derivatives-trader",
+    source: "institutional-investor",
+    target: "equity-derivatives-trader",
+    type: "workflow",
+    importance: "primary",
+    label: "Derivatives exposure and execution request",
+    context: {
+      market: "derivatives-market",
+      products: ["equity-options", "equity-derivatives"],
+    },
+  },
+  {
+    id: "equity-derivatives-trader-to-ccp",
+    source: "equity-derivatives-trader",
+    target: "clearing-ccps",
+    type: "workflow",
+    importance: "primary",
+    label: "Clearing of eligible derivatives transactions",
+    context: {
+      market: "derivatives-market",
+      products: ["equity-derivatives"],
+    },
+  },
+  {
+    id: "ccp-to-settlement",
+    source: "clearing-ccps",
+    target: "settlement-systems",
+    type: "workflow",
+    importance: "secondary",
+    label: "Cleared obligations proceed to settlement",
+    context: {
+      market: "derivatives-market",
+    },
+  },
+  {
+    id: "equity-derivatives-to-trade-repository",
+    source: "equity-derivatives-trader",
+    target: "trade-repositories",
+    type: "information",
+    importance: "secondary",
+    label: "Transaction reporting and regulatory transparency",
+    context: {
+      market: "derivatives-market",
+      products: ["equity-derivatives"],
+    },
+  },
+
+  // -------------------------------------------------------
   // WORKFLOW 3 — Pension Fund → External Manager
   // -------------------------------------------------------
   {
@@ -1849,11 +1988,11 @@ function FinancialSystemMap({
 
         <div>
           <p className="eyebrow">FINANCE WORLD MAP</p>
-          <h1>Financial System</h1>
+          <h1>See Where Every Finance Job Fits</h1>
 
           <p className="intro">
-            Explore the institutions, markets and infrastructure that make
-            the financial system work.
+            Explore how finance roles fit across institutions, markets and
+            infrastructure — what they do, where they sit, and how they connect.
           </p>
           <div className="search-box">
           <span>🔎</span>
@@ -2013,7 +2152,7 @@ function FinancialSystemMap({
           target="_blank"
           rel="noreferrer"
         >
-          <span>🐙</span>
+          <span>👤</span>
           <strong>Sellina95</strong>
         </a>
         <a
@@ -23068,6 +23207,66 @@ function InteractionMap({ goBack }: { goBack: () => void }) {
       ],
     },
     {
+      emoji: "🏢",
+      title: "Corporate → Debt Capital Raising",
+      subtitle: "How a corporate funding need becomes a bond issuance distributed to investors.",
+      nodes: [
+        ["🏢", "Corporate", "funding need"],
+        ["🧾", "DCM Banker", "structuring / issuance"],
+        ["💼", "Institutional Investor", "primary allocation"],
+        ["🏦", "CSD", "securities infrastructure"],
+        ["🗄️", "Settlement", "completion"],
+      ],
+      edgeIds: [
+        "corporate-to-dcm",
+        "dcm-to-investor",
+        "investor-to-csd",
+        "csd-to-settlement",
+      ],
+      relatedEdgeIds: [],
+    },
+
+    {
+      emoji: "💸",
+      title: "Corporate → Payments",
+      subtitle: "How a corporate payment need moves through bank transaction services into payment and settlement infrastructure.",
+      nodes: [
+        ["🏢", "Corporate", "payment need"],
+        ["💵", "Cash Management Banker", "client solution"],
+        ["⚙️", "Payments Operations", "processing"],
+        ["💸", "Payment Systems", "funds movement"],
+        ["🗄️", "Settlement", "completion"],
+      ],
+      edgeIds: [
+        "corporate-to-cash-management",
+        "cash-management-to-payments-operations",
+        "payments-operations-to-payment-systems",
+        "payment-systems-to-settlement",
+      ],
+      relatedEdgeIds: [],
+    },
+
+    {
+      emoji: "🧩",
+      title: "Investor → Derivatives Clearing",
+      subtitle: "How a derivatives transaction moves from investor execution into clearing and settlement infrastructure.",
+      nodes: [
+        ["💼", "Institutional Investor", "exposure / hedge"],
+        ["📈", "Equity Derivatives Trader", "pricing / execution"],
+        ["🔄", "Clearing / CCP", "clearing"],
+        ["🗄️", "Settlement", "completion"],
+      ],
+      edgeIds: [
+        "investor-to-equity-derivatives-trader",
+        "equity-derivatives-trader-to-ccp",
+        "ccp-to-settlement",
+      ],
+      relatedEdgeIds: [
+        "equity-derivatives-to-trade-repository",
+      ],
+    },
+
+    {
       emoji: "👵",
       title: "Pension Fund → External Manager",
       subtitle: "How long-term allocation becomes a delegated investment mandate.",
@@ -23132,9 +23331,13 @@ function InteractionMap({ goBack }: { goBack: () => void }) {
         <div className="eyebrow">FINANCIAL SYSTEM INTERACTIONS</div>
         <h1>How the Financial System Connects</h1>
         <p>
-          Follow real workflows across institutions, roles, markets, and
-          infrastructure.
+          See how institutions, roles, markets and infrastructure connect
+          through real financial workflows.
         </p>
+
+        <div className="interaction-system-path">
+          Clients &amp; Capital → Financial Institutions → Markets → Infrastructure
+        </div>
       </section>
 
       <section className="interaction-legend">

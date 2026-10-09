@@ -905,3 +905,11 @@ footer .footer-link strong {
     display: none;
   }
 }
+
+/* Interaction V1 — system path */
+.interaction-system-path {
+  margin-top: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
