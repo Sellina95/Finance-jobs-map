@@ -329,8 +329,45 @@ footer span {
 .system-hero .intro {
   color: white;
 }
-.system-hero > div:last-child {
-  transform: translateY(-40px);
+.system-hero > div:first-child {
+  width: 100%;
+  transform: none;
+  text-align: left;
+}
+
+.system-hero .eyebrow {
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: 0.20em;
+}
+
+.system-hero h1 {
+  max-width: 920px;
+  margin: 0;
+  font-family: "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  font-size: clamp(46px, 5.2vw, 74px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+
+.system-hero .intro {
+  max-width: 760px;
+  margin: 22px 0 0;
+  font-size: 17px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.system-hero .search-box {
+  width: min(620px, 100%);
+  margin: 72px 0 0;
+}
+
+.system-hero .search-results {
+  width: min(620px, 100%);
+  margin: 10px 0 0;
 }
 .search-box {
   width: min(520px, 90%);

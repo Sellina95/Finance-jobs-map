@@ -1984,8 +1984,6 @@ function FinancialSystemMap({
   return (
     <main className="world">
       <header className="hero system-hero">
-        <div className="globe">🌍</div>
-
         <div>
           <p className="eyebrow">FINANCE WORLD MAP</p>
           <h1>See Where Every Finance Job Fits</h1>
