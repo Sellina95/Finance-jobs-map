@@ -10935,7 +10935,7 @@ function GlobalMarketsMap({
                   openStructuring();
                 } else if (item.id === "research-strategy") {
                   openResearchStrategy();
-                } else if (item.id === "financing") {
+                } else if (item.id === "financing-securities-finance") {
                   openFinancing();
                 } else if (item.id === "markets-coo") {
                   openMarketsCOO();
@@ -26273,7 +26273,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <PortfolioManagementRoleMap
         goBack={() => setPage("investment-funds")}
-        openPortfolioManager={() => setPage("funds-portfolio")}
+        openPortfolioManager={() => setPage("funds-portfolio-manager")}
       />
     );
   }
@@ -26282,7 +26282,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <InvestmentResearchRoleMap
         goBack={() => setPage("investment-funds")}
-        openInvestmentAnalyst={() => setPage("funds-research")}
+        openInvestmentAnalyst={() => setPage("funds-research-analyst")}
       />
     );
   }
@@ -26291,7 +26291,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <TradingExecutionRoleMap
         goBack={() => setPage("investment-funds")}
-        openBuySideTrader={() => setPage("funds-trading")}
+        openBuySideTrader={() => setPage("funds-trading-trader")}
       />
     );
   }
@@ -26300,7 +26300,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <InvestmentRiskRoleMap
         goBack={() => setPage("investment-funds")}
-        openInvestmentRiskManager={() => setPage("funds-risk")}
+        openInvestmentRiskManager={() => setPage("funds-risk-manager")}
       />
     );
   }
@@ -26309,7 +26309,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <DistributionCoverageRoleMap
         goBack={() => setPage("investment-funds")}
-        openDistributionManager={() => setPage("funds-distribution")}
+        openDistributionManager={() => setPage("funds-distribution-manager")}
       />
     );
   }
@@ -26318,7 +26318,7 @@ openCommercialBanking={() => setPage("commercial-banking")}
     return (
       <FundOperationsRoleMap
         goBack={() => setPage("investment-funds")}
-        openFundOperationsAnalyst={() => setPage("funds-operations")}
+        openFundOperationsAnalyst={() => setPage("funds-operations-analyst")}
       />
     );
   }
